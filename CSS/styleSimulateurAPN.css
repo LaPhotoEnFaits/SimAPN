@@ -1,0 +1,204 @@
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: rgba(0,0,0,0.5);
+    width: 129px;
+    height:3px;
+    vertical-align: middle;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-image: url('https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k/Images/Icones/btnSlider.png');
+    width: 23px;
+    height: 23px;    
+}
+
+input[type="range"]::-moz-range-thumb {
+     -webkit-appearance: none;
+    background-image: url('https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k/Images/Icones/btnSlider.png');
+    width: 23px;
+    height: 23px;  
+    border: 0;
+	outline: none;
+}
+
+.cssListe{
+    box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.3) inset;
+    text-shadow: 1px 1px 2px #111111;
+    background-color:#444444;
+    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    color: #ffffff; 
+    font-size:14px;
+    font-style:normal;
+    font-weight:normal;
+
+    padding: 0px;
+    border-spacing: 0px;
+
+    border-top-color: #ffffff; 
+    border-right-color: #ffffff; 
+    border-left-color: #ffffff; 
+    border-bottom-color: #ffffff; 
+    
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+
+    border-top-width:1px;
+    border-right-width:1px;
+    border-left-width:1px;
+    border-bottom-width:1px;
+}
+
+.nomDeParametre{
+    color: #d7d7d7;
+}
+
+.classBtnReglage, .classBtnClose{
+    cursor: pointer;
+}
+
+
+
+
+
+.classBtnReglage:hover, .classBtnClose:hover {
+    background: rgba(255,255,255,0.3);
+    background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.3),rgba(255,255,255,0.15));
+    background-image: -moz-linear-gradient(top, rgba(255,255,255,0.3),rgba(255,255,255,0.15));
+    background-image: -ms-linear-gradient(top, rgba(255,255,255,0.3),rgba(255,255,255,0.15));
+    background-image: -o-linear-gradient(top, rgba(255,255,255,0.3),rgba(255,255,255,0.15));
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.3),rgba(255,255,255,0.15));
+
+    text-decoration: none;
+}
+
+.classBtnReglage{
+    float:right;
+    padding-top: 1px;
+}
+
+.classBtnClose{
+    width: 30px;
+    height: 25px;
+    float:right;
+}
+
+
+
+.tableAvecSlider tr{
+    height:23px;
+}
+
+
+.classInfoNavigateur{
+    color: #333333;
+    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    font-size:14px;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.simulateur {
+    background-image: url('https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k/Images/Papier%20peint/Fond.png');
+    background-repeat: repeat;
+
+    font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    color: #ffffff; 
+    font-size:14px;
+    text-shadow:  2px 2px 2px #000000;
+
+    display: table;
+    padding-bottom: 7px;
+    padding-right: 0px;
+    padding-left: 0px; 
+    padding-top: 0px;
+    margin: 0px;
+
+    float:left;
+
+    max-width:850px;
+    width: 100%;
+}
+
+.classTitre{
+    font-size:19px;
+    text-align: center;
+    font-style: italic;
+    padding: 7px;
+    background-color: rgba(0,0,0,0.5);
+    border-bottom: 2px solid rgba(0,0,0,0.8);
+}
+
+.classBarreDeTache{
+    background: rgba(0,0,0,0.1);
+    margin-bottom: 7px;
+    border: 1px solid rgba(0,0,0,0.1);
+   /* width: 100%;*/
+}
+
+.tableauBarreDeTache{
+width: 100%;
+}
+.tableauBarreDeTache td{
+    border-left: 1px solid rgba(255,255,255,0.8);
+    padding-left: 5px;
+
+}
+
+.tableauBarreDeTache tr td:first-child{
+    border-left: 0px;
+    padding-left: 0px;
+}
+
+.tableAvecSlider td{
+    border-left: none;
+}
+
+
+.classInfoUtilisateur{
+    color: #dddddd;
+    font-style: italic;
+}
+
+.classViseur, .classReglagesRapides,.classReglagesVue{
+    padding: 7px;
+    margin-left: 7px;
+    
+    float:left;
+}
+
+.classReglagesRapides,.classReglagesVue{
+margin-top:7px;
+}
+
+.classBtnReglage:hover, .classBtnClose:hover, .classBtnReglage:hover,input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+.classViseur{
+    background: rgba(0,0,0,1);
+    float:left;
+    margin-top:0px;
+}
+
+.classCvsPhoto{
+    position: absolute;
+}
+
+.classCurseurExposition{
+	text-align: center;
+    margin-left: 30px;
+}
+
+.classReglagesRapides{
+	float:left;
+	width:270px;
+}
+
+.classReglagesVue{
+    background: rgba(0,0,0,0.17);
+    border-radius: 6px 6px 6px 6px;   
+}

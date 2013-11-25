@@ -1,0 +1,321 @@
+<meta charset="UTF-8" />
+
+<div id='infoNavigateur' class='classInfoNavigateur'></div>
+
+<div class='simulateur'>
+
+	<div id='infoUtilisateur' class='classInfoUtilisateur'></div>
+
+	<div id='Vues' style='display:none;'>
+
+		<div id='titre' class='classTitre'></div>
+
+		<div id='barreDeTache' class='classBarreDeTache'>
+			<table class='tableauBarreDeTache'>
+				<tr>
+					<td>
+						<table class='tableAvecSlider'>
+							<tr>
+								<td><canvas id='cvsPetiteFenetre'></canvas></td>
+								<td><input type='range' id='sliderTailleFenetres' /></td>
+								<td><canvas id='cvsGrandeFenetre'></canvas></td>
+							</tr>
+						</table>
+					</td>
+					
+					<td id='btnVueReglagesScene' class='classBtnReglage'></td>			
+					<td id='btnVueReglagesPhotographe' class='classBtnReglage'></td>
+					<td id='btnVueReglagesObjectif' class='classBtnReglage'></td>
+					<td id='btnVueReglagesAPN' class='classBtnReglage'></td>					
+
+				</tr>
+			</table>
+		</div>
+
+		<span id='viseur' class='classViseur'>
+
+			<div id='vuePhoto'>
+				<canvas id='cvsPhotoCollimateurs' class='classCvsPhoto' ></canvas>
+				<canvas id='cvsPhotoBruit' class='classCvsPhoto' ></canvas>
+				<canvas id='cvsPhotoPlan0' class='classCvsPhoto' ></canvas>
+				<canvas id='cvsPhotoPlan1' class='classCvsPhoto' ></canvas>
+				<canvas id='cvsPhotoPlan2' class='classCvsPhoto' ></canvas>
+				<canvas id='cvsPhotoPlan3' class='classCvsPhoto' ></canvas>
+				<canvas id='cvsPhotoPlan4' class='classCvsPhoto' ></canvas>						
+				<canvas id='cvsPhotoPourPositionRelative' ></canvas>
+			</div>
+
+			<span id='btnVuePhoto' class='classBtnClose'></span>
+			<span id='btnCloseVuePhoto' class='classBtnClose'></span>
+
+			<span id='btnVueReglagesVuePhoto' class='classBtnReglage'></span>
+
+			<div id='vueCurseurExpo' class='classCurseurExposition'>
+				<canvas id='cvsCurseurExposition'></canvas>
+			</div>
+			<span id='btnVueCurseurExpo' class='classBtnClose'></span>
+			<span id='btnCloseVueCurseurExpo' class='classBtnClose'></span>
+		</span>	
+
+		<span id='vueReglagesRapides' class='classReglagesRapides'>
+
+			<table class='tableAvecSlider'>
+				<tr id='ensembleSliderOuverture'>
+					<td><span id='nomSliderOuverture' class='nomDeParametre'></span></td>
+					<td><input type='range' id='sliderOuverture' /></td>
+					<td><span id='outputSliderOuverture'></span></td>
+				</tr>
+				
+				<tr id='ensembleSliderVitesse'>
+					<td><span id='nomSliderVitesse' class='nomDeParametre'></span></td>
+					<td><input type='range' id='sliderVitesse' /></td>
+					<td><span id='outputSliderVitesse'></span></td>
+				</tr>
+
+				<tr id='ensembleSliderISO'>
+					<td><span id='nomSliderISO' class='nomDeParametre'></span></td>
+					<td><input type='range' id='sliderISO' /></td>
+					<td><span id='outputSliderISO'></span></td>
+				</tr>
+
+				<tr id='ensembleSliderFocale'>
+					<td><span id='nomSliderFocale' class='nomDeParametre'></span></td>
+					<td><input type='range' id='sliderFocale' /></td>
+					<td><span id='outputSliderFocale'></span></td>
+				</tr>
+
+			</table>
+			<span id='btnVueReglagesRapides' class='classBtnClose'></span>
+			<span id='btnCloseVueReglagesRapides' class='classBtnClose'></span>
+		</span>
+
+		<span id='vueReglagesVuePhoto' class='classReglagesVue'>
+
+			<span id='btnCloseVueReglagesVuePhoto' class='classBtnClose'></span>
+
+			<table>
+
+				<tr id='ensembleChkExpo'>
+					<td><input type="checkbox" id="chkVuePhotoExpo" /></td>
+					<td><span id='nomChkVuePhotoExpo' class='nomDeParametre'></span></td>
+				</tr>
+				
+				<tr id='ensembleChkFlouDeMap'>
+					<td><input type="checkbox" id="chkVuePhotoFlouMap" /></td>
+					<td><span id='nomChkVuePhotoFlouMap' class='nomDeParametre'></span></td>
+				</tr>
+				
+				<tr id='ensembleChkFlouDeBouge'>
+					<td><input type="checkbox" id="chkVuePhotoFlouBouge" /></td>
+					<td><span id='nomChkVuePhotoFlouBouge' class='nomDeParametre'></span></td>
+				</tr>
+				
+				<tr id='ensembleChkBruit'>
+					<td><input type="checkbox" id="chkVuePhotoBruit" /></td>
+					<td><span id='nomChkVuePhotoBruit' class='nomDeParametre'></span></td>
+				</tr>
+								
+			</table>
+		</span>
+
+		<span id='vueReglagesAPN' class='classReglagesVue'>
+			<span id='btnCloseVueReglagesAPN' class='classBtnClose'></span>
+
+			<table id='ensembleListeTypeDeCapteur'>
+				<tr>
+					<td><span id='nomListeTypeDeCapteur' class='nomDeParametre'></span></td>
+					<td>   
+						<select id="listeTypeDeCapteur" class="cssListe">
+							<option value="1/3.2">1/3.2in (smartphone)</option>
+							<option value="1/2.3">1/2.3in (compact)</option>
+							<option value="1/1.7">1/1.7in (compact)</option>
+							<option value="2/3">2/3in (smartphone)</option>
+							<option value="CX">CX (compact)</option>
+							<option value="4/3">4/3in (reflex 4/3)</option>
+							<option value="aps-c">aps-c (reflex)</option>
+							<option value="aps-h" >aps-h (reflex Canon)</option>
+							<option value="full-frame">full-frame (reflex)</option>
+						</select>
+					</td>
+				</tr>
+			</table>
+
+		</span>
+
+		<span id='vueReglagesObjectif' class='classReglagesVue'>
+			<span id='btnCloseVueReglagesObjectif' class='classBtnClose'></span>
+
+			<table id='ensembleListeAntiVibration'>
+				<tr>
+					<td><span id='nomListeAntiVibration' class='nomDeParametre'></span></td>
+					<td>          
+						<select id="listeAntiVibration" class="cssListe">
+				            <option value=1 ></option>
+            				<option value=0 ></option>
+			        	</select>
+			        </td>
+				</tr>
+			</table>
+		</span>
+
+		<span id='vueReglagesPhotographe' class='classReglagesVue'>
+			<span id='btnCloseVueReglagesPhotographe' class='classBtnClose'></span>
+
+			<table id='ensembleListeTremblements'>
+				<tr>
+					<td><span id='nomListeListeTremblements' class='nomDeParametre'></span></td>
+					<td>          
+						<select id="listeTremblements" class="cssListe">
+				          <option value=0.5></option>
+				          <option value=1.0></option>
+				          <option value=1.5></option>
+				          <option value=2></option>
+			        	</select>
+			        </td>
+					<td><span id='outputListeTremblements'></span></td>
+				</tr>
+			</table>
+
+			<table id='ensembleListeCdC'>
+				<tr>
+					<td><span id='nomListeCdC' class='nomDeParametre'></span></td>
+					<td>          
+						<select name="CDC" id="ListeCdC" class="cssListe">
+							<option value="1440"></option>
+							<option value="1730"></option>
+							<option value="3000"></option>
+							<option value="1"></option>
+							<option value="2"></option>
+						</select>
+			        </td>
+					<td><span id='outputListeCdC'></span></td>
+				</tr>
+			</table>
+		</span>		
+
+		<span id='vueReglagesScene' class='classReglagesVue'>
+
+			<span id='btnCloseVueReglagesScene' class='classBtnClose'></span>
+			<table id='ensembleListeLuminosite'>
+				<tr>
+					<td><span id='nomListeLuminositeScene' class='nomDeParametre'></span></td>
+					<td>          
+						<select name="Scene" id="listeLuminositeScene" class="cssListe">
+				           <option value=-3></option>
+				           <option value=3></option>
+				           <option value=10></option>
+				           <option value=11></option>
+				           <option value=13></option>
+				           <option value=15></option>
+				           <option value=16></option>
+			        	</select>
+			        </td>
+					<td><span id='outputListeLuminosite'></span></td>
+				</tr>
+			</table>
+		</span>
+
+	</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+	if(!typeDeSimulateur){
+		alert('typeDeSimulateur= '+typeDeSimulateur)
+		var typeDeSimulateur = 'simulateurTriangleExpo';
+	}
+
+	if(!adresseDuCode)
+	var adresseDuCode='..';
+
+
+	var listeOrdonneeDesScripts=new Array();
+
+	listeOrdonneeDesScripts[0]=adresseDuCode+'/JS/constantes.js';
+	
+	listeOrdonneeDesScripts[1]=adresseDuCode+'/JS/Utils/gestionHTML.js';
+	listeOrdonneeDesScripts[2]=adresseDuCode+'/JS/Utils/compatibiliteNavigateurs.js';
+	listeOrdonneeDesScripts[3]=adresseDuCode+'/JS/Utils/traductions.js';
+
+	listeOrdonneeDesScripts[4]=adresseDuCode+'/JS/Models/scene.js';
+	listeOrdonneeDesScripts[5]=adresseDuCode+'/JS/Models/appareilPhoto.js';
+	listeOrdonneeDesScripts[6]=adresseDuCode+'/JS/Models/objectif.js';
+	listeOrdonneeDesScripts[7]=adresseDuCode+'/JS/Models/photographe.js';
+	listeOrdonneeDesScripts[8]=adresseDuCode+'/JS/Models/priseDeVueGlobale.js'	;
+
+	listeOrdonneeDesScripts[9]=adresseDuCode+'/JS/Vues/gestionDesVues.js';
+
+	listeOrdonneeDesScripts[10]=adresseDuCode+'/JS/Vues/illustrations.js';
+	listeOrdonneeDesScripts[11]=adresseDuCode+'/JS/Vues/vueReglagesRapides.js';
+	listeOrdonneeDesScripts[12]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhotoBruit.js';
+	listeOrdonneeDesScripts[13]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhotoFlouDeBouge.js';
+	listeOrdonneeDesScripts[14]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhoto.js';
+	listeOrdonneeDesScripts[15]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhotoSouris.js';
+	listeOrdonneeDesScripts[16]=adresseDuCode+'/JS/Vues/vueReglagesVuePhoto.js';
+	listeOrdonneeDesScripts[17]=adresseDuCode+'/JS/Vues/vueCurseurExposition.js';
+	listeOrdonneeDesScripts[18]=adresseDuCode+'/JS/Vues/vueReglagesScene.js';
+	listeOrdonneeDesScripts[19]=adresseDuCode+'/JS/Vues/vueReglagesPhotographe.js';
+	listeOrdonneeDesScripts[20]=adresseDuCode+'/JS/Vues/vueReglagesObjectif.js';
+	listeOrdonneeDesScripts[21]=adresseDuCode+'/JS/Vues/vueReglagesAPN.js';
+	
+	listeOrdonneeDesScripts[22]=adresseDuCode+'/JS/Vues/Fenetres/gestionTailleFenetres.js';
+
+	listeOrdonneeDesScripts[23]=adresseDuCode+'/JS/Control/onModif.js';
+	
+	//Seuls les deux derniers .js doivent attendre les précédents:
+	listeOrdonneeDesScripts[24]=adresseDuCode+'/JS/';
+	listeOrdonneeDesScripts[25]=adresseDuCode+'/JS/main.js';
+	
+	//Attendre que le css soit chargé est utile pour ensuite y modifier les adresses des images
+	feuilleDeStyle= document.createElement('link');
+	feuilleDeStyle.rel='stylesheet';
+	feuilleDeStyle.type='text/css';
+	feuilleDeStyle.href=adresseDuCode+'/CSS/styleSimulateurAPN.css';
+
+    feuilleDeStyle.onload = function(){				
+			chargeScript(0);
+	};
+
+	document.body.appendChild(feuilleDeStyle);
+
+
+	var cptFichiersTelecharges=0;
+	var dernierCptSansAttente = listeOrdonneeDesScripts.length - 2;
+
+	function chargeScript(indice) {
+
+	    script = document.createElement('script');
+	    script.type = 'text/javascript';
+	    script.async = false;
+
+	    script.onload = function(){				
+			
+	    	cptFichiersTelecharges++;
+
+	    	if(cptFichiersTelecharges>dernierCptSansAttente){	    	
+		        if((indice+1)!==listeOrdonneeDesScripts.length)
+		        	chargeScript(indice+1);
+	        	else{
+	        		initPreTelechargement();
+					
+	        	}
+	        }
+	    };
+
+
+	    if(indice===(listeOrdonneeDesScripts.length-2))
+	    	script.src = listeOrdonneeDesScripts[indice]+typeDeSimulateur+'.js';
+	    else
+	    	script.src = listeOrdonneeDesScripts[indice];
+
+	    document.body.appendChild(script);	
+
+	    if(indice<(listeOrdonneeDesScripts.length-2))
+	    	chargeScript(indice+1);   
+	   
+	}
+
+</script>

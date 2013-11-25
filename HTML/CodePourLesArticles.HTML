@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><body>
+
+
+<meta charset="UTF-8" />
+
+<input type="button" id='btnStartSimulateur' onclick="startSimulateur()"  value="Charger le simulateur" /><br />
+<div id="ZoneSimulateur" ></div>
+
+<script type="text/javascript">
+
+	var typeDeSimulateur;
+
+	//typeDeSimulateur = 'simulateurTriangleExpo';
+	//typeDeSimulateur = 'simulateurFlouDeBouge';
+	
+	typeDeSimulateur = 'simulateurComplet';
+
+	var ADR_CODE_PROD = 'https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k';
+	var ADR_CODE_TEST = 'https://googledrive.com/host/0B4yKyQ6kC8o5UlF0YkwyYmItcDg';
+
+	var adresseDuCode;
+
+	if(window.location.protocol==='file:')
+		adresseDuCode='..';
+	else
+		adresseDuCode=ADR_CODE_PROD;
+
+	var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = false;
+    document.body.appendChild(script);
+    
+    script.onload = function(){		
+    		$("#ZoneSimulateur").load(adresseDuCode+"/HTML/SimulateurAPN.html");
+    };
+   
+	
+    function startSimulateur(){
+    	    	
+    	script.src = adresseDuCode + '/JS/Libs/jQuerymin.js';
+    	document.getElementById('btnStartSimulateur').style.display = 'none';
+
+    	if(_gaq)
+    	_gaq.push(['_trackEvent', 'ChargeSimulateur', typeDeSimulateur]);
+    }
+
+</script>
+
+
+
+</body></html>
