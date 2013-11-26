@@ -9,6 +9,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     /*
@@ -49,6 +50,14 @@ module.exports = function (grunt) {
             }
         },
 
+        uglify: {
+            app: {
+                files: {
+                    'Packaged/app.min.js': ['Packaged/app.js']
+                }
+            }
+        },
+
         // Surveille les fichiers .js contenus dans le dossier JS
         // Relance la tâche 'build' à chaque changement
         watch: {
@@ -74,6 +83,7 @@ module.exports = function (grunt) {
         'clean', 
         /*'jshint', Désactivé pour le moment car trop d'erreurs */ 
         'concat',
+        'uglify',
         'watch'
     ]);
 
