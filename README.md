@@ -8,7 +8,7 @@ npm install
 
 **Packager le Javascript**
 
-*A faire quand on bose sur le code*
+*A faire quand on bosse sur le code*
 
 ```
 grunt
