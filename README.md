@@ -13,3 +13,9 @@ npm install
 ```
 grunt
 ```
+
+**Mettre à jour le code**
+
+```
+git pull origin master
+```
