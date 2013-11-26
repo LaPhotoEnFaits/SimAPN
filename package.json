@@ -1,0 +1,22 @@
+{
+  "name": "SimAPN",
+  "version": "0.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/LaPhotoEnFaits/SimAPN.git"
+  },
+  "author": "La photo en faits",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/LaPhotoEnFaits/SimAPN/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "uglify-js": "~2.4.3"
+  }
+}
