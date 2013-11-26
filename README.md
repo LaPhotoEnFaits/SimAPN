@@ -31,11 +31,17 @@ git add nomDuTruc
 Commiter:
 
 ```
-git commit -a -m"le message du commit"
+git commit -m"le message du commit"
 ```
 
-Mise à jour du code sur GitHub (origin), dans la branche master:
+Mise à jour du code depuis GitHub (origin), dans la branche master:
 
 ```
 git pull origin master
+```
+
+Envoi du commit sur github:
+
+```
+git push
 ```
