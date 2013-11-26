@@ -1,4 +1,32 @@
-function onModifCapteur(){
+function onModifProfondeurPhotographe() {
+	calcFlousPlans();
+	drawPlans();
+	drawFlouBouge();
+	drawSol();
+	drawGrillePerspective();
+	drawFlousEtExpo();
+	drawBruit();
+	drawVueHistogrammes();
+}
+
+function onModifHorizontalVerticalPhotographe() {
+	drawPlans();
+	drawFlouBouge();
+	drawSol();
+	drawGrillePerspective();
+	drawBruit();
+	drawVueHistogrammes();
+}
+
+
+function onModifDefinitionCapteur() {
+	calcTaillePixel();
+
+	if (photographe.typeDeCdc === 1)
+		onModifCdC();
+}
+
+function onModifCapteur() {
 	setDimensionsCapteur();
 	calcCropFactor();
 	setFocalesMinMaxChoisie();
@@ -13,7 +41,7 @@ function onModifCapteur(){
 	drawVueHistogrammes();
 }
 
-function onModifCdC(){
+function onModifCdC() {
 	calcCdc();
 	calcVitesseDeSecurite();
 	calcFlouDeBouge();
@@ -33,7 +61,7 @@ function onModifAntiVibration() {
 }
 
 function onModifTremblements() {
-	majOutputListeTremblements();
+	majOutputLstTremblements();
 
 	calcVitesseDeSecurite();
 	calcFlouDeBouge();
@@ -44,7 +72,7 @@ function onModifTremblements() {
 }
 
 function onModifOuverture() {
-	majOutputSliderOuverture();
+	majOutputSldOuverture();
 
 	calcFlousPlans();
 	calcExposition();
@@ -55,21 +83,21 @@ function onModifOuverture() {
 }
 
 function onModifVitesse() {
-	majOutputSliderVitesse();
-	
+	majOutputSldVitesse();
+
 	calcVitesseDeSecurite();
 	calcFlouDeBouge();
 	calcExposition();
 
 	drawPlans();
-	drawFlouBouge();	
+	drawFlouBouge();
 	drawFlousEtExpo();
 	drawCurseurExposition();
 	drawVueHistogrammes();
 }
 
 function onModifISO() {
-	majOutputSliderISO();
+	majOutputSldISO();
 
 	calcDynamiqueCourante();
 	calcExposition();
@@ -81,7 +109,7 @@ function onModifISO() {
 }
 
 function onModifFocale() {
-	majOutputSliderFocale();
+	majOutputSldFocale();
 
 	calcAnglesDeChamp();
 	calcVitesseDeSecurite();
@@ -93,7 +121,8 @@ function onModifFocale() {
 }
 
 function onModifLuminosite() {
-	majOutputListeLuminosite();
+	majOutputLstLuminosite();
+	majOutputSldLuminosite();
 
 	calcExposition();
 

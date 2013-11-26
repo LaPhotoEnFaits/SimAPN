@@ -2,7 +2,7 @@
 
 <div id='infoNavigateur' class='classInfoNavigateur'></div>
 
-<div class='simulateur'>
+<div class='simulateur' id='vueSimulateur'>
 
 	<div id='infoUtilisateur' class='classInfoUtilisateur'></div>
 
@@ -14,10 +14,10 @@
 			<table class='tableauBarreDeTache'>
 				<tr>
 					<td>
-						<table class='tableAvecSlider'>
+						<table class='tableAvecSld'>
 							<tr>
 								<td><canvas id='cvsPetiteFenetre'></canvas></td>
-								<td><input type='range' id='sliderTailleFenetres' /></td>
+								<td><input type='range' id='sldTailleFenetres' /></td>
 								<td><canvas id='cvsGrandeFenetre'></canvas></td>
 							</tr>
 						</table>
@@ -51,7 +51,7 @@
 				<canvas id='cvsPhotoPourPositionRelative' ></canvas>
 			</div>
 
-			<span id='btnVuePhoto' class='classBtnClose'></span>
+			<span id='btnVuePhoto' class='classBtnReglage'></span>
 			<span id='btnCloseVuePhoto' class='classBtnClose'></span>
 
 			<span id='btnVueReglagesVuePhoto' class='classBtnReglage'></span>
@@ -59,50 +59,50 @@
 			<div id='vueCurseurExpo' class='classCurseurExposition'>
 				<canvas id='cvsCurseurExposition'></canvas>
 			</div>
-			<span id='btnVueCurseurExpo' class='classBtnClose'></span>
+			<span id='btnVueCurseurExpo' class='classBtnReglage'></span>
 			<span id='btnCloseVueCurseurExpo' class='classBtnClose'></span>
 		</span>	
 
 		<span id='vueHistogrammes' class='classVueHistogrammes'>
-		<span id='btnCloseVueHistogrammes' class='classBtnClose'></span>
-		<canvas id='cvsHistogrammes' ></canvas>
+			<span id='btnCloseVueHistogrammes' class='classBtnClose'></span>
+			<canvas id='cvsHistogrammes' ></canvas>
 		</span>
 
 		<span id='vueReglagesRapides' class='classReglagesRapides'>
 
-			<table class='tableAvecSlider'>
-				<tr id='ensembleSliderOuverture'>
-					<td><span id='nomSliderOuverture' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sliderOuverture' /></td>
-					<td><span id='outputSliderOuverture'></span></td>
+			<table class='tableAvecSld'>
+				<tr id='ensembleSldOuverture'>
+					<td><span id='nomSldOuverture' class='nomDeParametre'></span></td>
+					<td><input type='range' id='sldOuverture' /></td>
+					<td><span id='outputSldOuverture'></span></td>
 				</tr>
 				
-				<tr id='ensembleSliderVitesse'>
-					<td><span id='nomSliderVitesse' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sliderVitesse' /></td>
-					<td><span id='outputSliderVitesse'></span></td>
+				<tr id='ensembleSldVitesse'>
+					<td><span id='nomSldVitesse' class='nomDeParametre'></span></td>
+					<td><input type='range' id='sldVitesse' /></td>
+					<td><span id='outputSldVitesse'></span></td>
 				</tr>
 
-				<tr id='ensembleSliderISO'>
-					<td><span id='nomSliderISO' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sliderISO' /></td>
-					<td><span id='outputSliderISO'></span></td>
+				<tr id='ensembleSldISO'>
+					<td><span id='nomSldISO' class='nomDeParametre'></span></td>
+					<td><input type='range' id='sldISO' /></td>
+					<td><span id='outputSldISO'></span></td>
 				</tr>
 
-				<tr id='ensembleSliderFocale'>
-					<td><span id='nomSliderFocale' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sliderFocale' /></td>
-					<td><span id='outputSliderFocale'></span></td>
+				<tr id='ensembleSldFocale'>
+					<td><span id='nomSldFocale' class='nomDeParametre'></span></td>
+					<td><input type='range' id='sldFocale' /></td>
+					<td><span id='outputSldFocale'></span></td>
 				</tr>
 
 			</table>
-			<span id='btnVueReglagesRapides' class='classBtnClose'></span>
+			<span id='btnVueReglagesRapides' class='classBtnReglage'></span>
 			<span id='btnCloseVueReglagesRapides' class='classBtnClose'></span>
 		</span>
 
 		<span id='vueReglagesVuePhoto' class='classReglagesVue'>
 
-			<span id='btnCloseVueReglagesVuePhoto' class='classBtnClose'></span>
+			<span id='btnCloseVueReglagesVuePhoto' class='classBtnReglage'></span>
 
 			<table>
 
@@ -130,13 +130,13 @@
 		</span>
 
 		<span id='vueReglagesAPN' class='classReglagesVue'>
-			<span id='btnCloseVueReglagesAPN' class='classBtnClose'></span>
+			<span id='btnCloseVueReglagesAPN' class='classBtnReglage'></span>
 
-			<table id='ensembleListeTypeDeCapteur'>
-				<tr>
-					<td><span id='nomListeTypeDeCapteur' class='nomDeParametre'></span></td>
+			<table >
+				<tr id='ensembleLstTypeDeCapteur'>
+					<td><span id='nomLstTypeDeCapteur' class='nomDeParametre'></span></td>
 					<td>   
-						<select id="listeTypeDeCapteur" class="cssListe">
+						<select id="lstTypeDeCapteur" class="cssLst">
 							<option value="1/3.2">1/3.2in (smartphone)</option>
 							<option value="1/2.3">1/2.3in (compact)</option>
 							<option value="1/1.7">1/1.7in (compact)</option>
@@ -149,6 +149,13 @@
 						</select>
 					</td>
 				</tr>
+
+				<tr id='ensembleInpDefinitionCapteur'>
+					<td><span id='nomInpDefinitionCapteur' class='nomDeParametre'></span></td>
+					<td><input id='inpDefinitionCapteur' size='3' class='cssInp' /></td>
+					<td><span id='outputInpDefinitionCapteur' ></span></td>
+				</tr>
+
 			</table>
 
 		</span>
@@ -156,11 +163,11 @@
 		<span id='vueReglagesObjectif' class='classReglagesVue'>
 			<span id='btnCloseVueReglagesObjectif' class='classBtnClose'></span>
 
-			<table id='ensembleListeAntiVibration'>
+			<table id='ensembleLstAntiVibration'>
 				<tr>
-					<td><span id='nomListeAntiVibration' class='nomDeParametre'></span></td>
+					<td><span id='nomLstAntiVibration' class='nomDeParametre'></span></td>
 					<td>          
-						<select id="listeAntiVibration" class="cssListe">
+						<select id="lstAntiVibration" class="cssLst">
 				            <option value=1 ></option>
             				<option value=0 ></option>
 			        	</select>
@@ -172,26 +179,26 @@
 		<span id='vueReglagesPhotographe' class='classReglagesVue'>
 			<span id='btnCloseVueReglagesPhotographe' class='classBtnClose'></span>
 
-			<table id='ensembleListeTremblements'>
+			<table id='ensembleLstTremblements'>
 				<tr>
-					<td><span id='nomListeListeTremblements' class='nomDeParametre'></span></td>
+					<td><span id='nomLstLstTremblements' class='nomDeParametre'></span></td>
 					<td>          
-						<select id="listeTremblements" class="cssListe">
+						<select id="lstTremblements" class="cssLst">
 				          <option value=0.5></option>
 				          <option value=1.0></option>
 				          <option value=1.5></option>
 				          <option value=2></option>
 			        	</select>
 			        </td>
-					<td><span id='outputListeTremblements'></span></td>
+					<td><span id='outputLstTremblements'></span></td>
 				</tr>
 			</table>
 
-			<table id='ensembleListeCdC'>
+			<table id='ensembleLstCdC'>
 				<tr>
-					<td><span id='nomListeCdC' class='nomDeParametre'></span></td>
+					<td><span id='nomLstCdC' class='nomDeParametre'></span></td>
 					<td>          
-						<select name="CDC" id="ListeCdC" class="cssListe">
+						<select name="CDC" id="LstCdC" class="cssLst">
 							<option value="1440"></option>
 							<option value="1730"></option>
 							<option value="3000"></option>
@@ -199,7 +206,7 @@
 							<option value="2"></option>
 						</select>
 			        </td>
-					<td><span id='outputListeCdC'></span></td>
+					<td><span id='outputLstCdC'></span></td>
 				</tr>
 			</table>
 		</span>		
@@ -207,11 +214,11 @@
 		<span id='vueReglagesScene' class='classReglagesVue'>
 
 			<span id='btnCloseVueReglagesScene' class='classBtnClose'></span>
-			<table id='ensembleListeLuminosite'>
+			<table id='ensembleLstLuminosite'>
 				<tr>
-					<td><span id='nomListeLuminositeScene' class='nomDeParametre'></span></td>
+					<td><span id='nomLstLuminositeScene' class='nomDeParametre'></span></td>
 					<td>          
-						<select name="Scene" id="listeLuminositeScene" class="cssListe">
+						<select name="Scene" id="lstLuminositeScene" class="cssLst">
 				           <option value=-3></option>
 				           <option value=3></option>
 				           <option value=10></option>
@@ -221,7 +228,15 @@
 				           <option value=16></option>
 			        	</select>
 			        </td>
-					<td><span id='outputListeLuminosite'></span></td>
+					<td><span id='outputLstLuminosite'></span></td>
+				</tr>
+			</table>
+
+			<table id='ensembleSldLuminositeScene' class='tableAvecSlider'>
+				<tr>
+					<td><span id='nomSldLuminositeScene' class='nomDeParametre'></span></td>
+					<td><input type='range' id='sldLuminosite' /></td>
+					<td><span id='outputSldLuminosite'></span></td>
 				</tr>
 			</table>
 		</span>
@@ -243,13 +258,13 @@
 	var adresseDuCode='..';
 
 
-	var listeOrdonneeDesScripts=new Array();
+	var lstOrdonneeDesScripts=new Array();
 
-	listeOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.js';
+	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.min.js';
 	
-	//Seuls les deux derniers .js doivent attendre les précédents:
-	listeOrdonneeDesScripts[1]=adresseDuCode+'/JS/';
-	listeOrdonneeDesScripts[2]=adresseDuCode+'/JS/main.js';
+	
+	lstOrdonneeDesScripts[1]=adresseDuCode+'/JS/';
+	lstOrdonneeDesScripts[2]=adresseDuCode+'/JS/main.js';
 	
 	//Attendre que le css soit chargé est utile pour ensuite y modifier les adresses des images
 	feuilleDeStyle= document.createElement('link');
@@ -257,15 +272,22 @@
 	feuilleDeStyle.type='text/css';
 	feuilleDeStyle.href=adresseDuCode+'/CSS/styleSimulateurAPN.css';
 
-    feuilleDeStyle.onload = function(){				
-			chargeScript(0);
+    feuilleDeStyle.onload = function(){		
+
+    	if(typeDeSimulateur !== 'simulateurComplet')
+    		document.getElementById('vueSimulateur').style.maxWidth='850px';
+    	else
+    		document.getElementById('vueSimulateur').style.maxWidth='1165px';	
+
+
+		chargeScript(0);
 	};
 
 	document.body.appendChild(feuilleDeStyle);
 
 
 	var cptFichiersTelecharges=0;
-	var dernierCptSansAttente = listeOrdonneeDesScripts.length - 2;
+	var dernierCptSansAttente = lstOrdonneeDesScripts.length - 2;
 
 	function chargeScript(indice) {
 
@@ -278,24 +300,23 @@
 	    	cptFichiersTelecharges++;
 
 	    	if(cptFichiersTelecharges>dernierCptSansAttente){	    	
-		        if((indice+1)!==listeOrdonneeDesScripts.length)
+		        if((indice+1)!==lstOrdonneeDesScripts.length)
 		        	chargeScript(indice+1);
 	        	else{
-	        		initPreTelechargement();
-					
+	        		initPreTelechargement();					
 	        	}
 	        }
 	    };
 
 
-	    if(indice===(listeOrdonneeDesScripts.length-2))
-	    	script.src = listeOrdonneeDesScripts[indice]+typeDeSimulateur+'.js';
+	    if(indice===(lstOrdonneeDesScripts.length-2))
+	    	script.src = lstOrdonneeDesScripts[indice]+typeDeSimulateur+'.js';
 	    else
-	    	script.src = listeOrdonneeDesScripts[indice];
+	    	script.src = lstOrdonneeDesScripts[indice];
 
 	    document.body.appendChild(script);	
 
-	    if(indice<(listeOrdonneeDesScripts.length-2))
+	    if(indice<(lstOrdonneeDesScripts.length-2))
 	    	chargeScript(indice+1);   
 	   
 	}

@@ -16,6 +16,7 @@ VueHistogrammes = function() {
 
 	this.init = initVueHistogrammes;
 	this.initIHM = initIHMVues;
+
 };
 
 
@@ -50,7 +51,7 @@ function drawVueHistogrammes() {
 
 		//Cherche le max
 		var max = 0;
-		for (i = 0; i <= 255; i++) {
+		for (i = 1; i <= 250; i++) {
 			if (vueHistogrammes.nbrPixelLuminosite[i] > max)
 				max = vueHistogrammes.nbrPixelLuminosite[i];
 		}
@@ -119,24 +120,13 @@ function calcHistogrammes() {
 
 	for (i = 0; i < nombreDePixels; i++) {
 
-		R = brightness * valPixR[i];
-		V = brightness * valPixV[i];
-		B = brightness * valPixB[i];
-
-		R = Math.round(R);
-		V = Math.round(V);
-		B = Math.round(B);
-
-		if (R > 255)
-			R = 255;
-		if (V > 255)
-			V = 255;
-		if (B > 255)
-			B = 255;
-
 		if (ValPixA[i] !== 0) {
-			lum = 0.3 * R + 0.6 * V + 0.1 * B;
+			
+			lum=brightness*(0.3 * valPixR[i] + 0.6 * valPixV[i] + 0.1 * valPixB[i])
 			lum = Math.round(lum);
+			if (lum > 255)
+				lum = 255;
+
 			vueHistogrammes.nbrPixelLuminosite[lum]++;
 		}
 	}

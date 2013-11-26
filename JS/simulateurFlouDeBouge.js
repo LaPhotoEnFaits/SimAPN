@@ -1,6 +1,6 @@
 function configSimulateur() {
 
-	titre += "Flou de bougé";
+	titre += 'Flou de bougé';
 
 	photographe.deplacementVertical = 1.4;
 	photographe.tremblements = 1.0;
@@ -13,21 +13,22 @@ function configSimulateur() {
 
 	vueReglagesRapides.activee = 1;
 	vueReglagesRapides.visible = 1;
-	vueReglagesRapides.SliderVitesseVisible = 1;
-	vueReglagesRapides.SliderFocaleVisible = 1;
+	vueReglagesRapides.sldVitesseVisible = 1;
+	vueReglagesRapides.sldFocaleVisible = 1;
 
 	vueReglagesPhotographe.activee = 1;
 	vueReglagesPhotographe.visible = 1;
 	vueReglagesPhotographe.tremblementsVisible = 1;
-	vueReglagesPhotographe.CdCVisible = 1;
+	vueReglagesPhotographe.lstCdCVisible = 1;
 
 	vueReglagesObjectif.activee = 1;
 	vueReglagesObjectif.visible = 1;
-	vueReglagesObjectif.antiVibrationVisible = 1;
+	vueReglagesObjectif.lstAntiVibrationVisible = 1;
 
 	vueReglagesAPN.activee = 1;
 	vueReglagesAPN.fermable = 1;
-	vueReglagesAPN.typeDeCapteurVisible = 1;
+	vueReglagesAPN.lstTypeDeCapteurVisible = 1;
+	vueReglagesAPN.inpDefinitionCapteur = 1;
 }
 
 function initMateriel() {

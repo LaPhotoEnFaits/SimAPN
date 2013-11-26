@@ -34,8 +34,9 @@ function rouletteSourisVuePhoto(e) {
 		priseDeVue.distanceDeMAP = DISTANCE_DE_MAP_MIN;
 
 	photographe.deplacementProfondeur += deplacement;
-	calcFlousPlans();
-	drawVuePhoto();
+
+	onModifProfondeurPhotographe();
+
 }
 
 function deplacementSourisVuePhoto(e) {
@@ -57,7 +58,7 @@ function deplacementSourisVuePhoto(e) {
 	X0VuePhoto = X;
 	Y0VuePhoto = Y;
 
-	drawVuePhoto();
+	onModifHorizontalVerticalPhotographe();
 }
 
 document.getElementById('cvsPhotoCollimateurs').addEventListener('DOMMouseScroll', function(e) {

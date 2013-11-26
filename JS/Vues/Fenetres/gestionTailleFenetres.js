@@ -1,13 +1,13 @@
-function initSliderTailleFenetres() {
-	drawCanvasSliderTailleFenetres();
-	document.getElementById("sliderTailleFenetres").min = 300;
-	document.getElementById("sliderTailleFenetres").max = 822;
-	document.getElementById("sliderTailleFenetres").step = 1;
-	document.getElementById("sliderTailleFenetres").value = vuePhoto.largeur;
+function initSldTailleFenetres() {
+	drawCanvasSldTailleFenetres();
+	document.getElementById("sldTailleFenetres").min = 300;
+	document.getElementById("sldTailleFenetres").max = 822;
+	document.getElementById("sldTailleFenetres").step = 1;
+	document.getElementById("sldTailleFenetres").value = vuePhoto.largeur;
 }
 
 
-function drawCanvasSliderTailleFenetres() {
+function drawCanvasSldTailleFenetres() {
 
 	var HAUTEUR_CVS_ICONE = 23;
 	var LARGEUR_CVS_ICONE = 23;
@@ -52,8 +52,8 @@ function drawCanvasSliderTailleFenetres() {
 	ct.stroke();
 }
 
-function modifSliderTailleFenetre() {
-	vuePhoto.largeur = 1.0 * document.getElementById("sliderTailleFenetres").value;
+function modifSldTailleFenetre() {
+	vuePhoto.largeur = 1.0 * document.getElementById("sldTailleFenetres").value;
 	calcHauteurVuePhoto();
 	if (priseDeVue.cdc === 2) {
 		calcCdc();
@@ -65,19 +65,19 @@ function modifSliderTailleFenetre() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById("sliderTailleFenetres").addEventListener('change', modifSliderTailleFenetre, false);
+	document.getElementById("sldTailleFenetres").addEventListener('change', modifSldTailleFenetre, false);
 }, false);
 
-document.getElementById("sliderTailleFenetres").oninput = function() {
-	modifSliderTailleFenetre();
+document.getElementById("sldTailleFenetres").oninput = function() {
+	modifSldTailleFenetre();
 };
 
-document.getElementById('sliderTailleFenetres').addEventListener('mousedown', function(e) {
+document.getElementById('sldTailleFenetres').addEventListener('mousedown', function(e) {
 	inhibeAccelerationMaterielle();
 	vuePhoto.affichageRapide = 1;
 }, false);
 
-document.getElementById('sliderTailleFenetres').addEventListener('mouseup', function() {
+document.getElementById('sldTailleFenetres').addEventListener('mouseup', function() {
 	valideAccelerationMaterielle();
 	vuePhoto.affichageRapide = 0;
 	drawVuePhoto();

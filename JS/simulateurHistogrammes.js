@@ -17,19 +17,21 @@ function configSimulateur() {
 
 	vueReglagesScene.activee = 1;
 	vueReglagesScene.visible = 1;
-	vueReglagesScene.luminositeVisible = 1;
+	vueReglagesScene.sldLuminositeVisible = 1;
+	vueReglagesScene.sldLuminositeMin = -6;
+	vueReglagesScene.sldLuminositeMax = 6;
 
 	vueHistogrammes.activee = 1;
 	vueHistogrammes.visible = 1;
 }
 
 function initMateriel() {
-	apnChoisi.vitesse = 1 / 2000;
-	apnChoisi.ISO = 200;
+	apnChoisi.vitesse = 3;
+	apnChoisi.ISO = 100;
+	objectifChoisi.ouverture = 1.8;
+	apnChoisi.capteurDynamique =8;	
 
-	objectifChoisi.ouverture = 5.6;
-
-	scene.luminosite = 15;
+	scene.luminosite = 0;
 
 	priseDeVue.distanceDeMAP = scene.plans[1].distance;
 }

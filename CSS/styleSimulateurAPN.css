@@ -9,21 +9,26 @@ input[type=range] {
 
 input[type="range"]::-webkit-slider-thumb {
      -webkit-appearance: none;
-    background-image: url('https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k/Images/Icones/btnSlider.png');
+    background-image: url('https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k/Images/Icones/btnSld.png');
     width: 23px;
     height: 23px;    
 }
 
 input[type="range"]::-moz-range-thumb {
      -webkit-appearance: none;
-    background-image: url('https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k/Images/Icones/btnSlider.png');
+    background-image: url('https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k/Images/Icones/btnSld.png');
     width: 23px;
     height: 23px;  
     border: 0;
 	outline: none;
 }
 
-.cssListe{
+.cssInp{     
+    height: 20px;
+    text-align : center;
+} 
+
+.cssInp, .cssLst{
     box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.3) inset;
     text-shadow: 1px 1px 2px #111111;
     background-color:#444444;
@@ -40,7 +45,7 @@ input[type="range"]::-moz-range-thumb {
     border-right-color: #ffffff; 
     border-left-color: #ffffff; 
     border-bottom-color: #ffffff; 
-    
+
     border-top-style: solid;
     border-right-style: solid;
     border-left-style: solid;
@@ -50,6 +55,10 @@ input[type="range"]::-moz-range-thumb {
     border-right-width:1px;
     border-left-width:1px;
     border-bottom-width:1px;
+}
+
+.cssLst{
+
 }
 
 .nomDeParametre{
@@ -82,7 +91,7 @@ input[type="range"]::-moz-range-thumb {
     float:right;
 }
 
-.tableAvecSlider tr{
+.tableAvecSld tr{
     height:23px;
 }
 
@@ -112,7 +121,7 @@ input[type="range"]::-moz-range-thumb {
 
     float:left;
 
-    max-width:850px;
+  /*  max-width:850px;*/
     width: 100%;
 }
 
@@ -145,7 +154,7 @@ width: 100%;
     padding-left: 0px;
 }
 
-.tableAvecSlider td{
+.tableAvecSld td{
     border-left: none;
 }
 
@@ -164,7 +173,7 @@ width: 100%;
 margin-top:7px;
 }
 
-.classBtnReglage:hover, .classBtnClose:hover, .classBtnReglage:hover,input[type="checkbox"]:hover {
+.classBtnReglage:hover, .classBtnClose:hover, input[type="checkbox"]:hover {
     cursor: pointer;
 }
 

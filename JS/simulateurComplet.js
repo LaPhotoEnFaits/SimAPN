@@ -22,34 +22,35 @@ function configSimulateur() {
 
 	vueReglagesRapides.activee = 1;
 	vueReglagesRapides.visible = 1;
-	vueReglagesRapides.SliderOuvertureVisible = 1;
-	vueReglagesRapides.SliderVitesseVisible = 1;
-	vueReglagesRapides.SliderISOVisible = 1;
-	vueReglagesRapides.SliderFocaleVisible = 1;
+	vueReglagesRapides.sldOuvertureVisible = 1;
+	vueReglagesRapides.sldVitesseVisible = 1;
+	vueReglagesRapides.sldISOVisible = 1;
+	vueReglagesRapides.sldFocaleVisible = 1;
 
 	vueReglagesVuePhoto.activee = 1;
 	vueReglagesVuePhoto.fermable = 1;
-	vueReglagesVuePhoto.ExpositionVisible = 1;
-	vueReglagesVuePhoto.FlouDeMapVisible = 1;
-	vueReglagesVuePhoto.FlouDeBougeVisible = 1;
-	vueReglagesVuePhoto.BruitVisible = 1;
+	vueReglagesVuePhoto.chkExpositionVisible = 1;
+	vueReglagesVuePhoto.chkFlouDeMapVisible = 1;
+	vueReglagesVuePhoto.chkFlouDeBougeVisible = 1;
+	vueReglagesVuePhoto.chkBruitVisible = 1;
 
 	vueReglagesScene.activee = 1;
 	vueReglagesScene.fermable = 1;
-	vueReglagesScene.luminositeVisible = 1;
+	vueReglagesScene.lstLuminositeVisible = 1;
 
 	vueReglagesPhotographe.activee = 1;
 	vueReglagesPhotographe.fermable = 1;
 	vueReglagesPhotographe.tremblementsVisible = 1;
-	vueReglagesPhotographe.CdCVisible = 1;
+	vueReglagesPhotographe.lstCdCVisible = 1;
 
 	vueReglagesObjectif.activee = 1;
 	vueReglagesObjectif.fermable = 1;
-	vueReglagesObjectif.antiVibrationVisible = 1;
+	vueReglagesObjectif.lstAntiVibrationVisible = 1;
 
 	vueReglagesAPN.activee = 1;
 	vueReglagesAPN.fermable = 1;
-	vueReglagesAPN.typeDeCapteurVisible = 1;
+	vueReglagesAPN.lstTypeDeCapteurVisible = 1;
+	vueReglagesAPN.inpDefinitionCapteur = 1;
 
 	vueHistogrammes.activee = 1;
 	vueHistogrammes.fermable = 1;

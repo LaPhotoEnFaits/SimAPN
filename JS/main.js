@@ -22,7 +22,7 @@ vuePhotoCachee = new VuePhotoCachee();
 
 
 function initPreTelechargement() {
-
+  	
 	RAZconfig();
 	configSimulateur();
 	document.getElementById('titre').innerHTML = titre;
@@ -85,9 +85,9 @@ function setAdressesImagesCss() {
 			document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].style['background-image'] = 'url(' + adresseDuCode + '/Images/Papier%20peint/Fond.png)';
 
 		if (document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].selectorText == 'input[type="range"]::-webkit-slider-thumb')
-			document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].style['background-image'] = 'url(' + adresseDuCode + '/Images/Icones/btnSlider.png)';
+			document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].style['background-image'] = 'url(' + adresseDuCode + '/Images/Icones/btnSld.png)';
 
 		if (document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].selectorText == 'input[type="range"]::-moz-range-thumb')
-			document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].style['background-image'] = 'url(' + adresseDuCode + '/Images/Icones/btnSlider.png)';
+			document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].style['background-image'] = 'url(' + adresseDuCode + '/Images/Icones/btnSld.png)';
 	}
 }

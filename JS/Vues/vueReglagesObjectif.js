@@ -7,25 +7,25 @@ VueReglagesObjectif = function() {
 };
 
 function initVueReglagesObjectif() {
-	if (vueReglagesObjectif.antiVibrationVisible) {
-		initListeAntiVibration();
-		show('ensembleListeAntiVibration');
+	if (vueReglagesObjectif.lstAntiVibrationVisible) {
+		initLstAntiVibration();
+		show('ensembleLstAntiVibration');
 	} else
-		hide('ensembleListeAntiVibration');
+		hide('ensembleLstAntiVibration');
 }
 
 
 ////LISTE ANTI VIBRATION
-function initListeAntiVibration(){
-	document.getElementById('nomListeAntiVibration').innerHTML = getTraduction("Anti_vibration");
-	document.getElementById('listeAntiVibration').options[0].text = getTraduction("Oui");
-	document.getElementById('listeAntiVibration').options[1].text = getTraduction("Non");
+function initLstAntiVibration(){
+	document.getElementById('nomLstAntiVibration').innerHTML = getTraduction("Anti_vibration");
+	document.getElementById('lstAntiVibration').options[0].text = getTraduction("Oui");
+	document.getElementById('lstAntiVibration').options[1].text = getTraduction("Non");
 
-	initSelectedListe('listeAntiVibration', objectifChoisi.antiVibration);
+	initSelectedLst('lstAntiVibration', objectifChoisi.antiVibration);
 }
 
-document.getElementById('listeAntiVibration').addEventListener('change', function() {
-	objectifChoisi.antiVibration = 1.0 * document.getElementById('listeAntiVibration').options[document.getElementById('listeAntiVibration').selectedIndex].value;
+document.getElementById('lstAntiVibration').addEventListener('change', function() {
+	objectifChoisi.antiVibration = 1.0 * document.getElementById('lstAntiVibration').options[document.getElementById('lstAntiVibration').selectedIndex].value;
 	onModifAntiVibration();
 }, false);
 

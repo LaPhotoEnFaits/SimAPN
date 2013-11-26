@@ -15,25 +15,24 @@ function initVueReglagesVuePhoto() {
 	document.getElementById('nomChkVuePhotoFlouBouge').innerHTML = 'Flou de bougé';
 	document.getElementById('nomChkVuePhotoBruit').innerHTML = 'Bruit';
 
-	if (vueReglagesVuePhoto.ExpositionVisible) {
-		//initSliderLuminositeScene();
+	if (vueReglagesVuePhoto.chkExpositionVisible) {
+		//initSldLuminositeScene();
 		show('ensembleChkExpo');
 	} else
 		hide('ensembleChkExpo');
 
-	if (vueReglagesVuePhoto.FlouDeMapVisible) {
-		
+	if (vueReglagesVuePhoto.chkFlouDeMapVisible) {		
 		show('ensembleChkFlouDeMap');
 	} else
 		hide('ensembleChkFlouDeMap');
 
-	if (vueReglagesVuePhoto.FlouDeBougeVisible) {
+	if (vueReglagesVuePhoto.chkFlouDeBougeVisible) {
 		
 		show('ensembleChkFlouDeBouge');
 	} else
 		hide('ensembleChkFlouDeBouge');
 
-	if (vueReglagesVuePhoto.BruitVisible) {
+	if (vueReglagesVuePhoto.chkBruitVisible) {
 		
 		show('ensembleChkBruit');
 	} else

@@ -7,56 +7,56 @@ VueReglagesPhotographe = function() {
 
 function initVueReglagesPhotographe() {
 	if (vueReglagesPhotographe.tremblementsVisible) {
-		initListeTremblements();
-		majOutputListeTremblements();
-		show('ensembleListeTremblements');
+		initLstTremblements();
+		majOutputLstTremblements();
+		show('ensembleLstTremblements');
 	} else
-		hide('ensembleListeTremblements');
+		hide('ensembleLstTremblements');
 
-	if (vueReglagesPhotographe.CdCVisible) {
-		initListeCdC();
-		show('ensembleListeCdC');
+	if (vueReglagesPhotographe.lstCdCVisible) {
+		initLstCdC();
+		show('ensembleLstCdC');
 	} else
-		hide('ensembleListeCdC');
+		hide('ensembleLstCdC');
 }
 
 
 ////LISTE TREMBLEMENTS
-function initListeTremblements() {
+function initLstTremblements() {
 
-	document.getElementById('nomListeListeTremblements').innerHTML = getTraduction("Tremblote") + ':';
-	document.getElementById('listeTremblements').options[0].text = getTraduction("Faible");
-	document.getElementById('listeTremblements').options[1].text = getTraduction("Normal_");
-	document.getElementById('listeTremblements').options[2].text = getTraduction("Severe_");
-	document.getElementById('listeTremblements').options[3].text = getTraduction("TresSevere");
+	document.getElementById('nomLstLstTremblements').innerHTML = getTraduction("Tremblote") + ':';
+	document.getElementById('lstTremblements').options[0].text = getTraduction("Faible");
+	document.getElementById('lstTremblements').options[1].text = getTraduction("Normal_");
+	document.getElementById('lstTremblements').options[2].text = getTraduction("Severe_");
+	document.getElementById('lstTremblements').options[3].text = getTraduction("TresSevere");
 
-	initSelectedListe('listeTremblements', photographe.tremblements);
+	initSelectedLst('lstTremblements', photographe.tremblements);
 }
 
-function majOutputListeTremblements() {
-	document.getElementById('outputListeTremblements').innerHTML = 'x ' + photographe.tremblements;
+function majOutputLstTremblements() {
+	document.getElementById('outputLstTremblements').innerHTML = 'x ' + photographe.tremblements;
 }
 
-document.getElementById('listeTremblements').addEventListener('change', function() {
-	photographe.tremblements = 1.0 * document.getElementById('listeTremblements').options[document.getElementById('listeTremblements').selectedIndex].value;
+document.getElementById('lstTremblements').addEventListener('change', function() {
+	photographe.tremblements = 1.0 * document.getElementById('lstTremblements').options[document.getElementById('lstTremblements').selectedIndex].value;
 	onModifTremblements();
 }, false);
 
 
 ////LISTE CDC
-function initListeCdC() {
-	document.getElementById('nomListeCdC').innerHTML = getTraduction("Cdc");
-	document.getElementById('ListeCdC').options[0].text = getTraduction("Laxiste");
-	document.getElementById('ListeCdC').options[1].text = getTraduction("Normal");
-	document.getElementById('ListeCdC').options[2].text = getTraduction("Severe");
-	document.getElementById('ListeCdC').options[3].text = getTraduction("PixelCapteur");
-	document.getElementById('ListeCdC').options[4].text = getTraduction("PixelEcran");
+function initLstCdC() {
+	document.getElementById('nomLstCdC').innerHTML = getTraduction("Cdc");
+	document.getElementById('LstCdC').options[0].text = getTraduction("Laxiste");
+	document.getElementById('LstCdC').options[1].text = getTraduction("Normal");
+	document.getElementById('LstCdC').options[2].text = getTraduction("Severe");
+	document.getElementById('LstCdC').options[3].text = getTraduction("PixelCapteur");
+	document.getElementById('LstCdC').options[4].text = getTraduction("PixelEcran");
 
-	initSelectedListe('ListeCdC', photographe.typeDeCdc);
+	initSelectedLst('LstCdC', photographe.typeDeCdc);
 }
 
-document.getElementById('ListeCdC').addEventListener('change', function() {
-	photographe.typeDeCdc = 1.0 * document.getElementById('ListeCdC').options[document.getElementById('ListeCdC').selectedIndex].value;
+document.getElementById('LstCdC').addEventListener('change', function() {
+	photographe.typeDeCdc = 1.0 * document.getElementById('LstCdC').options[document.getElementById('LstCdC').selectedIndex].value;
 	onModifCdC();
 }, false);
 

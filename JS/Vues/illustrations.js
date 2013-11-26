@@ -1,3 +1,6 @@
+var cptImagesTelechargees=0;
+
+
 function illustration(nom, srcImage, hauteurEnMetre, offsetXEnMetre, offsetYEnMetre) {
 	this.nom = nom;
 	this.image = document.createElement("IMG");
@@ -11,6 +14,12 @@ function illustration(nom, srcImage, hauteurEnMetre, offsetXEnMetre, offsetYEnMe
 
 
 function imageTelechargee() {
+
+	cptImagesTelechargees++;
+
+	document.getElementById('infoUtilisateur').innerHTML = getTraduction('chargementEnCours') +' (';
+	document.getElementById('infoUtilisateur').innerHTML +=	Math.round(100*cptImagesTelechargees/4) +'%)';
+
 	if (scene.illustrations[0] && scene.illustrations[1] && scene.illustrations[2] && scene.illustrations[3]) {
 		if (scene.illustrations[0].image.complete && scene.illustrations[1].image.complete && scene.illustrations[2].image.complete && scene.illustrations[3].image.complete)
 			initPostTelechargement();

@@ -10,57 +10,57 @@ VueReglagesRapides = function() {
 
 function initVueReglagesRapides() {
 
-	if (vueReglagesRapides.SliderOuvertureVisible) {
-		initSliderOuverture();
-		show('ensembleSliderOuverture');
+	if (vueReglagesRapides.sldOuvertureVisible) {
+		initSldOuverture();
+		show('ensembleSldOuverture');
 	} else
-		hide('ensembleSliderOuverture');
+		hide('ensembleSldOuverture');
 
-	if (vueReglagesRapides.SliderVitesseVisible) {
-		initSliderVitesse();
-		show('ensembleSliderVitesse');
+	if (vueReglagesRapides.sldVitesseVisible) {
+		initSldVitesse();
+		show('ensembleSldVitesse');
 	} else
-		hide('ensembleSliderVitesse');
+		hide('ensembleSldVitesse');
 
-	if (vueReglagesRapides.SliderISOVisible) {
-		initSliderISO();
-		show('ensembleSliderISO');
+	if (vueReglagesRapides.sldISOVisible) {
+		initSldISO();
+		show('ensembleSldISO');
 	} else
-		hide('ensembleSliderISO');
+		hide('ensembleSldISO');
 
-	if (vueReglagesRapides.SliderFocaleVisible) {
-		initSliderFocale();
-		show('ensembleSliderFocale');
+	if (vueReglagesRapides.sldFocaleVisible) {
+		initSldFocale();
+		show('ensembleSldFocale');
 	} else
-		hide('ensembleSliderFocale');
+		hide('ensembleSldFocale');
 }
 
 ////SLIDER FOCALE
-function initSliderFocale() {
-	document.getElementById('nomSliderFocale').innerHTML = 'Focale';
-	document.getElementById("sliderFocale").value = 1.0 * objectifChoisi.focale;
+function initSldFocale() {
+	document.getElementById('nomSldFocale').innerHTML = 'Focale';
+	document.getElementById("sldFocale").value = 1.0 * objectifChoisi.focale;
 	setFocalesMinMaxChoisie();
 }
 
-function majOutputSliderFocale() {
-	document.getElementById('outputSliderFocale').innerHTML = objectifChoisi.focale + 'mm';
+function majOutputSldFocale() {
+	document.getElementById('outputSldFocale').innerHTML = objectifChoisi.focale + 'mm';
 
 	if (apnChoisi.cropFactor < 0.99 || apnChoisi.cropFactor > 1.01) {
-		document.getElementById('outputSliderFocale').innerHTML += '<br/><i>'+Math.round(objectifChoisi.focale*apnChoisi.cropFactor)+'mm eq.</i>'
+		document.getElementById('outputSldFocale').innerHTML += '<br/><i>'+Math.round(objectifChoisi.focale*apnChoisi.cropFactor)+'mm eq.</i>'
 	}
 }
 
-function modifSliderFocale() {
-	objectifChoisi.focale = 1.0 * document.getElementById("sliderFocale").value;
+function modifSldFocale() {
+	objectifChoisi.focale = 1.0 * document.getElementById("sldFocale").value;
 	onModifFocale();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById('sliderFocale').addEventListener('change', modifSliderFocale, false);
+	document.getElementById('sldFocale').addEventListener('change', modifSldFocale, false);
 }, false);
 
-document.getElementById('sliderFocale').oninput = function() {
-	modifSliderFocale();
+document.getElementById('sldFocale').oninput = function() {
+	modifSldFocale();
 };
 
 
@@ -69,8 +69,8 @@ function setFocalesMinMaxChoisie() {
 	var focaleMin = Math.ceil(FOCALE_MIN_FF / apnChoisi.cropFactor);
 	var focaleMax = Math.floor(FOCALE_MAX_FF / apnChoisi.cropFactor);
 
-	document.getElementById("sliderFocale").min = focaleMin;
-	document.getElementById("sliderFocale").max = focaleMax;
+	document.getElementById("sldFocale").min = focaleMin;
+	document.getElementById("sldFocale").max = focaleMax;
 
 	if (objectifChoisi.focale > focaleMax)
 		objectifChoisi.focale = focaleMax;
@@ -78,88 +78,88 @@ function setFocalesMinMaxChoisie() {
 	if (objectifChoisi.focale < focaleMin)
 		objectifChoisi.focale = focaleMin;
 
-	document.getElementById('sliderFocale').value = objectifChoisi.focale;
+	document.getElementById('sldFocale').value = objectifChoisi.focale;
 
-	majOutputSliderFocale();
+	majOutputSldFocale();
 }
 
 ////SLIDER OUVERTURE
-function initSliderOuverture() {
-	document.getElementById('nomSliderOuverture').innerHTML = 'Ouverture';
-	document.getElementById("sliderOuverture").min = ouverture2cpt(1.0 * objectifChoisi.indiceOuvertureMin).cpt;
-	document.getElementById("sliderOuverture").max = ouverture2cpt(1.0 * objectifChoisi.indiceOuvertureMax).cpt;
-	document.getElementById("sliderOuverture").step = 1.0;
-	document.getElementById("sliderOuverture").value = 1.0 * document.getElementById("sliderOuverture").min + 1.0 * document.getElementById("sliderOuverture").max - ouverture2cpt(1.0 * objectifChoisi.ouverture).cpt;
-	majOutputSliderOuverture();
+function initSldOuverture() {
+	document.getElementById('nomSldOuverture').innerHTML = 'Ouverture';
+	document.getElementById("sldOuverture").min = ouverture2cpt(1.0 * objectifChoisi.indiceOuvertureMin).cpt;
+	document.getElementById("sldOuverture").max = ouverture2cpt(1.0 * objectifChoisi.indiceOuvertureMax).cpt;
+	document.getElementById("sldOuverture").step = 1.0;
+	document.getElementById("sldOuverture").value = 1.0 * document.getElementById("sldOuverture").min + 1.0 * document.getElementById("sldOuverture").max - ouverture2cpt(1.0 * objectifChoisi.ouverture).cpt;
+	majOutputSldOuverture();
 }
 
-function majOutputSliderOuverture() {
-	document.getElementById('outputSliderOuverture').innerHTML = 'f/' + objectifChoisi.ouverture;
+function majOutputSldOuverture() {
+	document.getElementById('outputSldOuverture').innerHTML = 'f/' + objectifChoisi.ouverture;
 }
 
-function modifSliderOuverture() {
-	objectifChoisi.ouverture = cpt2ouverture(1.0 * document.getElementById("sliderOuverture").min + 1.0 * document.getElementById("sliderOuverture").max - 1.0 * document.getElementById("sliderOuverture").value).N;
+function modifSldOuverture() {
+	objectifChoisi.ouverture = cpt2ouverture(1.0 * document.getElementById("sldOuverture").min + 1.0 * document.getElementById("sldOuverture").max - 1.0 * document.getElementById("sldOuverture").value).N;
 	onModifOuverture();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById("sliderOuverture").addEventListener('change', modifSliderOuverture, false);
+	document.getElementById("sldOuverture").addEventListener('change', modifSldOuverture, false);
 }, false);
 
-document.getElementById("sliderOuverture").oninput = function() {
-	modifSliderOuverture();
+document.getElementById("sldOuverture").oninput = function() {
+	modifSldOuverture();
 };
 
 ////SLIDER VITESSE
-function initSliderVitesse() {
-	document.getElementById('nomSliderVitesse').innerHTML = 'Vitesse';
-	document.getElementById('sliderVitesse').min = 1.0;
-	document.getElementById('sliderVitesse').max = CPT_VITESSE_MAX;
-	document.getElementById('sliderVitesse').step = 1.0;
-	document.getElementById('sliderVitesse').value = vitesse2cpt(1.0 * apnChoisi.vitesse).cpt;
-	majOutputSliderVitesse();
+function initSldVitesse() {
+	document.getElementById('nomSldVitesse').innerHTML = 'Vitesse';
+	document.getElementById('sldVitesse').min = 1.0;
+	document.getElementById('sldVitesse').max = CPT_VITESSE_MAX;
+	document.getElementById('sldVitesse').step = 1.0;
+	document.getElementById('sldVitesse').value = vitesse2cpt(1.0 * apnChoisi.vitesse).cpt;
+	majOutputSldVitesse();
 }
 
-function majOutputSliderVitesse() {
-	document.getElementById('outputSliderVitesse').innerHTML = cpt2vitesse(vitesse2cpt(1.0 * apnChoisi.vitesse).cpt).vitesseString;
+function majOutputSldVitesse() {
+	document.getElementById('outputSldVitesse').innerHTML = cpt2vitesse(vitesse2cpt(1.0 * apnChoisi.vitesse).cpt).vitesseString;
 }
 
-function modifSliderVitesse() {
-	apnChoisi.vitesse = cpt2vitesse(1.0 * document.getElementById('sliderVitesse').value).vitesseNombre;
+function modifSldVitesse() {
+	apnChoisi.vitesse = cpt2vitesse(1.0 * document.getElementById('sldVitesse').value).vitesseNombre;
 	onModifVitesse();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById("sliderVitesse").addEventListener('change', modifSliderVitesse, false);
+	document.getElementById("sldVitesse").addEventListener('change', modifSldVitesse, false);
 }, false);
 
-document.getElementById("sliderVitesse").oninput = function() {
-	modifSliderVitesse();
+document.getElementById("sldVitesse").oninput = function() {
+	modifSldVitesse();
 };
 
 ////SLIDER ISO
-function initSliderISO() {
-	document.getElementById('nomSliderISO').innerHTML = 'ISO';
-	document.getElementById('sliderISO').min = ISO2cpt(1.0 * apnChoisi.ISOmin).cpt;
-	document.getElementById('sliderISO').max = ISO2cpt(1.0 * apnChoisi.ISOboost).cpt;
-	document.getElementById('sliderISO').step = 1.0;
-	document.getElementById('sliderISO').value = ISO2cpt(1.0 * apnChoisi.ISO).cpt;
-	majOutputSliderISO();
+function initSldISO() {
+	document.getElementById('nomSldISO').innerHTML = 'ISO';
+	document.getElementById('sldISO').min = ISO2cpt(1.0 * apnChoisi.ISOmin).cpt;
+	document.getElementById('sldISO').max = ISO2cpt(1.0 * apnChoisi.ISOboost).cpt;
+	document.getElementById('sldISO').step = 1.0;
+	document.getElementById('sldISO').value = ISO2cpt(1.0 * apnChoisi.ISO).cpt;
+	majOutputSldISO();
 }
 
-function majOutputSliderISO() {
-	document.getElementById('outputSliderISO').innerHTML = apnChoisi.ISO;
+function majOutputSldISO() {
+	document.getElementById('outputSldISO').innerHTML = apnChoisi.ISO;
 }
 
-function modifSliderISO() {
-	apnChoisi.ISO = cpt2ISO(1.0 * document.getElementById('sliderISO').value).ISO;
+function modifSldISO() {
+	apnChoisi.ISO = cpt2ISO(1.0 * document.getElementById('sldISO').value).ISO;
 	onModifISO();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById("sliderISO").addEventListener('change', modifSliderISO, false);
+	document.getElementById("sldISO").addEventListener('change', modifSldISO, false);
 }, false);
 
-document.getElementById("sliderISO").oninput = function() {
-	modifSliderISO();
+document.getElementById("sldISO").oninput = function() {
+	modifSldISO();
 };

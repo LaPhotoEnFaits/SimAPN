@@ -330,19 +330,19 @@ var traductionFr = {
   "MAU_histogramme": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EHistogramme de luminosit\u00E9 de la photo.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003Eaxe horizontal: luminosit\u00E9, de 0 \u00E0 255\u003C/li\u003E\r\n                  \u003Cli\u003Eaxe vertical: nombre de pixels de la photo pour une luminosit\u00E9 donn\u00E9e\u003C/li\u003E\r\n                  \u003Cli\u003Elimitation: le calcul de l'histogramme ne tient pas compte du flou de mise au point\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  L'histogramme d\u00E9pend de l'exposition et de la sc\u00E8ne photographi\u00E9e."
   },
-  "MAU_liste_N_min": {
+  "MAU_lst_N_min": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EOuverture minimale de l'objectif.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Param\u00E8tre impact\u00E9:\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003EOuverture (si elle \u00E9tait sup\u00E9rieure \u00E0 l'ouverture min)\u003C/li\u003E\r\n                  \u003C/ul\u003E"
   },
-  "MAU_liste_camera": {
+  "MAU_lst_camera": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ER\u00E9glage automatique de la 3D, l'APN peut \u00EAtre vue de:\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003EDerri\u00E8re\u003C/li\u003E\r\n                  \u003Cli\u003EC\u00F4t\u00E9\u003C/li\u003E\r\n                  \u003Cli\u003EDevant\u003C/li\u003E\r\n                  \u003Cli\u003EDessus\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n      "
   },
-  "MAU_liste_capteur": {
+  "MAU_lst_capteur": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EType de capteur de l'APN (dimensions).\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Param\u00E8tres impact\u00E9s:\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003EFormat du capteur (3:2, 4:3,...)\u003C/li\u003E\r\n                  \u003Cli\u003ECrop factor / Focale \u00E9quivalente\u003C/li\u003E\r\n                  \u003Cli\u003EChamps de vision\u003C/li\u003E\r\n                  \u003Cli\u003EPdc / Flou de mise au point / Hyperfocale\u003C/li\u003E\r\n                  \u003Cli\u003EFlou d\u00FB au filtre AA\u003C/li\u003E\r\n                  \u003Cli\u003EFlou de boug\u00E9\u003C/li\u003E\r\n                  \u003Cli\u003ETaille d'un pixel\u003C/li\u003E\r\n                  \u003Cli\u003ECercle de confusion (si cdc = 1 pixel)\u003C/li\u003E\r\n                  \u003Cli\u003ELongueur focale (en mode cadrage constant)\u003C/li\u003E\r\n                  \u003C/ul\u003E"
   },
-  "MAU_liste_scene": {
+  "MAU_lst_scene": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ED\u00E9finit la luminosit\u00E9 de la sc\u00E8ne.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Param\u00E8tres impact\u00E9s:\r\n                  \u003Cul\u003E        \r\n                  \u003Cli\u003EExposition\u003C/li\u003E\r\n                  \u003Cli\u003EHistogramme\u003C/li\u003E\r\n                  \u003Cli\u003EOuverture (mode S)\u003C/li\u003E\r\n                  \u003Cli\u003EVitesse (mode A)\u003C/li\u003E\r\n                  \u003C/ul\u003E"
   },
-  "MAU_liste_tremblote": {
+  "MAU_lst_tremblote": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ED\u00E9finit la 'tremblotte' du photographe.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E        \r\n                  \u003Cli\u003ENormal: la r\u00E8gle vitesse de s\u00E9curit\u00E9 = 1/focale s'applique\u003C/li\u003E\r\n                  \u003Cli\u003EFaible: la vitesse peut \u00EAtre divis\u00E9e par 2\u003C/li\u003E\r\n                  \u003Cli\u003ES\u00E9v\u00E8re: la vitesse doit \u00EAtre augment\u00E9e de 50%\u003C/li\u003E\r\n                  \u003Cli\u003ETr\u00E8s s\u00E9v\u00E8re: la vitesse doit \u00EAtre doubl\u00E9e\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n\r\n                  Param\u00E8tres impact\u00E9s:\r\n                  \u003Cul\u003E        \r\n                  \u003Cli\u003EFlou de boug\u00E9\u003C/li\u003E\r\n                  \u003Cli\u003EVitesse de s\u00E9curit\u00E9\u003C/li\u003E\r\n                  \u003C/ul\u003E"
   },
   "MAU_lowLightISO": {
@@ -355,7 +355,7 @@ var traductionFr = {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EParam\u00E9trer la vue 3D."
   },
   "MAU_onglet_apn": {
-    "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ED\u00E9finir les caract\u00E9ristiques de l'appareil photo.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Vous pouvez choisir un apn parmis une liste de mod\u00E8les du commerce, ou le d\u00E9finir manuellement."
+    "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ED\u00E9finir les caract\u00E9ristiques de l'appareil photo.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Vous pouvez choisir un apn parmis une lst de mod\u00E8les du commerce, ou le d\u00E9finir manuellement."
   },
   "MAU_onglet_fenetres": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EChoisir les fen\u00EAtres \u00E0 afficher."
@@ -396,13 +396,13 @@ var traductionFr = {
   "MAU_roueMode": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ESelection parmis diff\u00E9rents modes de l'APN.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003EM (mode manuel): ouverture, vitesse et ISO sont ind\u00E9pendaments\u003C/li\u003E\r\n                  \u003Cli\u003EA (priorit\u00E9 ouverture): vitesse r\u00E9gl\u00E9e automatiquement\u003C/li\u003E\r\n                  \u003Cli\u003ES (priorit\u00E9 vitesse): ouverture r\u00E9gl\u00E9e automatiquement\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  Il est souvent n\u00E9cessaire de modifier la sensibilit\u00E9 ISO pour obtenir une exposition correcte en modes A et S."
   },
-  "MAU_sliderFocus": {
+  "MAU_sldFocus": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003E'Bague' de mise au point."
   },
-  "MAU_slider_focale": {
+  "MAU_sld_focale": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EModifie la longueur focale de l'objectif.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Param\u00E8tres impact\u00E9s:\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003EAngles de champs\u003C/li\u003E\r\n                  \u003Cli\u003EProfondeur de champ / Flou de mise au point\u003C/li\u003E\r\n                  \u003Cli\u003Edistance Hyperfocale\u003C/li\u003E\r\n                  \u003Cli\u003EFlou de boug\u00E9 / Vitesse de s\u00E9curit\u00E9\u003C/li\u003E\r\n                  \u003Cli\u003EFocale \u00E9quivalente (si capteur non full frame)\u003C/li\u003E\r\n                  \u003C/ul\u003E"
   },
-  "MAU_slider_photo": {
+  "MAU_sld_photo": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ER\u00E8gle la taille de la fen\u00EAtre photo. (en mode une seule fen\u00EAtre).\u003Cbr/\u003E\r\n      \u003Cbr/\u003E\r\n       \u003Cul\u003E        \r\n      \u003Cli\u003EAugmentez la taille pour plus de claret\u00E9.\u003C/li\u003E\r\n      \u003Cli\u003EDiminuez la taille si l'application est ralentie.\u003C/li\u003E\r\n      \u003C/ul\u003E\r\n      \u003Cbr/\u003E"
   },
   "MAU_viseur": {
@@ -976,19 +976,19 @@ var traductionEn = {
   "MAU_histogramme": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ELuminosity histogram.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003Ehorizontal axis: luminosity, from 0 to 255\u003C/li\u003E\r\n                  \u003Cli\u003Evertical axis: number of pixels at a given luminosity\u003C/li\u003E\r\n                  \u003Cli\u003Elimitation: histogram computation doesn't take into account the focus blur\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  Histogram depends on exposure."
   },
-  "MAU_liste_N_min": {
+  "MAU_lst_N_min": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EMinimum aperture.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Affected parameter:\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003EAperture (if \u003E to minimum aperture)\u003C/li\u003E\r\n                  \u003C/ul\u003E"
   },
-  "MAU_liste_camera": {
+  "MAU_lst_camera": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EAutomatically adjusts 3D view, camera can be seen:\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003ERear side\u003C/li\u003E\r\n                  \u003Cli\u003ERight side\u003C/li\u003E\r\n                  \u003Cli\u003EFront side\u003C/li\u003E\r\n                  \u003Cli\u003ETop side\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n      "
   },
-  "MAU_liste_capteur": {
+  "MAU_lst_capteur": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ESensor size.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Affected parameters:\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003ESensor format (3:2, 4:3,...)\u003C/li\u003E\r\n                  \u003Cli\u003ECrop factor / 35 mm equivalent focal length\u003C/li\u003E\r\n                  \u003Cli\u003EFiled of view\u003C/li\u003E\r\n                  \u003Cli\u003EDof / Focus blur / Hyperfocal\u003C/li\u003E\r\n                  \u003Cli\u003EAnti-aliasing filter blur\u003C/li\u003E\r\n                  \u003Cli\u003EShake blur\u003C/li\u003E\r\n                  \u003Cli\u003EPixel size\u003C/li\u003E\r\n                  \u003Cli\u003ECircle of Confusion (if c.o.c = 1 pixel)\u003C/li\u003E\r\n                  \u003Cli\u003EFocal length (constant framing mode)\u003C/li\u003E\r\n                  \u003C/ul\u003E"
   },
-  "MAU_liste_scene": {
+  "MAU_lst_scene": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003E brightness level of the scene.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Affected parameters:\r\n                  \u003Cul\u003E        \r\n                  \u003Cli\u003EExposure\u003C/li\u003E\r\n                  \u003Cli\u003EHistogram\u003C/li\u003E\r\n                  \u003Cli\u003EAperture (S mode)\u003C/li\u003E\r\n                  \u003Cli\u003EShutter speed (A mode)\u003C/li\u003E\r\n                  \u003C/ul\u003E"
   },
-  "MAU_liste_tremblote": {
+  "MAU_lst_tremblote": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EPhotographer tremors.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E        \r\n                  \u003Cli\u003ENormal: min shutter speed = 1/equivalent focal length\u003C/li\u003E\r\n                  \u003Cli\u003ELow: min shutter speed is divided by 2\u003C/li\u003E\r\n                  \u003Cli\u003EHigh: min shutter speed is muliplied by 1.5\u003C/li\u003E\r\n                  \u003Cli\u003EVery high: min shutter speed is doubled\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n\r\n                  Affected parameters:\r\n                  \u003Cul\u003E        \r\n                  \u003Cli\u003EShake blur\u003C/li\u003E\r\n                  \u003Cli\u003EMin shutter speed\u003C/li\u003E\r\n                  \u003C/ul\u003E"
   },
   "MAU_lowLightISO": {
@@ -1042,13 +1042,13 @@ var traductionEn = {
   "MAU_roueMode": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EMode dial.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003EM (Manual): aperture, shutter speed and ISO can be set independently\u003C/li\u003E\r\n                  \u003Cli\u003EA (Aperture priority): shutter speed is set automatically\u003C/li\u003E\r\n                  \u003Cli\u003ES (Shutter priority): aperture is set automatically\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  Be careful: A and S mode can require ajusting ISO in order to have a correct exposure."
   },
-  "MAU_sliderFocus": {
+  "MAU_sldFocus": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EFocus 'Ring'."
   },
-  "MAU_slider_focale": {
+  "MAU_sld_focale": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EAdjust Focal length.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Affected parameters:\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003EField of view\u003C/li\u003E\r\n                  \u003Cli\u003EDepth of field / Focus blur\u003C/li\u003E\r\n                  \u003Cli\u003EHyperfocal distance\u003C/li\u003E\r\n                  \u003Cli\u003EShake blur / min shutter speed \u003C/li\u003E\r\n                  \u003Cli\u003E35 mm equivalent focal length\u003C/li\u003E\r\n                  \u003C/ul\u003E"
   },
-  "MAU_slider_photo": {
+  "MAU_sld_photo": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ESet size of photo view window. (1 window mode).\u003Cbr/\u003E\r\n      \u003Cbr/\u003E\r\n       \u003Cul\u003E        \r\n      \u003Cli\u003EUse a higher size for a more precise view.\u003C/li\u003E\r\n      \u003Cli\u003EUse a lower size if computer becomes too slow.\u003C/li\u003E\r\n      \u003C/ul\u003E\r\n      \u003Cbr/\u003E"
   },
   "MAU_viseur": {

@@ -21,20 +21,20 @@ function configSimulateur() {
 
 	vueReglagesRapides.activee = 1;
 	vueReglagesRapides.visible = 1;
-	vueReglagesRapides.SliderOuvertureVisible = 1;
-	vueReglagesRapides.SliderVitesseVisible = 1;
-	vueReglagesRapides.SliderISOVisible = 1;
+	vueReglagesRapides.sldOuvertureVisible = 1;
+	vueReglagesRapides.sldVitesseVisible = 1;
+	vueReglagesRapides.sldISOVisible = 1;
 	
 	vueReglagesVuePhoto.activee = 1;
 	vueReglagesVuePhoto.fermable = 1;
-	vueReglagesVuePhoto.ExpositionVisible = 1;
-	vueReglagesVuePhoto.FlouDeMapVisible = 1;
-	vueReglagesVuePhoto.FlouDeBougeVisible = 1;
-	vueReglagesVuePhoto.BruitVisible = 1;
+	vueReglagesVuePhoto.chkExpositionVisible = 1;
+	vueReglagesVuePhoto.chkFlouDeMapVisible = 1;
+	vueReglagesVuePhoto.chkFlouDeBougeVisible = 1;
+	vueReglagesVuePhoto.chkBruitVisible = 1;
 
 	vueReglagesScene.activee = 1;
 	vueReglagesScene.visible = 1;
-	vueReglagesScene.luminositeVisible = 1;
+	vueReglagesScene.lstLuminositeVisible = 1;
 
 	vueHistogrammes.activee = 1;
 	vueHistogrammes.visible = 0;

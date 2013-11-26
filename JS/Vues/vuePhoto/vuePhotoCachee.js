@@ -1,5 +1,5 @@
 VuePhotoCachee = function() {	
-	this.largeur = 100;	
+	this.largeur = 300;	
 };
 
 function calcHauteurVuePhotoCachee() {

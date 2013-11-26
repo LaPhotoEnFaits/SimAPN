@@ -10,10 +10,10 @@
 
 	var typeDeSimulateur;
 
-	typeDeSimulateur = 'simulateurTriangleExpo';
+	//typeDeSimulateur = 'simulateurTriangleExpo';
 	//typeDeSimulateur = 'simulateurFlouDeBouge';	
 	//typeDeSimulateur = 'simulateurHistogrammes';
-	//typeDeSimulateur = 'simulateurComplet';
+	typeDeSimulateur = 'simulateurComplet';
 
 	var ADR_CODE_PROD = 'https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k';
 	var ADR_CODE_TEST = 'https://googledrive.com/host/0B4yKyQ6kC8o5UlF0YkwyYmItcDg';
@@ -23,7 +23,7 @@
 	if(window.location.protocol==='file:')
 		adresseDuCode='..';
 	else
-		adresseDuCode=ADR_CODE_PROD;
+		adresseDuCode=ADR_CODE_TEST;
 
 	var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -43,6 +43,9 @@
     	if(_gaq)
     	_gaq.push(['_trackEvent', 'ChargeSimulateur', typeDeSimulateur]);
     }
+
+    if(typeDeSimulateur==='simulateurComplet')
+    	startSimulateur();
 
 </script>
 

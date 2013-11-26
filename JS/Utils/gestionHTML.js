@@ -17,17 +17,17 @@ function show(id) {
 		temp.style.display = 'none';
 }
 
-function initSelectedListe(idListe, valeurInitiale, isString) {
+function initSelectedLst(idLst, valeurInitiale, isString) {
 	var temp;
 
-	for (var i = 0; i < document.getElementById(idListe).length; i++) {
+	for (var i = 0; i < document.getElementById(idLst).length; i++) {
 
 		if (isString)
-			temp = document.getElementById(idListe).options[i].value;
+			temp = document.getElementById(idLst).options[i].value;
 		else
-			temp = 1.0 * document.getElementById(idListe).options[i].value;
+			temp = 1.0 * document.getElementById(idLst).options[i].value;
 
 		if (temp === valeurInitiale)
-			document.getElementById(idListe).selectedIndex = i;
+			document.getElementById(idLst).selectedIndex = i;
 	}
 }

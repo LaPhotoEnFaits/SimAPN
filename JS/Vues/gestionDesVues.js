@@ -29,39 +29,43 @@ function RAZconfig() {
 	vueReglagesRapides.activee = 0;
 	vueReglagesRapides.visible = 0;
 	vueReglagesRapides.fermable = 0;
-	vueReglagesRapides.SliderOuvertureVisible = 0;
-	vueReglagesRapides.SliderVitesseVisible = 0;
-	vueReglagesRapides.SliderISOVisible = 0;
-	vueReglagesRapides.SliderFocaleVisible = 0;
+	vueReglagesRapides.sldOuvertureVisible = 0;
+	vueReglagesRapides.sldVitesseVisible = 0;
+	vueReglagesRapides.sldISOVisible = 0;
+	vueReglagesRapides.sldFocaleVisible = 0;
 
 	vueReglagesVuePhoto.activee = 0;
 	vueReglagesVuePhoto.visible = 0;
 	vueReglagesVuePhoto.fermable = 0;
-	vueReglagesVuePhoto.ExpositionVisible = 0;
-	vueReglagesVuePhoto.FlouDeMapVisible = 0;
-	vueReglagesVuePhoto.FlouDeBougeVisible = 0;
-	vueReglagesVuePhoto.BruitVisible = 0;
+	vueReglagesVuePhoto.chkExpositionVisible = 0;
+	vueReglagesVuePhoto.chkFlouDeMapVisible = 0;
+	vueReglagesVuePhoto.chkFlouDeBougeVisible = 0;
+	vueReglagesVuePhoto.chkBruitVisible = 0;
 
 	vueReglagesScene.activee = 0;
 	vueReglagesScene.visible = 0;
 	vueReglagesScene.fermable = 0;
-	vueReglagesScene.luminositeVisible = 0;
+	vueReglagesScene.lstLuminositeVisible = 0;
+	vueReglagesScene.sldLuminositeVisible = 0;
+	vueReglagesScene.sldLuminositeMin = -15;
+	vueReglagesScene.sldLuminositeMax = 16;
 
 	vueReglagesPhotographe.activee = 0;
 	vueReglagesPhotographe.visible = 0;
 	vueReglagesPhotographe.fermable = 0;
 	vueReglagesPhotographe.tremblementsVisible = 0;
-	vueReglagesPhotographe.CdCVisible = 0;
+	vueReglagesPhotographe.lstCdCVisible = 0;
 
 	vueReglagesObjectif.activee = 0;
 	vueReglagesObjectif.visible = 0;
 	vueReglagesObjectif.fermable = 0;
-	vueReglagesObjectif.antiVibrationVisible = 0;
+	vueReglagesObjectif.lstAntiVibrationVisible = 0;
 
 	vueReglagesAPN.activee = 0;
 	vueReglagesAPN.visible = 0;
 	vueReglagesAPN.fermable = 0;
-	vueReglagesAPN.typeDeCapteurVisible = 0;
+	vueReglagesAPN.lstTypeDeCapteurVisible = 0;
+	vueReglagesAPN.inpDefinitionCapteur = 0;
 
 	vueHistogrammes.activee = 0;
 	vueHistogrammes.visible = 0;
@@ -96,6 +100,8 @@ function initIHMVues() {
 	}
 }
 
+
+
 function drawVues() {
 
 	if (vuePhoto.visible) {
@@ -111,7 +117,7 @@ function drawVues() {
 
 function initVues() {
 
-	initSliderTailleFenetres();
+	initSldTailleFenetres();
 
 	vuePhoto.initIHM();
 	vueCurseurExpo.initIHM();
