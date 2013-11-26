@@ -17,6 +17,8 @@ vueReglagesScene = new VueReglagesScene();
 vueReglagesPhotographe = new VueReglagesPhotographe();
 vueReglagesObjectif = new VueReglagesObjectif();
 vueReglagesAPN = new VueReglagesAPN();
+vueHistogrammes = new VueHistogrammes();
+vuePhotoCachee = new VuePhotoCachee();
 
 
 function initPreTelechargement() {

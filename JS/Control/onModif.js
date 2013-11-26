@@ -9,7 +9,8 @@ function onModifCapteur(){
 	calcAnglesDeChamp();
 	calcFlousPlans();
 
-	drawVuePhoto();	
+	drawVuePhoto();
+	drawVueHistogrammes();
 }
 
 function onModifCdC(){
@@ -19,6 +20,7 @@ function onModifCdC(){
 
 	drawPlans();
 	drawFlouBouge();
+	drawVueHistogrammes();
 }
 
 function onModifAntiVibration() {
@@ -27,6 +29,7 @@ function onModifAntiVibration() {
 
 	drawPlans();
 	drawFlouBouge();
+	drawVueHistogrammes();
 }
 
 function onModifTremblements() {
@@ -37,6 +40,7 @@ function onModifTremblements() {
 
 	drawPlans();
 	drawFlouBouge();
+	drawVueHistogrammes();
 }
 
 function onModifOuverture() {
@@ -47,6 +51,7 @@ function onModifOuverture() {
 
 	drawFlousEtExpo();
 	drawCurseurExposition();
+	drawVueHistogrammes();
 }
 
 function onModifVitesse() {
@@ -60,6 +65,7 @@ function onModifVitesse() {
 	drawFlouBouge();	
 	drawFlousEtExpo();
 	drawCurseurExposition();
+	drawVueHistogrammes();
 }
 
 function onModifISO() {
@@ -71,6 +77,7 @@ function onModifISO() {
 	drawBruit();
 	drawFlousEtExpo();
 	drawCurseurExposition();
+	drawVueHistogrammes();
 }
 
 function onModifFocale() {
@@ -82,6 +89,7 @@ function onModifFocale() {
 	calcFlousPlans();
 
 	drawVuePhoto();
+	drawVueHistogrammes();
 }
 
 function onModifLuminosite() {
@@ -91,4 +99,5 @@ function onModifLuminosite() {
 
 	drawFlousEtExpo();
 	drawCurseurExposition();
+	drawVueHistogrammes();
 }

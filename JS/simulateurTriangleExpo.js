@@ -1,6 +1,3 @@
-//var apnChoisi = new APN('PasDeMarque', 'Complet', 'Expert', '2012/02/07', 2899, 'full-frame', 24, 36, 36.3, 'CMOS', 25.3, 14.4, 2853, 50, 6400, 51200, 51, 4, 0.7, 100, 1, 0, 3.2, 900, 146, 123, 82, 1);
-//var objectifChoisi = new Objectif('50mm f/1.4', 50, 1.4, 42, 0, 17, 7, 7, [11.3, 16, 7.5, 2], [63.5, 63.5, 63.5, 55.4], [2.2, 0, 0], 4);
-
 function configSimulateur() {
 
 	titre += "Le triangle d'exposition";
@@ -38,6 +35,10 @@ function configSimulateur() {
 	vueReglagesScene.activee = 1;
 	vueReglagesScene.visible = 1;
 	vueReglagesScene.luminositeVisible = 1;
+
+	vueHistogrammes.activee = 1;
+	vueHistogrammes.visible = 0;
+	vueHistogrammes.fermable = 1;
 }
 
 function initMateriel() {

@@ -1,16 +1,9 @@
 var FOCALE_MIN_FF = 8;
 var FOCALE_MAX_FF = 300;
 
-VueReglagesRapides = function(activee, visible, fermable, SliderOuvertureVisible, SliderVitesseVisible, SliderISOVisible, SliderFocaleVisible) {
+VueReglagesRapides = function() {
 	this.nom = 'ReglagesRapides';
-	this.activee = activee;
-	this.visible = visible;
-	this.fermable = fermable;
 
-	this.SliderOuvertureVisible = SliderOuvertureVisible;
-	this.SliderVitesseVisible = SliderVitesseVisible;
-	this.SliderISOVisible = SliderISOVisible;
-	this.SliderFocaleVisible = SliderFocaleVisible;
 	this.init = initVueReglagesRapides;
 	this.initIHM = initIHMVues;
 };

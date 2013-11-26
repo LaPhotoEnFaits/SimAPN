@@ -26,10 +26,16 @@
 					<td id='btnVueReglagesScene' class='classBtnReglage'></td>			
 					<td id='btnVueReglagesPhotographe' class='classBtnReglage'></td>
 					<td id='btnVueReglagesObjectif' class='classBtnReglage'></td>
-					<td id='btnVueReglagesAPN' class='classBtnReglage'></td>					
+					<td id='btnVueReglagesAPN' class='classBtnReglage'></td>
+					<td id='btnVueHistogrammes' class='classBtnReglage'></td>
+
 
 				</tr>
 			</table>
+		</div>
+
+		<div id='vuePhotoCachee' style='display:none;'>
+			<canvas id='cvsPhotoCachee'></canvas>
 		</div>
 
 		<span id='viseur' class='classViseur'>
@@ -56,6 +62,11 @@
 			<span id='btnVueCurseurExpo' class='classBtnClose'></span>
 			<span id='btnCloseVueCurseurExpo' class='classBtnClose'></span>
 		</span>	
+
+		<span id='vueHistogrammes' class='classVueHistogrammes'>
+		<span id='btnCloseVueHistogrammes' class='classBtnClose'></span>
+		<canvas id='cvsHistogrammes' ></canvas>
+		</span>
 
 		<span id='vueReglagesRapides' class='classReglagesRapides'>
 
@@ -239,35 +250,38 @@
 	listeOrdonneeDesScripts[1]=adresseDuCode+'/JS/Utils/gestionHTML.js';
 	listeOrdonneeDesScripts[2]=adresseDuCode+'/JS/Utils/compatibiliteNavigateurs.js';
 	listeOrdonneeDesScripts[3]=adresseDuCode+'/JS/Utils/traductions.js';
+	listeOrdonneeDesScripts[4]=adresseDuCode+'/JS/Utils/dessin.js';
 
-	listeOrdonneeDesScripts[4]=adresseDuCode+'/JS/Models/scene.js';
-	listeOrdonneeDesScripts[5]=adresseDuCode+'/JS/Models/appareilPhoto.js';
-	listeOrdonneeDesScripts[6]=adresseDuCode+'/JS/Models/objectif.js';
-	listeOrdonneeDesScripts[7]=adresseDuCode+'/JS/Models/photographe.js';
-	listeOrdonneeDesScripts[8]=adresseDuCode+'/JS/Models/priseDeVueGlobale.js'	;
+	listeOrdonneeDesScripts[5]=adresseDuCode+'/JS/Models/scene.js';
+	listeOrdonneeDesScripts[6]=adresseDuCode+'/JS/Models/appareilPhoto.js';
+	listeOrdonneeDesScripts[7]=adresseDuCode+'/JS/Models/objectif.js';
+	listeOrdonneeDesScripts[8]=adresseDuCode+'/JS/Models/photographe.js';
+	listeOrdonneeDesScripts[9]=adresseDuCode+'/JS/Models/priseDeVueGlobale.js'	;
 
-	listeOrdonneeDesScripts[9]=adresseDuCode+'/JS/Vues/gestionDesVues.js';
+	listeOrdonneeDesScripts[10]=adresseDuCode+'/JS/Vues/gestionDesVues.js';
 
-	listeOrdonneeDesScripts[10]=adresseDuCode+'/JS/Vues/illustrations.js';
-	listeOrdonneeDesScripts[11]=adresseDuCode+'/JS/Vues/vueReglagesRapides.js';
-	listeOrdonneeDesScripts[12]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhotoBruit.js';
-	listeOrdonneeDesScripts[13]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhotoFlouDeBouge.js';
-	listeOrdonneeDesScripts[14]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhoto.js';
-	listeOrdonneeDesScripts[15]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhotoSouris.js';
-	listeOrdonneeDesScripts[16]=adresseDuCode+'/JS/Vues/vueReglagesVuePhoto.js';
-	listeOrdonneeDesScripts[17]=adresseDuCode+'/JS/Vues/vueCurseurExposition.js';
-	listeOrdonneeDesScripts[18]=adresseDuCode+'/JS/Vues/vueReglagesScene.js';
-	listeOrdonneeDesScripts[19]=adresseDuCode+'/JS/Vues/vueReglagesPhotographe.js';
-	listeOrdonneeDesScripts[20]=adresseDuCode+'/JS/Vues/vueReglagesObjectif.js';
-	listeOrdonneeDesScripts[21]=adresseDuCode+'/JS/Vues/vueReglagesAPN.js';
+	listeOrdonneeDesScripts[11]=adresseDuCode+'/JS/Vues/illustrations.js';
+	listeOrdonneeDesScripts[12]=adresseDuCode+'/JS/Vues/vueReglagesRapides.js';
+	listeOrdonneeDesScripts[13]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhotoCachee.js';
+	listeOrdonneeDesScripts[14]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhotoBruit.js';
+	listeOrdonneeDesScripts[15]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhotoFlouDeBouge.js';
+	listeOrdonneeDesScripts[16]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhoto.js';
+	listeOrdonneeDesScripts[17]=adresseDuCode+'/JS/Vues/vuePhoto/vuePhotoSouris.js';
+	listeOrdonneeDesScripts[18]=adresseDuCode+'/JS/Vues/vueReglagesVuePhoto.js';
+	listeOrdonneeDesScripts[19]=adresseDuCode+'/JS/Vues/vueCurseurExposition.js';
+	listeOrdonneeDesScripts[20]=adresseDuCode+'/JS/Vues/vueReglagesScene.js';
+	listeOrdonneeDesScripts[21]=adresseDuCode+'/JS/Vues/vueReglagesPhotographe.js';
+	listeOrdonneeDesScripts[22]=adresseDuCode+'/JS/Vues/vueReglagesObjectif.js';
+	listeOrdonneeDesScripts[23]=adresseDuCode+'/JS/Vues/vueReglagesAPN.js';
+	listeOrdonneeDesScripts[24]=adresseDuCode+'/JS/Vues/vueHistogrammes.js';
 	
-	listeOrdonneeDesScripts[22]=adresseDuCode+'/JS/Vues/Fenetres/gestionTailleFenetres.js';
+	listeOrdonneeDesScripts[25]=adresseDuCode+'/JS/Vues/Fenetres/gestionTailleFenetres.js';
 
-	listeOrdonneeDesScripts[23]=adresseDuCode+'/JS/Control/onModif.js';
+	listeOrdonneeDesScripts[26]=adresseDuCode+'/JS/Control/onModif.js';
 	
 	//Seuls les deux derniers .js doivent attendre les précédents:
-	listeOrdonneeDesScripts[24]=adresseDuCode+'/JS/';
-	listeOrdonneeDesScripts[25]=adresseDuCode+'/JS/main.js';
+	listeOrdonneeDesScripts[27]=adresseDuCode+'/JS/';
+	listeOrdonneeDesScripts[28]=adresseDuCode+'/JS/main.js';
 	
 	//Attendre que le css soit chargé est utile pour ensuite y modifier les adresses des images
 	feuilleDeStyle= document.createElement('link');

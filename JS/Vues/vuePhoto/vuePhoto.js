@@ -1,16 +1,5 @@
-VuePhoto = function(activee, visible, fermable, largeur, hauteur, expositionVisible, flouDeMapVisible, flouDeBougeVisible, bruitVisible) {
+VuePhoto = function() {
 	this.nom='Photo';
-
-	this.activee = activee;
-	this.visible = visible;
-	this.fermable = fermable;
-
-	this.largeur = largeur;
-	this.hauteur = hauteur;
-	this.expositionVisible = expositionVisible;
-	this.flouDeMapVisible = flouDeMapVisible;
-	this.flouDeBougeVisible = flouDeBougeVisible;
-	this.bruitVisible = bruitVisible;
 
 	this.affichageRapide = 0;
 	this.init = initVuePhoto;
@@ -54,6 +43,7 @@ function initVuePhoto() {
 
 function calcHauteurVuePhoto() {
 	vuePhoto.hauteur = vuePhoto.largeur * apnChoisi.capteurHauteur / apnChoisi.capteurLargeur;
+	calcHauteurVuePhotoCachee();
 }
 
 function valideAccelerationMaterielle() {

@@ -60,10 +60,6 @@ input[type="range"]::-moz-range-thumb {
     cursor: pointer;
 }
 
-
-
-
-
 .classBtnReglage:hover, .classBtnClose:hover {
     background: rgba(255,255,255,0.3);
     background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.3),rgba(255,255,255,0.15));
@@ -86,12 +82,9 @@ input[type="range"]::-moz-range-thumb {
     float:right;
 }
 
-
-
 .tableAvecSlider tr{
     height:23px;
 }
-
 
 .classInfoNavigateur{
     color: #333333;
@@ -136,7 +129,6 @@ input[type="range"]::-moz-range-thumb {
     background: rgba(0,0,0,0.1);
     margin-bottom: 7px;
     border: 1px solid rgba(0,0,0,0.1);
-   /* width: 100%;*/
 }
 
 .tableauBarreDeTache{
@@ -157,7 +149,6 @@ width: 100%;
     border-left: none;
 }
 
-
 .classInfoUtilisateur{
     color: #dddddd;
     font-style: italic;
@@ -165,8 +156,7 @@ width: 100%;
 
 .classViseur, .classReglagesRapides,.classReglagesVue{
     padding: 7px;
-    margin-left: 7px;
-    
+    margin-left: 7px;    
     float:left;
 }
 
@@ -182,6 +172,14 @@ margin-top:7px;
     background: rgba(0,0,0,1);
     float:left;
     margin-top:0px;
+}
+
+.classVueHistogrammes{
+     padding: 7px;
+     float:left;
+     margin-left: 7px; 
+     background: rgba(0,0,0,0.4);
+     border-radius: 6px 6px 6px 6px;  
 }
 
 .classCvsPhoto{

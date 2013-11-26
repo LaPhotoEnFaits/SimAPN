@@ -27,7 +27,7 @@ function displayInfoNavigateur() {
 
     case 'Chrome':
       if (navigateur.version >= 18)
-        texte += getTraduction('navigateurCompatible');
+        document.getElementById('infoNavigateur').style.display = 'none';
       else {
         texte += getTraduction('versionInsuffisante');
         texte += '18';

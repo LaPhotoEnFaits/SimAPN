@@ -1,9 +1,7 @@
-VueReglagesObjectif = function(activee, visible, fermable) {
+VueReglagesObjectif = function() {
 
 	this.nom = 'ReglagesObjectif';
-	this.activee = activee;
-	this.visible = visible;
-	this.fermable = fermable;
+
 	this.init = initVueReglagesObjectif;
 	this.initIHM = initIHMVues;
 };

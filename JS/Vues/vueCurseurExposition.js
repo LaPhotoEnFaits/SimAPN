@@ -1,11 +1,6 @@
-VueCurseurExposition = function(activee, visible, fermable, largeur, hauteur) {
+VueCurseurExposition = function() {
 	this.nom='CurseurExpo';
-	this.activee = activee;
-	this.visible = visible;
-	this.fermable = fermable;
 
-	this.largeur = largeur;
-	this.hauteur = hauteur;
 	this.init = initVueCurseurExpo;
 	this.initIHM =initIHMVues;
 };

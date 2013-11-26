@@ -50,11 +50,16 @@ function configSimulateur() {
 	vueReglagesAPN.activee = 1;
 	vueReglagesAPN.fermable = 1;
 	vueReglagesAPN.typeDeCapteurVisible = 1;
+
+	vueHistogrammes.activee = 1;
+	vueHistogrammes.fermable = 1;
 }
 
 function initMateriel() {
 	apnChoisi.vitesse = 1 / 2000;
 	apnChoisi.ISO = 200;
+
 	objectifChoisi.ouverture = 5.6;
+	
 	priseDeVue.distanceDeMAP = scene.plans[1].distance;
 }

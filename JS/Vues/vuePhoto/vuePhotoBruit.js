@@ -14,7 +14,6 @@ function borne8bits(couleur) {
 	};
 }
 
-
 function drawBruit() {
 
 	if (vuePhoto.visible && vuePhoto.affichageRapide === 0) {

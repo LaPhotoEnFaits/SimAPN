@@ -50,8 +50,8 @@ function RAZconfig() {
 	vueReglagesPhotographe.activee = 0;
 	vueReglagesPhotographe.visible = 0;
 	vueReglagesPhotographe.fermable = 0;
-	vueReglagesPhotographe.tremblementsVisible =0;
-	vueReglagesPhotographe.CdCVisible =0;
+	vueReglagesPhotographe.tremblementsVisible = 0;
+	vueReglagesPhotographe.CdCVisible = 0;
 
 	vueReglagesObjectif.activee = 0;
 	vueReglagesObjectif.visible = 0;
@@ -61,7 +61,11 @@ function RAZconfig() {
 	vueReglagesAPN.activee = 0;
 	vueReglagesAPN.visible = 0;
 	vueReglagesAPN.fermable = 0;
-	vueReglagesAPN.typeDeCapteurVisible=0;
+	vueReglagesAPN.typeDeCapteurVisible = 0;
+
+	vueHistogrammes.activee = 0;
+	vueHistogrammes.visible = 0;
+	vueHistogrammes.fermable = 0;
 
 }
 
@@ -100,6 +104,9 @@ function drawVues() {
 	}
 	if (vueCurseurExpo.visible)
 		drawCurseurExposition();
+
+	if (vueHistogrammes.visible)
+		drawVueHistogrammes();
 }
 
 function initVues() {
@@ -114,4 +121,5 @@ function initVues() {
 	vueReglagesPhotographe.initIHM();
 	vueReglagesObjectif.initIHM();
 	vueReglagesAPN.initIHM();
+	vueHistogrammes.initIHM();
 }

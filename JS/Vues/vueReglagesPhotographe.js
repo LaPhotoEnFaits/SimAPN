@@ -1,8 +1,6 @@
-VueReglagesPhotographe = function(activee, visible, fermable) {
+VueReglagesPhotographe = function() {
 	this.nom = 'ReglagesPhotographe';
-	this.activee = activee;
-	this.visible = visible;
-	this.fermable = fermable;
+
 	this.init = initVueReglagesPhotographe;
 	this.initIHM = initIHMVues;
 };
