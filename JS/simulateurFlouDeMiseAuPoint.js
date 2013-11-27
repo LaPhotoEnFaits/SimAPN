@@ -12,11 +12,6 @@ function configSimulateur() {
 	vuePhoto.largeur = 400;
 	vuePhoto.flouDeMapVisible = 1;
 	
-	vueCurseurExpo.activee = 1;
-	vueCurseurExpo.visible = 1;
-	vueCurseurExpo.largeur = 75;
-	vueCurseurExpo.hauteur = 30;
-
 	vueReglagesRapides.activee = 1;
 	vueReglagesRapides.visible = 1;
 	vueReglagesRapides.sldOuvertureVisible = 1;
@@ -39,7 +34,7 @@ function initMateriel() {
 	apnChoisi.vitesse = 1 / 2000;
 	apnChoisi.ISO = 200;
 
-	objectifChoisi.ouverture = 5.6;
+	objectifChoisi.ouverture = 1.4;
 	
 	priseDeVue.distanceDeMAP = scene.plans[1].distance;
 }

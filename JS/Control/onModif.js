@@ -64,6 +64,8 @@ function onModifDefinitionCapteur() {
 
 function onModifCapteur() {
 	setDimensionsCapteur();
+	calcHauteurVuePhoto();
+	initVuePhoto();
 	calcCropFactor();
 	setFocalesMinMaxChoisie();
 	calcTaillePixel();
