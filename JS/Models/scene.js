@@ -6,6 +6,7 @@ Scene = function() {
 	this.couleurSolHaut = new Array(3);
 	this.couleurSolBas = new Array(3);
 	this.init = initScene;
+	this.planSelectionne='?';
 };
 
 function initScene(theme) {
@@ -21,7 +22,7 @@ function initScene(theme) {
 			var urlWalt = adresseDuCode+'/Images/Photos/Breaking%20Bad/Walt.gif';
 			var urlFondBreakinBad = adresseDuCode+'/Images/Photos/Breaking%20Bad/BrBa-Fond.jpg';
 			 
-			scene.illustrations[0] = new illustration('MasqueGaz', urlMasqueGaz, 0.3, 0.5, 0.05);
+			scene.illustrations[0] = new illustration('MasqueGaz', urlMasqueGaz, 0.4, 0.5, 0.05);
 			scene.illustrations[1] = new illustration('WalterWalt', urlWalt, 1.8, 0.0, 0.07);
 			scene.illustrations[2] = new illustration('Camion', urlCamion, 7.78, -1.5, 0.175);
 			scene.illustrations[3] = new illustration('Desert', urlFondBreakinBad, 3750.0, 0.0, 0.0);

@@ -19,7 +19,7 @@ vueReglagesObjectif = new VueReglagesObjectif();
 vueReglagesAPN = new VueReglagesAPN();
 vueHistogrammes = new VueHistogrammes();
 vuePhotoCachee = new VuePhotoCachee();
-
+vueFlouDeMiseAuPoint = new VueFlouDeMiseAuPoint();
 
 function initPreTelechargement() {
   	
@@ -50,8 +50,10 @@ function initPostTelechargement() {
 
 function initCalc() {
 	setDimensionsCapteur();
+	setDistanceDeMAP();
 	calcTaillePixel();
 	calcCdc();
+	calcPDC();
 	calcDynamiqueCourante();
 	calcCropFactor();
 	calcVitesseDeSecurite();

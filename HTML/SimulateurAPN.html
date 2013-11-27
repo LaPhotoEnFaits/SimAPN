@@ -28,6 +28,7 @@
 					<td id='btnVueReglagesObjectif' class='classBtnReglage'></td>
 					<td id='btnVueReglagesAPN' class='classBtnReglage'></td>
 					<td id='btnVueHistogrammes' class='classBtnReglage'></td>
+					<td id='btnVueFlouDeMiseAuPoint' class='classBtnReglage'></td>
 
 
 				</tr>
@@ -66,6 +67,11 @@
 		<span id='vueHistogrammes' class='classVueHistogrammes'>
 			<span id='btnCloseVueHistogrammes' class='classBtnClose'></span>
 			<canvas id='cvsHistogrammes' ></canvas>
+		</span>
+
+		<span id='vueFlouDeMiseAuPoint' class='classVueHistogrammes'>
+			<span id='btnCloseVueFlouDeMiseAuPoint' class='classBtnClose'></span>
+			<canvas id='cvsFlouDeMiseAuPoint' ></canvas>
 		</span>
 
 		<span id='vueReglagesRapides' class='classReglagesRapides'>
@@ -260,7 +266,7 @@
 
 	var lstOrdonneeDesScripts=new Array();
 
-	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.min.js';
+	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.js';
 	
 	
 	lstOrdonneeDesScripts[1]=adresseDuCode+'/JS/';

@@ -2,11 +2,36 @@ PriseDeVue = function() {
 	this.angleChampHorizontal = 0;
 	this.angleChampVertical = 0;
 	this.distanceDeMAP = 0;
+	this.planDeMAP = 1;
 	this.vitesseDeSecurite = 0;
 	this.cdc = 0;
 	this.exposition = 0;
 	this.flouDeBouge = 0;
+	this.debutDeLaPDC = 0;
+	this.finDeLaPDC = 0;
+	this.tailleDeLaPDC = 0;
 };
+
+
+
+function setDistanceDeMAP() {
+	if (priseDeVue.planDeMAP !== PLAN_DE_MAP_MANUEL)
+		priseDeVue.distanceDeMAP = scene.plans[priseDeVue.planDeMAP].distance;
+}
+
+
+function calcPDC() {
+
+	var focaleEnMetre = objectifChoisi.focale / 1000;
+	priseDeVue.debutDeLaPDC = priseDeVue.distanceDeMAP / (1.0 + priseDeVue.cdc * objectifChoisi.ouverture * (priseDeVue.distanceDeMAP - focaleEnMetre) / (focaleEnMetre * focaleEnMetre));
+	priseDeVue.finDeLaPDC = priseDeVue.distanceDeMAP / (1.0 - priseDeVue.cdc * objectifChoisi.ouverture * (priseDeVue.distanceDeMAP - focaleEnMetre) / (focaleEnMetre * focaleEnMetre));
+
+	if (priseDeVue.finDeLaPDC < 0) {
+		priseDeVue.finDeLaPDC = PDC_INFINIE;
+		priseDeVue.tailleDeLaPDC = PDC_INFINIE;
+	} else
+		priseDeVue.tailleDeLaPDC = priseDeVue.finDeLaPDC - priseDeVue.debutDeLaPDC;
+}
 
 function calcAnglesDeChamp() {
 	priseDeVue.angleChampHorizontal = 2.0 * Math.atan(apnChoisi.capteurLargeur / (2.0 * objectifChoisi.focale)) * 180.0 / Math.PI;
@@ -22,32 +47,44 @@ function calcVitesseDeSecurite() {
 
 function calcFlouDeBouge() {
 	priseDeVue.flouDeBouge = (apnChoisi.vitesse / priseDeVue.vitesseDeSecurite) * priseDeVue.cdc;
+
+	if (photographe.typeDeCdc === 2)
+		priseDeVue.flouDeBouge = 10 * priseDeVue.flouDeBouge;
 }
 
 function calcCdc() {
 	if (photographe.typeDeCdc === 1)
 		priseDeVue.cdc = apnChoisi.taillePixel;
-	else if (photographe.typeDeCdc === 2){
-		//priseDeVue.cdc =0.25 * apnChoisi.taillePixel * apnChoisi.capteurDefinition * 1000000 / (vuePhoto.largeur * vuePhoto.hauteur);
-		priseDeVue.cdc = 5.0*(apnChoisi.capteurLargeur / 1000) / vuePhoto.largeur;
-	}
-	else {
+	else if (photographe.typeDeCdc === 2) {
+		priseDeVue.cdc = 0.5 * (apnChoisi.capteurLargeur / 1000) / vuePhoto.largeur;
+	} else {
 		var diagonaleCapteur = Math.sqrt((apnChoisi.capteurLargeur * apnChoisi.capteurLargeur + apnChoisi.capteurHauteur * apnChoisi.capteurHauteur) / 1000000);
 		priseDeVue.cdc = diagonaleCapteur / photographe.typeDeCdc;
 	}
 }
 
-function calcFlouPlan(numero) {
+
+
+function calcFlou(distance) {
 
 	var focaleEnMetre = objectifChoisi.focale / 1000;
+	var flou;
 
-	if (scene.plans[numero].distance >= DISTANCE_MIN_SUJET) {
-		if (scene.plans[numero].distance < priseDeVue.distanceDeMAP)
-			scene.plans[numero].flou = (focaleEnMetre * focaleEnMetre * (priseDeVue.distanceDeMAP - scene.plans[numero].distance)) / (objectifChoisi.ouverture * scene.plans[numero].distance * (priseDeVue.distanceDeMAP - focaleEnMetre));
+	if (distance >= DISTANCE_MIN_SUJET) {
+		if (distance < priseDeVue.distanceDeMAP)
+			flou = (focaleEnMetre * focaleEnMetre * (priseDeVue.distanceDeMAP - distance)) / (objectifChoisi.ouverture * distance * (priseDeVue.distanceDeMAP - focaleEnMetre));
 		else
-			scene.plans[numero].flou = (focaleEnMetre * focaleEnMetre * (scene.plans[numero].distance - priseDeVue.distanceDeMAP)) / (objectifChoisi.ouverture * scene.plans[numero].distance * (priseDeVue.distanceDeMAP - focaleEnMetre));
+			flou = (focaleEnMetre * focaleEnMetre * (distance - priseDeVue.distanceDeMAP)) / (objectifChoisi.ouverture * distance * (priseDeVue.distanceDeMAP - focaleEnMetre));
 	} else
-		scene.plans[numero].flou = 0;
+		flou = 0;
+
+	return {
+		flou: flou
+	};
+}
+
+function calcFlouPlan(numero) {
+	scene.plans[numero].flou = calcFlou(scene.plans[numero].distance).flou;
 }
 
 function calcFlousPlans() {

@@ -71,6 +71,10 @@ function RAZconfig() {
 	vueHistogrammes.visible = 0;
 	vueHistogrammes.fermable = 0;
 
+	vueFlouDeMiseAuPoint.activee = 0;
+	vueFlouDeMiseAuPoint.visible = 0;
+	vueFlouDeMiseAuPoint.fermable = 0;
+
 }
 
 function initIHMVues() {
@@ -104,15 +108,13 @@ function initIHMVues() {
 
 function drawVues() {
 
-	if (vuePhoto.visible) {
+	if (vuePhoto.visible)
 		valideAccelerationMaterielle();
-		drawVuePhoto();
-	}
-	if (vueCurseurExpo.visible)
-		drawCurseurExposition();
 
-	if (vueHistogrammes.visible)
-		drawVueHistogrammes();
+	drawVuePhoto();
+	drawCurseurExposition();
+	drawVueHistogrammes();
+	drawVueFlouDeMiseAuPoint();
 }
 
 function initVues() {
@@ -128,4 +130,5 @@ function initVues() {
 	vueReglagesObjectif.initIHM();
 	vueReglagesAPN.initIHM();
 	vueHistogrammes.initIHM();
+	vueFlouDeMiseAuPoint.initIHM();
 }

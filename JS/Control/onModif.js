@@ -1,5 +1,31 @@
+function onModifDistanceDeMAP() {
+	calcFlousPlans();
+	calcPDC();
+	drawFlousEtExpo();
+	drawPlans();
+	drawVueHistogrammes();
+	drawVueFlouDeMiseAuPoint();
+}
+
+
+function onModifDistancePlan(numeroDuPlan) {
+
+	if (priseDeVue.planDeMAP === numeroDuPlan) {
+		setDistanceDeMAP();
+		onModifDistanceDeMAP();
+	} else {
+		calcFlouPlan(numeroDuPlan);
+		drawFlouEtExpo(numeroDuPlan);
+		drawPlan(numeroDuPlan);
+		drawVueHistogrammes();
+		drawVueFlouDeMiseAuPoint();
+	}
+}
+
 function onModifProfondeurPhotographe() {
 	calcFlousPlans();
+	calcPDC();
+
 	drawPlans();
 	drawFlouBouge();
 	drawSol();
@@ -7,6 +33,7 @@ function onModifProfondeurPhotographe() {
 	drawFlousEtExpo();
 	drawBruit();
 	drawVueHistogrammes();
+	drawVueFlouDeMiseAuPoint();
 }
 
 function onModifHorizontalVerticalPhotographe() {
@@ -18,12 +45,21 @@ function onModifHorizontalVerticalPhotographe() {
 	drawVueHistogrammes();
 }
 
-
 function onModifDefinitionCapteur() {
 	calcTaillePixel();
 
-	if (photographe.typeDeCdc === 1)
-		onModifCdC();
+	if (photographe.typeDeCdc === 1) {
+		calcCdc();
+		calcVitesseDeSecurite();
+		calcFlouDeBouge();
+		calcPDC();
+
+		drawPlans();
+		drawFlouBouge();
+		drawVueHistogrammes();
+	}
+
+	drawVueFlouDeMiseAuPoint();
 }
 
 function onModifCapteur() {
@@ -36,19 +72,23 @@ function onModifCapteur() {
 	calcFlouDeBouge();
 	calcAnglesDeChamp();
 	calcFlousPlans();
+	calcPDC();
 
 	drawVuePhoto();
 	drawVueHistogrammes();
+	drawVueFlouDeMiseAuPoint();
 }
 
 function onModifCdC() {
 	calcCdc();
 	calcVitesseDeSecurite();
 	calcFlouDeBouge();
+	calcPDC();
 
 	drawPlans();
 	drawFlouBouge();
 	drawVueHistogrammes();
+	drawVueFlouDeMiseAuPoint();
 }
 
 function onModifAntiVibration() {
@@ -76,10 +116,12 @@ function onModifOuverture() {
 
 	calcFlousPlans();
 	calcExposition();
+	calcPDC();
 
 	drawFlousEtExpo();
 	drawCurseurExposition();
 	drawVueHistogrammes();
+	drawVueFlouDeMiseAuPoint();
 }
 
 function onModifVitesse() {
@@ -115,9 +157,11 @@ function onModifFocale() {
 	calcVitesseDeSecurite();
 	calcFlouDeBouge();
 	calcFlousPlans();
+	calcPDC();
 
 	drawVuePhoto();
 	drawVueHistogrammes();
+	drawVueFlouDeMiseAuPoint();
 }
 
 function onModifLuminosite() {
