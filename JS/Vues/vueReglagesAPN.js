@@ -18,17 +18,19 @@ function initVueReglagesAPN() {
 		hide('ensembleInpDefinitionCapteur');
 }
 
-
-
 ////INPUT DEFINITION DU CAPTEUR
 function initInpDefinitionCapteur() {
 	document.getElementById('nomInpDefinitionCapteur').innerHTML = getTraduction("definition");
-	document.getElementById('inpDefinitionCapteur').value = 1.0*apnChoisi.capteurDefinition;
-	document.getElementById('outputInpDefinitionCapteur').innerHTML = 'Mpx';	
+	document.getElementById('inpDefinitionCapteur').value = 1.0 * apnChoisi.capteurDefinition;
+	document.getElementById('outputInpDefinitionCapteur').innerHTML = 'Mpx';
 }
 document.getElementById('inpDefinitionCapteur').addEventListener('change', function() {
-	apnChoisi.capteurDefinition=1.0*document.getElementById('inpDefinitionCapteur').value;
-	onModifDefinitionCapteur();
+	if (isNumber(document.getElementById('inpDefinitionCapteur').value)) {
+		apnChoisi.capteurDefinition = 1.0 * document.getElementById('inpDefinitionCapteur').value;
+		onModifDefinitionCapteur();
+	} else {
+		document.getElementById('inpDefinitionCapteur').value = 1.0 * apnChoisi.capteurDefinition;
+	}
 }, false);
 
 

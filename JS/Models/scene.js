@@ -7,6 +7,8 @@ Scene = function() {
 	this.couleurSolBas = new Array(3);
 	this.init = initScene;
 	this.planSelectionne='?';
+
+
 };
 
 function initScene(theme) {

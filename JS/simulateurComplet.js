@@ -37,6 +37,7 @@ function configSimulateur() {
 	vueReglagesScene.activee = 1;
 	vueReglagesScene.fermable = 1;
 	vueReglagesScene.lstLuminositeVisible = 1;
+	vueReglagesScene.inpDistancesPlansVisible = 1;
 
 	vueReglagesPhotographe.activee = 1;
 	vueReglagesPhotographe.fermable = 1;

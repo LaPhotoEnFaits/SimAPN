@@ -1,5 +1,3 @@
-var COLOR_AXES_HISTO = '#000000';
-
 var LONGUEUR_AXE_X_HISTO = 256;
 var OFFSET_X_HISTO = 10;
 var HAUTEUR_AXE_Y_HISTO = 100;
@@ -40,11 +38,11 @@ function drawVueHistogrammes() {
 		ct.beginPath();
 		ct.fillRect(0, 0, LARGEUR_CVS_HISTO - 1, HAUTEUR_CVS_HISTO - 1);
 
-		demiFlecheVerticale(ct, OFFSET_X_HISTO, OFFSET_Y_HISTO + HAUTEUR_AXE_Y_HISTO + 1, OFFSET_Y_HISTO, COLOR_AXES_HISTO);
-		demiFlecheHorizontale(ct, OFFSET_Y_HISTO + HAUTEUR_AXE_Y_HISTO + 1, OFFSET_X_HISTO, OFFSET_X_HISTO + LONGUEUR_AXE_X_HISTO, COLOR_AXES_HISTO);
+		demiFlecheVerticale(ct, OFFSET_X_HISTO, OFFSET_Y_HISTO + HAUTEUR_AXE_Y_HISTO + 1, OFFSET_Y_HISTO, COLOR_AXE);
+		demiFlecheHorizontale(ct, OFFSET_Y_HISTO + HAUTEUR_AXE_Y_HISTO + 1, OFFSET_X_HISTO, OFFSET_X_HISTO + LONGUEUR_AXE_X_HISTO, COLOR_AXE);
 
-		ct.fillStyle = '#000000';
-		ct.font = "italic  12px 'Trebuchet MS'";
+		ct.fillStyle = COLOR_POLICE_AXE;
+		ct.font = POLICE_AXES;
 		ct.fillText(getTraduction("nbr_de_pixels"), 2, OFFSET_Y_HISTO - 3);
 		ct.fillText(getTraduction("luminosite"), LARGEUR_CVS_HISTO - 65, OFFSET_Y_HISTO + HAUTEUR_AXE_Y_HISTO + 12);
 		ct.font = "12px 'Trebuchet MS'";

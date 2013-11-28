@@ -49,6 +49,7 @@ function RAZconfig() {
 	vueReglagesScene.sldLuminositeVisible = 0;
 	vueReglagesScene.sldLuminositeMin = -15;
 	vueReglagesScene.sldLuminositeMax = 16;
+	vueReglagesScene.inpDistancesPlansVisible = 0;
 
 	vueReglagesPhotographe.activee = 0;
 	vueReglagesPhotographe.visible = 0;
@@ -118,6 +119,10 @@ function drawVues() {
 }
 
 function initVues() {
+
+	scene.plans[0].couleur = 'rgb(221,68,119)';
+	scene.plans[1].couleur = 'rgb(51,102,204)';
+	scene.plans[2].couleur = 'rgb(102,170,20)';
 
 	initSldTailleFenetres();
 

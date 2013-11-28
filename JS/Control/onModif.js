@@ -10,6 +10,29 @@ function onModifDistanceDeMAP() {
 
 function onModifDistancePlan(numeroDuPlan) {
 
+	if (numeroDuPlan === 0) {
+		if (scene.plans[0].distance > scene.plans[1].distance)
+			scene.plans[0].distance = scene.plans[1].distance;
+	}
+
+	if (numeroDuPlan === 2) {
+		if (scene.plans[2].distance < scene.plans[1].distance)
+			scene.plans[2].distance = scene.plans[1].distance;
+
+		if (scene.plans[2].distance > DISTANCE_MAX)
+			scene.plans[2].distance = DISTANCE_MAX;
+	}
+
+	if (numeroDuPlan === 1) {
+		if (scene.plans[1].distance < scene.plans[0].distance)
+			scene.plans[1].distance = scene.plans[0].distance;
+
+		if (scene.plans[1].distance > scene.plans[2].distance)
+			scene.plans[1].distance = scene.plans[2].distance;
+	}
+
+	document.getElementById('inpDistancePlan' + numeroDuPlan).value = scene.plans[numeroDuPlan].distance.toFixed(2);
+
 	if (priseDeVue.planDeMAP === numeroDuPlan) {
 		setDistanceDeMAP();
 		onModifDistanceDeMAP();
@@ -21,6 +44,8 @@ function onModifDistancePlan(numeroDuPlan) {
 		drawVueFlouDeMiseAuPoint();
 	}
 }
+
+
 
 function onModifProfondeurPhotographe() {
 	calcFlousPlans();
@@ -34,6 +59,7 @@ function onModifProfondeurPhotographe() {
 	drawBruit();
 	drawVueHistogrammes();
 	drawVueFlouDeMiseAuPoint();
+	setDistancesPlans();
 }
 
 function onModifHorizontalVerticalPhotographe() {

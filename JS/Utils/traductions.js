@@ -9,6 +9,10 @@ function getTraduction(id) {
 
 var traductionFr = {
 
+  "Plan#": {
+      "message": "Plan#"
+    },
+
   "versionInsuffisante": {
     "message": "le simulateur necessite au moins la version "
   },
@@ -654,6 +658,10 @@ var traductionFr = {
 }
 
 var traductionEn = {
+
+  "Plan#": {
+    "message": "Subject#"
+  },
 
 
   "versionInsuffisante": {
