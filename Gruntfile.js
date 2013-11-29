@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
     /*
      *
@@ -41,10 +41,9 @@ module.exports = function (grunt) {
             packaged: {
                 src: [
                     'JS/**/*.js',
-                    // On ne veut pas les fichiers de simulateur
+                    '!JS/Utils/compatibiliteNavigateurs.js',
                     '!JS/simulateur*.js',
-                    // On ne veut pas le main.js
-                    '!JS/main.js',
+                    '!JS/main.js',                    
                 ],
                 dest: 'Packaged/app.js',
             }
@@ -73,15 +72,15 @@ module.exports = function (grunt) {
     });
 
     /**
-     * 
+     *
      * Définition des tâches
      *
-    **/
+     **/
 
     // Tâche 'build'
     grunt.registerTask('build', [
-        'clean', 
-        /*'jshint', Désactivé pour le moment car trop d'erreurs */ 
+        'clean',
+        /*'jshint', Désactivé pour le moment car trop d'erreurs */
         'concat',
         'uglify',
         'watch'
@@ -91,4 +90,3 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['build']);
 
 };
-

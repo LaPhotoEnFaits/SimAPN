@@ -4,7 +4,7 @@ var X0VuePhoto;
 var Y0VuePhoto;
 
 var HAUTEUR_PHOTOGRAPHE_MIN = 0.01;
-var DISTANCE_DE_MAP_MIN = 0.1;
+
 
 
 function rouletteSourisVuePhoto(e) {
@@ -20,23 +20,13 @@ function rouletteSourisVuePhoto(e) {
 	var deplacement;
 
 	if (delta > 0)
-		deplacement = 0.1;
-	else
 		deplacement = -0.1;
+	else
+		deplacement = +0.1;
 
-	for (var i = 0; i != 3; i++)
-		scene.plans[i].distance -= deplacement;
-
-	//TEMP
-	priseDeVue.distanceDeMAP -= deplacement;
-
-	if (priseDeVue.distanceDeMAP < DISTANCE_DE_MAP_MIN)
-		priseDeVue.distanceDeMAP = DISTANCE_DE_MAP_MIN;
-
-	photographe.deplacementProfondeur += deplacement;
+	photographe.deplacementProfondeurCourant=deplacement;
 
 	onModifProfondeurPhotographe();
-
 }
 
 function deplacementSourisVuePhoto(e) {

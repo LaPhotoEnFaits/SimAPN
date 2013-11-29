@@ -275,6 +275,9 @@ function drawFlouEtExpo(numero) {
 
 		if (scene.plans[numero].flou > 0)
 			flouEnPixel = scene.plans[numero].flou * vuePhoto.largeur / (apnChoisi.capteurLargeur / 1000.0);
+
+		if(flouEnPixel>FLOU_MAX)
+			flouEnPixel=FLOU_MAX;
 	}
 
 	filtreCSS(cvs, brightness, flouEnPixel);

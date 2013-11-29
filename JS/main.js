@@ -1,8 +1,7 @@
 titre = '';
-nomDuSoft='Camera Simulator (beta)'
+nomDuSoft = 'Camera Simulator (beta)'
 
 //MODELS
-navigateur = new Navigateur();
 scene = new Scene();
 photographe = new Photographe(0, 1.4, 0, 1, 1440);
 apnChoisi = new APN('PasDeMarque', 'Complet', 'Expert', '2012/02/07', 2899, 'full-frame', 24, 36, 36.3, 'CMOS', 25.3, 14.4, 2853, 50, 6400, 51200, 51, 4, 0.7, 100, 1, 0, 3.2, 900, 146, 123, 82, 1);
@@ -35,9 +34,10 @@ function initPreTelechargement() {
 
 	/*setAdressesImagesCss();*/
 
-	readUserAgent();
+
+
 	displayInfoNavigateur();
-	
+
 	document.getElementById('infosPreChargement').style.display = 'none';
 	document.getElementById('infoUtilisateur').innerHTML = getTraduction('chargementEnCours');
 	initScene('BreakingBad');
@@ -50,6 +50,17 @@ function initPostTelechargement() {
 
 	initVues();
 	drawVues();
+
+	var iMax = 100;
+	var incrI = 0.1;
+
+	for (i = 0.1; i < iMax; i += incrI) {
+		for (var ii = 0; ii != 4; ii++)
+			filtreCSS(document.getElementById('cvsPhotoPlan' + ii), 0.5 * i / iMax, i);
+	}
+
+	drawFlousEtExpo();
+
 
 	document.getElementById('infoUtilisateur').innerHTML = '';
 	show('Vues');
@@ -66,7 +77,7 @@ function initCalc() {
 	calcCropFactor();
 	calcVitesseDeSecurite();
 	calcFlouDeBouge();
-	calcAnglesDeChamp();
+	calcChamps();
 	calcFlousPlans();
 	calcExposition();
 }

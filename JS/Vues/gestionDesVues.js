@@ -33,6 +33,7 @@ function RAZconfig() {
 	vueReglagesRapides.sldVitesseVisible = 0;
 	vueReglagesRapides.sldISOVisible = 0;
 	vueReglagesRapides.sldFocaleVisible = 0;
+	vueReglagesRapides.chkCadrageConstantVisible = 0;
 
 	vueReglagesVuePhoto.activee = 0;
 	vueReglagesVuePhoto.visible = 0;

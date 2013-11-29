@@ -8,6 +8,7 @@ FlagMAJ = function() {
 	this.majOutputSldFocale = new ItemPourMAJ(majOutputSldFocale);
 	this.majOutputDistancesPlans = new ItemPourMAJ(majOutputDistancesPlans);
 
+	this.setDistancesApresDelacement = new ItemPourMAJ(setDistancesApresDelacement);
 	this.setDistanceDeMAP = new ItemPourMAJ(setDistanceDeMAP);
 	this.setDimensionsCapteur = new ItemPourMAJ(setDimensionsCapteur);
 
@@ -19,7 +20,7 @@ FlagMAJ = function() {
 	this.calcCropFactor = new ItemPourMAJ(calcCropFactor);
 	this.calcCdc = new ItemPourMAJ(calcCdc);
 	this.calcPDC = new ItemPourMAJ(calcPDC);
-	this.calcAnglesDeChamp = new ItemPourMAJ(calcAnglesDeChamp);
+	this.calcChamps = new ItemPourMAJ(calcChamps);
 	this.calcFlousPlans = new ItemPourMAJ(calcFlousPlans);
 	this.calcVitesseDeSecurite = new ItemPourMAJ(calcVitesseDeSecurite);
 	this.calcFlouDeBouge = new ItemPourMAJ(calcFlouDeBouge);
@@ -130,9 +131,11 @@ function onModifDistancePlan(numeroDuPlan, appelInterne) {
 function onModifProfondeurPhotographe(appelInterne) {
 
 	flagMAJ.majOutputDistancesPlans.actif = 1;
+	flagMAJ.setDistancesApresDelacement.actif = 1;
 	flagMAJ.drawVuePhoto.actif = 1;
 	flagMAJ.drawVueHistogrammes.actif = 1;
 
+	onModifChamps(1);
 	onModifFlouDeMAP(1);
 
 	if (!appelInterne)
@@ -171,6 +174,13 @@ function onModifCapteur(appelInterne) {
 	flagMAJ.setFocalesMinMaxChoisie.actif = 1;
 	flagMAJ.calcTaillePixel.actif = 1;
 	flagMAJ.drawVueEXIF.actif = 1;
+
+	if (priseDeVue.cadrageConstant && !appelInterne) {
+		setDimensionsCapteur();
+		flagMAJ.setDimensionsCapteur.actif = 0;
+		setFocaleCadrageConstant();
+		onModifFocale(1);
+	}
 
 	onModifCdC(1);
 	onModifFlouDeBouge(1);
@@ -247,6 +257,11 @@ function onModifFocale(appelInterne) {
 	flagMAJ.majOutputSldFocale.actif = 1;
 	flagMAJ.drawVueEXIF.actif = 1;
 
+	if (priseDeVue.cadrageConstant && !appelInterne) {
+		setProfondeurPhotographeCadrageConstant();
+		onModifProfondeurPhotographe(1);
+	}
+
 	onModifChamps(1);
 	onModifFlouDeMAP(1);
 	onModifFlouDeBouge(1);
@@ -281,7 +296,7 @@ function onModifExposition(appelInterne) {
 
 function onModifChamps(appelInterne) {
 
-	flagMAJ.calcAnglesDeChamp.actif = 1;
+	flagMAJ.calcChamps.actif = 1;
 
 	flagMAJ.drawVuePhoto.actif = 1;
 	flagMAJ.drawVueHistogrammes.actif = 1;

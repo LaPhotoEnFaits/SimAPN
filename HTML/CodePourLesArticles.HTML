@@ -1,62 +1,58 @@
 <!DOCTYPE html><html><body>
 
+<br/>
+<br/>
+<br/>
+<u><b><div class='nomSimulateur'>Simulateur</div></b></u>
+<br />
 
 <meta charset="UTF-8" />
-
 <input type="button" id='btnStartSimulateur' onclick="startSimulateur()"  value="Charger le simulateur" /><br />
-<div id='infosPreChargement'></div>
-<div id="ZoneSimulateur" ></div>
 
+<div id='infosPreChargement'></div>
+<div id='infoNavigateur' class='classInfoNavigateur'></div>
+<div id="ZoneSimulateur" class='zoneSimulateur'></div>
 
 <script type="text/javascript">
 
+    var adresseDuCode;
+    var ADR_CODE_PROD = 'https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k';
+    var ADR_CODE_TEST = 'https://googledrive.com/host/0B4yKyQ6kC8o5UlF0YkwyYmItcDg';
 	var typeDeSimulateur;
-
 	//typeDeSimulateur = 'simulateurTriangleExpo';
 	//typeDeSimulateur = 'simulateurFlouDeBouge';	
 	//typeDeSimulateur = 'simulateurHistogrammes';
-    //typeDeSimulateur = 'simulateurFlouDeMiseAuPoint';
-    typeDeSimulateur = 'simulateurLongueurFocale';
-	
-   //typeDeSimulateur = 'simulateurComplet';
-
-	var ADR_CODE_PROD = 'https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k';
-	var ADR_CODE_TEST = 'https://googledrive.com/host/0B4yKyQ6kC8o5UlF0YkwyYmItcDg';
-
-	var adresseDuCode;
+    typeDeSimulateur = 'simulateurFlouDeMiseAuPoint';
+    //typeDeSimulateur = 'simulateurLongueurFocale';
+    //typeDeSimulateur = 'simulateurComplet';
 
 	if(window.location.protocol==='file:')
 		adresseDuCode='..';
 	else
 		adresseDuCode=ADR_CODE_PROD;
 
-	var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = false;
-    document.body.appendChild(script);
-    
-    script.onload = function(){		
-    		$("#ZoneSimulateur").load(adresseDuCode+"/HTML/SimulateurAPN.html");
-    };
-   
-	
+	var scriptCompatibiliteNavigateur = document.createElement('script');
+    scriptCompatibiliteNavigateur.type = 'text/javascript';
+    scriptCompatibiliteNavigateur.async = false;
+    document.body.appendChild(scriptCompatibiliteNavigateur);
+
+	if(typeDeSimulateur==='simulateurComplet')
+    	startSimulateur();
+
     function startSimulateur(){
-    	    	
         document.getElementById('infosPreChargement').innerHTML='Telechargement des fichiers necessaires lancé...'
         document.getElementById('btnStartSimulateur').style.display = 'none';
         document.body.style.cursor = 'wait';
-
-    	script.src = adresseDuCode + '/JS/Libs/jQuerymin.js';    	
-
-    	if(_gaq)
-    	_gaq.push(['_trackEvent', 'ChargeSimulateur', typeDeSimulateur]);
+        scriptCompatibiliteNavigateur.src = adresseDuCode + '/JS/Utils/compatibiliteNavigateurs.js';
+        
+        try{ _gaq.push(['_trackEvent', 'ChargeSimulateur', typeDeSimulateur]); }
+        catch(err){}   
     }
 
-    if(typeDeSimulateur==='simulateurComplet')
-    	startSimulateur();
-
 </script>
-
+<br/>
+<br/>
+<br/>
 
 
 </body></html>

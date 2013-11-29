@@ -4,4 +4,5 @@ Photographe = function(deplacementHorizontal, deplacementVertical, deplacementPr
 	this.deplacementProfondeur = deplacementProfondeur;
 	this.tremblements = tremblements;
 	this.typeDeCdc = typeDeCdc;
+	this.deplacementProfondeurCourant=0;
 };

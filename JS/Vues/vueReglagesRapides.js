@@ -10,6 +10,12 @@ VueReglagesRapides = function() {
 
 function initVueReglagesRapides() {
 
+	if (vueReglagesRapides.chkCadrageConstantVisible) {
+		initChkCadrageConstant();
+		show('ensembleChkCadrageConstant');
+	} else
+		hide('ensembleChkCadrageConstant');
+
 	if (vueReglagesRapides.sldOuvertureVisible) {
 		initSldOuverture();
 		show('ensembleSldOuverture');
@@ -35,11 +41,31 @@ function initVueReglagesRapides() {
 		hide('ensembleSldFocale');
 }
 
+
+////CADRAGE CONSTANT
+function initChkCadrageConstant() {
+	document.getElementById('nomChkCadrageConstant').innerHTML = getTraduction('nom_cadrage_constant');
+
+	document.getElementById('chkCadrageConstant').addEventListener('change', function() {
+		if (document.getElementById('chkCadrageConstant').checked)
+			priseDeVue.cadrageConstant = 1;
+		else
+			priseDeVue.cadrageConstant = 0;
+	}, false);
+}
+
+
+
 ////SLIDER FOCALE
 function initSldFocale() {
 	document.getElementById('nomSldFocale').innerHTML = 'Focale';
 	document.getElementById("sldFocale").value = 1.0 * objectifChoisi.focale;
 	setFocalesMinMaxChoisie();
+
+	document.getElementById('sldFocale').addEventListener('change', modifSldFocale, false);
+	document.getElementById('sldFocale').oninput = function() {
+		modifSldFocale();
+	};
 }
 
 function majOutputSldFocale() {
@@ -54,10 +80,6 @@ function modifSldFocale() {
 	onModifFocale();
 }
 
-document.getElementById('sldFocale').addEventListener('change', modifSldFocale, false);
-document.getElementById('sldFocale').oninput = function() {
-	modifSldFocale();
-};
 
 
 function setFocalesMinMaxChoisie() {
@@ -87,6 +109,11 @@ function initSldOuverture() {
 	document.getElementById("sldOuverture").step = 1.0;
 	document.getElementById("sldOuverture").value = 1.0 * document.getElementById("sldOuverture").min + 1.0 * document.getElementById("sldOuverture").max - ouverture2cpt(1.0 * objectifChoisi.ouverture).cpt;
 	majOutputSldOuverture();
+
+	document.getElementById("sldOuverture").addEventListener('change', modifSldOuverture, false);
+	document.getElementById("sldOuverture").oninput = function() {
+		modifSldOuverture();
+	};
 }
 
 function majOutputSldOuverture() {
@@ -99,12 +126,6 @@ function modifSldOuverture() {
 }
 
 
-document.getElementById("sldOuverture").addEventListener('change', modifSldOuverture, false);
-
-
-document.getElementById("sldOuverture").oninput = function() {
-	modifSldOuverture();
-};
 
 ////SLIDER VITESSE
 function initSldVitesse() {
@@ -114,6 +135,11 @@ function initSldVitesse() {
 	document.getElementById('sldVitesse').step = 1.0;
 	document.getElementById('sldVitesse').value = vitesse2cpt(1.0 * apnChoisi.vitesse).cpt;
 	majOutputSldVitesse();
+
+	document.getElementById("sldVitesse").addEventListener('change', modifSldVitesse, false);
+	document.getElementById("sldVitesse").oninput = function() {
+		modifSldVitesse();
+	};
 }
 
 function majOutputSldVitesse() {
@@ -126,11 +152,6 @@ function modifSldVitesse() {
 }
 
 
-document.getElementById("sldVitesse").addEventListener('change', modifSldVitesse, false);
-
-document.getElementById("sldVitesse").oninput = function() {
-	modifSldVitesse();
-};
 
 ////SLIDER ISO
 function initSldISO() {
@@ -140,6 +161,11 @@ function initSldISO() {
 	document.getElementById('sldISO').step = 1.0;
 	document.getElementById('sldISO').value = ISO2cpt(1.0 * apnChoisi.ISO).cpt;
 	majOutputSldISO();
+
+	document.getElementById("sldISO").addEventListener('change', modifSldISO, false);
+	document.getElementById("sldISO").oninput = function() {
+		modifSldISO();
+	};
 }
 
 function majOutputSldISO() {
@@ -150,11 +176,3 @@ function modifSldISO() {
 	apnChoisi.ISO = cpt2ISO(1.0 * document.getElementById('sldISO').value).ISO;
 	onModifISO();
 }
-
-
-document.getElementById("sldISO").addEventListener('change', modifSldISO, false);
-
-
-document.getElementById("sldISO").oninput = function() {
-	modifSldISO();
-};

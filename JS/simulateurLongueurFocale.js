@@ -16,6 +16,7 @@ function configSimulateur() {
 	vueReglagesRapides.activee = 1;
 	vueReglagesRapides.visible = 1;
 	vueReglagesRapides.sldFocaleVisible = 1;
+	vueReglagesRapides.chkCadrageConstantVisible = 1;
 
 	vueReglagesVuePhoto.activee = 1;
 	vueReglagesVuePhoto.fermable = 1;

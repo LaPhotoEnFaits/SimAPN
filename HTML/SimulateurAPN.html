@@ -1,6 +1,4 @@
-<meta charset="UTF-8" />
-
-<div id='infoNavigateur' class='classInfoNavigateur'></div>
+<meta charset="UTF-8"/>
 
 <div class='simulateur' id='vueSimulateur'>
 
@@ -84,6 +82,12 @@
 		<span id='vueReglagesRapides' class='classReglagesRapides'>
 
 			<table class='tableAvecSld'>
+
+				<tr id='ensembleChkCadrageConstant'>
+					<td><input type="checkbox" id="chkCadrageConstant" /></td>
+					<td><span id='nomChkCadrageConstant' class='nomDeParametre'></span></td>
+				</tr>
+
 				<tr id='ensembleSldOuverture'>
 					<td><span id='nomSldOuverture' class='nomDeParametre'></span></td>
 					<td><input type='range' id='sldOuverture' /></td>
@@ -279,20 +283,15 @@
 
 <script type="text/javascript">
 
-	if(!typeDeSimulateur){
-		alert('typeDeSimulateur= '+typeDeSimulateur)
+	if(!typeDeSimulateur)
 		var typeDeSimulateur = 'simulateurTriangleExpo';
-	}
-
+	
 	if(!adresseDuCode)
-	var adresseDuCode='..';
-
+		var adresseDuCode='..';
 
 	var lstOrdonneeDesScripts=new Array();
 
-	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.js';
-	
-	
+	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.js';	
 	lstOrdonneeDesScripts[1]=adresseDuCode+'/JS/';
 	lstOrdonneeDesScripts[2]=adresseDuCode+'/JS/main.js';
 	
@@ -308,7 +307,6 @@
     		document.getElementById('vueSimulateur').style.maxWidth='850px';
     	else
     		document.getElementById('vueSimulateur').style.maxWidth='1165px';	
-
 
 		chargeScript(0);
 	};

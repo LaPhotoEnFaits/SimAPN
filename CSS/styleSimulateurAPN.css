@@ -123,6 +123,10 @@ input[type="range"]::-ms-tooltip  {
     margin-bottom: 10px;
 }
 
+.zoneSimulateur{
+    display: flex;
+}
+
 .simulateur {
     background-image: url('https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k/Images/Papier%20peint/Fond.png');
     background-repeat: repeat;

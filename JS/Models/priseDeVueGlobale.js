@@ -10,15 +10,43 @@ PriseDeVue = function() {
 	this.debutDeLaPDC = 0;
 	this.finDeLaPDC = 0;
 	this.tailleDeLaPDC = 0;
+	this.cadrageConstant = 0;
+	this.largeurPlanMAP = 0;
+	this.hauteurPlanMAP = 0;
+	this.largeurPlan = new Array(3);
+	this.hauteurPlan = new Array(3);
 };
 
+function setFocaleCadrageConstant() {
+	objectifChoisi.focale = Math.round(apnChoisi.capteurLargeur * priseDeVue.distanceDeMAP / priseDeVue.largeurPlanMAP);
+}
 
+function setProfondeurPhotographeCadrageConstant() {
+
+	var nouvelleDistanceDeMAP = priseDeVue.largeurPlanMAP * objectifChoisi.focale / apnChoisi.capteurLargeur;
+	var deltaDistance = nouvelleDistanceDeMAP - priseDeVue.distanceDeMAP;
+
+	photographe.deplacementProfondeurCourant = deltaDistance;
+}
+
+function setDistancesApresDelacement(){
+
+	var nouvelleDistanceDeMAP = priseDeVue.distanceDeMAP+ photographe.deplacementProfondeurCourant;
+
+	if(nouvelleDistanceDeMAP<DISTANCE_DE_MAP_MIN)
+		photographe.deplacementProfondeurCourant=DISTANCE_DE_MAP_MIN- priseDeVue.distanceDeMAP;
+
+	for (var i = 0; i != 3; i++)
+		scene.plans[i].distance += photographe.deplacementProfondeurCourant;
+
+	priseDeVue.distanceDeMAP += photographe.deplacementProfondeurCourant;
+	photographe.deplacementProfondeur -= photographe.deplacementProfondeurCourant;
+}
 
 function setDistanceDeMAP() {
 	if (priseDeVue.planDeMAP !== PLAN_DE_MAP_MANUEL)
 		priseDeVue.distanceDeMAP = scene.plans[priseDeVue.planDeMAP].distance;
 }
-
 
 function calcPDC() {
 
@@ -33,9 +61,17 @@ function calcPDC() {
 		priseDeVue.tailleDeLaPDC = priseDeVue.finDeLaPDC - priseDeVue.debutDeLaPDC;
 }
 
-function calcAnglesDeChamp() {
+function calcChamps() {
 	priseDeVue.angleChampHorizontal = 2.0 * Math.atan(apnChoisi.capteurLargeur / (2.0 * objectifChoisi.focale)) * 180.0 / Math.PI;
 	priseDeVue.angleChampVertical = 2.0 * Math.atan(apnChoisi.capteurHauteur / (2.0 * objectifChoisi.focale)) * 180.0 / Math.PI;
+
+	priseDeVue.largeurPlanMAP = apnChoisi.capteurLargeur * priseDeVue.distanceDeMAP / objectifChoisi.focale;
+	priseDeVue.hauteurPlanMAP = apnChoisi.capteurHauteur * priseDeVue.distanceDeMAP / objectifChoisi.focale;
+
+	for (var i = 0; i != 3; i++) {
+		priseDeVue.largeurPlan[i] = apnChoisi.capteurLargeur * scene.plans[i].distance / objectifChoisi.focale;
+		priseDeVue.hauteurPlanMAP[i] = apnChoisi.capteurHauteur * scene.plans[i].distance / objectifChoisi.focale;
+	}
 }
 
 function calcVitesseDeSecurite() {
