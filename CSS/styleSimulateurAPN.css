@@ -10,6 +10,7 @@ input[type=range] {
 input[type="range"]::-webkit-slider-thumb {
      -webkit-appearance: none;
     background-image: url('https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k/Images/Icones/btnSld.png');
+    background-color: rgba(0,0,0,0);
     width: 23px;
     height: 23px;    
 }
@@ -17,11 +18,30 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-moz-range-thumb {
      -webkit-appearance: none;
     background-image: url('https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k/Images/Icones/btnSld.png');
+    background-color: rgba(0,0,0,0);
     width: 23px;
     height: 23px;  
     border: 0;
 	outline: none;
 }
+input[type="range"]::-ms-fill-upper {
+    background-color: rgba(0,0,0,0.5);
+}
+input[type="range"]::-ms-fill-lower {
+        background-color: rgba(0,0,0,0.5);
+}
+input[type="range"]::-ms-thumb  {
+    background-image: url('https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k/Images/Icones/btnSld.png');
+    width: 23px;
+    height: 23px; 
+}
+input[type="range"]::-ms-ticks-after {
+}
+input[type="range"]::-ms-ticks-before {
+}
+input[type="range"]::-ms-tooltip  {
+}
+
 
 .cssInp{     
     height: 20px;
@@ -121,17 +141,29 @@ input[type="range"]::-moz-range-thumb {
 
     float:left;
 
-  /*  max-width:850px;*/
     width: 100%;
 }
 
-.classTitre{
-    font-size:19px;
-    text-align: center;
+
+.barreDeTitre{
     font-style: italic;
     padding: 7px;
     background-color: rgba(0,0,0,0.5);
     border-bottom: 2px solid rgba(0,0,0,0.8);
+    display: flex;
+
+}
+
+.classTitre{
+    font-size:19px;   
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.classNomDuSoft{
+    font-size:15px; 
+    float:left;
 }
 
 .classBarreDeTache{
@@ -161,6 +193,12 @@ width: 100%;
 .classInfoUtilisateur{
     color: #dddddd;
     font-style: italic;
+}
+
+.classVueEXIF{
+    font-size:11px;
+    font-style: italic;
+    padding-bottom: 3px;
 }
 
 .classViseur, .classReglagesRapides,.classReglagesVue{

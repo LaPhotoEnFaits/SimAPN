@@ -8,7 +8,11 @@
 
 	<div id='Vues' style='display:none;'>
 
-		<div id='titre' class='classTitre'></div>
+		<div class='barreDeTitre'>
+			<span id='nomDuSoft' class='classNomDuSoft'></span>
+			<span id='titre' class='classTitre'></span>
+			
+		</div>
 
 		<div id='barreDeTache' class='classBarreDeTache'>
 			<table class='tableauBarreDeTache'>
@@ -21,16 +25,13 @@
 								<td><canvas id='cvsGrandeFenetre'></canvas></td>
 							</tr>
 						</table>
-					</td>
-					
+					</td>					
 					<td id='btnVueReglagesScene' class='classBtnReglage'></td>			
 					<td id='btnVueReglagesPhotographe' class='classBtnReglage'></td>
 					<td id='btnVueReglagesObjectif' class='classBtnReglage'></td>
 					<td id='btnVueReglagesAPN' class='classBtnReglage'></td>
 					<td id='btnVueHistogrammes' class='classBtnReglage'></td>
 					<td id='btnVueFlouDeMiseAuPoint' class='classBtnReglage'></td>
-
-
 				</tr>
 			</table>
 		</div>
@@ -40,6 +41,12 @@
 		</div>
 
 		<span id='viseur' class='classViseur'>
+
+			<div id='vueEXIF' class='classVueEXIF'>
+				<span id='donneesEXIF'></span>
+				<span id='btnVueEXIF' class='classBtnReglage'></span>
+				<span id='btnCloseVueEXIF' class='classBtnClose'></span>				
+			</div>
 
 			<div id='vuePhoto'>
 				<canvas id='cvsPhotoCollimateurs' class='classCvsPhoto' ></canvas>

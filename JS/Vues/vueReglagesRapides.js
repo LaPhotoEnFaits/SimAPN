@@ -45,9 +45,8 @@ function initSldFocale() {
 function majOutputSldFocale() {
 	document.getElementById('outputSldFocale').innerHTML = objectifChoisi.focale + 'mm';
 
-	if (apnChoisi.cropFactor < 0.99 || apnChoisi.cropFactor > 1.01) {
-		document.getElementById('outputSldFocale').innerHTML += '<br/><i>'+Math.round(objectifChoisi.focale*apnChoisi.cropFactor)+'mm eq.</i>'
-	}
+	if (apnChoisi.cropFactor < 0.99 || apnChoisi.cropFactor > 1.01)
+		document.getElementById('outputSldFocale').innerHTML += '<br/><i>' + Math.round(objectifChoisi.focale * apnChoisi.cropFactor) + 'mm eq.</i>'
 }
 
 function modifSldFocale() {
@@ -55,10 +54,7 @@ function modifSldFocale() {
 	onModifFocale();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById('sldFocale').addEventListener('change', modifSldFocale, false);
-}, false);
-
+document.getElementById('sldFocale').addEventListener('change', modifSldFocale, false);
 document.getElementById('sldFocale').oninput = function() {
 	modifSldFocale();
 };
@@ -102,9 +98,9 @@ function modifSldOuverture() {
 	onModifOuverture();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById("sldOuverture").addEventListener('change', modifSldOuverture, false);
-}, false);
+
+document.getElementById("sldOuverture").addEventListener('change', modifSldOuverture, false);
+
 
 document.getElementById("sldOuverture").oninput = function() {
 	modifSldOuverture();
@@ -129,9 +125,8 @@ function modifSldVitesse() {
 	onModifVitesse();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById("sldVitesse").addEventListener('change', modifSldVitesse, false);
-}, false);
+
+document.getElementById("sldVitesse").addEventListener('change', modifSldVitesse, false);
 
 document.getElementById("sldVitesse").oninput = function() {
 	modifSldVitesse();
@@ -156,9 +151,9 @@ function modifSldISO() {
 	onModifISO();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById("sldISO").addEventListener('change', modifSldISO, false);
-}, false);
+
+document.getElementById("sldISO").addEventListener('change', modifSldISO, false);
+
 
 document.getElementById("sldISO").oninput = function() {
 	modifSldISO();

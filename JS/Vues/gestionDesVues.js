@@ -76,6 +76,10 @@ function RAZconfig() {
 	vueFlouDeMiseAuPoint.visible = 0;
 	vueFlouDeMiseAuPoint.fermable = 0;
 
+	vueEXIF.activee = 0;
+	vueEXIF.visible = 0;
+	vueEXIF.fermable = 0;
+
 }
 
 function initIHMVues() {
@@ -136,4 +140,5 @@ function initVues() {
 	vueReglagesAPN.initIHM();
 	vueHistogrammes.initIHM();
 	vueFlouDeMiseAuPoint.initIHM();
+	vueEXIF.initIHM();
 }

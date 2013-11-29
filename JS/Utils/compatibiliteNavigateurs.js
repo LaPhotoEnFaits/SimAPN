@@ -6,8 +6,11 @@ Navigateur = function() {
 
 function filtreCSS(cvs, luminosite, flou) {
 
-  if (navigateur.nom === 'FireFox' || navigateur.nom === 'InternetExplorer')
+  if (navigateur.nom === 'FireFox')
     cvs.style.filter = 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'filtre_map\'><feGaussianBlur stdDeviation = \'' + flou + '\'/><feComponentTransfer><feFuncR type=\'linear\' slope=\'' + luminosite + '\'/><feFuncG type=\'linear\' slope=\'' + luminosite + '\'/><feFuncB type=\'linear\' slope=\'' + luminosite + '\'/></feComponentTransfer></filter></svg>#filtre_map")';
+
+  else if (navigateur.nom === 'InternetExplorer')
+    cvs.style = 'filter:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale")';
   else
     cvs.style.webkitFilter = 'brightness(' + luminosite + ')blur(' + flou + 'px)';
 }
@@ -37,7 +40,7 @@ function displayInfoNavigateur() {
 
     case 'Opera':
       if (navigateur.version >= 15) {
-
+        document.getElementById('infoNavigateur').style.display = 'none';
       } else {
         texte += getTraduction('versionInsuffisante');
         texte += '15';

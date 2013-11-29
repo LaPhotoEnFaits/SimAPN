@@ -1,5 +1,5 @@
 function configSimulateur() {
-	titre += "L'histogramme";
+	titre = "L'histogramme";
 
 	photographe.deplacementVertical = 1.4;
 	photographe.tremblements = 1.0;

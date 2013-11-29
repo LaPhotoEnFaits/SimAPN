@@ -4,7 +4,9 @@
 <meta charset="UTF-8" />
 
 <input type="button" id='btnStartSimulateur' onclick="startSimulateur()"  value="Charger le simulateur" /><br />
+<div id='infosPreChargement'></div>
 <div id="ZoneSimulateur" ></div>
+
 
 <script type="text/javascript">
 
@@ -14,8 +16,9 @@
 	//typeDeSimulateur = 'simulateurFlouDeBouge';	
 	//typeDeSimulateur = 'simulateurHistogrammes';
     //typeDeSimulateur = 'simulateurFlouDeMiseAuPoint';
+    typeDeSimulateur = 'simulateurLongueurFocale';
 	
-    typeDeSimulateur = 'simulateurComplet';
+   //typeDeSimulateur = 'simulateurComplet';
 
 	var ADR_CODE_PROD = 'https://googledrive.com/host/0B4yKyQ6kC8o5eHlVbnBodzJFX0k';
 	var ADR_CODE_TEST = 'https://googledrive.com/host/0B4yKyQ6kC8o5UlF0YkwyYmItcDg';
@@ -25,7 +28,7 @@
 	if(window.location.protocol==='file:')
 		adresseDuCode='..';
 	else
-		adresseDuCode=ADR_CODE_TEST;
+		adresseDuCode=ADR_CODE_PROD;
 
 	var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -39,8 +42,11 @@
 	
     function startSimulateur(){
     	    	
-    	script.src = adresseDuCode + '/JS/Libs/jQuerymin.js';
-    	document.getElementById('btnStartSimulateur').style.display = 'none';
+        document.getElementById('infosPreChargement').innerHTML='Telechargement des fichiers necessaires lancé...'
+        document.getElementById('btnStartSimulateur').style.display = 'none';
+        document.body.style.cursor = 'wait';
+
+    	script.src = adresseDuCode + '/JS/Libs/jQuerymin.js';    	
 
     	if(_gaq)
     	_gaq.push(['_trackEvent', 'ChargeSimulateur', typeDeSimulateur]);

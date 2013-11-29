@@ -1,6 +1,6 @@
 function configSimulateur() {
 
-	titre += 'Version complète';
+	titre = 'Version complète';
 
 	photographe.deplacementHorizontal = 0;
 	photographe.deplacementVertical = 1.4;
@@ -9,7 +9,7 @@ function configSimulateur() {
 
 	vuePhoto.activee = 1;
 	vuePhoto.visible = 1;
-	vuePhoto.largeur = 400;
+	vuePhoto.largeur = 550;
 	vuePhoto.expositionVisible = 1;
 	vuePhoto.flouDeMapVisible = 1;
 	vuePhoto.flouDeBougeVisible = 1;
@@ -58,6 +58,9 @@ function configSimulateur() {
 
 	vueFlouDeMiseAuPoint.activee = 1;
 	vueFlouDeMiseAuPoint.fermable = 1;
+
+	vueEXIF.activee = 1;
+	vueEXIF.visible = 1;
 }
 
 function initMateriel() {
@@ -65,6 +68,6 @@ function initMateriel() {
 	apnChoisi.ISO = 200;
 
 	objectifChoisi.ouverture = 5.6;
-	
+
 	priseDeVue.distanceDeMAP = scene.plans[1].distance;
 }

@@ -1,4 +1,5 @@
-titre = "Simulateur d'appareil photo: ";
+titre = '';
+nomDuSoft='Camera Simulator (beta)'
 
 //MODELS
 navigateur = new Navigateur();
@@ -20,18 +21,24 @@ vueReglagesAPN = new VueReglagesAPN();
 vueHistogrammes = new VueHistogrammes();
 vuePhotoCachee = new VuePhotoCachee();
 vueFlouDeMiseAuPoint = new VueFlouDeMiseAuPoint();
+vueEXIF = new VueEXIF();
+
+//GENERAL
+flagMAJ = new FlagMAJ();
 
 function initPreTelechargement() {
-  	
+
 	RAZconfig();
 	configSimulateur();
+	document.getElementById('nomDuSoft').innerHTML = nomDuSoft;
 	document.getElementById('titre').innerHTML = titre;
 
 	/*setAdressesImagesCss();*/
 
 	readUserAgent();
 	displayInfoNavigateur();
-
+	
+	document.getElementById('infosPreChargement').style.display = 'none';
 	document.getElementById('infoUtilisateur').innerHTML = getTraduction('chargementEnCours');
 	initScene('BreakingBad');
 }
@@ -46,6 +53,7 @@ function initPostTelechargement() {
 
 	document.getElementById('infoUtilisateur').innerHTML = '';
 	show('Vues');
+	document.body.style.cursor = 'default';
 }
 
 function initCalc() {

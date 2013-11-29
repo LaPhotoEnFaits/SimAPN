@@ -1,6 +1,6 @@
 function configSimulateur() {
 
-	titre += 'Flou de bougé';
+	titre = 'Le flou de bougé';
 
 	photographe.deplacementVertical = 1.4;
 	photographe.tremblements = 1.0;

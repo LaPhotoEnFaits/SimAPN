@@ -34,20 +34,18 @@ function initVueReglagesScene() {
 function initInpDistancesPlans() {
 	for (var i = 0; i != 3; i++) {
 		document.getElementById('nomInpDistancePlan' + i).innerHTML = getTraduction("Plan#") + (i + 1);
-		setDistancePlan(i);
+		majOutputDistancePlan(i);
 		document.getElementById('outputDistancePlan' + i).innerHTML = 'm';
 	}	
 }
 
-
-
-function setDistancePlan(numero) {	
+function majOutputDistancePlan(numero) {	
 	document.getElementById('inpDistancePlan' + numero).value = scene.plans[numero].distance.toFixed(2);
 }
 
-function setDistancesPlans() {
+function majOutputDistancesPlans() {
 	for (var i = 0; i != 3; i++)
-		setDistancePlan(i);
+		majOutputDistancePlan(i);
 }
 
 document.getElementById('inpDistancePlan0').addEventListener('change', function() {
@@ -55,7 +53,7 @@ document.getElementById('inpDistancePlan0').addEventListener('change', function(
 		scene.plans[0].distance = 1.0 * document.getElementById('inpDistancePlan0').value;
 		onModifDistancePlan(0);
 	} else
-		setDistancePlan(0);
+		majOutputDistancePlan(0);
 
 
 }, false);
@@ -64,7 +62,7 @@ document.getElementById('inpDistancePlan1').addEventListener('change', function(
 		scene.plans[1].distance = 1.0 * document.getElementById('inpDistancePlan1').value;
 		onModifDistancePlan(1);
 	} else
-		setDistancePlan(1);
+		majOutputDistancePlan(1);
 
 }, false);
 document.getElementById('inpDistancePlan2').addEventListener('change', function() {
@@ -72,7 +70,7 @@ document.getElementById('inpDistancePlan2').addEventListener('change', function(
 		scene.plans[2].distance = 1.0 * document.getElementById('inpDistancePlan2').value;
 		onModifDistancePlan(2);
 	} else
-		setDistancePlan(2);
+		majOutputDistancePlan(2);
 
 }, false);
 
@@ -138,9 +136,7 @@ function modifSldLuminosite() {
 	onModifLuminosite();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById("sldLuminosite").addEventListener('change', modifSldLuminosite, false);
-}, false);
+document.getElementById("sldLuminosite").addEventListener('change', modifSldLuminosite, false);
 
 document.getElementById("sldLuminosite").oninput = function() {
 	modifSldLuminosite();

@@ -55,18 +55,20 @@ function drawCanvasSldTailleFenetres() {
 function modifSldTailleFenetre() {
 	vuePhoto.largeur = 1.0 * document.getElementById("sldTailleFenetres").value;
 	calcHauteurVuePhoto();
+	/*
 	if (priseDeVue.cdc === 2) {
 		calcCdc();
 		calcVitesseDeSecurite();
 		calcFlouDeBouge();
 	}
+	*/
 	initVuePhoto();
 	drawVuePhoto();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById("sldTailleFenetres").addEventListener('change', modifSldTailleFenetre, false);
-}, false);
+
+document.getElementById("sldTailleFenetres").addEventListener('change', modifSldTailleFenetre, false);
+
 
 document.getElementById("sldTailleFenetres").oninput = function() {
 	modifSldTailleFenetre();
@@ -78,7 +80,11 @@ document.getElementById('sldTailleFenetres').addEventListener('mousedown', funct
 }, false);
 
 document.getElementById('sldTailleFenetres').addEventListener('mouseup', function() {
-	valideAccelerationMaterielle();
+	
+	if (priseDeVue.cdc === 2)
+		onModifCdC();
+
 	vuePhoto.affichageRapide = 0;
 	drawVuePhoto();
+	valideAccelerationMaterielle();
 }, false);

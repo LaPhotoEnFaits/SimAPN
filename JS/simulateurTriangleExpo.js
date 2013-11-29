@@ -1,6 +1,6 @@
 function configSimulateur() {
 
-	titre += "Le triangle d'exposition";
+	titre = "Le triangle d'exposition";
 
 	photographe.deplacementVertical = 1.4;
 	photographe.tremblements = 1;
