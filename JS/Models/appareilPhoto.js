@@ -32,83 +32,12 @@ APN = function(marque, modele, gamme, date, prix, capteurFormat, capteurHauteur,
 	this.ISO = 0;
 	this.dynamiqueCourante = 0;
 	this.cropFactor = 0;
-	this.taillePixel=0;
+	this.taillePixel = 0;
+
+	this.typeDeFocus = 'auto';
+	this.modeDeFocus = 'AFC';
+	this.focusEnCours = 0;
 };
-
-
-
-function setDimensionsCapteur(){
-	switch (apnChoisi.capteurFormat) {
-
-		case "1/3.2":
-			apnChoisi.capteurLargeur = 4.54;
-			apnChoisi.capteurHauteur = 3.42;
-			break;
-
-		case "1/2.3":
-			apnChoisi.capteurLargeur = 5.1;
-			apnChoisi.capteurHauteur = 3.8;
-			break;
-		case "1/1.8":
-			apnChoisi.capteurLargeur = 7.1;
-			apnChoisi.capteurHauteur = 5.3;
-			break;
-		case "1/1.7":
-			apnChoisi.capteurLargeur = 7.5;
-			apnChoisi.capteurHauteur = 5.6;
-			break;
-		case "1/1.6":
-			apnChoisi.capteurLargeur = 8;
-			apnChoisi.capteurHauteur = 6;
-			break;
-		case "2/3":
-			apnChoisi.capteurLargeur = 8.8;
-			apnChoisi.capteurHauteur = 6.6;
-			break;
-		case "CX":
-			apnChoisi.capteurLargeur = 13.2;
-			apnChoisi.capteurHauteur = 8.8;
-			break;
-		case "4/3":
-			apnChoisi.capteurLargeur = 17.8;
-			apnChoisi.capteurHauteur = 13.4;
-			break;
-		case "aps-c":
-			apnChoisi.capteurLargeur = 23.4;
-			apnChoisi.capteurHauteur = 15.6;
-			break;
-		case "aps-h":
-			apnChoisi.capteurLargeur = 28.7;
-			apnChoisi.capteurHauteur = 19.1;
-			break;
-		case "full-frame":
-			apnChoisi.capteurLargeur = 36;
-			apnChoisi.capteurHauteur = 24;
-			break;
-	}
-}
-
-function calcCropFactor() {
-	var diagonaleCapteur = Math.sqrt((apnChoisi.capteurLargeur * apnChoisi.capteurLargeur + apnChoisi.capteurHauteur * apnChoisi.capteurHauteur) / 1000000);
-	var diagonaleCapteurFF = Math.sqrt(0.036 * 0.036 + 0.024 * 0.024);
-	apnChoisi.cropFactor = diagonaleCapteurFF / diagonaleCapteur;
-}
-
-function calcDynamiqueCourante() {
-	if (apnChoisi.ISO > 100) {
-		apnChoisi.dynamiqueCourante = apnChoisi.capteurDynamique - (ISO2cpt(apnChoisi.ISO).cpt - 7) / 3;
-		if (apnChoisi.dynamiqueCourante < 0)
-			apnChoisi.dynamiqueCourante = 0;
-	} else
-		apnChoisi.dynamiqueCourante = apnChoisi.capteurDynamique;
-}
-
-function calcTaillePixel() {
-	var temp = apnChoisi.capteurLargeur * apnChoisi.capteurHauteur;
-	temp = temp / (1000 * 1000);
-	temp = temp / (apnChoisi.capteurDefinition * 1000000);
-	apnChoisi.taillePixel = Math.sqrt(temp);
-}
 
 function vitesse2cpt(vitesseNombre) {
 
@@ -816,4 +745,77 @@ function ISO2cpt(ISO) {
 	return {
 		cpt: cpt
 	};
+}
+
+function setDimensionsCapteur() {
+	switch (apnChoisi.capteurFormat) {
+
+		case "1/3.2":
+			apnChoisi.capteurLargeur = 4.54;
+			apnChoisi.capteurHauteur = 3.42;
+			break;
+
+		case "1/2.3":
+			apnChoisi.capteurLargeur = 5.1;
+			apnChoisi.capteurHauteur = 3.8;
+			break;
+		case "1/1.8":
+			apnChoisi.capteurLargeur = 7.1;
+			apnChoisi.capteurHauteur = 5.3;
+			break;
+		case "1/1.7":
+			apnChoisi.capteurLargeur = 7.5;
+			apnChoisi.capteurHauteur = 5.6;
+			break;
+		case "1/1.6":
+			apnChoisi.capteurLargeur = 8;
+			apnChoisi.capteurHauteur = 6;
+			break;
+		case "2/3":
+			apnChoisi.capteurLargeur = 8.8;
+			apnChoisi.capteurHauteur = 6.6;
+			break;
+		case "CX":
+			apnChoisi.capteurLargeur = 13.2;
+			apnChoisi.capteurHauteur = 8.8;
+			break;
+		case "4/3":
+			apnChoisi.capteurLargeur = 17.8;
+			apnChoisi.capteurHauteur = 13.4;
+			break;
+		case "aps-c":
+			apnChoisi.capteurLargeur = 23.4;
+			apnChoisi.capteurHauteur = 15.6;
+			break;
+		case "aps-h":
+			apnChoisi.capteurLargeur = 28.7;
+			apnChoisi.capteurHauteur = 19.1;
+			break;
+		case "full-frame":
+			apnChoisi.capteurLargeur = 36;
+			apnChoisi.capteurHauteur = 24;
+			break;
+	}
+}
+
+function calcCropFactor() {
+	var diagonaleCapteur = Math.sqrt((apnChoisi.capteurLargeur * apnChoisi.capteurLargeur + apnChoisi.capteurHauteur * apnChoisi.capteurHauteur) / 1000000);
+	var diagonaleCapteurFF = Math.sqrt(0.036 * 0.036 + 0.024 * 0.024);
+	apnChoisi.cropFactor = diagonaleCapteurFF / diagonaleCapteur;
+}
+
+function calcDynamiqueCourante() {
+	if (apnChoisi.ISO > 100) {
+		apnChoisi.dynamiqueCourante = apnChoisi.capteurDynamique - (ISO2cpt(apnChoisi.ISO).cpt - 7) / 3;
+		if (apnChoisi.dynamiqueCourante < 0)
+			apnChoisi.dynamiqueCourante = 0;
+	} else
+		apnChoisi.dynamiqueCourante = apnChoisi.capteurDynamique;
+}
+
+function calcTaillePixel() {
+	var temp = apnChoisi.capteurLargeur * apnChoisi.capteurHauteur;
+	temp = temp / (1000 * 1000);
+	temp = temp / (apnChoisi.capteurDefinition * 1000000);
+	apnChoisi.taillePixel = Math.sqrt(temp);
 }

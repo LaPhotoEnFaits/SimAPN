@@ -1,3 +1,57 @@
+function initIHMVues() {
+
+	//LES VUES ACTIVES SONT INITIALISEES
+	if (this.activee) {
+
+		this.init();
+
+		//GESTION DES BOUTONS OUVRIR ET FERMER
+		if (this.fermable) {
+
+			document.getElementById('btnCloseVue' + this.nom).innerHTML = '<img src="' + adresseDuCode + '/Images/Icones/btnClose.png"/>';
+			document.getElementById('btnVue' + this.nom).innerHTML = '<img src="' + adresseDuCode + '/Images/Icones/btn' + this.nom + '.png"/>';
+
+			var vue = this;
+
+			document.getElementById('btnVue' + this.nom).addEventListener('click', function() {
+				vue.visible = 1;
+
+				try {
+					vue.draw();
+				} catch (err) {}
+
+				show('vue' + vue.nom);
+			}, false);
+
+			document.getElementById('btnCloseVue' + this.nom).addEventListener('click', function() {
+				vue.visible = 0;
+				hide('vue' + vue.nom);
+			}, false);
+
+
+			show('btnCloseVue' + this.nom);
+			if (!this.visible)
+				show('btnVue' + this.nom);
+
+		} else {
+			hide('btnCloseVue' + this.nom);
+			hide('btnVue' + this.nom);
+		}
+
+		if (this.visible) {
+			show('vue' + this.nom);
+
+		} else
+			hide('vue' + this.nom);
+
+		//LES VUES INACTIVES SONT CACHEES
+	} else {
+		hide('vue' + this.nom);
+		hide('btnCloseVue' + this.nom);
+		hide('btnVue' + this.nom);
+	}
+}
+
 function RAZconfig() {
 
 	titre += "";
@@ -8,6 +62,8 @@ function RAZconfig() {
 	photographe.tremblements = 0;
 	photographe.typeDeCdc = 0;
 
+	apnChoisi.typeDeFocus = 'auto';
+	apnChoisi.modeDeFocus = 'AFC';
 
 	////VUES
 	vuePhoto.activee = 0;
@@ -81,46 +137,20 @@ function RAZconfig() {
 	vueEXIF.visible = 0;
 	vueEXIF.fermable = 0;
 
+	vueReglagesFocus.activee = 0;
+	vueReglagesFocus.visible = 0;
+	vueReglagesFocus.fermable = 0;
+	vueReglagesFocus.rdbTypeDeFocusVisible = 0;
+	vueReglagesFocus.rdbModeDeFocusVisible = 0;
+	vueReglagesFocus.sldFocusVisible = 0;
 }
-
-function initIHMVues() {
-
-	if (this.activee) {
-
-		this.init();
-
-		if (this.visible)
-			show('vue' + this.nom);
-		else
-			hide('vue' + this.nom);
-
-		if (this.fermable) {
-			document.getElementById('btnCloseVue' + this.nom).innerHTML = '<img src="' + adresseDuCode + '/Images/Icones/btnClose.png"/>';
-			document.getElementById('btnVue' + this.nom).innerHTML = '<img src="' + adresseDuCode + '/Images/Icones/btn' + this.nom + '.png"/>';
-			show('btnCloseVue' + this.nom);
-			show('btnVue' + this.nom);
-		} else {
-			hide('btnCloseVue' + this.nom);
-			hide('btnVue' + this.nom);
-		}
-	} else {
-		hide('vue' + this.nom);
-		hide('btnCloseVue' + this.nom);
-		hide('btnVue' + this.nom);
-	}
-}
-
-
 
 function drawVues() {
-
-	if (vuePhoto.visible)
-		valideAccelerationMaterielle();
-
-	drawVuePhoto();
-	drawCurseurExposition();
-	drawVueHistogrammes();
-	drawVueFlouDeMiseAuPoint();
+	for (var i = 0; i < listeDesVues.length; i++) {
+		try {
+			listeDesVues[i].draw();
+		} catch (err) {}
+	}
 }
 
 function initVues() {
@@ -131,15 +161,7 @@ function initVues() {
 
 	initSldTailleFenetres();
 
-	vuePhoto.initIHM();
-	vueCurseurExpo.initIHM();
-	vueReglagesRapides.initIHM();
-	vueReglagesVuePhoto.initIHM();
-	vueReglagesScene.initIHM();
-	vueReglagesPhotographe.initIHM();
-	vueReglagesObjectif.initIHM();
-	vueReglagesAPN.initIHM();
-	vueHistogrammes.initIHM();
-	vueFlouDeMiseAuPoint.initIHM();
-	vueEXIF.initIHM();
+	for (i = 0; i < listeDesVues.length; i++) {
+		listeDesVues[i].initIHM();
+	}
 }

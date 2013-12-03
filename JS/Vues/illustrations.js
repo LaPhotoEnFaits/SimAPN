@@ -24,4 +24,4 @@ function imageTelechargee() {
 		if (scene.illustrations[0].image.complete && scene.illustrations[1].image.complete && scene.illustrations[2].image.complete && scene.illustrations[3].image.complete)
 			initPostTelechargement();
 	}
-};
+}

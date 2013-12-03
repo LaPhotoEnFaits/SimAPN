@@ -1,5 +1,9 @@
 <meta charset="UTF-8"/>
 
+<style type="text/css">
+h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;} 
+</style>
+
 <div class='simulateur' id='vueSimulateur'>
 
 	<div id='infoUtilisateur' class='classInfoUtilisateur'></div>
@@ -8,7 +12,9 @@
 
 		<div class='barreDeTitre'>
 			<span id='nomDuSoft' class='classNomDuSoft'></span>
+			<span id='version' class='classVersionDuSoft'></span>
 			<span id='titre' class='classTitre'></span>
+
 			
 		</div>
 
@@ -24,12 +30,14 @@
 							</tr>
 						</table>
 					</td>					
-					<td id='btnVueReglagesScene' class='classBtnReglage'></td>			
+					<td id='btnVueReglagesScene' class='classBtnReglage'></td>		
+					<td id='btnVueReglagesFocus' class='classBtnReglage'></td>		
 					<td id='btnVueReglagesPhotographe' class='classBtnReglage'></td>
 					<td id='btnVueReglagesObjectif' class='classBtnReglage'></td>
 					<td id='btnVueReglagesAPN' class='classBtnReglage'></td>
 					<td id='btnVueHistogrammes' class='classBtnReglage'></td>
 					<td id='btnVueFlouDeMiseAuPoint' class='classBtnReglage'></td>
+					<td id='btnInformationsUtilisateur' class='classBtnReglage'></td>
 				</tr>
 			</table>
 		</div>
@@ -90,25 +98,28 @@
 
 				<tr id='ensembleSldOuverture'>
 					<td><span id='nomSldOuverture' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sldOuverture' /></td>
+					<td><input type='range' id='sldOuverture' class='classSldReglageRapide' /></td>
 					<td><span id='outputSldOuverture'></span></td>
 				</tr>
 				
 				<tr id='ensembleSldVitesse'>
 					<td><span id='nomSldVitesse' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sldVitesse' /></td>
+					<td><input type='range' id='sldVitesse' class='classSldReglageRapide' /></td>
 					<td><span id='outputSldVitesse'></span></td>
 				</tr>
 
 				<tr id='ensembleSldISO'>
 					<td><span id='nomSldISO' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sldISO' /></td>
+					<td><input type='range' id='sldISO' class='classSldReglageRapide' /></td>
 					<td><span id='outputSldISO'></span></td>
 				</tr>
+			</table>
+
+			<table class='tableAvecSld'>
 
 				<tr id='ensembleSldFocale'>
 					<td><span id='nomSldFocale' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sldFocale' /></td>
+					<td><input type='range' id='sldFocale' class='classSldFocale' /></td>
 					<td><span id='outputSldFocale'></span></td>
 				</tr>
 
@@ -116,6 +127,47 @@
 			<span id='btnVueReglagesRapides' class='classBtnReglage'></span>
 			<span id='btnCloseVueReglagesRapides' class='classBtnClose'></span>
 		</span>
+
+		<span id='vueReglagesFocus' class='classReglagesVue'>		
+
+			<span id='btnCloseVueReglagesFocus' class='classBtnClose'></span>	
+
+			<span id='ensembleRdbTypeDeFocus' class='elementMenuFocus'>
+				<table>
+				<tr id="ensembleRdbAutoFocus">
+					<td><input type='radio' name='typeDeFocus' id='rdbAutoFocus' /></td>
+					<td id='nomRdbAutoFocus' class='nomDeParametre' >AF</td>
+				</tr>
+				<tr id="ensembleRdbManualFocus">
+					<td><input type="radio" name='typeDeFocus' id="rdbManualFocus" /></td>
+					<td id='nomRdbManualFocus' class='nomDeParametre' >MF</td></tr>
+				</table>
+			</span>
+
+			<span id='ensembleRdbModeDeFocus' class='elementMenuFocus'>
+				<table>
+					<tr id='ensembleRdbFocusAFC'>
+						<td><input type='radio' name='modeDeFocus' id='rdbFocusAFC'  /></td>
+						<td id='nomRdbFocusAFC' class='nomDeParametre' >AFC</td>
+					</tr>
+					<tr id="ensembleRdbFocusAFS">
+						<td><input type='radio' name='modeDeFocus' id='rdbFocusAFS' /></td>
+						<td id='nomRdbFocusAFS' class='nomDeParametre' >AFS</td>
+					</tr>
+				</table>
+			</span>
+
+			<span id='btnFocus' class='classBtnReglage'></span>
+
+			<table class='tableAvecSld'>
+				<tr id='ensembleSldFocus'>
+					<td><span id='nomSldFocus' class='nomDeParametre'></span></td>
+					<td><input type='range' id='sldFocus' class='classSldFocus' /></td>
+					<td><span id='outputSldFocus'></span></td>
+				</tr>
+			</table>
+		</span>
+
 
 		<span id='vueReglagesVuePhoto' class='classReglagesVue'>
 
@@ -276,7 +328,6 @@
 		</span>
 
 	</div>
-
 </div>
 
 
@@ -291,7 +342,7 @@
 
 	var lstOrdonneeDesScripts=new Array();
 
-	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.js';	
+	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.min.js';	
 	lstOrdonneeDesScripts[1]=adresseDuCode+'/JS/';
 	lstOrdonneeDesScripts[2]=adresseDuCode+'/JS/main.js';
 	

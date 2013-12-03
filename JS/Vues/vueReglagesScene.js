@@ -32,19 +32,19 @@ function initVueReglagesScene() {
 
 ////SAISIE DES DISTANCES DES PLANS
 function initInpDistancesPlans() {
-	for (var i = 0; i != 3; i++) {
+	for (var i = 0; i !== 3; i++) {
 		document.getElementById('nomInpDistancePlan' + i).innerHTML = getTraduction("Plan#") + (i + 1);
 		majOutputDistancePlan(i);
 		document.getElementById('outputDistancePlan' + i).innerHTML = 'm';
-	}	
+	}
 }
 
-function majOutputDistancePlan(numero) {	
+function majOutputDistancePlan(numero) {
 	document.getElementById('inpDistancePlan' + numero).value = scene.plans[numero].distance.toFixed(2);
 }
 
 function majOutputDistancesPlans() {
-	for (var i = 0; i != 3; i++)
+	for (var i = 0; i !== 3; i++)
 		majOutputDistancePlan(i);
 }
 
@@ -142,14 +142,3 @@ document.getElementById("sldLuminosite").oninput = function() {
 	modifSldLuminosite();
 };
 
-
-////OUVRIR/FERMER
-document.getElementById('btnVueReglagesScene').addEventListener('click', function() {
-	vueReglagesScene.visible = 1;
-	show('vueReglagesScene');
-}, false);
-
-document.getElementById('btnCloseVueReglagesScene').addEventListener('click', function() {
-	vueReglagesScene.visible = 0;
-	hide('vueReglagesScene');
-}, false);

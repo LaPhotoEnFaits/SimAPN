@@ -1,4 +1,4 @@
-function drawFlouBouge(flouEnPixel) {
+function drawFlouBouge() {
 
 
 	if (vuePhoto.visible && vuePhoto.flouDeBougeVisible && vuePhoto.affichageRapide === 0) {
@@ -45,6 +45,10 @@ function drawFlouBouge(flouEnPixel) {
 
 		var di = 2; //incrément pour déplacer les calques transparents (en px), >2 et le décalage des calques se voit
 
+		if (flouEnPixel > vuePhoto.largeur)
+			flouEnPixel = vuePhoto.largeur;
+
+
 		if (priseDeVue.flouDeBouge < priseDeVue.cdc) //Pas de flou si flou de bougé < cdc
 			di = flouEnPixel + 1;
 
@@ -60,8 +64,8 @@ function drawFlouBouge(flouEnPixel) {
 		}
 
 
-		var dx = 0.5; //part du flou reporté en mouvemnt des abscices (en %, 100%=1)
-		var dy = Math.sqrt(1 - dx * dx); //part du flou reporté en mouvemnt des ordonées
+		var dx = 1; //part du flou reporté en mouvemnt des abscices (en %, 100%=1)
+		var dy = 0.5; //part du flou reporté en mouvemnt des ordonées
 
 		var opacite;
 		var opaciteMin = 0.01;
@@ -79,8 +83,6 @@ function drawFlouBouge(flouEnPixel) {
 			cvs_ar.width = vuePhoto.largeur;
 			cvs_map.width = vuePhoto.largeur;
 			cvs_av.width = vuePhoto.largeur;
-
-			var d_ord = 0;
 
 			var d_abs = 0;
 			var d_ord = 0;
@@ -102,7 +104,7 @@ function drawFlouBouge(flouEnPixel) {
 
 				if (i === 0) {
 					d_ord = 0;
-					opacite = 1;
+					opacite = 10 / (flouEnPixel / di);
 				}
 
 				cvs_temp.width = vuePhoto.largeur;

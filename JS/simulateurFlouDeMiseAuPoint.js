@@ -11,7 +11,7 @@ function configSimulateur() {
 	vuePhoto.visible = 1;
 	vuePhoto.largeur = 400;
 	vuePhoto.flouDeMapVisible = 1;
-	
+
 	vueReglagesRapides.activee = 1;
 	vueReglagesRapides.visible = 1;
 	vueReglagesRapides.sldOuvertureVisible = 1;
@@ -19,7 +19,7 @@ function configSimulateur() {
 	vueReglagesRapides.chkCadrageConstantVisible = 1;
 
 	vueReglagesPhotographe.activee = 1;
-	vueReglagesAPN.fermable = 1;
+	vueReglagesPhotographe.fermable = 1;
 	vueReglagesPhotographe.lstCdCVisible = 1;
 
 	vueReglagesAPN.activee = 1;
@@ -33,6 +33,11 @@ function configSimulateur() {
 	vueReglagesScene.activee = 1;
 	vueReglagesScene.fermable = 1;
 	vueReglagesScene.inpDistancesPlansVisible = 1;
+
+	vueReglagesFocus.activee = 1;
+	vueReglagesFocus.fermable = 1;
+	vueReglagesFocus.rdbTypeDeFocusVisible = 1;
+	vueReglagesFocus.sldFocusVisible = 1;
 }
 
 function initMateriel() {
@@ -40,6 +45,6 @@ function initMateriel() {
 	apnChoisi.ISO = 200;
 
 	objectifChoisi.ouverture = 1.4;
-	
+
 	priseDeVue.distanceDeMAP = scene.plans[1].distance;
 }

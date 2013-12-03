@@ -29,7 +29,7 @@ function initMateriel() {
 	apnChoisi.vitesse = 3;
 	apnChoisi.ISO = 100;
 	objectifChoisi.ouverture = 1.8;
-	apnChoisi.capteurDynamique =8;	
+	apnChoisi.capteurDynamique =8;
 
 	scene.luminosite = 0;
 

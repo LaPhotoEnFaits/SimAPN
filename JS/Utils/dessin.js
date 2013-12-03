@@ -1,7 +1,5 @@
 var POINTE_FLECHE = 3;
 
-
-
 function demiFlecheHorizontale(ct, y, xDebut, xFin, couleur) {
 
     var temp;
@@ -19,7 +17,7 @@ function demiFlecheHorizontale(ct, y, xDebut, xFin, couleur) {
     ct.lineTo(xFin, y);
     ct.lineTo(xFin - POINTE_FLECHE, y + POINTE_FLECHE);
     ct.stroke();
-};
+}
 
 function flecheHorizontale(ct, y, xDebut, xFin, couleur) {
 
@@ -41,7 +39,7 @@ function flecheHorizontale(ct, y, xDebut, xFin, couleur) {
     ct.lineTo(xFin, y);
     ct.lineTo(xFin - POINTE_FLECHE, y + POINTE_FLECHE);
     ct.stroke();
-};
+}
 
 function flecheVerticale(ct, x, yDebut, yFin, couleur) {
 
@@ -65,7 +63,7 @@ function flecheVerticale(ct, x, yDebut, yFin, couleur) {
     ct.lineTo(x + POINTE_FLECHE, yFin + POINTE_FLECHE);
 
     ct.stroke();
-};
+}
 
 function demiFlecheVerticale(ct, x, yDebut, yFin, couleur) {
 
@@ -85,4 +83,4 @@ function demiFlecheVerticale(ct, x, yDebut, yFin, couleur) {
     ct.lineTo(x + POINTE_FLECHE, yFin + POINTE_FLECHE);
 
     ct.stroke();
-};
+}

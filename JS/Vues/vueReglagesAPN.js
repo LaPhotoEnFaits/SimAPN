@@ -45,13 +45,3 @@ document.getElementById('lstTypeDeCapteur').addEventListener('change', function(
 	onModifCapteur();
 }, false);
 
-////OUVRIR/FERMER
-document.getElementById('btnVueReglagesAPN').addEventListener('click', function() {
-	vueReglagesAPN.visible = 1;
-	show('vueReglagesAPN');
-}, false);
-
-document.getElementById('btnCloseVueReglagesAPN').addEventListener('click', function() {
-	vueReglagesAPN.visible = 0;
-	hide('vueReglagesAPN');
-}, false);

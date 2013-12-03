@@ -141,7 +141,6 @@ function curseurCSS(type) {
 //
 // Copyright © 2012-2013 Faisalman <fyzlman@gmail.com>
 // Dual licensed under GPLv2 & MIT
-
 (function(window, undefined) {
 
   'use strict';
@@ -220,15 +219,15 @@ function curseurCSS(type) {
               q = props[p];
               // check if given property is actually array
               if (typeof(q) === OBJ_TYPE && q.length > 0) {
-                if (q.length == 2) {
-                  if (typeof(q[1]) == FUNC_TYPE) {
+                if (q.length === 2) {
+                  if (typeof(q[1]) === FUNC_TYPE) {
                     // assign modified match
                     result[q[0]] = q[1].call(this, match);
                   } else {
                     // assign given value, ignore regex match
                     result[q[0]] = q[1];
                   }
-                } else if (q.length == 3) {
+                } else if (q.length === 3) {
                   // check whether function or regex
                   if (typeof(q[1]) === FUNC_TYPE && !(q[1].exec && q[1].test)) {
                     // call function (usually string mapper)
@@ -237,7 +236,7 @@ function curseurCSS(type) {
                     // sanitize match using given regex
                     result[q[0]] = match ? match.replace(q[1], q[2]) : undefined;
                   }
-                } else if (q.length == 4) {
+                } else if (q.length === 4) {
                   result[q[0]] = match ? q[3].call(this, match.replace(q[1], q[2])) : undefined;
                 }
               } else {
@@ -864,10 +863,10 @@ function curseurCSS(type) {
       };
     }
   }
-
 })(this);
 
 
+//CRADO MAIS NECESSAIRE POUR IE
 navigateur = new Navigateur();
 readUserAgent();
 if (navigateur.nom === 'InternetExplorer' && navigateur.version < 10) {

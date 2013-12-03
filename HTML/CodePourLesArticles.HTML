@@ -22,14 +22,14 @@
 	//typeDeSimulateur = 'simulateurTriangleExpo';
 	//typeDeSimulateur = 'simulateurFlouDeBouge';	
 	//typeDeSimulateur = 'simulateurHistogrammes';
-    typeDeSimulateur = 'simulateurFlouDeMiseAuPoint';
+    //typeDeSimulateur = 'simulateurFlouDeMiseAuPoint';
     //typeDeSimulateur = 'simulateurLongueurFocale';
-    //typeDeSimulateur = 'simulateurComplet';
+    typeDeSimulateur = 'simulateurComplet';
 
 	if(window.location.protocol==='file:')
 		adresseDuCode='..';
 	else
-		adresseDuCode=ADR_CODE_PROD;
+		adresseDuCode=ADR_CODE_TEST;
 
 	var scriptCompatibiliteNavigateur = document.createElement('script');
     scriptCompatibiliteNavigateur.type = 'text/javascript';

@@ -13,7 +13,7 @@ function drawVueEXIF() {
 	if (vueEXIF.visible) {
 
 		var zoneDeTexte = document.getElementById('donneesEXIF');
-		var separateur = '&nbsp;&nbsp;&nbsp;'
+		var separateur = '&nbsp;&nbsp;&nbsp;';
 
 		zoneDeTexte.innerHTML = apnChoisi.capteurFormat;
 		zoneDeTexte.innerHTML += separateur + objectifChoisi.focale + 'mm';

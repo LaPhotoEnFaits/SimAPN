@@ -15,11 +15,11 @@ VueFlouDeMiseAuPoint = function() {
 
 	this.init = initVueFlouDeMiseAuPoint;
 	this.initIHM = initIHMVues;
+	this.draw = drawVueFlouDeMiseAuPoint;
 };
 
-
 function initVueFlouDeMiseAuPoint() {
-	vueFlouDeMiseAuPoint.hauteurEnMetre = 3 * priseDeVue.cdc;
+	vueFlouDeMiseAuPoint.hauteurEnMetre = 10 * priseDeVue.cdc;
 }
 
 function drawVueFlouDeMiseAuPoint() {
@@ -32,7 +32,7 @@ function drawVueFlouDeMiseAuPoint() {
 		cvs.width = LARGEUR_CVS_FDMAP;
 		cvs.height = HAUTEUR_CVS_FDMAP;
 
-		var distanceMax = Math.max(scene.plans[0].distance, scene.plans[1].distance, scene.plans[2].distance)
+		var distanceMax = Math.max(scene.plans[0].distance, scene.plans[1].distance, scene.plans[2].distance);
 		var X0 = MARGE_GAUCHE_CVS_FDMAP;
 		var Y0 = HAUTEUR_CVS_FDMAP - MARGE_BAS_CVS_FDMAP;
 		var distance2px = (LARGEUR_CVS_FDMAP - MARGE_GAUCHE_CVS_FDMAP - MARGE_DROITE_CVS_FDMAP) / (1.25 * distanceMax);
@@ -53,14 +53,15 @@ function drawVueFlouDeMiseAuPoint() {
 		demiFlecheVerticale(ct, X0, HAUTEUR_CVS_FDMAP - MARGE_BAS_CVS_FDMAP - 1, MARGE_HAUT_CVS_FDMAP, COLOR_AXE);
 
 		//VALEURS DES DISTANCES, TRAITS VERTICAUX ET ROND DE SELECTION
-		for (var i = 0; i != 3; i++) {
+		var flou;
+		for (var i = 0; i !== 3; i++) {
 
 			var X = X0 + Math.round(scene.plans[i].distance * distance2px);
 
 			ct.fillStyle = scene.plans[i].couleur;
-			ct.fillText(scene.plans[i].distance.toFixed(2) + 'm',  X- 10, HAUTEUR_CVS_FDMAP - MARGE_BAS_CVS_FDMAP + 10 * (i + 1));
+			ct.fillText(scene.plans[i].distance.toFixed(2) + 'm', X - 10, HAUTEUR_CVS_FDMAP - MARGE_BAS_CVS_FDMAP + 10 * (i + 1));
 
-			var flou = calcFlou(scene.plans[i].distance).flou;
+			flou = calcFlou(scene.plans[i].distance).flou;
 			flou = flou * flou2px;
 			ct.beginPath();
 			ct.fillRect(X, Y0 - flou, 1, flou);
@@ -77,7 +78,7 @@ function drawVueFlouDeMiseAuPoint() {
 		ct.lineWidth = 1;
 		ct.beginPath();
 
-		for (i = 1; i != largeurAxeX; i++) {
+		for (i = 1; i !== largeurAxeX; i++) {
 			flou = calcFlou(i / distance2px).flou;
 			flou = flou * flou2px;
 
@@ -134,10 +135,11 @@ function drawVueFlouDeMiseAuPoint() {
 
 function deplacementSourisVueFlouDeMiseAuPoint(e) {
 
-	var distanceMax = Math.max(scene.plans[0].distance, scene.plans[1].distance, scene.plans[2].distance)
+	var distanceMax = Math.max(scene.plans[0].distance, scene.plans[1].distance, scene.plans[2].distance);
 	var distance2px = (LARGEUR_CVS_FDMAP - MARGE_GAUCHE_CVS_FDMAP - MARGE_DROITE_CVS_FDMAP) / (1.25 * distanceMax);
 	var Xplan = new Array(3);
-	for (var i = 0; i != 3; i++)
+
+	for (var i = 0; i !== 3; i++)
 		Xplan[i] = distance2px * scene.plans[i].distance;
 
 	var cvs = document.getElementById('cvsFlouDeMiseAuPoint');
@@ -172,18 +174,14 @@ function deplacementSourisVueFlouDeMiseAuPoint(e) {
 	if (flagClicVueFlouDeMiseAuPoint) {
 
 		scene.plans[planSelectionneTemporaire].distance += (X1VueFlouDeMiseAuPoint - X0VueFlouDeMiseAuPoint) / distance2px;
-
-
 		X0VueFlouDeMiseAuPoint = X1VueFlouDeMiseAuPoint;
 		scene.planSelectionne = planSelectionneTemporaire;
 		onModifDistancePlan(scene.planSelectionne);
-	}
-	else{
+	} else {
 		scene.planSelectionne = planSelectionneTemporaire;
 		drawVueFlouDeMiseAuPoint();
-	}	
+	}
 }
-
 
 
 document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('mousemove', function(e) {
@@ -236,17 +234,4 @@ document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('DOMMouseScroll
 }, false);
 document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('mousewheel', function(e) {
 	rouletteSourisVueFlouDeMiseAuPoint(e);
-}, false);
-
-
-////OUVRIR/FERMER
-document.getElementById('btnVueFlouDeMiseAuPoint').addEventListener('click', function() {
-	vueFlouDeMiseAuPoint.visible = 1;
-	drawVueFlouDeMiseAuPoint();
-	show('vueFlouDeMiseAuPoint');
-}, false);
-
-document.getElementById('btnCloseVueFlouDeMiseAuPoint').addEventListener('click', function() {
-	vueFlouDeMiseAuPoint.visible = 0;
-	hide('vueFlouDeMiseAuPoint');
 }, false);

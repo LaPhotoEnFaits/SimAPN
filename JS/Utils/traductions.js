@@ -9,9 +9,79 @@ function getTraduction(id) {
 
 var traductionFr = {
 
+  "INFObtnVueFlouDeMiseAuPoint": {
+    "message": "Afficher la courbe du flou de MAP"
+  },
+  "INFObtnVueHistogrammes": {
+    "message": "Afficher l'histogramme"
+  },
+  "INFObtnVueReglagesAPN": {
+    "message": "Caractéristiques de l'APN"
+  },
+  "INFObtnVueReglagesFocus": {
+    "message": "Régler la mise au point"
+  },
+  "INFObtnVueReglagesObjectif": {
+    "message": "Caractéristiques de l'objectif"
+  },
+  "INFObtnVueReglagesPhotographe": {
+    "message": "Caractéristiques du photographe"
+  },
+  "INFObtnVueReglagesScene": {
+    "message": "Luminosité et distances de la scène"
+  },
+  "INFObtnVueReglagesVuePhoto": {
+    "message": "Choix des éléments à modéliser"
+  },
+    "INFObtnInformationsUtilisateur": {
+    "message": "Afficher/Cacher les infos bulles"
+  },
+
+  "INFOvueFlouDeMiseAuPoint": {
+    "message": "La courbe rouge montre la valeur du flou, la zone bleue montre la PDC. Utilisez la souris pour modifier les distances, la roulette pour zoomer"
+  },
+  "INFOvuePhoto": {
+    "message": "Roulette souris pour aller devant/derrière. Clic gauche + souris pour vous déplacer. Maintenir shift enfoncé pour passer de déplacement<=> autofocus"
+  },
+  "INFOvueCurseurExpo": {
+    "message": "Valeur de l'exposition de la photo"
+  },
+  "INFOensembleChkCadrageConstant": {
+    "message": "Garde un même cadrage du second plan lors d'un changement de capteur ou de longueur focale"
+  },
+  "INFOensembleRdbAutoFocus": {
+    "message": "Auto focus"
+  },
+  "INFOensembleRdbManualFocus": {
+    "message": "Focus manuel"
+  },
+  "INFOensembleRdbFocusAFC": {
+    "message": "Auto focus continu"
+  },
+  "INFOensembleRdbFocusAFS": {
+    "message": "Auto focus non continu"
+  },
+  "INFObtnFocus": {
+    "message": "Commencer/arrêter la mise au point"
+  },
+    "INFOensembleLstTremblements": {
+    "message": "Tremblements du photographe, influence le flou de mise au point"
+  },
+  "INFOensembleLstCdC": {
+    "message": "Cercle de confusion à utiliser pour la PDC et le flou de mise au point"
+  },
+    "INFOx": {
+    "message": "X"
+  },
+
+
+
+
+
+
   "Plan#": {
-      "message": "Plan#"
-    },
+    "message": "Plan#"
+  },
 
   "versionInsuffisante": {
     "message": "le simulateur necessite au moins la version "
@@ -205,6 +275,8 @@ var traductionFr = {
   "Luminosite": {
     "message": "Luminosit\u00E9"
   },
+
+  /*
   "MAU_AA": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EPr\u00E9cise si le capteur est \u00E9quip\u00E9 d'un filtre anti-aliasing.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Param\u00E8tre impact\u00E9:\r\n                  \u003Cul\u003E        \r\n                  \u003Cli\u003EFlou d\u00FB au filtre AA\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  Limitation: le moir\u00E9 n'est pas mod\u00E9lis\u00E9."
   },
@@ -238,7 +310,7 @@ var traductionFr = {
   "MAU_Settings3D": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ER\u00E9glages de la vue 3D"
   },
-  "MAU_SettingsPhoto": {
+  "MAUvueReglagesVuePhoto": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ER\u00E9glages de la vue photo"
   },
   "MAU_VR": {
@@ -325,7 +397,7 @@ var traductionFr = {
   "MAU_flousCapteur": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ESelection des flous \u00E0 afficher sur la vue 3D du capteur.\u003Cbr/\u003E\r\n      Les pixels sont \u00E9galements repr\u00E9sent\u00E9s."
   },
-  "MAU_graphPDC": {
+  "vueFlouDeMiseAuPoint": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EValeur du flou de mise au point en fonction de la distance.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003ELa zone bleu repr\u00E9sente la zone dans la PDC (flou \u003C cdc).\u003C/li\u003E\r\n                  \u003Cli\u003ELes distances d'avant plan, du sujet et d'arri\u00E8re plan sont report\u00E9es.\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003EClic gauche + souris: modifie les distances\u003C/li\u003E\r\n                  \u003Cli\u003ERoulette souris: zoom/d\u00E9-zoom\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  Le flou de mise au point d\u00E9pend de la distance de map, de la longueur focale, de l'ouverture et de la taille du capteur."
   },
   "MAU_grillePerspective": {
@@ -415,6 +487,7 @@ var traductionFr = {
   "MAU_vue3D": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ERepr\u00E9sentation 3D de l'APN et de son environnement.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003EClic gauche + souris: D\u00E9placement par Rotation ou Translation\u003C/li\u003E\r\n                  \u003Cli\u003EEnfoncer 'shift': passer de rotation \u00E0 translation et vice versa\u003C/li\u003E\r\n                  \u003Cli\u003ERoulette souris: zoom/d\u00E9-zoom\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  Le niveau de zoom peut aller du m\u00E8tre (pour visualiser la sc\u00E8ne) au \u00B5m (zoom jusqu'au capteur, pour voir les flous)."
   },
+  */
   "MasqueGaz": {
     "message": "Masque \u00E0 gaz"
   },
@@ -655,7 +728,7 @@ var traductionFr = {
   "vitesse_sujet": {
     "message": "Vitesse du sujet"
   }
-}
+};
 
 var traductionEn = {
 
@@ -855,6 +928,7 @@ var traductionEn = {
   "Luminosite": {
     "message": "Luminosity"
   },
+  /*
   "MAU_AA": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EAnti-aliasing filter.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  Affected parameter:\r\n                  \u003Cul\u003E        \r\n                  \u003Cli\u003EAnti-aliasing filter blur\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  Limitation: moir\u00E9 patterning isn't modeled."
   },
@@ -888,7 +962,7 @@ var traductionEn = {
   "MAU_Settings3D": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003E3D view settings"
   },
-  "MAU_SettingsPhoto": {
+  "MAUvueReglagesVuePhoto": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EPhoto view settings"
   },
   "MAU_VR": {
@@ -975,7 +1049,7 @@ var traductionEn = {
   "MAU_flousCapteur": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003ESelect blurs to display on sensor in 3D view.\u003Cbr/\u003E\r\n      pixel are also drawn."
   },
-  "MAU_graphPDC": {
+  "vueFlouDeMiseAuPoint": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003EFocus blur vs distance.\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003EBlue area show depth of field (blur \u003C c.o.c)\u003C/li\u003E\r\n                  \u003Cli\u003EForeground, Focus and Background distances are shown \u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003ELeft clic + mouse move: adjust distances\u003C/li\u003E\r\n                  \u003Cli\u003EMouse wheel: zoom/un-zoom\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  Focus blur depends on focus distance, focal length, aperture and sensor size."
   },
   "MAU_grillePerspective": {
@@ -1065,6 +1139,7 @@ var traductionEn = {
   "MAU_vue3D": {
     "message": "\u003Cspan style='font-style:normal;'\u003E\u24D8 \u003C/span\u003E3D view of camera, optical phenomena, distances,..\u003Cbr/\u003E\r\n                  \u003Cbr/\u003E\r\n                  \u003Cul\u003E\r\n                  \u003Cli\u003ELeft clic + mouse move: Moving by Rotation or Translation\u003C/li\u003E\r\n                  \u003Cli\u003EPress shift: change from Rotation to transation and vice versa\u003C/li\u003E\r\n                  \u003Cli\u003EMouse wheel: zoom/un-zoom\u003C/li\u003E\r\n                  \u003C/ul\u003E\r\n                  \u003Cbr/\u003E\r\n                  You can zoom from meters (to see the whole scene) to \u00B5m (sensor level, to see blurs)."
   },
+  */
   "MasqueGaz": {
     "message": "Gas mask"
   },

@@ -62,6 +62,12 @@ function configSimulateur() {
 
 	vueEXIF.activee = 1;
 	vueEXIF.visible = 1;
+
+	vueReglagesFocus.activee = 1;
+	vueReglagesFocus.fermable = 1;
+	vueReglagesFocus.rdbTypeDeFocusVisible = 1;
+	vueReglagesFocus.rdbModeDeFocusVisible = 1;
+	vueReglagesFocus.sldFocusVisible = 1;
 }
 
 function initMateriel() {

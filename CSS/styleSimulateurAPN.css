@@ -1,7 +1,6 @@
 input[type=range] {
     -webkit-appearance: none;
     background-color: rgba(0,0,0,0.5);
-    width: 129px;
     height:3px;
     vertical-align: middle;
     outline: none;
@@ -50,7 +49,7 @@ input[type="range"]::-ms-tooltip  {
 
 .cssInp, .cssLst{
     box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.3) inset;
-    text-shadow: 1px 1px 2px #111111;
+   /* text-shadow: 1px 1px 2px #111111;*/
     background-color:#444444;
     font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
     color: #ffffff; 
@@ -82,14 +81,14 @@ input[type="range"]::-ms-tooltip  {
 }
 
 .nomDeParametre{
-    color: #d7d7d7;
+    color: #d7d7d7;    
 }
 
-.classBtnReglage, .classBtnClose{
+.classBtnReglage, .classBtnClose, .classBtnReglageFocus{
     cursor: pointer;
 }
 
-.classBtnReglage:hover, .classBtnClose:hover {
+.classBtnReglage:hover, .classBtnClose:hover, .classBtnReglageFocus:hover {
     background: rgba(255,255,255,0.3);
     background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.3),rgba(255,255,255,0.15));
     background-image: -moz-linear-gradient(top, rgba(255,255,255,0.3),rgba(255,255,255,0.15));
@@ -98,6 +97,21 @@ input[type="range"]::-ms-tooltip  {
     background-image: linear-gradient(to bottom, rgba(255,255,255,0.3),rgba(255,255,255,0.15));
 
     text-decoration: none;
+}
+
+.classBtnReglageFocus{
+    float:left;
+    padding-top: 1px;
+}
+
+.classSldFocus{
+    width:200px;
+}
+.classSldReglageRapide{
+    width:125px;
+}
+.classSldFocale{
+    width:200px;
 }
 
 .classBtnReglage{
@@ -134,7 +148,7 @@ input[type="range"]::-ms-tooltip  {
     font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
     color: #ffffff; 
     font-size:14px;
-    text-shadow:  2px 2px 2px #000000;
+    
 
     display: table;
     padding-bottom: 7px;
@@ -151,7 +165,7 @@ input[type="range"]::-ms-tooltip  {
 
 .barreDeTitre{
     font-style: italic;
-    padding: 7px;
+    padding: 3px;
     background-color: rgba(0,0,0,0.5);
     border-bottom: 2px solid rgba(0,0,0,0.8);
     display: flex;
@@ -159,16 +173,27 @@ input[type="range"]::-ms-tooltip  {
 }
 
 .classTitre{
-    font-size:19px;   
+    font-size:17px;   
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    text-shadow:  2px 2px 2px #000000;
 }
 
 .classNomDuSoft{
-    font-size:15px; 
+    font-size:17px; 
     float:left;
+    text-shadow:  2px 2px 2px #000000;
 }
+
+.classVersionDuSoft{
+    font-size:10px; 
+    float:left;
+    padding-left: 13px;
+    padding-top: inherit;
+    text-shadow: 1px 1px 1px #000000;
+}
+
 
 .classBarreDeTache{
     background: rgba(0,0,0,0.1);
@@ -197,6 +222,14 @@ width: 100%;
 .classInfoUtilisateur{
     color: #dddddd;
     font-style: italic;
+}
+
+.classReglagesFocus{
+    display:table;
+}
+
+.elementMenuFocus{
+    float:left;
 }
 
 .classVueEXIF{
@@ -243,8 +276,7 @@ margin-top:7px;
 }
 
 .classReglagesRapides{
-	float:left;
-	width:270px;
+	float:left;	
 }
 
 .classReglagesVue{

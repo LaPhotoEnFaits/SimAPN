@@ -3,7 +3,7 @@ function hide(id) {
 	o.style.display = 'none';
 
 
-	var temp = document.getElementById('btn' + id.replace('vue','Vue'));
+	var temp = document.getElementById('btn' + id.replace('vue', 'Vue'));
 	if (temp)
 		temp.style.display = '';
 }
@@ -12,7 +12,7 @@ function show(id) {
 	var o = document.getElementById(id);
 	o.style.display = '';
 
-	var temp = document.getElementById('btn' + id.replace('vue','Vue'));
+	var temp = document.getElementById('btn' + id.replace('vue', 'Vue'));
 	if (temp)
 		temp.style.display = 'none';
 }
@@ -30,4 +30,12 @@ function initSelectedLst(idLst, valeurInitiale, isString) {
 		if (temp === valeurInitiale)
 			document.getElementById(idLst).selectedIndex = i;
 	}
+}
+
+function drawBouton(id, state) {
+
+	if (state === 'OFF')
+		document.getElementById(id).style.background = '';
+	else
+		document.getElementById(id).style.background = 'rgba(0,0,0,0.25)';
 }

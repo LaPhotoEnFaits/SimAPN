@@ -61,13 +61,3 @@ document.getElementById('LstCdC').addEventListener('change', function() {
 }, false);
 
 
-////OUVRIR/FERMER
-document.getElementById('btnVueReglagesPhotographe').addEventListener('click', function() {
-	vueReglagesPhotographe.visible = 1;
-	show('vueReglagesPhotographe');
-}, false);
-
-document.getElementById('btnCloseVueReglagesPhotographe').addEventListener('click', function() {
-	vueReglagesPhotographe.visible = 0;
-	hide('vueReglagesPhotographe');
-}, false);

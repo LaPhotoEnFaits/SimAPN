@@ -1,5 +1,6 @@
 VueReglagesVuePhoto = function(activee, visible, fermable) {
 	this.nom = 'ReglagesVuePhoto';
+	this.typeDeComposant = 'vue';
 
 	this.activee = activee;
 	this.visible = visible;
@@ -21,19 +22,19 @@ function initVueReglagesVuePhoto() {
 	} else
 		hide('ensembleChkExpo');
 
-	if (vueReglagesVuePhoto.chkFlouDeMapVisible) {		
+	if (vueReglagesVuePhoto.chkFlouDeMapVisible) {
 		show('ensembleChkFlouDeMap');
 	} else
 		hide('ensembleChkFlouDeMap');
 
 	if (vueReglagesVuePhoto.chkFlouDeBougeVisible) {
-		
+
 		show('ensembleChkFlouDeBouge');
 	} else
 		hide('ensembleChkFlouDeBouge');
 
 	if (vueReglagesVuePhoto.chkBruitVisible) {
-		
+
 		show('ensembleChkBruit');
 	} else
 		hide('ensembleChkBruit');
@@ -99,13 +100,3 @@ document.getElementById('chkVuePhotoBruit').addEventListener('change', function(
 	drawBruit();
 }, false);
 
-////OUVRIR/FERMER
-document.getElementById('btnVueReglagesVuePhoto').addEventListener('click', function() {
-	vueReglagesVuePhoto.visible = 1;
-	show('vueReglagesVuePhoto');
-}, false);
-
-document.getElementById('btnCloseVueReglagesVuePhoto').addEventListener('click', function() {
-	vueReglagesVuePhoto.visible = 0;
-	hide('vueReglagesVuePhoto');
-}, false);

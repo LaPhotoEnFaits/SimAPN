@@ -29,13 +29,3 @@ document.getElementById('lstAntiVibration').addEventListener('change', function(
 	onModifAntiVibration();
 }, false);
 
-////OUVRIR/FERMER
-document.getElementById('btnVueReglagesObjectif').addEventListener('click', function() {
-	vueReglagesObjectif.visible = 1;
-	show('vueReglagesObjectif');
-}, false);
-
-document.getElementById('btnCloseVueReglagesObjectif').addEventListener('click', function() {
-	vueReglagesObjectif.visible = 0;
-	hide('vueReglagesObjectif');
-}, false);

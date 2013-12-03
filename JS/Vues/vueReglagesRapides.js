@@ -72,15 +72,13 @@ function majOutputSldFocale() {
 	document.getElementById('outputSldFocale').innerHTML = objectifChoisi.focale + 'mm';
 
 	if (apnChoisi.cropFactor < 0.99 || apnChoisi.cropFactor > 1.01)
-		document.getElementById('outputSldFocale').innerHTML += '<br/><i>' + Math.round(objectifChoisi.focale * apnChoisi.cropFactor) + 'mm eq.</i>'
+		document.getElementById('outputSldFocale').innerHTML += '<br/><i>' + Math.round(objectifChoisi.focale * apnChoisi.cropFactor) + 'mm eq.</i>';
 }
 
 function modifSldFocale() {
 	objectifChoisi.focale = 1.0 * document.getElementById("sldFocale").value;
 	onModifFocale();
 }
-
-
 
 function setFocalesMinMaxChoisie() {
 
@@ -176,3 +174,4 @@ function modifSldISO() {
 	apnChoisi.ISO = cpt2ISO(1.0 * document.getElementById('sldISO').value).ISO;
 	onModifISO();
 }
+

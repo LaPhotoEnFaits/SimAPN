@@ -3,6 +3,7 @@ VueCurseurExposition = function() {
 
 	this.init = initVueCurseurExpo;
 	this.initIHM =initIHMVues;
+	this.draw=drawCurseurExposition;
 };
 
 function initVueCurseurExpo() {

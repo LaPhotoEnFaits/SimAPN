@@ -14,12 +14,12 @@ VueHistogrammes = function() {
 
 	this.init = initVueHistogrammes;
 	this.initIHM = initIHMVues;
+	this.draw = drawVueHistogrammes;
 
 };
 
 
-function initVueHistogrammes() {
-}
+function initVueHistogrammes() {}
 
 
 function drawVueHistogrammes() {
@@ -49,7 +49,7 @@ function drawVueHistogrammes() {
 
 		//Cherche le max
 		var max = 0;
-		for (i = 1; i <= 250; i++) {
+		for (var i = 1; i <= 250; i++) {
 			if (vueHistogrammes.nbrPixelLuminosite[i] > max)
 				max = vueHistogrammes.nbrPixelLuminosite[i];
 		}
@@ -57,7 +57,7 @@ function drawVueHistogrammes() {
 
 		var nbrPixelLuminosite_norm = new Array(256);
 
-		for (var i = 0; i <= 255; i++)
+		for ( i = 0; i <= 255; i++)
 			nbrPixelLuminosite_norm[i] = Math.round(HAUTEUR_AXE_Y_HISTO * vueHistogrammes.nbrPixelLuminosite[i] / max);
 
 
@@ -119,8 +119,8 @@ function calcHistogrammes() {
 	for (i = 0; i < nombreDePixels; i++) {
 
 		if (ValPixA[i] !== 0) {
-			
-			lum=brightness*(0.3 * valPixR[i] + 0.6 * valPixV[i] + 0.1 * valPixB[i])
+
+			lum = brightness * (0.3 * valPixR[i] + 0.6 * valPixV[i] + 0.1 * valPixB[i]);
 			lum = Math.round(lum);
 			if (lum > 255)
 				lum = 255;
@@ -129,15 +129,3 @@ function calcHistogrammes() {
 		}
 	}
 }
-
-////OUVRIR/FERMER
-document.getElementById('btnVueHistogrammes').addEventListener('click', function() {
-	vueHistogrammes.visible = 1;
-	drawVueHistogrammes();
-	show('vueHistogrammes');
-}, false);
-
-document.getElementById('btnCloseVueHistogrammes').addEventListener('click', function() {
-	vueHistogrammes.visible = 0;
-	hide('vueHistogrammes');
-}, false);

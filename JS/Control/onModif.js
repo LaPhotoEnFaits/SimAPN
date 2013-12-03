@@ -7,6 +7,8 @@ FlagMAJ = function() {
 	this.majOutputSldISO = new ItemPourMAJ(majOutputSldISO);
 	this.majOutputSldFocale = new ItemPourMAJ(majOutputSldFocale);
 	this.majOutputDistancesPlans = new ItemPourMAJ(majOutputDistancesPlans);
+	this.majVueFocus = new ItemPourMAJ(majVueFocus);
+	this.majSldFocus = new ItemPourMAJ(majSldFocus);
 
 	this.setDistancesApresDelacement = new ItemPourMAJ(setDistancesApresDelacement);
 	this.setDistanceDeMAP = new ItemPourMAJ(setDistanceDeMAP);
@@ -58,7 +60,6 @@ function doMAJ() {
 		flagMAJ.drawBruit.actif = 0;
 	}
 
-
 	for (var propName in flagMAJ) {
 		if (flagMAJ.hasOwnProperty(propName)) {
 			if (flagMAJ[propName].actif) {
@@ -69,10 +70,67 @@ function doMAJ() {
 	}
 }
 
+////MODIFS DE FAMILLES D'ITEMS
+function onModifExposition(appelInterne) {
+
+	flagMAJ.calcExposition.actif = 1;
+
+	flagMAJ.drawFlousEtExpo.actif = 1;
+	flagMAJ.drawCurseurExposition.actif = 1;
+	flagMAJ.drawVueHistogrammes.actif = 1;
+
+	if (!appelInterne)
+		doMAJ();
+}
+
+function onModifChamps(appelInterne) {
+
+	flagMAJ.calcChamps.actif = 1;
+
+	flagMAJ.drawVuePhoto.actif = 1;
+	flagMAJ.drawVueHistogrammes.actif = 1;
+
+	if (!appelInterne)
+		doMAJ();
+}
+
+function onModifFlouDeMAP(appelInterne) {
+
+	flagMAJ.calcFlousPlans.actif = 1;
+	flagMAJ.calcPDC.actif = 1;
+
+	flagMAJ.drawFlousEtExpo.actif = 1;
+	flagMAJ.drawVueFlouDeMiseAuPoint.actif = 1;
+
+	if (!appelInterne)
+		doMAJ();
+}
+
+function onModifFlouDeBouge(appelInterne) {
+
+	flagMAJ.calcVitesseDeSecurite.actif = 1;
+	flagMAJ.calcFlouDeBouge.actif = 1;
+	flagMAJ.drawPlans.actif = 1;
+	flagMAJ.drawFlouBouge.actif = 1;
+	flagMAJ.drawVueHistogrammes.actif = 1;
+
+	if (!appelInterne)
+		doMAJ();
+}
+
+
 ////MODIFS DES ITEMS DES VUES
+function onModifTypeDeFocus(appelInterne) {
+	flagMAJ.majVueFocus.actif = 1;
+	if (!appelInterne)
+		doMAJ();
+}
+
 function onModifDistanceDeMAP(appelInterne) {
 
 	onModifFlouDeMAP(1);
+
+	flagMAJ.majSldFocus.actif = 1;
 
 	flagMAJ.drawPlans.actif = 1;
 	flagMAJ.drawVueHistogrammes.actif = 1;
@@ -106,7 +164,7 @@ function onModifDistancePlan(numeroDuPlan, appelInterne) {
 
 	document.getElementById('inpDistancePlan' + numeroDuPlan).value = scene.plans[numeroDuPlan].distance.toFixed(2);
 
-	if (priseDeVue.planDeMAP === numeroDuPlan) {
+	if (priseDeVue.planDeMAP === numeroDuPlan && apnChoisi.modeDeFocus === 'AFC') {
 
 		flagMAJ.setDistanceDeMAP.actif = 1;
 		onModifDistanceDeMAP(1);
@@ -154,6 +212,17 @@ function onModifHorizontalVerticalPhotographe(appelInterne) {
 		doMAJ();
 }
 
+function onModifCdC(appelInterne) {
+	flagMAJ.calcCdc.actif = 1;
+	flagMAJ.calcPDC.actif = 1;
+	flagMAJ.drawVueFlouDeMiseAuPoint.actif = 1;
+
+	onModifFlouDeBouge(1);
+
+	if (!appelInterne)
+		doMAJ();
+}
+
 function onModifDefinitionCapteur(appelInterne) {
 	flagMAJ.calcTaillePixel.actif = 1;
 
@@ -161,6 +230,24 @@ function onModifDefinitionCapteur(appelInterne) {
 		onModifCdC(1);
 
 	flagMAJ.drawVueFlouDeMiseAuPoint.actif = 1;
+
+	if (!appelInterne)
+		doMAJ();
+}
+
+function onModifFocale(appelInterne) {
+
+	flagMAJ.majOutputSldFocale.actif = 1;
+	flagMAJ.drawVueEXIF.actif = 1;
+
+	if (priseDeVue.cadrageConstant && !appelInterne) {
+		setProfondeurPhotographeCadrageConstant();
+		onModifProfondeurPhotographe(1);
+	}
+
+	onModifChamps(1);
+	onModifFlouDeMAP(1);
+	onModifFlouDeBouge(1);
 
 	if (!appelInterne)
 		doMAJ();
@@ -186,17 +273,6 @@ function onModifCapteur(appelInterne) {
 	onModifFlouDeBouge(1);
 	onModifChamps(1);
 	onModifFlouDeMAP(1);
-
-	if (!appelInterne)
-		doMAJ();
-}
-
-function onModifCdC(appelInterne) {
-	flagMAJ.calcCdc.actif = 1;
-	flagMAJ.calcPDC.actif = 1;
-	flagMAJ.drawVueFlouDeMiseAuPoint.actif = 1;
-
-	onModifFlouDeBouge(1);
 
 	if (!appelInterne)
 		doMAJ();
@@ -252,78 +328,12 @@ function onModifISO(appelInterne) {
 		doMAJ();
 }
 
-function onModifFocale(appelInterne) {
-
-	flagMAJ.majOutputSldFocale.actif = 1;
-	flagMAJ.drawVueEXIF.actif = 1;
-
-	if (priseDeVue.cadrageConstant && !appelInterne) {
-		setProfondeurPhotographeCadrageConstant();
-		onModifProfondeurPhotographe(1);
-	}
-
-	onModifChamps(1);
-	onModifFlouDeMAP(1);
-	onModifFlouDeBouge(1);
-
-	if (!appelInterne)
-		doMAJ();
-}
-
 function onModifLuminosite(appelInterne) {
 
 	flagMAJ.majOutputLstLuminosite.actif = 1;
 	flagMAJ.majOutputSldLuminosite.actif = 1;
 
 	onModifExposition(1);
-
-	if (!appelInterne)
-		doMAJ();
-}
-
-////MODIFS DE FAMILLES D'ITEMS
-function onModifExposition(appelInterne) {
-
-	flagMAJ.calcExposition.actif = 1;
-
-	flagMAJ.drawFlousEtExpo.actif = 1;
-	flagMAJ.drawCurseurExposition.actif = 1;
-	flagMAJ.drawVueHistogrammes.actif = 1;
-
-	if (!appelInterne)
-		doMAJ();
-}
-
-function onModifChamps(appelInterne) {
-
-	flagMAJ.calcChamps.actif = 1;
-
-	flagMAJ.drawVuePhoto.actif = 1;
-	flagMAJ.drawVueHistogrammes.actif = 1;
-
-	if (!appelInterne)
-		doMAJ();
-}
-
-function onModifFlouDeMAP(appelInterne) {
-
-	flagMAJ.calcFlousPlans.actif = 1;
-	flagMAJ.calcPDC.actif = 1;
-
-	flagMAJ.drawFlousEtExpo.actif = 1;
-	flagMAJ.drawVueFlouDeMiseAuPoint.actif = 1;
-
-	if (!appelInterne)
-		doMAJ();
-}
-
-function onModifFlouDeBouge(appelInterne) {
-
-	flagMAJ.calcVitesseDeSecurite.actif = 1;
-	flagMAJ.calcFlouDeBouge.actif = 1;
-	flagMAJ.drawPlans.actif = 1;
-	flagMAJ.drawFlouBouge.actif = 1;
-	flagMAJ.drawVueHistogrammes.actif = 1;
 
 	if (!appelInterne)
 		doMAJ();

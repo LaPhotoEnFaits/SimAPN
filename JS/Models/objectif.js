@@ -12,10 +12,8 @@ Objectif = function(nom, focale, indiceOuvertureMin, indiceOuvertureMax, antiVib
 	this.ecartCyclindre = ecartCyclindre;
 	this.numBague = numBague;
 
-	this.ouverture=0;
+	this.ouverture = 0;
 };
-
-
 
 function cpt2ouverture(cpt) {
 
@@ -135,13 +133,12 @@ function cpt2ouverture(cpt) {
 			break;
 	}
 
-	temp = 1.0 * temp; 
+	temp = 1.0 * temp;
 
 	return {
 		N: temp
 	};
 }
-
 
 function ouverture2cpt(N) {
 
@@ -260,7 +257,7 @@ function ouverture2cpt(N) {
 		case 45:
 			temp = 37;
 			break;
-	} 
+	}
 
 	temp = 1.0 * temp;
 

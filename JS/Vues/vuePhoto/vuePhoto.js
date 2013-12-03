@@ -1,9 +1,13 @@
+var DUREE_PAUSE_ACC_MATERIELLE = 0;
+
+
 VuePhoto = function() {
-	this.nom='Photo';
+	this.nom = 'Photo';
 
 	this.affichageRapide = 0;
 	this.init = initVuePhoto;
-	this.initIHM =initIHMVues;
+	this.initIHM = initIHMVues;
+	this.draw = drawVuePhoto;
 };
 
 function initVuePhoto() {
@@ -38,6 +42,8 @@ function initVuePhoto() {
 	document.getElementById('cvsPhotoPlan1').style.clip = 'rect(0px,' + vuePhoto.largeur + 'px,' + vuePhoto.hauteur + 'px,0px)';
 	document.getElementById('cvsPhotoPlan2').style.clip = 'rect(0px,' + vuePhoto.largeur + 'px,' + vuePhoto.hauteur + 'px,0px)';
 	document.getElementById('cvsPhotoPlan3').style.clip = 'rect(0px,' + vuePhoto.largeur + 'px,' + vuePhoto.hauteur + 'px,0px)';
+
+
 }
 
 
@@ -262,8 +268,6 @@ function drawFlouEtExpo(numero) {
 	var cvs = document.getElementById('cvsPhotoPlan' + numero);
 
 	var flouEnPixel;
-	var brightness;
-
 	var brightness = Math.pow(2, priseDeVue.exposition * 8.0 / apnChoisi.dynamiqueCourante);
 
 	if (vuePhoto.expositionVisible === 0 || vuePhoto.affichageRapide)
@@ -276,8 +280,8 @@ function drawFlouEtExpo(numero) {
 		if (scene.plans[numero].flou > 0)
 			flouEnPixel = scene.plans[numero].flou * vuePhoto.largeur / (apnChoisi.capteurLargeur / 1000.0);
 
-		if(flouEnPixel>FLOU_MAX)
-			flouEnPixel=FLOU_MAX;
+		if (flouEnPixel > FLOU_MAX)
+			flouEnPixel = FLOU_MAX;
 	}
 
 	filtreCSS(cvs, brightness, flouEnPixel);

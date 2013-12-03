@@ -6,7 +6,6 @@ function initSldTailleFenetres() {
 	document.getElementById("sldTailleFenetres").value = vuePhoto.largeur;
 }
 
-
 function drawCanvasSldTailleFenetres() {
 
 	var HAUTEUR_CVS_ICONE = 23;
@@ -36,14 +35,14 @@ function drawCanvasSldTailleFenetres() {
 	ct.stroke();
 
 
-	var cvs = document.getElementById('cvsGrandeFenetre');
-	var ct = cvs.getContext('2d');
+	cvs = document.getElementById('cvsGrandeFenetre');
+	ct = cvs.getContext('2d');
 
 	cvs.width = LARGEUR_CVS_ICONE;
 	cvs.height = HAUTEUR_CVS_ICONE;
 
-	var X0 = Xm - 0.5 * K_GRANDE_FENETRE * LARGEUR_CVS_ICONE;
-	var Y0 = Ym - 0.5 * K_GRANDE_FENETRE * HAUTEUR_CVS_ICONE * RAPPORT_H_L;
+	X0 = Xm - 0.5 * K_GRANDE_FENETRE * LARGEUR_CVS_ICONE;
+	Y0 = Ym - 0.5 * K_GRANDE_FENETRE * HAUTEUR_CVS_ICONE * RAPPORT_H_L;
 
 	ct.strokeStyle = "#ffffff";
 	ct.lineWidth = 1;
@@ -55,20 +54,11 @@ function drawCanvasSldTailleFenetres() {
 function modifSldTailleFenetre() {
 	vuePhoto.largeur = 1.0 * document.getElementById("sldTailleFenetres").value;
 	calcHauteurVuePhoto();
-	/*
-	if (priseDeVue.cdc === 2) {
-		calcCdc();
-		calcVitesseDeSecurite();
-		calcFlouDeBouge();
-	}
-	*/
 	initVuePhoto();
 	drawVuePhoto();
 }
 
-
 document.getElementById("sldTailleFenetres").addEventListener('change', modifSldTailleFenetre, false);
-
 
 document.getElementById("sldTailleFenetres").oninput = function() {
 	modifSldTailleFenetre();
@@ -80,11 +70,12 @@ document.getElementById('sldTailleFenetres').addEventListener('mousedown', funct
 }, false);
 
 document.getElementById('sldTailleFenetres').addEventListener('mouseup', function() {
-	
+
 	if (priseDeVue.cdc === 2)
 		onModifCdC();
 
 	vuePhoto.affichageRapide = 0;
-	drawVuePhoto();
+
 	valideAccelerationMaterielle();
+	drawVuePhoto();
 }, false);

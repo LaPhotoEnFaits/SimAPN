@@ -1,5 +1,6 @@
 titre = '';
-nomDuSoft = 'Camera Simulator (beta)'
+nomDuSoft = 'Camera Simulator';
+versionDuSoft = 'beta';
 
 //MODELS
 scene = new Scene();
@@ -9,6 +10,8 @@ objectifChoisi = new Objectif('PasDeRef', 50, 1.4, 42, 0, 17, 7, 7, [11.3, 16, 7
 priseDeVue = new PriseDeVue();
 
 //VUES
+vuePhotoCachee = new VuePhotoCachee();
+
 vuePhoto = new VuePhoto();
 vueCurseurExpo = new VueCurseurExposition();
 vueReglagesRapides = new VueReglagesRapides();
@@ -18,19 +21,25 @@ vueReglagesPhotographe = new VueReglagesPhotographe();
 vueReglagesObjectif = new VueReglagesObjectif();
 vueReglagesAPN = new VueReglagesAPN();
 vueHistogrammes = new VueHistogrammes();
-vuePhotoCachee = new VuePhotoCachee();
 vueFlouDeMiseAuPoint = new VueFlouDeMiseAuPoint();
 vueEXIF = new VueEXIF();
+vueReglagesFocus = new VueReglagesFocus();
+
+listeDesVues = [vuePhoto, vueCurseurExpo, vueReglagesRapides, vueReglagesVuePhoto, vueReglagesScene, vueReglagesPhotographe, vueReglagesObjectif, vueReglagesAPN, vueHistogrammes, vueFlouDeMiseAuPoint, vueEXIF, vueReglagesFocus];
 
 //GENERAL
 flagMAJ = new FlagMAJ();
+
+
 
 function initPreTelechargement() {
 
 	RAZconfig();
 	configSimulateur();
+
 	document.getElementById('nomDuSoft').innerHTML = nomDuSoft;
 	document.getElementById('titre').innerHTML = titre;
+	document.getElementById('version').innerHTML = versionDuSoft;
 
 	/*setAdressesImagesCss();*/
 
@@ -50,17 +59,20 @@ function initPostTelechargement() {
 
 	initVues();
 	drawVues();
+	if (vuePhoto.visible)
+		valideAccelerationMaterielle();
 
 	var iMax = 100;
 	var incrI = 0.1;
 
 	for (i = 0.1; i < iMax; i += incrI) {
-		for (var ii = 0; ii != 4; ii++)
+		for (var ii = 0; ii !== 4; ii++)
 			filtreCSS(document.getElementById('cvsPhotoPlan' + ii), 0.5 * i / iMax, i);
 	}
 
 	drawFlousEtExpo();
 
+	initInfoBulle();
 
 	document.getElementById('infoUtilisateur').innerHTML = '';
 	show('Vues');
@@ -84,11 +96,11 @@ function initCalc() {
 
 function setAdressesImagesCss() {
 
-	var CSSRules
+	var CSSRules;
 	if (document.all) {
-		CSSRules = 'rules'
+		CSSRules = 'rules';
 	} else if (document.getElementById) {
-		CSSRules = 'cssRules'
+		CSSRules = 'cssRules';
 	}
 
 	var numeroDeLaFeuilleDeStyleDuSimulateur;
@@ -102,13 +114,13 @@ function setAdressesImagesCss() {
 
 	for (var i = 0; i < document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules].length; i++) {
 
-		if (document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].selectorText == '.simulateur')
+		if (document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].selectorText === '.simulateur')
 			document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].style['background-image'] = 'url(' + adresseDuCode + '/Images/Papier%20peint/Fond.png)';
 
-		if (document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].selectorText == 'input[type="range"]::-webkit-slider-thumb')
+		if (document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].selectorText === 'input[type="range"]::-webkit-slider-thumb')
 			document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].style['background-image'] = 'url(' + adresseDuCode + '/Images/Icones/btnSld.png)';
 
-		if (document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].selectorText == 'input[type="range"]::-moz-range-thumb')
+		if (document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].selectorText === 'input[type="range"]::-moz-range-thumb')
 			document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].style['background-image'] = 'url(' + adresseDuCode + '/Images/Icones/btnSld.png)';
 	}
 }

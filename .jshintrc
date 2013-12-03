@@ -1,16 +1,22 @@
 {
-  "curly": true,
+  
   "eqeqeq": true,
   "immed": true,
   "latedef": true,
-  "newcap": true,
+  
   "noarg": true,
   "sub": true,
-  "undef": true,
+  
   "boss": true,
   "eqnull": true,
   "node": true,
   "camelcase" : false, 
+  "strict"    : false, 
+  "undef"         : false,
+  "curly"         : false,
+  "quotmark":false,
+  "newcap ":false,
+  "unused":false,
   "globals": {
     "angular": true,
     "_": true,

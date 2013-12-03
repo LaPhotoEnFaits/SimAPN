@@ -18,33 +18,35 @@ PriseDeVue = function() {
 };
 
 function setFocaleCadrageConstant() {
-	objectifChoisi.focale = Math.round(apnChoisi.capteurLargeur * priseDeVue.distanceDeMAP / priseDeVue.largeurPlanMAP);
+	objectifChoisi.focale = Math.round(apnChoisi.capteurLargeur * priseDeVue.distanceDeMAP / priseDeVue.largeurPlan[1]);
 }
 
 function setProfondeurPhotographeCadrageConstant() {
 
-	var nouvelleDistanceDeMAP = priseDeVue.largeurPlanMAP * objectifChoisi.focale / apnChoisi.capteurLargeur;
-	var deltaDistance = nouvelleDistanceDeMAP - priseDeVue.distanceDeMAP;
+	var nouvelleDistanceDuPlan1 = priseDeVue.largeurPlan[1] * objectifChoisi.focale / apnChoisi.capteurLargeur;
+	var deltaDistance = nouvelleDistanceDuPlan1 - scene.plans[1].distance;
 
 	photographe.deplacementProfondeurCourant = deltaDistance;
 }
 
-function setDistancesApresDelacement(){
+function setDistancesApresDelacement() {
 
-	var nouvelleDistanceDeMAP = priseDeVue.distanceDeMAP+ photographe.deplacementProfondeurCourant;
+	var nouvelleDistanceDuPlan1 = scene.plans[1].distance + photographe.deplacementProfondeurCourant;
 
-	if(nouvelleDistanceDeMAP<DISTANCE_DE_MAP_MIN)
-		photographe.deplacementProfondeurCourant=DISTANCE_DE_MAP_MIN- priseDeVue.distanceDeMAP;
+	if (nouvelleDistanceDuPlan1 < DISTANCE_DE_MAP_MIN)
+		photographe.deplacementProfondeurCourant = DISTANCE_DE_MAP_MIN - scene.plans[1].distance;
 
-	for (var i = 0; i != 3; i++)
+	for (var i = 0; i !== 3; i++)
 		scene.plans[i].distance += photographe.deplacementProfondeurCourant;
 
-	priseDeVue.distanceDeMAP += photographe.deplacementProfondeurCourant;
+	if (apnChoisi.typeDeFocus === 'auto' && apnChoisi.modeDeFocus === 'AFC')
+		priseDeVue.distanceDeMAP += photographe.deplacementProfondeurCourant;
+
 	photographe.deplacementProfondeur -= photographe.deplacementProfondeurCourant;
 }
 
 function setDistanceDeMAP() {
-	if (priseDeVue.planDeMAP !== PLAN_DE_MAP_MANUEL)
+	if (priseDeVue.planDeMAP !== PLAN_DE_MAP_MANUEL && apnChoisi.modeDeFocus === 'AFC')
 		priseDeVue.distanceDeMAP = scene.plans[priseDeVue.planDeMAP].distance;
 }
 
@@ -68,7 +70,7 @@ function calcChamps() {
 	priseDeVue.largeurPlanMAP = apnChoisi.capteurLargeur * priseDeVue.distanceDeMAP / objectifChoisi.focale;
 	priseDeVue.hauteurPlanMAP = apnChoisi.capteurHauteur * priseDeVue.distanceDeMAP / objectifChoisi.focale;
 
-	for (var i = 0; i != 3; i++) {
+	for (var i = 0; i !== 3; i++) {
 		priseDeVue.largeurPlan[i] = apnChoisi.capteurLargeur * scene.plans[i].distance / objectifChoisi.focale;
 		priseDeVue.hauteurPlanMAP[i] = apnChoisi.capteurHauteur * scene.plans[i].distance / objectifChoisi.focale;
 	}
@@ -99,8 +101,6 @@ function calcCdc() {
 	}
 }
 
-
-
 function calcFlou(distance) {
 
 	var focaleEnMetre = objectifChoisi.focale / 1000;
@@ -124,7 +124,7 @@ function calcFlouPlan(numero) {
 }
 
 function calcFlousPlans() {
-	for (var i = 0; i != 4; i++)
+	for (var i = 0; i !== 4; i++)
 		calcFlouPlan(i);
 }
 
