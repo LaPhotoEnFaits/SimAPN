@@ -71,7 +71,7 @@ document.getElementById('sldTailleFenetres').addEventListener('mousedown', funct
 
 document.getElementById('sldTailleFenetres').addEventListener('mouseup', function() {
 
-	if (priseDeVue.cdc === 2)
+	if (photographe.typeDeCdc === 2)
 		onModifCdC();
 
 	vuePhoto.affichageRapide = 0;

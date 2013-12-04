@@ -133,6 +133,7 @@ function onModifDistanceDeMAP(appelInterne) {
 	flagMAJ.majSldFocus.actif = 1;
 
 	flagMAJ.drawPlans.actif = 1;
+	flagMAJ.drawFlouBouge.actif = 1;
 	flagMAJ.drawVueHistogrammes.actif = 1;
 
 	if (!appelInterne)
@@ -193,6 +194,9 @@ function onModifProfondeurPhotographe(appelInterne) {
 	flagMAJ.drawVuePhoto.actif = 1;
 	flagMAJ.drawVueHistogrammes.actif = 1;
 
+	if (vuePhoto.affichageRapide)
+		flagMAJ.drawFlousEtExpo.actif = 1;
+
 	onModifChamps(1);
 	onModifFlouDeMAP(1);
 
@@ -207,6 +211,9 @@ function onModifHorizontalVerticalPhotographe(appelInterne) {
 	flagMAJ.drawGrillePerspective.actif = 1;
 	flagMAJ.drawBruit.actif = 1;
 	flagMAJ.drawVueHistogrammes.actif = 1;
+
+	if (vuePhoto.affichageRapide)
+		flagMAJ.drawFlousEtExpo.actif = 1;
 
 	if (!appelInterne)
 		doMAJ();

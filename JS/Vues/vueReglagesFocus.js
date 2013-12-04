@@ -49,22 +49,22 @@ function majVueFocus() {
 
 
 ////CLIC POUR FOCUS
-function onFocusClic(e) {
+function onFocusClic(X,Y) {
 
-	var X;
-	var Y;
+	//var X;
+	//var Y;
 
 	for (i = 0; i < 4; i++) {
 
 		var cvs = document.getElementById('cvsPhotoPlan' + i);
 		var ct = cvs.getContext('2d');
 
-		if (i === 0) {
-			var rect = cvs.getBoundingClientRect(),
-				root = document.documentElement;
-			X = e.clientX - rect.left - root.scrollLeft;
-			Y = e.clientY - rect.top - root.scrollTop;
-		}
+	//	if (i === 0) {
+	//		var rect = cvs.getBoundingClientRect(),
+	//			root = document.documentElement;
+	//		X = e.clientX - rect.left - root.scrollLeft;
+	//		Y = e.clientY - rect.top - root.scrollTop;
+	//	}
 
 		var pixel = ct.getImageData(X, Y, 1, 1);
 		if (pixel.data[3] !== 0) {

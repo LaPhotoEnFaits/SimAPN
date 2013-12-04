@@ -2,17 +2,43 @@ Navigateur = function() {
   this.nom = '';
   this.version = 0;
   this.langue = '';
+  this.mobile = 0;
 };
 
 function filtreCSS(cvs, luminosite, flou) {
 
-  if (navigateur.nom === 'Firefox')
-    cvs.style.filter = 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'filtre_map\'><feGaussianBlur stdDeviation = \'' + flou + '\'/><feComponentTransfer><feFuncR type=\'linear\' slope=\'' + luminosite + '\'/><feFuncG type=\'linear\' slope=\'' + luminosite + '\'/><feFuncB type=\'linear\' slope=\'' + luminosite + '\'/></feComponentTransfer></filter></svg>#filtre_map")';
-
-  else if (navigateur.nom === 'InternetExplorer')
-    cvs.style = 'filter:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale")';
+  var brightVisible;
+  if (Math.abs(1 - luminosite) > DELTA_BRIGHT_MIN)
+    brightVisible = 1;
   else
-    cvs.style.webkitFilter = 'brightness(' + luminosite + ')blur(' + flou + 'px)';
+    brightVisible = 0;
+
+  var flouVisible;
+  if (flou > FLOU_MIN)
+    flouVisible = 1;
+  else
+    flouVisible = 0;
+
+  if (navigateur.nom === 'Firefox' || navigateur.nom === 'InternetExplorer') {
+    if (brightVisible && flouVisible)
+      cvs.style.filter = 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'filtreSVGVuePhoto\'><feGaussianBlur stdDeviation = \'' + flou + '\'/><feComponentTransfer><feFuncR type=\'linear\' slope=\'' + luminosite + '\'/><feFuncG type=\'linear\' slope=\'' + luminosite + '\'/><feFuncB type=\'linear\' slope=\'' + luminosite + '\'/></feComponentTransfer></filter></svg>#filtreSVGVuePhoto")';
+    else if (brightVisible)
+      cvs.style.filter = 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'filtreSVGVuePhoto\'><feComponentTransfer><feFuncR type=\'linear\' slope=\'' + luminosite + '\'/><feFuncG type=\'linear\' slope=\'' + luminosite + '\'/><feFuncB type=\'linear\' slope=\'' + luminosite + '\'/></feComponentTransfer></filter></svg>#filtreSVGVuePhoto")';
+    else if (flouVisible)
+      cvs.style.filter = 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'filtreSVGVuePhoto\'><feGaussianBlur stdDeviation = \'' + flou + '\'/></filter></svg>#filtreSVGVuePhoto")';
+    else
+      cvs.style.filter = '';
+  } else {
+
+    if (brightVisible && flouVisible)
+      cvs.style.webkitFilter = 'brightness(' + luminosite + ')blur(' + flou + 'px)';
+    else if (brightVisible)
+      cvs.style.webkitFilter = 'brightness(' + luminosite + ')';
+    else if (flouVisible)
+      cvs.style.webkitFilter = 'blur(' + flou + 'px)';
+    else
+      cvs.style.webkitFilter = '';
+  }
 }
 
 function displayInfoNavigateur() {
@@ -109,6 +135,13 @@ function readUserAgent() {
         navigateur.langue = 'Anglais';
     }
   }
+
+  var device = parser.getDevice();
+  if (device.type === 'mobile' || device.type === 'tablet')
+    navigateur.mobile = 1;
+  else
+    navigateur.mobile = 0;
+
 }
 
 function curseurCSS(type) {

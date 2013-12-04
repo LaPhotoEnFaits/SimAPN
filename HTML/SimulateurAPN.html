@@ -1,5 +1,6 @@
 <meta charset="UTF-8"/>
 
+
 <style type="text/css">
 h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;} 
 </style>
@@ -75,11 +76,6 @@ h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;}
 			</div>
 			<span id='btnVueCurseurExpo' class='classBtnReglage'></span>
 			<span id='btnCloseVueCurseurExpo' class='classBtnClose'></span>
-		</span>	
-
-		<span id='vueHistogrammes' class='classVueHistogrammes'>
-			<span id='btnCloseVueHistogrammes' class='classBtnClose'></span>
-			<canvas id='cvsHistogrammes' ></canvas>
 		</span>
 
 		<span id='vueFlouDeMiseAuPoint' class='classVueHistogrammes'>
@@ -87,14 +83,23 @@ h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;}
 			<canvas id='cvsFlouDeMiseAuPoint' ></canvas>
 		</span>
 
+		<span id='vueHistogrammes' class='classVueHistogrammes'>
+			<span id='btnCloseVueHistogrammes' class='classBtnClose'></span>
+			<canvas id='cvsHistogrammes' ></canvas>
+		</span>
+
+
+
 		<span id='vueReglagesRapides' class='classReglagesRapides'>
 
 			<table class='tableAvecSld'>
 
-				<tr id='ensembleChkCadrageConstant'>
+				<tr id='ensembleChkCadrageConstant' class='classChkCadrageConstant'>
 					<td><input type="checkbox" id="chkCadrageConstant" /></td>
 					<td><span id='nomChkCadrageConstant' class='nomDeParametre'></span></td>
 				</tr>
+
+				<tr><td><div style='height:15px'></div></td></tr>
 
 				<tr id='ensembleSldOuverture'>
 					<td><span id='nomSldOuverture' class='nomDeParametre'></span></td>
@@ -115,7 +120,7 @@ h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;}
 				</tr>
 			</table>
 
-			<table class='tableAvecSld'>
+			<table class='tableAvecSldFocale'>
 
 				<tr id='ensembleSldFocale'>
 					<td><span id='nomSldFocale' class='nomDeParametre'></span></td>
@@ -342,7 +347,7 @@ h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;}
 
 	var lstOrdonneeDesScripts=new Array();
 
-	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.min.js';	
+	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.js';	
 	lstOrdonneeDesScripts[1]=adresseDuCode+'/JS/';
 	lstOrdonneeDesScripts[2]=adresseDuCode+'/JS/main.js';
 	

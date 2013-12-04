@@ -39,3 +39,12 @@ function drawBouton(id, state) {
 	else
 		document.getElementById(id).style.background = 'rgba(0,0,0,0.25)';
 }
+
+function inhibeSelectionDesElementsDeLaPage() {
+	var simulateur = document.getElementById('vueSimulateur');
+	simulateur.onselectstart = new Function("return false");
+	if (window.sidebar) {
+		simulateur.onmousedown = disableselect;
+		simulateur.onclick = reEnable;
+	}
+}

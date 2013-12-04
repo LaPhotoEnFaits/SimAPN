@@ -116,7 +116,8 @@ input[type="range"]::-ms-tooltip  {
 
 .classBtnReglage{
     float:right;
-    padding-top: 1px;
+    /*padding-top: 1px;*/
+    padding:0px;
 }
 
 .classBtnClose{
@@ -125,8 +126,15 @@ input[type="range"]::-ms-tooltip  {
     float:right;
 }
 
-.tableAvecSld tr{
+.tableAvecSld,.tableAvecSldFocale tr{
     height:23px;
+}
+
+.tableAvecSldFocale{
+    padding-top:15px;
+}
+.classChkCadrageConstant{
+    padding-bottom:15px;
 }
 
 .classInfoNavigateur{
@@ -256,6 +264,7 @@ margin-top:7px;
     background: rgba(0,0,0,1);
     float:left;
     margin-top:0px;
+    margin-bottom: 7px;
 }
 
 .classVueHistogrammes{

@@ -7,7 +7,9 @@ var MARGE_DROITE_CVS_FDMAP = 40;
 
 var flagClicVueFlouDeMiseAuPoint = 0;
 var X0VueFlouDeMiseAuPoint;
-
+var Y0VueFlouDeMiseAuPoint;
+var X0ScdVueFlouDeMiseAuPoint;
+var Y0ScdVueFlouDeMiseAuPoint;
 
 
 VueFlouDeMiseAuPoint = function() {
@@ -133,7 +135,7 @@ function drawVueFlouDeMiseAuPoint() {
 	}
 }
 
-function deplacementSourisVueFlouDeMiseAuPoint(e) {
+function deplacementSourisVueFlouDeMiseAuPoint(X1VueFlouDeMiseAuPoint) {
 
 	var distanceMax = Math.max(scene.plans[0].distance, scene.plans[1].distance, scene.plans[2].distance);
 	var distance2px = (LARGEUR_CVS_FDMAP - MARGE_GAUCHE_CVS_FDMAP - MARGE_DROITE_CVS_FDMAP) / (1.25 * distanceMax);
@@ -141,9 +143,6 @@ function deplacementSourisVueFlouDeMiseAuPoint(e) {
 
 	for (var i = 0; i !== 3; i++)
 		Xplan[i] = distance2px * scene.plans[i].distance;
-
-	var cvs = document.getElementById('cvsFlouDeMiseAuPoint');
-	var X1VueFlouDeMiseAuPoint = e.clientX - cvs.getBoundingClientRect().left - document.documentElement.scrollLeft - MARGE_GAUCHE_CVS_FDMAP;
 
 	var planSelectionneTemporaire = "?";
 
@@ -172,7 +171,6 @@ function deplacementSourisVueFlouDeMiseAuPoint(e) {
 	}
 
 	if (flagClicVueFlouDeMiseAuPoint) {
-
 		scene.plans[planSelectionneTemporaire].distance += (X1VueFlouDeMiseAuPoint - X0VueFlouDeMiseAuPoint) / distance2px;
 		X0VueFlouDeMiseAuPoint = X1VueFlouDeMiseAuPoint;
 		scene.planSelectionne = planSelectionneTemporaire;
@@ -185,7 +183,11 @@ function deplacementSourisVueFlouDeMiseAuPoint(e) {
 
 
 document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('mousemove', function(e) {
-	deplacementSourisVueFlouDeMiseAuPoint(e);
+
+	var cvs = document.getElementById('cvsFlouDeMiseAuPoint');
+	var X1VueFlouDeMiseAuPoint = e.clientX - cvs.getBoundingClientRect().left - document.documentElement.scrollLeft - MARGE_GAUCHE_CVS_FDMAP;
+
+	deplacementSourisVueFlouDeMiseAuPoint(X1VueFlouDeMiseAuPoint);
 }, false);
 
 document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('mousedown', function(e) {
@@ -210,6 +212,33 @@ document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('mouseout', fun
 	drawVueFlouDeMiseAuPoint();
 }, false);
 
+
+////DOIGTS
+document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('touchstart', function(e) {
+
+		e.preventDefault();
+
+		if (e.touches[1]) {
+			X0ScdVueFlouDeMiseAuPoint = 1.0 * e.touches[1].clientX - MARGE_GAUCHE_CVS_FDMAP;
+			Y0ScdVueFlouDeMiseAuPoint = 1.0 * e.touches[1].clientY;
+		} else {
+			flagClicVueFlouDeMiseAuPoint = 1;
+			X0VueFlouDeMiseAuPoint = 1.0 * e.touches[0].clientX - MARGE_GAUCHE_CVS_FDMAP;
+			Y0VueFlouDeMiseAuPoint = 1.0 * e.touches[0].clientY;
+		}
+	}, false);
+
+document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('touchmove', function(e) {
+	e.preventDefault();
+
+	if (e.touches[1]){
+		//pinchToZoomVueFlouDeMiseAuPoint(e);
+	}
+	else {
+		var X1VueFlouDeMiseAuPoint = e.touches[0].clientX - MARGE_GAUCHE_CVS_FDMAP;
+		deplacementSourisVueFlouDeMiseAuPoint(X1VueFlouDeMiseAuPoint);
+	}
+}, false);
 
 
 function rouletteSourisVueFlouDeMiseAuPoint(e) {

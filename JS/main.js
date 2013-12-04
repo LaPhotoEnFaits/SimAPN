@@ -41,6 +41,7 @@ function initPreTelechargement() {
 	document.getElementById('titre').innerHTML = titre;
 	document.getElementById('version').innerHTML = versionDuSoft;
 
+
 	/*setAdressesImagesCss();*/
 
 
@@ -49,7 +50,8 @@ function initPreTelechargement() {
 
 	document.getElementById('infosPreChargement').style.display = 'none';
 	document.getElementById('infoUtilisateur').innerHTML = getTraduction('chargementEnCours');
-	initScene('BreakingBad');
+	var sceneAuPIF=getSceneRandom().nom;
+	initScene(getSceneRandom());
 }
 
 function initPostTelechargement() {
@@ -73,8 +75,12 @@ function initPostTelechargement() {
 	drawFlousEtExpo();
 
 	initInfoBulle();
-
+	inhibeSelectionDesElementsDeLaPage();
 	document.getElementById('infoUtilisateur').innerHTML = '';
+
+
+	document.getElementById('infoUtilisateur').innerHTML = navigateur.typeDeMachine;
+
 	show('Vues');
 	document.body.style.cursor = 'default';
 }
