@@ -53,13 +53,13 @@ function calcHauteurVuePhoto() {
 }
 
 function valideAccelerationMaterielle() {
-	document.getElementById('cvsPhotoCollimateurs').style.webkitTransform = 'translateZ(0)';
-	document.getElementById('cvsPhotoBruit').style.webkitTransform = 'translateZ(0)';
-	document.getElementById('cvsPhotoPlan0').style.webkitTransform = 'translateZ(0)';
-	document.getElementById('cvsPhotoPlan1').style.webkitTransform = 'translateZ(0)';
-	document.getElementById('cvsPhotoPlan2').style.webkitTransform = 'translateZ(0)';
-	document.getElementById('cvsPhotoPlan3').style.webkitTransform = 'translateZ(0)';
-	document.getElementById('cvsPhotoPlan4').style.webkitTransform = 'translateZ(0)';
+		document.getElementById('cvsPhotoCollimateurs').style.webkitTransform = 'translateZ(0)';
+		document.getElementById('cvsPhotoBruit').style.webkitTransform = 'translateZ(0)';
+		document.getElementById('cvsPhotoPlan0').style.webkitTransform = 'translateZ(0)';
+		document.getElementById('cvsPhotoPlan1').style.webkitTransform = 'translateZ(0)';
+		document.getElementById('cvsPhotoPlan2').style.webkitTransform = 'translateZ(0)';
+		document.getElementById('cvsPhotoPlan3').style.webkitTransform = 'translateZ(0)';
+		document.getElementById('cvsPhotoPlan4').style.webkitTransform = 'translateZ(0)';
 }
 
 function inhibeAccelerationMaterielle() {

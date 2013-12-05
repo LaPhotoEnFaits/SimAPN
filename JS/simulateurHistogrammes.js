@@ -20,6 +20,7 @@ function configSimulateur() {
 	vueReglagesScene.sldLuminositeVisible = 1;
 	vueReglagesScene.sldLuminositeMin = -6;
 	vueReglagesScene.sldLuminositeMax = 6;
+	vueReglagesScene.lstScenesVisible=1;
 
 	vueHistogrammes.activee = 1;
 	vueHistogrammes.visible = 1;

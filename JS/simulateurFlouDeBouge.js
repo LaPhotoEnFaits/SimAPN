@@ -29,6 +29,10 @@ function configSimulateur() {
 	vueReglagesAPN.fermable = 1;
 	vueReglagesAPN.lstTypeDeCapteurVisible = 1;
 	vueReglagesAPN.inpDefinitionCapteur = 1;
+
+	vueReglagesScene.activee = 1;
+	vueReglagesScene.fermable = 1;
+	vueReglagesScene.lstScenesVisible=1;
 }
 
 function initMateriel() {

@@ -23,11 +23,17 @@ function rouletteSourisVuePhoto(e) {
 	}
 
 	var deplacement;
+	var nouvelleDistanceDeMap;
 
-	if (delta > 0)
-		deplacement = -0.1;
+	if (delta < 0)
+		nouvelleDistanceDeMap = 1.05 * priseDeVue.distanceDeMAP;
 	else
-		deplacement = +0.1;
+		nouvelleDistanceDeMap = priseDeVue.distanceDeMAP / 1.05;
+
+	if (nouvelleDistanceDeMap < DISTANCE_DE_MAP_MIN)
+		nouvelleDistanceDeMap = DISTANCE_DE_MAP_MIN;
+
+	deplacement = nouvelleDistanceDeMap - priseDeVue.distanceDeMAP;
 
 	photographe.deplacementProfondeurCourant = deplacement;
 
@@ -49,16 +55,18 @@ function pinchToZoomVuePhoto(e) {
 	Y0VuePhoto = e.touches[0].clientY;
 	Y0ScdVuePhoto = e.touches[1].clientY;
 
-	var k = l1 / l0;
+	var k = l0 / l1;
 
 	var deplacement;
+	var nouvelleDistanceDeMap = k * priseDeVue.distanceDeMAP;
 
-	if (k > 1)
-		deplacement = -0.1;
-	else
-		deplacement = +0.1;
+	if (nouvelleDistanceDeMap < DISTANCE_DE_MAP_MIN)
+		nouvelleDistanceDeMap = DISTANCE_DE_MAP_MIN;
+
+	deplacement = nouvelleDistanceDeMap - priseDeVue.distanceDeMAP;
 
 	photographe.deplacementProfondeurCourant = deplacement;
+
 	onModifProfondeurPhotographe();
 }
 
@@ -199,10 +207,10 @@ document.getElementById('cvsPhotoCollimateurs').addEventListener('touchstart', f
 	if (navigateur.mobile)
 		vuePhoto.affichageRapide = 1;
 
-	if (e.touches[1]) {
+	if (e.touches.length === 2) {
 		X0ScdVuePhoto = 1.0 * e.touches[1].clientX;
 		Y0ScdVuePhoto = 1.0 * e.touches[1].clientY;
-	} else {
+	} else if (e.touches.length === 1) {
 		flagPinchToZoom = 0;
 		if (apnChoisi.focusEnCours) {
 			var cvs = document.getElementById('cvsPhotoPlan0');
@@ -224,16 +232,20 @@ document.getElementById('cvsPhotoCollimateurs').addEventListener('touchstart', f
 document.getElementById('cvsPhotoCollimateurs').addEventListener('touchmove', function(e) {
 	e.preventDefault();
 
-	if (e.touches[1]) {
+	if (e.touches.length === 2) {
 		flagPinchToZoom = 1;
 		pinchToZoomVuePhoto(e);
-	} else if (flagClicVuePhoto && !flagPinchToZoom)
+	} else if (e.touches.length === 1 && flagClicVuePhoto && !flagPinchToZoom)
 		deplacementsVuePhoto(e.touches[0].clientX, e.touches[0].clientY);
-
 }, false);
 
-document.getElementById('cvsPhotoCollimateurs').addEventListener('touchend', function() {
-	vuePhoto.affichageRapide = 0;
+document.getElementById('cvsPhotoCollimateurs').addEventListener('touchend', function(e) {
 	e.preventDefault();
-	flagClicVuePhoto = 0;
+	flagPinchToZoom=0;
+
+	if (e.touches.length < 2) {
+		vuePhoto.affichageRapide = 0;
+		flagClicVuePhoto = 0;
+		drawVuePhoto();
+	}
 }, false);

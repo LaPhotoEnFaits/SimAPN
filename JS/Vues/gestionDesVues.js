@@ -107,6 +107,7 @@ function RAZconfig() {
 	vueReglagesScene.sldLuminositeMin = -15;
 	vueReglagesScene.sldLuminositeMax = 16;
 	vueReglagesScene.inpDistancesPlansVisible = 0;
+	vueReglagesScene.lstScenesVisible = 0;
 
 	vueReglagesPhotographe.activee = 0;
 	vueReglagesPhotographe.visible = 0;
@@ -161,7 +162,7 @@ function initVues() {
 
 	initSldTailleFenetres();
 
-	for (i = 0; i < listeDesVues.length; i++) {
+	for (var i = 0; i < listeDesVues.length; i++) {
 		listeDesVues[i].initIHM();
 	}
 }

@@ -10,6 +10,7 @@ var X0VueFlouDeMiseAuPoint;
 var Y0VueFlouDeMiseAuPoint;
 var X0ScdVueFlouDeMiseAuPoint;
 var Y0ScdVueFlouDeMiseAuPoint;
+var flagPinchToZoomVueFlouDeMiseAuPoint = 0;
 
 
 VueFlouDeMiseAuPoint = function() {
@@ -146,6 +147,17 @@ function deplacementSourisVueFlouDeMiseAuPoint(X1VueFlouDeMiseAuPoint) {
 
 	var planSelectionneTemporaire = "?";
 
+	//CRADO !
+	if (navigateur.mobile) {
+		flagClicVueFlouDeMiseAuPoint = 1;
+		if (X1VueFlouDeMiseAuPoint < (Xplan[0] + Xplan[1]) / 2)
+			planSelectionneTemporaire = 0;
+		else if (X1VueFlouDeMiseAuPoint > (Xplan[1] + Xplan[2]) / 2)
+			planSelectionneTemporaire = 2;
+		else
+			planSelectionneTemporaire = 1;
+	}
+
 	if (flagClicVueFlouDeMiseAuPoint === 0) {
 
 		if (X1VueFlouDeMiseAuPoint < (Xplan[0] + Xplan[1]) / 2)
@@ -214,32 +226,68 @@ document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('mouseout', fun
 
 
 ////DOIGTS
+
+function pinchToZoomVueFlouDeMiseAuPoint(e) {
+	var X0 = X0VueFlouDeMiseAuPoint - X0ScdVueFlouDeMiseAuPoint;
+	var Y0 = Y0VueFlouDeMiseAuPoint - Y0ScdVueFlouDeMiseAuPoint;
+	var l0 = Math.sqrt(X0 * X0 + Y0 * Y0);
+
+	var X1 = e.touches[0].clientX - e.touches[1].clientX;
+	var Y1 = e.touches[0].clientY - e.touches[1].clientY;
+	var l1 = Math.sqrt(X1 * X1 + Y1 * Y1);
+
+	X0VueFlouDeMiseAuPoint = e.touches[0].clientX;
+	X0ScdVueFlouDeMiseAuPoint = e.touches[1].clientX;
+	Y0VueFlouDeMiseAuPoint = e.touches[0].clientY;
+	Y0ScdVueFlouDeMiseAuPoint = e.touches[1].clientY;
+
+	var k = l0 / l1;
+
+	vueFlouDeMiseAuPoint.hauteurEnMetre = k * vueFlouDeMiseAuPoint.hauteurEnMetre;
+	drawVueFlouDeMiseAuPoint();
+}
+
+
 document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('touchstart', function(e) {
 
-		e.preventDefault();
+	e.preventDefault();
 
-		if (e.touches[1]) {
-			X0ScdVueFlouDeMiseAuPoint = 1.0 * e.touches[1].clientX - MARGE_GAUCHE_CVS_FDMAP;
-			Y0ScdVueFlouDeMiseAuPoint = 1.0 * e.touches[1].clientY;
-		} else {
-			flagClicVueFlouDeMiseAuPoint = 1;
-			X0VueFlouDeMiseAuPoint = 1.0 * e.touches[0].clientX - MARGE_GAUCHE_CVS_FDMAP;
-			Y0VueFlouDeMiseAuPoint = 1.0 * e.touches[0].clientY;
-		}
-	}, false);
+	flagClicVueFlouDeMiseAuPoint = 1;
+
+	var cvs = document.getElementById('cvsFlouDeMiseAuPoint');
+
+	if (e.touches.length === 2) {
+		X0ScdVueFlouDeMiseAuPoint = 1.0 * e.touches[1].clientX - cvs.getBoundingClientRect().left - document.documentElement.scrollLeft - MARGE_GAUCHE_CVS_FDMAP;
+		Y0ScdVueFlouDeMiseAuPoint = 1.0 * e.touches[1].clientY;
+	} else if (e.touches.length === 1) {
+		flagPinchToZoomVueFlouDeMiseAuPoint = 0;
+		X0VueFlouDeMiseAuPoint = 1.0 * e.touches[0].clientX - cvs.getBoundingClientRect().left - document.documentElement.scrollLeft - MARGE_GAUCHE_CVS_FDMAP;
+		Y0VueFlouDeMiseAuPoint = 1.0 * e.touches[0].clientY;
+	}
+
+}, false);
 
 document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('touchmove', function(e) {
 	e.preventDefault();
+	var cvs = document.getElementById('cvsFlouDeMiseAuPoint');
 
-	if (e.touches[1]){
-		//pinchToZoomVueFlouDeMiseAuPoint(e);
-	}
-	else {
-		var X1VueFlouDeMiseAuPoint = e.touches[0].clientX - MARGE_GAUCHE_CVS_FDMAP;
+	if (e.touches.length === 2) {
+		flagPinchToZoomVueFlouDeMiseAuPoint = 1;
+		pinchToZoomVueFlouDeMiseAuPoint(e);
+	} else if (e.touches.length === 1 && flagClicVueFlouDeMiseAuPoint && !flagPinchToZoomVueFlouDeMiseAuPoint) {
+		var X1VueFlouDeMiseAuPoint = 1.0 * e.touches[0].clientX - cvs.getBoundingClientRect().left - document.documentElement.scrollLeft - MARGE_GAUCHE_CVS_FDMAP;
 		deplacementSourisVueFlouDeMiseAuPoint(X1VueFlouDeMiseAuPoint);
 	}
 }, false);
 
+
+document.getElementById('cvsFlouDeMiseAuPoint').addEventListener('touchend', function(e) {
+	e.preventDefault();
+	flagPinchToZoomVueFlouDeMiseAuPoint = 0;
+	scene.planSelectionne = '?';
+	flagClicVueFlouDeMiseAuPoint = 0;
+	drawVueFlouDeMiseAuPoint();
+}, false);
 
 function rouletteSourisVueFlouDeMiseAuPoint(e) {
 	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));

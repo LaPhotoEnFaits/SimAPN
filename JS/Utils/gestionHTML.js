@@ -1,3 +1,4 @@
+////CACHER/MONTRER
 function hide(id) {
 	var o = document.getElementById(id);
 	o.style.display = 'none';
@@ -17,6 +18,7 @@ function show(id) {
 		temp.style.display = 'none';
 }
 
+////LISTES
 function initSelectedLst(idLst, valeurInitiale, isString) {
 	var temp;
 
@@ -32,19 +34,24 @@ function initSelectedLst(idLst, valeurInitiale, isString) {
 	}
 }
 
+function resetLst(idLst) {
+	var select = document.getElementById(idLst);
+	var tailleDeLaListe = select.length;
+
+	if (tailleDeLaListe > 0) {
+		for (i = 0; i !== tailleDeLaListe; i++) {
+			select.options[0] = null;
+		}
+	}
+}
+
+
+
+////BOUTON
 function drawBouton(id, state) {
 
 	if (state === 'OFF')
 		document.getElementById(id).style.background = '';
 	else
 		document.getElementById(id).style.background = 'rgba(0,0,0,0.25)';
-}
-
-function inhibeSelectionDesElementsDeLaPage() {
-	var simulateur = document.getElementById('vueSimulateur');
-	simulateur.onselectstart = new Function("return false");
-	if (window.sidebar) {
-		simulateur.onmousedown = disableselect;
-		simulateur.onclick = reEnable;
-	}
 }

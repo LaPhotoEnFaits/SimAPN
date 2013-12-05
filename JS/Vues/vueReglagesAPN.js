@@ -23,6 +23,7 @@ function initInpDefinitionCapteur() {
 	document.getElementById('nomInpDefinitionCapteur').innerHTML = getTraduction("definition");
 	document.getElementById('inpDefinitionCapteur').value = 1.0 * apnChoisi.capteurDefinition;
 	document.getElementById('outputInpDefinitionCapteur').innerHTML = 'Mpx';
+	document.getElementById('inpDefinitionCapteur').size=5;
 }
 document.getElementById('inpDefinitionCapteur').addEventListener('change', function() {
 	if (isNumber(document.getElementById('inpDefinitionCapteur').value)) {

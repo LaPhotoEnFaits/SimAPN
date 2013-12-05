@@ -28,6 +28,13 @@ function initVueReglagesScene() {
 	} else
 		hide('ensembleInpDistancesPlans');
 
+	if (vueReglagesScene.lstScenesVisible) {
+		initLstScenes();
+		show('ensembleLstScenes');
+	} else
+		hide('ensembleLstScenes');
+
+
 }
 
 ////SAISIE DES DISTANCES DES PLANS
@@ -36,6 +43,7 @@ function initInpDistancesPlans() {
 		document.getElementById('nomInpDistancePlan' + i).innerHTML = getTraduction("Plan#") + (i + 1);
 		majOutputDistancePlan(i);
 		document.getElementById('outputDistancePlan' + i).innerHTML = 'm';
+		document.getElementById('inpDistancePlan' + i).size = 6;
 	}
 }
 
@@ -54,8 +62,6 @@ document.getElementById('inpDistancePlan0').addEventListener('change', function(
 		onModifDistancePlan(0);
 	} else
 		majOutputDistancePlan(0);
-
-
 }, false);
 document.getElementById('inpDistancePlan1').addEventListener('change', function() {
 	if (isNumber(document.getElementById('inpDistancePlan1').value)) {
@@ -63,7 +69,6 @@ document.getElementById('inpDistancePlan1').addEventListener('change', function(
 		onModifDistancePlan(1);
 	} else
 		majOutputDistancePlan(1);
-
 }, false);
 document.getElementById('inpDistancePlan2').addEventListener('change', function() {
 	if (isNumber(document.getElementById('inpDistancePlan2').value)) {
@@ -71,10 +76,35 @@ document.getElementById('inpDistancePlan2').addEventListener('change', function(
 		onModifDistancePlan(2);
 	} else
 		majOutputDistancePlan(2);
-
 }, false);
 
+////LISTE DES SCENES
+function initLstScenes() {
+	var i, option;
 
+
+	resetLst('lstScenes');
+	var select = document.getElementById('lstScenes');
+
+	for (i = 0; i !== listeDesScenes.length; i++) {
+		option = document.createElement("option");
+
+		if (listeDesScenes[i] === scene.sceneChoisie)
+			option.setAttribute("selected", "selected");
+
+		option.setAttribute("value", listeDesScenes[i]);
+		option.innerHTML = listeDesScenes[i];
+		select.appendChild(option);
+	}
+
+	document.getElementById('nomLstScenes').innerHTML = 'Photo';
+
+}
+
+document.getElementById('lstScenes').addEventListener('change', function() {
+	scene.sceneChoisie = document.getElementById('lstScenes').options[document.getElementById('lstScenes').selectedIndex].value;
+	initScene();
+}, false);
 
 ////LISTE LUMINOSITE
 function initLstLuminosite() {
@@ -130,7 +160,6 @@ function majOutputSldLuminosite() {
 	document.getElementById('outputSldLuminosite').innerHTML = luminositeString;
 }
 
-
 function modifSldLuminosite() {
 	scene.luminosite = 1.0 * document.getElementById('sldLuminosite').value;
 	onModifLuminosite();
@@ -141,4 +170,3 @@ document.getElementById("sldLuminosite").addEventListener('change', modifSldLumi
 document.getElementById("sldLuminosite").oninput = function() {
 	modifSldLuminosite();
 };
-

@@ -33,6 +33,7 @@ function configSimulateur() {
 	vueReglagesScene.activee = 1;
 	vueReglagesScene.fermable = 1;
 	vueReglagesScene.inpDistancesPlansVisible = 1;
+	vueReglagesScene.lstScenesVisible=1;
 
 	vueReglagesFocus.activee = 1;
 	vueReglagesFocus.fermable = 1;

@@ -54,6 +54,14 @@ function displayInfoNavigateur() {
 
   switch (navigateur.nom) {
 
+        case 'Mobile Safari':
+      if (navigateur.version >= 7)
+        document.getElementById('infoNavigateur').style.display = 'none';
+      else {
+         texte += getTraduction('navigateurInconnu');
+      }
+      break;
+
     case 'Chrome':
       if (navigateur.version >= 18)
         document.getElementById('infoNavigateur').style.display = 'none';
@@ -141,7 +149,6 @@ function readUserAgent() {
     navigateur.mobile = 1;
   else
     navigateur.mobile = 0;
-
 }
 
 function curseurCSS(type) {

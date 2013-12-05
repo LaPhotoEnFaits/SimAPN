@@ -1,9 +1,5 @@
-<meta charset="UTF-8"/>
 
 
-<style type="text/css">
-h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;} 
-</style>
 
 <div class='simulateur' id='vueSimulateur'>
 
@@ -226,7 +222,7 @@ h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;}
 
 				<tr id='ensembleInpDefinitionCapteur'>
 					<td><span id='nomInpDefinitionCapteur' class='nomDeParametre'></span></td>
-					<td><input id='inpDefinitionCapteur' size='3' class='cssInp' /></td>
+					<td><input id='inpDefinitionCapteur' class='cssInp' /></td>
 					<td><span id='outputInpDefinitionCapteur' ></span></td>
 				</tr>
 
@@ -241,8 +237,8 @@ h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;}
 					<td><span id='nomLstAntiVibration' class='nomDeParametre'></span></td>
 					<td>          
 						<select id="lstAntiVibration" class="cssLst">
-				            <option value=1 ></option>
-            				<option value=0 ></option>
+				            <option value='1' ></option>
+            				<option value='0' ></option>
 			        	</select>
 			        </td>
 				</tr>
@@ -257,10 +253,10 @@ h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;}
 					<td><span id='nomLstLstTremblements' class='nomDeParametre'></span></td>
 					<td>          
 						<select id="lstTremblements" class="cssLst">
-				          <option value=0.5></option>
-				          <option value=1.0></option>
-				          <option value=1.5></option>
-				          <option value=2></option>
+				          <option value='0.5'></option>
+				          <option value='1.0'></option>
+				          <option value='1.5'></option>
+				          <option value='2'></option>
 			        	</select>
 			        </td>
 					<td><span id='outputLstTremblements'></span></td>
@@ -292,13 +288,13 @@ h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;}
 					<td><span id='nomLstLuminositeScene' class='nomDeParametre'></span></td>
 					<td>          
 						<select name="Scene" id="lstLuminositeScene" class="cssLst">
-				           <option value=-3></option>
-				           <option value=3></option>
-				           <option value=10></option>
-				           <option value=11></option>
-				           <option value=13></option>
-				           <option value=15></option>
-				           <option value=16></option>
+				           <option value='-3'></option>
+				           <option value='3'></option>
+				           <option value='10'></option>
+				           <option value='11'></option>
+				           <option value='13'></option>
+				           <option value='15'></option>
+				           <option value='16'></option>
 			        	</select>
 			        </td>
 					<td><span id='outputLstLuminosite'></span></td>
@@ -316,18 +312,29 @@ h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;}
 			<table id='ensembleInpDistancesPlans'>
 				<tr>
 					<td><span id='nomInpDistancePlan0' class='nomDeParametre'></span></td>
-					<td><input id='inpDistancePlan0' size='4' class='cssInp' /></td>
+					<td><input id='inpDistancePlan0' class='cssInp' /></td>
 					<td><span id='outputDistancePlan0' ></span></td>
 				</tr>
 				<tr>
 					<td><span id='nomInpDistancePlan1' class='nomDeParametre'></span></td>
-					<td><input id='inpDistancePlan1' size='4' class='cssInp' /></td>
+					<td><input id='inpDistancePlan1' class='cssInp' /></td>
 					<td><span id='outputDistancePlan1' ></span></td>
 				</tr>
 				<tr>
 					<td><span id='nomInpDistancePlan2' class='nomDeParametre'></span></td>
-					<td><input id='inpDistancePlan2' size='4' class='cssInp' /></td>
+					<td><input id='inpDistancePlan2' class='cssInp' /></td>
 					<td><span id='outputDistancePlan2' ></span></td>
+				</tr>
+			</table>
+
+			<table id='ensembleLstScenes'>
+				<tr>
+					<td><span id='nomLstScenes' class='nomDeParametre'></span></td>
+					<td>          
+						<select id="lstScenes" class="cssLst">
+				        </select>
+			        </td>
+					<td><span id='outputLstLuminosite'></span></td>
 				</tr>
 			</table>
 		</span>
@@ -347,7 +354,7 @@ h4 { font-size: 16px; font-family: "Trebuchet MS", Verdana; line-height:18px;}
 
 	var lstOrdonneeDesScripts=new Array();
 
-	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.js';	
+	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.min.js';	
 	lstOrdonneeDesScripts[1]=adresseDuCode+'/JS/';
 	lstOrdonneeDesScripts[2]=adresseDuCode+'/JS/main.js';
 	

@@ -28,7 +28,7 @@ var traductionFr = {
     "message": "Caractéristiques du photographe"
   },
   "INFObtnVueReglagesScene": {
-    "message": "Luminosité et distances de la scène"
+    "message": "Luminosité, distances et illustration de la scène"
   },
   "INFObtnVueReglagesVuePhoto": {
     "message": "Choix des éléments à modéliser"

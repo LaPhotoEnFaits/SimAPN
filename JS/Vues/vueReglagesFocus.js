@@ -54,7 +54,7 @@ function onFocusClic(X,Y) {
 	//var X;
 	//var Y;
 
-	for (i = 0; i < 4; i++) {
+	for (var i = 0; i < 4; i++) {
 
 		var cvs = document.getElementById('cvsPhotoPlan' + i);
 		var ct = cvs.getContext('2d');

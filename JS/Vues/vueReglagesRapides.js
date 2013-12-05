@@ -66,6 +66,20 @@ function initSldFocale() {
 	document.getElementById('sldFocale').oninput = function() {
 		modifSldFocale();
 	};
+
+
+	document.getElementById('sldFocale').addEventListener('touchstart', function(e) {
+		if (navigateur.mobile)
+			vuePhoto.affichageRapide = 1;
+	}, false);
+
+	document.getElementById('sldFocale').addEventListener('touchend', function(e) {
+		if (navigateur.mobile) {
+			vuePhoto.affichageRapide = 0;
+			drawVuePhoto();
+		}
+	}, false);
+
 }
 
 function majOutputSldFocale() {
@@ -174,4 +188,3 @@ function modifSldISO() {
 	apnChoisi.ISO = cpt2ISO(1.0 * document.getElementById('sldISO').value).ISO;
 	onModifISO();
 }
-

@@ -1,5 +1,5 @@
 Scene = function() {
-	this.theme = '';
+	this.sceneChoisie = '';
 	this.luminosite = 0;
 	this.illustrations = new Array(4);
 	this.plans = new Array(4);
@@ -9,13 +9,16 @@ Scene = function() {
 	this.planSelectionne = '?';
 };
 
-function initScene(theme) {
 
-	scene.theme = theme;
+function initScene() {
 
-	switch (theme) {
+	cptImagesTelechargees = 0;
+	for (var i = 0; i != 4; i++)
+		scene.illustrations[i] = null;
 
-		case 'BreakingBad':
+	switch (scene.sceneChoisie) {
+
+		case 'Breaking Bad':
 
 			var urlMasqueGaz = adresseDuCode + '/Images/Photos/Breaking%20Bad/MasqueGaz.png';
 			var urlCamion = adresseDuCode + '/Images/Photos/Breaking%20Bad/Camion.png';
@@ -41,12 +44,12 @@ function initScene(theme) {
 			photographe.deplacementVertical = 0.567;
 			photographe.deplacementProfondeur = -1.1;
 
-			for (var i = 0; i !== 3; i++)
+			for (var i = 0; i !== 4; i++)
 				scene.plans[i].distance -= photographe.deplacementProfondeur;
 
 			break;
 
-		case 'Plage':
+		case 'Pamela va à la plage':
 
 			var urlBarque = adresseDuCode + '/Images/Photos/Plage/Barque.png';
 			var urlIlot = adresseDuCode + '/Images/Photos/Plage/Ilot.gif';
@@ -81,7 +84,7 @@ function initScene(theme) {
 
 
 		default:
-			initScene('BreakingBad');
+			initScene('Breaking Bad');
 			break;
 	}
 }
@@ -95,14 +98,10 @@ Plan = function(numeroIllustration, distance) {
 
 
 function getSceneRandom() {
-
-
 	var nbr = Math.random();
-	
+
 	if (nbr < 0.5)
-		return('BreakingBad');
+		return ('Breaking Bad');
 	else
-		return('Plage');
-
-
+		return ('Pamela va à la plage');
 }

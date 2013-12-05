@@ -2,6 +2,8 @@ titre = '';
 nomDuSoft = 'Camera Simulator';
 versionDuSoft = 'beta';
 
+cptImagesTelechargees=0;
+
 //MODELS
 scene = new Scene();
 photographe = new Photographe(0, 1.4, 0, 1, 1440);
@@ -27,12 +29,16 @@ vueReglagesFocus = new VueReglagesFocus();
 
 listeDesVues = [vuePhoto, vueCurseurExpo, vueReglagesRapides, vueReglagesVuePhoto, vueReglagesScene, vueReglagesPhotographe, vueReglagesObjectif, vueReglagesAPN, vueHistogrammes, vueFlouDeMiseAuPoint, vueEXIF, vueReglagesFocus];
 
+listeDesScenes=['Breaking Bad','Pamela va à la plage']
+
 //GENERAL
 flagMAJ = new FlagMAJ();
 
 
 
 function initPreTelechargement() {
+
+
 
 	RAZconfig();
 	configSimulateur();
@@ -44,17 +50,17 @@ function initPreTelechargement() {
 
 	/*setAdressesImagesCss();*/
 
-
-
 	displayInfoNavigateur();
 
 	document.getElementById('infosPreChargement').style.display = 'none';
 	document.getElementById('infoUtilisateur').innerHTML = getTraduction('chargementEnCours');
-	var sceneAuPIF=getSceneRandom().nom;
-	initScene(getSceneRandom());
+	
+	scene.sceneChoisie=getSceneRandom();
+	initScene(scene.sceneChoisie);
 }
 
 function initPostTelechargement() {
+
 	initMateriel();
 	calcHauteurVuePhoto();
 	initCalc();
@@ -67,20 +73,16 @@ function initPostTelechargement() {
 	var iMax = 100;
 	var incrI = 0.1;
 
-	for (i = 0.1; i < iMax; i += incrI) {
-		for (var ii = 0; ii !== 4; ii++)
+	for (var i = 0.1; i < iMax; i += incrI) {
+		for (var ii = 0; ii !== NBR_PLANS; ii++)
 			filtreCSS(document.getElementById('cvsPhotoPlan' + ii), 0.5 * i / iMax, i);
 	}
 
 	drawFlousEtExpo();
 
 	initInfoBulle();
-	inhibeSelectionDesElementsDeLaPage();
+	
 	document.getElementById('infoUtilisateur').innerHTML = '';
-
-
-	document.getElementById('infoUtilisateur').innerHTML = navigateur.typeDeMachine;
-
 	show('Vues');
 	document.body.style.cursor = 'default';
 }

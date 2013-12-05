@@ -18,3 +18,5 @@ var COLOR_ECHELLE = '#444444';
 var DELTA_BRIGHT_MIN = 0.15;
 var FLOU_MIN = 0.01;
 var FLOU_MAX = 100;
+
+var NBR_PLANS = 4;

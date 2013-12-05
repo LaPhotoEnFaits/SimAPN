@@ -17,10 +17,16 @@ function setInfoBulle() {
 
 function initInfoBulle() {
 
-	document.getElementById('btnInformationsUtilisateur').innerHTML = '<img src="' + adresseDuCode + '/Images/Icones/btnInformationsUtilisateur.png"/>';
-	setInfoBulle();
 
+	if(navigateur.mobile){
+		hide('btnInformationsUtilisateur');
+		flagInfoBulleActif = 0;
+	}
+	else{
+	document.getElementById('btnInformationsUtilisateur').innerHTML = '<img src="' + adresseDuCode + '/Images/Icones/btnInformationsUtilisateur.png"/>';
 	drawBouton('btnInformationsUtilisateur', 'ON');
+}
+setInfoBulle();	
 }
 
 document.getElementById('btnInformationsUtilisateur').addEventListener('mousedown', function() {
@@ -31,6 +37,5 @@ document.getElementById('btnInformationsUtilisateur').addEventListener('mousedow
 		flagInfoBulleActif = 1;
 		drawBouton('btnInformationsUtilisateur', 'ON');
 	}
-
 	setInfoBulle();
 }, false);

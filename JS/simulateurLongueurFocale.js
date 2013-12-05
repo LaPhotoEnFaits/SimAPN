@@ -35,6 +35,10 @@ function configSimulateur() {
 	vueReglagesPhotographe.tremblementsVisible = 1;
 	vueReglagesPhotographe.lstCdCVisible = 1;
 
+	vueReglagesScene.activee = 1;
+	vueReglagesScene.fermable = 1;
+	vueReglagesScene.lstScenesVisible = 1;
+
 	vueEXIF.activee = 1;
 	vueEXIF.visible = 1;
 }

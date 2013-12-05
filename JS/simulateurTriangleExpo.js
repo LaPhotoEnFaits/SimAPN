@@ -34,7 +34,9 @@ function configSimulateur() {
 
 	vueReglagesScene.activee = 1;
 	vueReglagesScene.visible = 1;
+	vueReglagesScene.fermable = 1;
 	vueReglagesScene.lstLuminositeVisible = 1;
+	vueReglagesScene.lstScenesVisible=1;
 
 	vueHistogrammes.activee = 1;
 	vueHistogrammes.visible = 0;
