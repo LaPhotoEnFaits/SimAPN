@@ -37,6 +37,8 @@ APN = function(marque, modele, gamme, date, prix, capteurFormat, capteurHauteur,
 	this.typeDeFocus = 'auto';
 	this.modeDeFocus = 'AFC';
 	this.focusEnCours = 0;
+
+	this.modeDePriorite = 'PrioriteManuel';
 };
 
 function vitesse2cpt(vitesseNombre) {

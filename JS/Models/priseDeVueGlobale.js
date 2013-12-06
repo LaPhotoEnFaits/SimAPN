@@ -17,6 +17,46 @@ PriseDeVue = function() {
 	this.hauteurPlan = new Array(3);
 };
 
+
+
+function calcModePriorite() {
+
+	calcExposition();
+
+	if (apnChoisi.modeDePriorite === 'PrioriteVitesse') {
+		var cptOuverture = ouverture2cpt(objectifChoisi.ouverture).cpt;
+		var cptOuvertureSave = cptOuverture;
+		cptOuverture += (Math.round(priseDeVue.exposition / (1 / 3)));
+
+		if (cptOuverture < ouverture2cpt(objectifChoisi.indiceOuvertureMin).cpt)
+			cptOuverture = ouverture2cpt(objectifChoisi.indiceOuvertureMin).cpt;
+		if (cptOuverture > ouverture2cpt(objectifChoisi.indiceOuvertureMax).cpt)
+			cptOuverture = ouverture2cpt(objectifChoisi.indiceOuvertureMax).cpt;
+
+		objectifChoisi.ouverture = cpt2ouverture(cptOuverture).N;
+
+		if (cptOuvertureSave !== cptOuverture)
+			onModifOuverture(1);
+	}
+
+	if (apnChoisi.modeDePriorite === 'PrioriteOuverture') {
+		var cptVitesse = vitesse2cpt(apnChoisi.vitesse).cpt;
+		var cptVitesseSave = cptVitesse;
+		cptVitesse -= (Math.round(priseDeVue.exposition / (1 / 3)));
+
+		if (cptVitesse < 1)
+			cptVitesse = 1;
+		if (cptVitesse > CPT_VITESSE_MAX)
+			cptVitesse = CPT_VITESSE_MAX;
+
+		apnChoisi.vitesse = cpt2vitesse(cptVitesse).vitesseNombre;
+
+		if (cptVitesseSave !== cptVitesse)
+			onModifVitesse(1);
+	}
+
+}
+
 function setFocaleCadrageConstant() {
 	objectifChoisi.focale = Math.round(apnChoisi.capteurLargeur * priseDeVue.distanceDeMAP / priseDeVue.largeurPlan[1]);
 }

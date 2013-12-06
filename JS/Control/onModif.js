@@ -21,6 +21,7 @@ FlagMAJ = function() {
 	this.calcTaillePixel = new ItemPourMAJ(calcTaillePixel);
 	this.calcCropFactor = new ItemPourMAJ(calcCropFactor);
 	this.calcCdc = new ItemPourMAJ(calcCdc);
+	this.calcModePriorite = new ItemPourMAJ(calcModePriorite);
 	this.calcPDC = new ItemPourMAJ(calcPDC);
 	this.calcChamps = new ItemPourMAJ(calcChamps);
 	this.calcFlousPlans = new ItemPourMAJ(calcFlousPlans);
@@ -302,6 +303,11 @@ function onModifTremblements(appelInterne) {
 }
 
 function onModifOuverture(appelInterne) {
+
+
+	if (apnChoisi.modeDePriorite === 'PrioriteOuverture')
+		flagMAJ.calcModePriorite.actif = 1;
+
 	flagMAJ.majOutputSldOuverture.actif = 1;
 	flagMAJ.drawVueEXIF.actif = 1;
 
@@ -313,6 +319,10 @@ function onModifOuverture(appelInterne) {
 }
 
 function onModifVitesse(appelInterne) {
+
+	if (apnChoisi.modeDePriorite === 'PrioriteVitesse')
+		flagMAJ.calcModePriorite.actif = 1;
+
 	flagMAJ.majOutputSldVitesse.actif = 1;
 	flagMAJ.drawVueEXIF.actif = 1;
 
@@ -324,6 +334,10 @@ function onModifVitesse(appelInterne) {
 }
 
 function onModifISO(appelInterne) {
+
+	if (apnChoisi.modeDePriorite !== 'PrioriteManuel')
+		flagMAJ.calcModePriorite.actif = 1;
+
 	flagMAJ.majOutputSldISO.actif = 1;
 	flagMAJ.calcDynamiqueCourante.actif = 1;
 	flagMAJ.drawBruit.actif = 1;

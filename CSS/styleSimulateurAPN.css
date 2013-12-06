@@ -147,7 +147,8 @@ input[type="range"]::-ms-tooltip  {
 
 .zoneSimulateur{
     display: flex;
-        -webkit-touch-callout: none;
+    
+    -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -252,6 +253,11 @@ width: 100%;
     padding-bottom: 3px;
 }
 
+
+.classViseur,.classVueHistogrammes,.classVueFlouDeMiseAuPoint,.classReglagesRapides,.classReglagesFocus,.classReglagesVue{
+    margin-bottom: 7px;
+}
+
 .classViseur, .classReglagesRapides,.classReglagesVue{
     padding: 7px;
     margin-left: 7px;    
@@ -259,7 +265,7 @@ width: 100%;
 }
 
 .classReglagesRapides,.classReglagesVue{
-margin-top:7px;
+/*margin-top:7px;*/
 }
 
 .classBtnReglage:hover, .classBtnClose:hover, input[type="checkbox"]:hover {
@@ -268,12 +274,10 @@ margin-top:7px;
 
 .classViseur{
     background: rgba(0,0,0,1);
-    float:left;
-    margin-top:0px;
-    margin-bottom: 7px;
+        
 }
 
-.classVueHistogrammes{
+.classVueHistogrammes,.classVueFlouDeMiseAuPoint{
      padding: 7px;
      float:left;
      margin-left: 7px; 
@@ -297,4 +301,32 @@ margin-top:7px;
 .classReglagesVue{
     background: rgba(0,0,0,0.17);
     border-radius: 6px 6px 6px 6px;   
+}
+.classReglagesFocus{
+    background: rgba(0,0,0,0.17);
+    border-radius: 6px 6px 6px 6px;
+    display: inline-block;
+}
+.nomDeVue{
+    font-style: italic;
+    display:inline;
+}
+
+
+.classEnsembleSldFocale,.classEnsembleRdbModeDePriorite{
+margin-top: 11px;
+}
+
+.classEnsembleRdbModeDePriorite{
+text-align: center;
+display: table-caption;
+}
+
+.classEnsembleRdbModeDePriorite td{
+padding-right: 3px;
+padding-left: 3px;
+}
+.classEnsembleRdbModeDePriorite td:first-child{
+padding-right: 3px;
+padding-left: 0px;
 }

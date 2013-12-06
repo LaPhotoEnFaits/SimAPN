@@ -74,105 +74,133 @@
 			<span id='btnCloseVueCurseurExpo' class='classBtnClose'></span>
 		</span>
 
-		<span id='vueFlouDeMiseAuPoint' class='classVueHistogrammes'>
-			<span id='btnCloseVueFlouDeMiseAuPoint' class='classBtnClose'></span>
-			<canvas id='cvsFlouDeMiseAuPoint' ></canvas>
-		</span>
+		<div>
+			<span id='vueReglagesRapides' class='classReglagesRapides'>
 
-		<span id='vueHistogrammes' class='classVueHistogrammes'>
-			<span id='btnCloseVueHistogrammes' class='classBtnClose'></span>
-			<canvas id='cvsHistogrammes' ></canvas>
-		</span>
+				<table class='tableAvecSld'>
 
+					<tr id='ensembleChkCadrageConstant' class='classChkCadrageConstant'>
+						<td><input type="checkbox" id="chkCadrageConstant" /></td>
+						<td><span id='nomChkCadrageConstant' class='nomDeParametre'></span></td>
+					</tr>
 
+					<tr><td><div style='height:15px'></div></td></tr>
 
-		<span id='vueReglagesRapides' class='classReglagesRapides'>
+					<tr id='ensembleSldOuverture'>
+						<td><span id='nomSldOuverture' class='nomDeParametre'></span></td>
+						<td><input type='range' id='sldOuverture' class='classSldReglageRapide' /></td>
+						<td><span id='outputSldOuverture'></span></td>
+					</tr>
+					
+					<tr id='ensembleSldVitesse'>
+						<td><span id='nomSldVitesse' class='nomDeParametre'></span></td>
+						<td><input type='range' id='sldVitesse' class='classSldReglageRapide' /></td>
+						<td><span id='outputSldVitesse'></span></td>
+					</tr>
 
-			<table class='tableAvecSld'>
+					<tr id='ensembleSldISO'>
+						<td><span id='nomSldISO' class='nomDeParametre'></span></td>
+						<td><input type='range' id='sldISO' class='classSldReglageRapide' /></td>
+						<td><span id='outputSldISO'></span></td>
+					</tr>
+				</table>
 
-				<tr id='ensembleChkCadrageConstant' class='classChkCadrageConstant'>
-					<td><input type="checkbox" id="chkCadrageConstant" /></td>
-					<td><span id='nomChkCadrageConstant' class='nomDeParametre'></span></td>
-				</tr>
+				<table class='tableAvecSldFocale' class='classEnsembleSldFocale'>
 
-				<tr><td><div style='height:15px'></div></td></tr>
+					<tr id='ensembleSldFocale'>
+						<td><span id='nomSldFocale' class='nomDeParametre'></span></td>
+						<td><input type='range' id='sldFocale' class='classSldFocale' /></td>
+						<td><span id='outputSldFocale'></span></td>
+					</tr>
 
-				<tr id='ensembleSldOuverture'>
-					<td><span id='nomSldOuverture' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sldOuverture' class='classSldReglageRapide' /></td>
-					<td><span id='outputSldOuverture'></span></td>
-				</tr>
+				</table>
+
+				<table id='ensembleRdbModeDePriorite' class='classEnsembleRdbModeDePriorite'>
+					<tr>
+						<td rowspan=2 id='nomEnsembleRdbModeDePriorite' ></td>
+
+						<td id='nomPrioriteManuel' class='nomDeParametre'></td>
+						<td id='nomPrioriteOuverture' class='nomDeParametre'></td>
+						<td id='nomPrioriteVitesse' class='nomDeParametre'></td>
+					</tr>
+
+					<tr>	
+						<td><input type='radio' name='modeDePriorite' id='rdbPrioriteManuel' /></td>
+						<td><input type='radio' name='modeDePriorite' id='rdbPrioriteOuverture' /></td>
+						<td><input type='radio' name='modeDePriorite' id='rdbPrioriteVitesse' /></td>
+					</tr>
+				</table>
+
 				
-				<tr id='ensembleSldVitesse'>
-					<td><span id='nomSldVitesse' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sldVitesse' class='classSldReglageRapide' /></td>
-					<td><span id='outputSldVitesse'></span></td>
-				</tr>
+					</tr>
 
-				<tr id='ensembleSldISO'>
-					<td><span id='nomSldISO' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sldISO' class='classSldReglageRapide' /></td>
-					<td><span id='outputSldISO'></span></td>
-				</tr>
-			</table>
 
-			<table class='tableAvecSldFocale'>
 
-				<tr id='ensembleSldFocale'>
-					<td><span id='nomSldFocale' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sldFocale' class='classSldFocale' /></td>
-					<td><span id='outputSldFocale'></span></td>
-				</tr>
-
-			</table>
-			<span id='btnVueReglagesRapides' class='classBtnReglage'></span>
-			<span id='btnCloseVueReglagesRapides' class='classBtnClose'></span>
-		</span>
-
-		<span id='vueReglagesFocus' class='classReglagesVue'>		
-
-			<span id='btnCloseVueReglagesFocus' class='classBtnClose'></span>	
-
-			<span id='ensembleRdbTypeDeFocus' class='elementMenuFocus'>
-				<table>
-				<tr id="ensembleRdbAutoFocus">
-					<td><input type='radio' name='typeDeFocus' id='rdbAutoFocus' /></td>
-					<td id='nomRdbAutoFocus' class='nomDeParametre' >AF</td>
-				</tr>
-				<tr id="ensembleRdbManualFocus">
-					<td><input type="radio" name='typeDeFocus' id="rdbManualFocus" /></td>
-					<td id='nomRdbManualFocus' class='nomDeParametre' >MF</td></tr>
-				</table>
+				<span id='btnVueReglagesRapides' class='classBtnReglage'></span>
+				<span id='btnCloseVueReglagesRapides' class='classBtnClose'></span>
 			</span>
 
-			<span id='ensembleRdbModeDeFocus' class='elementMenuFocus'>
-				<table>
-					<tr id='ensembleRdbFocusAFC'>
-						<td><input type='radio' name='modeDeFocus' id='rdbFocusAFC'  /></td>
-						<td id='nomRdbFocusAFC' class='nomDeParametre' >AFC</td>
+			<span id='vueReglagesFocus' class='classReglagesFocus'>		
+
+				<span id='btnCloseVueReglagesFocus' class='classBtnClose'></span>	
+
+				<span id='ensembleRdbTypeDeFocus' class='elementMenuFocus'>
+					<table>
+					<tr id="ensembleRdbAutoFocus">
+						<td><input type='radio' name='typeDeFocus' id='rdbAutoFocus' /></td>
+						<td id='nomRdbAutoFocus' class='nomDeParametre' >AF</td>
 					</tr>
-					<tr id="ensembleRdbFocusAFS">
-						<td><input type='radio' name='modeDeFocus' id='rdbFocusAFS' /></td>
-						<td id='nomRdbFocusAFS' class='nomDeParametre' >AFS</td>
+					<tr id="ensembleRdbManualFocus">
+						<td><input type="radio" name='typeDeFocus' id="rdbManualFocus" /></td>
+						<td id='nomRdbManualFocus' class='nomDeParametre' >MF</td></tr>
+					</table>
+				</span>
+
+				<span id='ensembleRdbModeDeFocus' class='elementMenuFocus'>
+					<table>
+						<tr id='ensembleRdbFocusAFC'>
+							<td><input type='radio' name='modeDeFocus' id='rdbFocusAFC'  /></td>
+							<td id='nomRdbFocusAFC' class='nomDeParametre' >AFC</td>
+						</tr>
+						<tr id="ensembleRdbFocusAFS">
+							<td><input type='radio' name='modeDeFocus' id='rdbFocusAFS' /></td>
+							<td id='nomRdbFocusAFS' class='nomDeParametre' >AFS</td>
+						</tr>
+					</table>
+				</span>
+
+				<span id='btnFocus' class='classBtnReglage'></span>
+
+				<table class='tableAvecSld'>
+					<tr id='ensembleSldFocus'>
+						<td><span id='nomSldFocus' class='nomDeParametre'></span></td>
+						<td><input type='range' id='sldFocus' class='classSldFocus' /></td>
+						<td><span id='outputSldFocus'></span></td>
 					</tr>
 				</table>
 			</span>
 
-			<span id='btnFocus' class='classBtnReglage'></span>
+		</div>
 
-			<table class='tableAvecSld'>
-				<tr id='ensembleSldFocus'>
-					<td><span id='nomSldFocus' class='nomDeParametre'></span></td>
-					<td><input type='range' id='sldFocus' class='classSldFocus' /></td>
-					<td><span id='outputSldFocus'></span></td>
-				</tr>
-			</table>
-		</span>
+		<div>
+			<span id='vueFlouDeMiseAuPoint' class='classVueFlouDeMiseAuPoint'>
+				<span id='btnCloseVueFlouDeMiseAuPoint' class='classBtnClose'></span>
+				<canvas id='cvsFlouDeMiseAuPoint' ></canvas>
+			</span>
+
+			<span id='vueHistogrammes' class='classVueHistogrammes'>
+				<span id='btnCloseVueHistogrammes' class='classBtnClose'></span>
+				<canvas id='cvsHistogrammes' ></canvas>
+			</span>
+		</div>
 
 
 		<span id='vueReglagesVuePhoto' class='classReglagesVue'>
-
 			<span id='btnCloseVueReglagesVuePhoto' class='classBtnReglage'></span>
+
+			<div id='nomVueReglagesVuePhoto' class='nomDeVue'></div>
+			<hr>
+			
 
 			<table>
 
@@ -201,6 +229,10 @@
 
 		<span id='vueReglagesAPN' class='classReglagesVue'>
 			<span id='btnCloseVueReglagesAPN' class='classBtnReglage'></span>
+			
+			<div id='nomVueReglagesAPN' class='nomDeVue'></div>
+			<hr>			
+
 
 			<table >
 				<tr id='ensembleLstTypeDeCapteur'>
@@ -231,6 +263,8 @@
 
 		<span id='vueReglagesObjectif' class='classReglagesVue'>
 			<span id='btnCloseVueReglagesObjectif' class='classBtnClose'></span>
+			<div id='nomVueReglagesObjectif' class='nomDeVue'></div>
+			<hr>				
 
 			<table id='ensembleLstAntiVibration'>
 				<tr>
@@ -247,6 +281,8 @@
 
 		<span id='vueReglagesPhotographe' class='classReglagesVue'>
 			<span id='btnCloseVueReglagesPhotographe' class='classBtnClose'></span>
+			<div id='nomVueReglagesPhotographe' class='nomDeVue'></div>
+			<hr>	
 
 			<table id='ensembleLstTremblements'>
 				<tr>
@@ -281,8 +317,11 @@
 		</span>		
 
 		<span id='vueReglagesScene' class='classReglagesVue'>
-
 			<span id='btnCloseVueReglagesScene' class='classBtnClose'></span>
+
+			<div id='nomVueReglagesScene' class='nomDeVue'></div>
+			<hr>
+
 			<table id='ensembleLstLuminosite'>
 				<tr>
 					<td><span id='nomLstLuminositeScene' class='nomDeParametre'></span></td>

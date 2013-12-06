@@ -7,6 +7,9 @@ VueReglagesObjectif = function() {
 };
 
 function initVueReglagesObjectif() {
+
+	document.getElementById('nomVueReglagesObjectif').innerHTML="Caractéristiques de l'objectif";
+
 	if (vueReglagesObjectif.lstAntiVibrationVisible) {
 		initLstAntiVibration();
 		show('ensembleLstAntiVibration');

@@ -536,13 +536,13 @@ var traductionFr = {
   "PleineLune": {
     "message": "Pleine lune"
   },
-  "PrioMan": {
+  "nomPrioriteManuel": {
     "message": "Mode manuel"
   },
-  "PrioOuv": {
+  "nomPrioriteOuverture": {
     "message": "Priorit\u00E9 ouverture"
   },
-  "PrioVit": {
+  "nomPrioriteVitesse": {
     "message": "Priorit\u00E9 vitesse"
   },
   "ReglGene": {
@@ -1188,13 +1188,13 @@ var traductionEn = {
   "PleineLune": {
     "message": "Full moon"
   },
-  "PrioMan": {
+  "nomPrioriteManuel": {
     "message": "Manual"
   },
-  "PrioOuv": {
+  "nomPrioriteOuverture": {
     "message": "Aperture priority"
   },
-  "PrioVit": {
+  "nomPrioriteVitesse": {
     "message": "Shutter priority"
   },
   "ReglGene": {

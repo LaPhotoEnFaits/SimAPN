@@ -5,6 +5,9 @@ VueReglagesAPN = function() {
 };
 
 function initVueReglagesAPN() {
+
+	document.getElementById('nomVueReglagesAPN').innerHTML="Caractéristiques de l'APN";
+
 	if (vueReglagesAPN.lstTypeDeCapteurVisible) {
 		initLstTypeDeCapteur();
 		show('ensembleLstTypeDeCapteur');

@@ -27,6 +27,7 @@ function configSimulateur() {
 	vueReglagesRapides.sldISOVisible = 1;
 	vueReglagesRapides.sldFocaleVisible = 1;
 	vueReglagesRapides.chkCadrageConstantVisible = 1;
+	vueReglagesRapides.ensembleRdbModeDePrioriteVisible = 1;
 
 	vueReglagesVuePhoto.activee = 1;
 	vueReglagesVuePhoto.fermable = 1;
@@ -39,7 +40,7 @@ function configSimulateur() {
 	vueReglagesScene.fermable = 1;
 	vueReglagesScene.lstLuminositeVisible = 1;
 	vueReglagesScene.inpDistancesPlansVisible = 1;
-	vueReglagesScene.lstScenesVisible=1;
+	vueReglagesScene.lstScenesVisible = 1;
 
 	vueReglagesPhotographe.activee = 1;
 	vueReglagesPhotographe.fermable = 1;
@@ -74,8 +75,6 @@ function configSimulateur() {
 function initMateriel() {
 	apnChoisi.vitesse = 1 / 2000;
 	apnChoisi.ISO = 200;
-
 	objectifChoisi.ouverture = 5.6;
-
 	priseDeVue.distanceDeMAP = scene.plans[1].distance;
 }

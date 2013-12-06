@@ -11,6 +11,8 @@ VueReglagesVuePhoto = function(activee, visible, fermable) {
 
 function initVueReglagesVuePhoto() {
 
+
+	document.getElementById('nomVueReglagesVuePhoto').innerHTML ='Éléments à modéliser'
 	document.getElementById('nomChkVuePhotoExpo').innerHTML = 'Exposition';
 	document.getElementById('nomChkVuePhotoFlouMap').innerHTML = 'Flou de mise au point';
 	document.getElementById('nomChkVuePhotoFlouBouge').innerHTML = 'Flou de bougé';

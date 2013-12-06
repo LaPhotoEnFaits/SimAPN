@@ -10,6 +10,8 @@ VueReglagesScene = function(activee, visible, fermable) {
 
 function initVueReglagesScene() {
 
+	document.getElementById('nomVueReglagesScene').innerHTML="Scène photographiée";
+
 	if (vueReglagesScene.lstLuminositeVisible) {
 		initLstLuminosite();
 		show('ensembleLstLuminosite');

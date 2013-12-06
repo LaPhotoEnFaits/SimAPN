@@ -39,7 +39,51 @@ function initVueReglagesRapides() {
 		show('ensembleSldFocale');
 	} else
 		hide('ensembleSldFocale');
+
+	if (vueReglagesRapides.ensembleRdbModeDePrioriteVisible) {
+		initEnsembleRdbModeDePriorite();
+		show('ensembleRdbModeDePriorite');
+	} else
+		hide('ensembleRdbModeDePriorite');
+
+	if (apnChoisi.modeDePriorite === 'PrioriteVitesse')
+		hide('ensembleSldOuverture');
+
+	if (apnChoisi.modeDePriorite === 'PrioriteOuverture')
+		hide('ensembleSldVitesse');
 }
+
+
+////MODES DE PRIORITE
+function initEnsembleRdbModeDePriorite() {
+	document.getElementById('nomPrioriteManuel').innerHTML = getTraduction('nomPrioriteManuel');
+	document.getElementById('nomPrioriteOuverture').innerHTML = getTraduction('nomPrioriteOuverture');
+	document.getElementById('nomPrioriteVitesse').innerHTML = getTraduction('nomPrioriteVitesse');
+
+	document.getElementById('rdb' + apnChoisi.modeDePriorite).checked = true;
+}
+
+document.getElementById('rdbPrioriteManuel').addEventListener('change', function() {
+	apnChoisi.modeDePriorite = 'PrioriteManuel';
+	if (vueReglagesRapides.sldOuvertureVisible)
+		show('ensembleSldOuverture');
+	if (vueReglagesRapides.sldVitesseVisible)
+		show('ensembleSldVitesse');
+}, false);
+
+document.getElementById('rdbPrioriteOuverture').addEventListener('change', function() {
+	apnChoisi.modeDePriorite = 'PrioriteOuverture';
+	if (vueReglagesRapides.sldOuvertureVisible)
+		show('ensembleSldOuverture');
+	hide('ensembleSldVitesse');
+}, false);
+
+document.getElementById('rdbPrioriteVitesse').addEventListener('change', function() {
+	apnChoisi.modeDePriorite = 'PrioriteVitesse';
+	hide('ensembleSldOuverture');
+	if (vueReglagesRapides.sldVitesseVisible)
+		show('ensembleSldVitesse');
+}, false);
 
 
 ////CADRAGE CONSTANT
@@ -59,7 +103,7 @@ function initChkCadrageConstant() {
 ////SLIDER FOCALE
 function initSldFocale() {
 	document.getElementById('nomSldFocale').innerHTML = 'Focale';
-	document.getElementById("sldFocale").value = 1.0 * objectifChoisi.focale;
+	document.getElementById('sldFocale').value = 1.0 * objectifChoisi.focale;
 	setFocalesMinMaxChoisie();
 
 	document.getElementById('sldFocale').addEventListener('change', modifSldFocale, false);

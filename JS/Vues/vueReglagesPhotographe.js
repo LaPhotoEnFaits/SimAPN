@@ -6,6 +6,9 @@ VueReglagesPhotographe = function() {
 };
 
 function initVueReglagesPhotographe() {
+
+	document.getElementById('nomVueReglagesPhotographe').innerHTML="Caractéristiques du photographe";
+	
 	if (vueReglagesPhotographe.tremblementsVisible) {
 		initLstTremblements();
 		majOutputLstTremblements();
