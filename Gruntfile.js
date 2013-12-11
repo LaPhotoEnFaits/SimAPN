@@ -8,9 +8,11 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-parallel');
 
     /*
      *
@@ -49,6 +51,18 @@ module.exports = function(grunt) {
             }
         },
 
+        // Serveur http pour tester en local
+        connect: {
+            server: {
+                options: {
+                    port: 9002,
+                    keepalive: true,
+                    base: './',
+                    hostname: '',
+                }
+            }
+        },
+
         uglify: {
             app: {
                 files: {
@@ -67,6 +81,17 @@ module.exports = function(grunt) {
                     spawn: false,
                 }
             }
+        },
+
+        // lance le watch et le serveur http en parallèle
+        parallel: {
+            grunt: {
+                options: {
+                    stream: true,
+                    grunt: true
+                },
+                tasks: ['watch', 'connect']
+            }
         }
 
     });
@@ -83,7 +108,7 @@ module.exports = function(grunt) {
         /*'jshint', Désactivé pour le moment car trop d'erreurs */
         'concat',
         'uglify',
-        'watch'
+        'parallel'
     ]);
 
     // Tâche par défaut : 'build'
