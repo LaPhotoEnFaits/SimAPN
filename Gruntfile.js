@@ -90,7 +90,7 @@ module.exports = function(grunt) {
                     stream: true,
                     grunt: true
                 },
-                tasks: ['watch', 'connect']
+                tasks: ['build', 'connect']
             }
         }
 
@@ -108,10 +108,10 @@ module.exports = function(grunt) {
         /*'jshint', Désactivé pour le moment car trop d'erreurs */
         'concat',
         'uglify',
-        'parallel'
+        'watch'
     ]);
 
     // Tâche par défaut : 'build'
-    grunt.registerTask('default', ['build']);
+    grunt.registerTask('default', ['parallel']);
 
 };
