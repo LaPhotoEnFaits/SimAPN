@@ -18,6 +18,16 @@ function show(id) {
 		temp.style.display = 'none';
 }
 
+////VALIDER/INHIBER
+function inhibe(id) {
+	document.getElementById(id).disabled = true;
+}
+
+function valide(id) {
+	document.getElementById(id).disabled = false;
+}
+
+
 ////LISTES
 function initSelectedLst(idLst, valeurInitiale, isString) {
 	var temp;

@@ -26,7 +26,7 @@ function configSimulateur() {
 	vueHistogrammes.visible = 1;
 }
 
-function initMateriel() {
+function configMateriel() {
 	apnChoisi.vitesse = 3;
 	apnChoisi.ISO = 100;
 	objectifChoisi.ouverture = 1.8;

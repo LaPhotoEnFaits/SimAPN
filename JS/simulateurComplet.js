@@ -9,11 +9,12 @@ function configSimulateur() {
 
 	vuePhoto.activee = 1;
 	vuePhoto.visible = 1;
-	vuePhoto.largeur = 550;
+	vuePhoto.largeur = 600;
 	vuePhoto.expositionVisible = 1;
 	vuePhoto.flouDeMapVisible = 1;
 	vuePhoto.flouDeBougeVisible = 1;
 	vuePhoto.bruitVisible = 1;
+	vuePhoto.pdcVisible = 1;
 
 	vueCurseurExpo.activee = 1;
 	vueCurseurExpo.visible = 1;
@@ -35,6 +36,7 @@ function configSimulateur() {
 	vueReglagesVuePhoto.chkFlouDeMapVisible = 1;
 	vueReglagesVuePhoto.chkFlouDeBougeVisible = 1;
 	vueReglagesVuePhoto.chkBruitVisible = 1;
+	vueReglagesVuePhoto.chkPDCVisible = 1;
 
 	vueReglagesScene.activee = 1;
 	vueReglagesScene.fermable = 1;
@@ -54,7 +56,9 @@ function configSimulateur() {
 	vueReglagesAPN.activee = 1;
 	vueReglagesAPN.fermable = 1;
 	vueReglagesAPN.lstTypeDeCapteurVisible = 1;
-	vueReglagesAPN.inpDefinitionCapteur = 1;
+	vueReglagesAPN.inpDefinitionCapteurVisible = 1;
+	vueReglagesAPN.ensembleAPNManuelVisible = 1;
+	vueReglagesAPN.ensembleAPNExistantVisible = 1;
 
 	vueHistogrammes.activee = 1;
 	vueHistogrammes.fermable = 1;
@@ -70,9 +74,12 @@ function configSimulateur() {
 	vueReglagesFocus.rdbTypeDeFocusVisible = 1;
 	vueReglagesFocus.rdbModeDeFocusVisible = 1;
 	vueReglagesFocus.sldFocusVisible = 1;
+
+	vue3D.activee = 1;
+	vue3D.fermable = 1;
 }
 
-function initMateriel() {
+function configMateriel() {
 	apnChoisi.vitesse = 1 / 2000;
 	apnChoisi.ISO = 200;
 	objectifChoisi.ouverture = 5.6;

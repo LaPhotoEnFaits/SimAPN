@@ -75,6 +75,7 @@ function RAZconfig() {
 	vuePhoto.flouDeBougeVisible = 0;
 	vuePhoto.bruitVisible = 0;
 	vuePhoto.affichageRapide = 0;
+	vuePhoto.pdcVisible = 0;
 
 	vueCurseurExpo.activee = 0;
 	vueCurseurExpo.visible = 0;
@@ -90,7 +91,7 @@ function RAZconfig() {
 	vueReglagesRapides.sldISOVisible = 0;
 	vueReglagesRapides.sldFocaleVisible = 0;
 	vueReglagesRapides.chkCadrageConstantVisible = 0;
-	vueReglagesRapides.ensembleRdbModeDePrioriteVisible=0;
+	vueReglagesRapides.ensembleRdbModeDePrioriteVisible = 0;
 
 	vueReglagesVuePhoto.activee = 0;
 	vueReglagesVuePhoto.visible = 0;
@@ -99,6 +100,7 @@ function RAZconfig() {
 	vueReglagesVuePhoto.chkFlouDeMapVisible = 0;
 	vueReglagesVuePhoto.chkFlouDeBougeVisible = 0;
 	vueReglagesVuePhoto.chkBruitVisible = 0;
+	vueReglagesVuePhoto.chkPDCVisible = 0;
 
 	vueReglagesScene.activee = 0;
 	vueReglagesScene.visible = 0;
@@ -125,7 +127,10 @@ function RAZconfig() {
 	vueReglagesAPN.visible = 0;
 	vueReglagesAPN.fermable = 0;
 	vueReglagesAPN.lstTypeDeCapteurVisible = 0;
-	vueReglagesAPN.inpDefinitionCapteur = 0;
+	vueReglagesAPN.inpDefinitionCapteurVisible = 0;
+	vueReglagesAPN.ensembleAPNManuelVisible = 0;
+	vueReglagesAPN.ensembleAPNExistantVisible = 0;
+
 
 	vueHistogrammes.activee = 0;
 	vueHistogrammes.visible = 0;
@@ -145,6 +150,10 @@ function RAZconfig() {
 	vueReglagesFocus.rdbTypeDeFocusVisible = 0;
 	vueReglagesFocus.rdbModeDeFocusVisible = 0;
 	vueReglagesFocus.sldFocusVisible = 0;
+
+	vue3D.activee = 0;
+	vue3D.visible = 0;
+	vue3D.fermable = 0;
 }
 
 function drawVues() {

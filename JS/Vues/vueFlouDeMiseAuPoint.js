@@ -53,7 +53,8 @@ function drawVueFlouDeMiseAuPoint() {
 		ct.fillText('distance', X0 + largeurAxeX - 15, HAUTEUR_CVS_FDMAP - MARGE_BAS_CVS_FDMAP + 10);
 
 		demiFlecheHorizontale(ct, HAUTEUR_CVS_FDMAP - MARGE_BAS_CVS_FDMAP - 1, X0, X0 + largeurAxeX, COLOR_AXE);
-		demiFlecheVerticale(ct, X0, HAUTEUR_CVS_FDMAP - MARGE_BAS_CVS_FDMAP - 1, MARGE_HAUT_CVS_FDMAP, COLOR_AXE);
+		var hauteurAxeY = HAUTEUR_CVS_FDMAP - MARGE_BAS_CVS_FDMAP;
+		demiFlecheVerticale(ct, X0, hauteurAxeY - 1, MARGE_HAUT_CVS_FDMAP, COLOR_AXE);
 
 		//VALEURS DES DISTANCES, TRAITS VERTICAUX ET ROND DE SELECTION
 		var flou;
@@ -93,7 +94,12 @@ function drawVueFlouDeMiseAuPoint() {
 		ct.stroke();
 
 		//SURFACE DE PDC
-		ct.fillStyle = 'rgba(51,102,204,0.15)';
+		ct.fillStyle = 'rgba(' + COULEUR_PDC + ',0.15)';
+		var Ycdc = Y0 - flou2px * priseDeVue.cdc;
+
+		if (Ycdc < 2)
+			Ycdc = 2;
+
 		var Xdebut = X0 + distance2px * priseDeVue.debutDeLaPDC;
 		var Xfin = X0 + distance2px * priseDeVue.finDeLaPDC;
 
@@ -101,17 +107,15 @@ function drawVueFlouDeMiseAuPoint() {
 			Xfin = LARGEUR_CVS_FDMAP - 1;
 
 		ct.beginPath();
-		ct.fillRect(Xdebut, MARGE_HAUT_CVS_FDMAP, Xfin - Xdebut, HAUTEUR_CVS_FDMAP - MARGE_HAUT_CVS_FDMAP - MARGE_BAS_CVS_FDMAP);
+		ct.fillRect(Xdebut, Ycdc, Xfin - Xdebut, HAUTEUR_CVS_FDMAP - MARGE_BAS_CVS_FDMAP - Ycdc);
 
 
 		//REPERE CERCLE DE CONFUSION
-		var Ycdc = Y0 - flou2px * priseDeVue.cdc;
-
 		if (Ycdc > 0) {
 			ct.fillStyle = 'rgb(51,102,204)';
 			ct.fillText(getTraduction('cdc_abv'), 7, Ycdc + 4);
 			ct.fillStyle = 'rgba(51,102,204,0.35)';
-			ct.fillRect(X0, Ycdc, largeurAxeX, 1);
+			ct.fillRect(X0 - 3, Ycdc, 6, 1);
 		}
 
 

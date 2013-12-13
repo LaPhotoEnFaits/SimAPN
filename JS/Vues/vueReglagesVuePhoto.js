@@ -12,34 +12,38 @@ VueReglagesVuePhoto = function(activee, visible, fermable) {
 function initVueReglagesVuePhoto() {
 
 
-	document.getElementById('nomVueReglagesVuePhoto').innerHTML ='Éléments à modéliser'
+	document.getElementById('nomVueReglagesVuePhoto').innerHTML = 'Éléments à modéliser'
 	document.getElementById('nomChkVuePhotoExpo').innerHTML = 'Exposition';
 	document.getElementById('nomChkVuePhotoFlouMap').innerHTML = 'Flou de mise au point';
 	document.getElementById('nomChkVuePhotoFlouBouge').innerHTML = 'Flou de bougé';
 	document.getElementById('nomChkVuePhotoBruit').innerHTML = 'Bruit';
+	document.getElementById('nomChkVuePhotoPDC').innerHTML = 'PDC';
 
-	if (vueReglagesVuePhoto.chkExpositionVisible) {
-		//initSldLuminositeScene();
+	if (vueReglagesVuePhoto.chkExpositionVisible)
 		show('ensembleChkExpo');
-	} else
+	else
 		hide('ensembleChkExpo');
 
-	if (vueReglagesVuePhoto.chkFlouDeMapVisible) {
+	if (vueReglagesVuePhoto.chkFlouDeMapVisible)
 		show('ensembleChkFlouDeMap');
-	} else
+	else
 		hide('ensembleChkFlouDeMap');
 
-	if (vueReglagesVuePhoto.chkFlouDeBougeVisible) {
+	if (vueReglagesVuePhoto.chkFlouDeBougeVisible)
 
 		show('ensembleChkFlouDeBouge');
-	} else
+	else
 		hide('ensembleChkFlouDeBouge');
 
-	if (vueReglagesVuePhoto.chkBruitVisible) {
-
+	if (vueReglagesVuePhoto.chkBruitVisible)
 		show('ensembleChkBruit');
-	} else
+	else
 		hide('ensembleChkBruit');
+
+	if (vueReglagesVuePhoto.chkPDCVisible)
+		show('ensembleChkPDC');
+	else
+		hide('ensembleChkPDC');
 
 
 
@@ -62,6 +66,11 @@ function initVueReglagesVuePhoto() {
 		document.getElementById('chkVuePhotoBruit').checked = true;
 	else
 		document.getElementById('chkVuePhotoBruit').checked = false;
+
+	if (vuePhoto.pdcVisible)
+		document.getElementById('chkVuePhotoPDC').checked = true;
+	else
+		document.getElementById('chkVuePhotoPDC').checked = false;
 }
 
 ////CHECKBOXS
@@ -102,3 +111,11 @@ document.getElementById('chkVuePhotoBruit').addEventListener('change', function(
 	drawBruit();
 }, false);
 
+document.getElementById('chkVuePhotoPDC').addEventListener('change', function() {
+	if (document.getElementById('chkVuePhotoPDC').checked)
+		vuePhoto.pdcVisible = 1;
+	else
+		vuePhoto.pdcVisible = 0;
+
+	drawPDCVuePhoto();
+}, false);

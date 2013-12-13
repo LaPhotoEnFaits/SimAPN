@@ -11,14 +11,10 @@ function initVueEXIF() {
 
 function drawVueEXIF() {
 	if (vueEXIF.visible) {
-
-		var zoneDeTexte = document.getElementById('donneesEXIF');
-		var separateur = '&nbsp;&nbsp;&nbsp;';
-
-		zoneDeTexte.innerHTML = apnChoisi.capteurFormat;
-		zoneDeTexte.innerHTML += separateur + objectifChoisi.focale + 'mm';
-		zoneDeTexte.innerHTML += separateur + 'f/' + objectifChoisi.ouverture;
-		zoneDeTexte.innerHTML += separateur + cpt2vitesse(vitesse2cpt(1.0 * apnChoisi.vitesse).cpt).vitesseString;
-		zoneDeTexte.innerHTML += separateur + 'ISO' + apnChoisi.ISO;
+		document.getElementById('EXIFCapteur').innerHTML = apnChoisi.capteurFormat;
+		document.getElementById('EXIFFocale').innerHTML = objectifChoisi.focale + 'mm';
+		document.getElementById('EXIFOuverture').innerHTML = 'f/' + objectifChoisi.ouverture;
+		document.getElementById('EXIFVitesse').innerHTML = cpt2vitesse(vitesse2cpt(1.0 * apnChoisi.vitesse).cpt).vitesseString;
+		document.getElementById('EXIFISO').innerHTML = 'ISO' + apnChoisi.ISO;
 	}
 }

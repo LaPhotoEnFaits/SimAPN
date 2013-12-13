@@ -18,8 +18,9 @@ function initVuePhoto() {
 	document.getElementById('cvsPhotoPlan1').style.zIndex = '5';
 	document.getElementById('cvsPhotoPlan2').style.zIndex = '4';
 	document.getElementById('cvsPhotoPlan3').style.zIndex = '3';
-	document.getElementById('cvsPhotoPlan4').style.zIndex = '2';
-	document.getElementById('cvsPhotoPourPositionRelative').style.zIndex = '1';
+	document.getElementById('cvsPhotoPlan4').style.zIndex = '1';
+	document.getElementById('cvsPhotoPlan5').style.zIndex = '2';
+	document.getElementById('cvsPhotoPourPositionRelative').style.zIndex = '0';
 
 	document.getElementById('cvsPhotoCollimateurs').height = vuePhoto.hauteur;
 	document.getElementById('cvsPhotoCollimateurs').width = vuePhoto.largeur;
@@ -35,6 +36,8 @@ function initVuePhoto() {
 	document.getElementById('cvsPhotoPlan3').width = vuePhoto.largeur;
 	document.getElementById('cvsPhotoPlan4').height = vuePhoto.hauteur;
 	document.getElementById('cvsPhotoPlan4').width = vuePhoto.largeur;
+	document.getElementById('cvsPhotoPlan5').height = vuePhoto.hauteur;
+	document.getElementById('cvsPhotoPlan5').width = vuePhoto.largeur;
 	document.getElementById('cvsPhotoPourPositionRelative').height = vuePhoto.hauteur;
 	document.getElementById('cvsPhotoPourPositionRelative').width = vuePhoto.largeur;
 
@@ -42,10 +45,7 @@ function initVuePhoto() {
 	document.getElementById('cvsPhotoPlan1').style.clip = 'rect(0px,' + vuePhoto.largeur + 'px,' + vuePhoto.hauteur + 'px,0px)';
 	document.getElementById('cvsPhotoPlan2').style.clip = 'rect(0px,' + vuePhoto.largeur + 'px,' + vuePhoto.hauteur + 'px,0px)';
 	document.getElementById('cvsPhotoPlan3').style.clip = 'rect(0px,' + vuePhoto.largeur + 'px,' + vuePhoto.hauteur + 'px,0px)';
-
-
 }
-
 
 function calcHauteurVuePhoto() {
 	vuePhoto.hauteur = vuePhoto.largeur * apnChoisi.capteurHauteur / apnChoisi.capteurLargeur;
@@ -53,13 +53,14 @@ function calcHauteurVuePhoto() {
 }
 
 function valideAccelerationMaterielle() {
-		document.getElementById('cvsPhotoCollimateurs').style.webkitTransform = 'translateZ(0)';
-		document.getElementById('cvsPhotoBruit').style.webkitTransform = 'translateZ(0)';
-		document.getElementById('cvsPhotoPlan0').style.webkitTransform = 'translateZ(0)';
-		document.getElementById('cvsPhotoPlan1').style.webkitTransform = 'translateZ(0)';
-		document.getElementById('cvsPhotoPlan2').style.webkitTransform = 'translateZ(0)';
-		document.getElementById('cvsPhotoPlan3').style.webkitTransform = 'translateZ(0)';
-		document.getElementById('cvsPhotoPlan4').style.webkitTransform = 'translateZ(0)';
+	document.getElementById('cvsPhotoCollimateurs').style.webkitTransform = 'translateZ(0)';
+	document.getElementById('cvsPhotoBruit').style.webkitTransform = 'translateZ(0)';
+	document.getElementById('cvsPhotoPlan0').style.webkitTransform = 'translateZ(0)';
+	document.getElementById('cvsPhotoPlan1').style.webkitTransform = 'translateZ(0)';
+	document.getElementById('cvsPhotoPlan2').style.webkitTransform = 'translateZ(0)';
+	document.getElementById('cvsPhotoPlan3').style.webkitTransform = 'translateZ(0)';
+	document.getElementById('cvsPhotoPlan4').style.webkitTransform = 'translateZ(0)';
+	document.getElementById('cvsPhotoPlan5').style.webkitTransform = 'translateZ(0)';
 }
 
 function inhibeAccelerationMaterielle() {
@@ -128,8 +129,8 @@ function drawGrillePerspective() {
 
 		ct.lineWidth = 1;
 
-		var pasDuCadrillage = 1.0;
-		var distancePremierTraitHorizontalVisible = pasDuCadrillage * Math.ceil((distanceBasPhoto + photographe.deplacementProfondeur) / pasDuCadrillage);
+		
+		var distancePremierTraitHorizontalVisible = PAS_GRILLE_SOL * Math.ceil((distanceBasPhoto + photographe.deplacementProfondeur) / PAS_GRILLE_SOL);
 		var Y = 0;
 		var Ylast = -1;
 		var flag = 1;
@@ -159,7 +160,7 @@ function drawGrillePerspective() {
 				} else
 					flag = 0;
 			}
-			distancePremierTraitHorizontalVisible += pasDuCadrillage; //incrément d'un ecartLignesSol
+			distancePremierTraitHorizontalVisible += PAS_GRILLE_SOL; //incrément d'un ecartLignesSol
 		}
 
 
@@ -170,9 +171,9 @@ function drawGrillePerspective() {
 		while (flag !== 7) {
 
 			if (photographe.deplacementVertical >= 0)
-				X = Xm + i * pasDuCadrillage * vuePhoto.largeur / largeurBasPhoto + photographe.deplacementHorizontal * vuePhoto.largeur / largeurBasPhoto;
+				X = Xm + i * PAS_GRILLE_SOL * vuePhoto.largeur / largeurBasPhoto + photographe.deplacementHorizontal * vuePhoto.largeur / largeurBasPhoto;
 			else
-				X = Xm + i * pasDuCadrillage * vuePhoto.largeur / largeurBasPhoto - photographe.deplacementHorizontal * vuePhoto.largeur / largeurBasPhoto;
+				X = Xm + i * PAS_GRILLE_SOL * vuePhoto.largeur / largeurBasPhoto - photographe.deplacementHorizontal * vuePhoto.largeur / largeurBasPhoto;
 
 			alpha = alphaMax * (1 - Math.abs(X - Xm) / (Xmax - Xm));
 
@@ -194,9 +195,9 @@ function drawGrillePerspective() {
 			}
 
 			if (photographe.deplacementVertical >= 0)
-				X = Xm - i * pasDuCadrillage * vuePhoto.largeur / largeurBasPhoto + photographe.deplacementHorizontal * vuePhoto.largeur / largeurBasPhoto;
+				X = Xm - i * PAS_GRILLE_SOL * vuePhoto.largeur / largeurBasPhoto + photographe.deplacementHorizontal * vuePhoto.largeur / largeurBasPhoto;
 			else
-				X = Xm - i * pasDuCadrillage * vuePhoto.largeur / largeurBasPhoto - photographe.deplacementHorizontal * vuePhoto.largeur / largeurBasPhoto;
+				X = Xm - i * PAS_GRILLE_SOL * vuePhoto.largeur / largeurBasPhoto - photographe.deplacementHorizontal * vuePhoto.largeur / largeurBasPhoto;
 
 			alpha = alphaMax * (1 - Math.abs(X - Xm) / (Xmax - Xm));
 
@@ -222,6 +223,36 @@ function drawGrillePerspective() {
 			if (i > 1000)
 				flag = 7;
 		}
+	}
+}
+
+function drawPDCVuePhoto() {
+
+	var cvs = document.getElementById('cvsPhotoPlan5');
+	var ct = cvs.getContext('2d');
+
+	cvs.width = vuePhoto.largeur;
+	cvs.height = vuePhoto.hauteur;
+
+	if (vuePhoto.pdcVisible) {
+
+		var temp = 2 * priseDeVue.debutDeLaPDC * Math.tan(priseDeVue.angleChampVertical * Math.PI / 360.0);
+		var Ym = (vuePhoto.hauteur - 1) / 2;
+		var Yav = Ym + photographe.deplacementVertical * vuePhoto.hauteur / temp;
+		temp = 2 * priseDeVue.finDeLaPDC * Math.tan(priseDeVue.angleChampVertical * Math.PI / 360.0);
+		var Yar = Ym + photographe.deplacementVertical * vuePhoto.hauteur / temp;
+
+		ct.strokeStyle = 'rgba(' + COULEUR_PDC + ',0.5)';
+		ct.fillStyle = 'rgba(' + COULEUR_PDC + ',0.5)';
+
+		ct.beginPath();
+		ct.moveTo(0, Yav);
+		ct.lineTo(0, Yar);
+		ct.lineTo(vuePhoto.largeur - 1, Yar);
+		ct.lineTo(vuePhoto.largeur - 1, Yav);
+		ct.closePath();
+		ct.stroke();
+		ct.fill();
 	}
 }
 
@@ -298,6 +329,7 @@ function drawVuePhoto() {
 	drawPlans();
 	drawFlouBouge();
 	drawSol();
+	drawPDCVuePhoto();
 	drawGrillePerspective();
 	drawFlousEtExpo();
 	drawBruit();

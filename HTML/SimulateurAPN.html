@@ -1,6 +1,3 @@
-
-
-
 <div class='simulateur' id='vueSimulateur'>
 
 	<div id='infoUtilisateur' class='classInfoUtilisateur'></div>
@@ -10,9 +7,7 @@
 		<div class='barreDeTitre'>
 			<span id='nomDuSoft' class='classNomDuSoft'></span>
 			<span id='version' class='classVersionDuSoft'></span>
-			<span id='titre' class='classTitre'></span>
-
-			
+			<span id='titre' class='classTitre'></span>			
 		</div>
 
 		<div id='barreDeTache' class='classBarreDeTache'>
@@ -34,6 +29,7 @@
 					<td id='btnVueReglagesAPN' class='classBtnReglage'></td>
 					<td id='btnVueHistogrammes' class='classBtnReglage'></td>
 					<td id='btnVueFlouDeMiseAuPoint' class='classBtnReglage'></td>
+					<td id='btnVue3D' class='classBtnReglage'></td>
 					<td id='btnInformationsUtilisateur' class='classBtnReglage'></td>
 				</tr>
 			</table>
@@ -46,7 +42,17 @@
 		<span id='viseur' class='classViseur'>
 
 			<div id='vueEXIF' class='classVueEXIF'>
-				<span id='donneesEXIF'></span>
+				<span id='donneesEXIF'>
+					<table class='classTableauEXIF'>
+						<tr>
+							<td id='EXIFCapteur'></td>
+							<td id='EXIFFocale'></td>
+							<td id='EXIFOuverture'></td>
+							<td id='EXIFVitesse'></td>
+							<td id='EXIFISO'></td>
+						</tr>
+					</table>
+				</span>
 				<span id='btnVueEXIF' class='classBtnReglage'></span>
 				<span id='btnCloseVueEXIF' class='classBtnClose'></span>				
 			</div>
@@ -58,7 +64,8 @@
 				<canvas id='cvsPhotoPlan1' class='classCvsPhoto' ></canvas>
 				<canvas id='cvsPhotoPlan2' class='classCvsPhoto' ></canvas>
 				<canvas id='cvsPhotoPlan3' class='classCvsPhoto' ></canvas>
-				<canvas id='cvsPhotoPlan4' class='classCvsPhoto' ></canvas>						
+				<canvas id='cvsPhotoPlan4' class='classCvsPhoto' ></canvas>
+				<canvas id='cvsPhotoPlan5' class='classCvsPhoto' ></canvas>						
 				<canvas id='cvsPhotoPourPositionRelative' ></canvas>
 			</div>
 
@@ -74,17 +81,24 @@
 			<span id='btnCloseVueCurseurExpo' class='classBtnClose'></span>
 		</span>
 
+
+		<span id='vue3D' class='classVueHistogrammes'>
+			<span id='btnCloseVue3D' class='classBtnClose'></span>
+			<canvas id='cvsVue3D' ></canvas>
+		</span>
+
+
 		<div>
 			<span id='vueReglagesRapides' class='classReglagesRapides'>
 
-				<table class='tableAvecSld'>
-
-					<tr id='ensembleChkCadrageConstant' class='classChkCadrageConstant'>
+				<table class='classEnsembleChkCadrageConstant'>
+					<tr id='ensembleChkCadrageConstant' >
 						<td><input type="checkbox" id="chkCadrageConstant" /></td>
 						<td><span id='nomChkCadrageConstant' class='nomDeParametre'></span></td>
 					</tr>
+				</table>
 
-					<tr><td><div style='height:15px'></div></td></tr>
+				<table class='tableAvecSldTriangleExpo'>
 
 					<tr id='ensembleSldOuverture'>
 						<td><span id='nomSldOuverture' class='nomDeParametre'></span></td>
@@ -105,20 +119,16 @@
 					</tr>
 				</table>
 
-				<table class='tableAvecSldFocale' class='classEnsembleSldFocale'>
-
+				<table class='tableAvecSldFocale'>
 					<tr id='ensembleSldFocale'>
 						<td><span id='nomSldFocale' class='nomDeParametre'></span></td>
 						<td><input type='range' id='sldFocale' class='classSldFocale' /></td>
 						<td><span id='outputSldFocale'></span></td>
 					</tr>
-
 				</table>
 
 				<table id='ensembleRdbModeDePriorite' class='classEnsembleRdbModeDePriorite'>
 					<tr>
-						<td rowspan=2 id='nomEnsembleRdbModeDePriorite' ></td>
-
 						<td id='nomPrioriteManuel' class='nomDeParametre'></td>
 						<td id='nomPrioriteOuverture' class='nomDeParametre'></td>
 						<td id='nomPrioriteVitesse' class='nomDeParametre'></td>
@@ -130,11 +140,6 @@
 						<td><input type='radio' name='modeDePriorite' id='rdbPrioriteVitesse' /></td>
 					</tr>
 				</table>
-
-				
-					</tr>
-
-
 
 				<span id='btnVueReglagesRapides' class='classBtnReglage'></span>
 				<span id='btnCloseVueReglagesRapides' class='classBtnClose'></span>
@@ -191,6 +196,11 @@
 			<span id='vueHistogrammes' class='classVueHistogrammes'>
 				<span id='btnCloseVueHistogrammes' class='classBtnClose'></span>
 				<canvas id='cvsHistogrammes' ></canvas>
+				<div>
+					<input type="checkbox" id="chkHistoRVB" />
+					<span id='nomChkHistoRVB' class='nomDeParametre'></span>
+				</div>
+				<canvas id='cvsHistoRVB' ></canvas>
 			</span>
 		</div>
 
@@ -223,6 +233,11 @@
 					<td><input type="checkbox" id="chkVuePhotoBruit" /></td>
 					<td><span id='nomChkVuePhotoBruit' class='nomDeParametre'></span></td>
 				</tr>
+
+				<tr id='ensembleChkPDC'>
+					<td><input type="checkbox" id="chkVuePhotoPDC" /></td>
+					<td><span id='nomChkVuePhotoPDC' class='nomDeParametre'></span></td>
+				</tr>
 								
 			</table>
 		</span>
@@ -234,7 +249,13 @@
 			<hr>			
 
 
-			<table >
+			<table id='ensembleAPNManuel'>
+
+				<tr id='ensembleRdBAPNManuel'>
+					<td> <input type='radio' name='sourceAPN' id='rdbAPNManuel' /> </td>
+					<td> <span id='nomAPNManuel' class='nomDeParametreItalic'></span></td>
+				</tr>
+
 				<tr id='ensembleLstTypeDeCapteur'>
 					<td><span id='nomLstTypeDeCapteur' class='nomDeParametre'></span></td>
 					<td>   
@@ -256,6 +277,28 @@
 					<td><span id='nomInpDefinitionCapteur' class='nomDeParametre'></span></td>
 					<td><input id='inpDefinitionCapteur' class='cssInp' /></td>
 					<td><span id='outputInpDefinitionCapteur' ></span></td>
+				</tr>
+
+			</table>
+
+
+			<div style='height:20px'></div>
+
+
+			<table id='ensembleAPNExistant'>
+
+				<tr id='ensembleRdBAPNExistant'>
+					<td> <input type='radio' name='sourceAPN' id='rdbAPNExistant' /> </td>
+					<td> <span id='nomAPNExistant' class='nomDeParametreItalic'></span></td>
+				</tr>
+
+				<tr id='ensembleLstAPNExistant'>
+
+					<td><span id='nomLstAPNExistant' class='nomDeParametre'></span></td>
+					<td>   
+						<select id="lstAPNExistant" class="cssLst">
+						</select>
+					</td>
 				</tr>
 
 			</table>
@@ -393,7 +436,7 @@
 
 	var lstOrdonneeDesScripts=new Array();
 
-	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.min.js';	
+	lstOrdonneeDesScripts[0]=adresseDuCode+'/Packaged/app.js';	
 	lstOrdonneeDesScripts[1]=adresseDuCode+'/JS/';
 	lstOrdonneeDesScripts[2]=adresseDuCode+'/JS/main.js';
 	

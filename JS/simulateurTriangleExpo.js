@@ -31,19 +31,18 @@ function configSimulateur() {
 	vueReglagesVuePhoto.chkFlouDeMapVisible = 1;
 	vueReglagesVuePhoto.chkFlouDeBougeVisible = 1;
 	vueReglagesVuePhoto.chkBruitVisible = 1;
+	vueReglagesVuePhoto.chkPDCVisible = 1;
 
 	vueReglagesScene.activee = 1;
-	vueReglagesScene.visible = 1;
 	vueReglagesScene.fermable = 1;
 	vueReglagesScene.lstLuminositeVisible = 1;
 	vueReglagesScene.lstScenesVisible=1;
 
 	vueHistogrammes.activee = 1;
-	vueHistogrammes.visible = 0;
 	vueHistogrammes.fermable = 1;
 }
 
-function initMateriel() {
+function configMateriel() {
 	apnChoisi.vitesse = 1 / 2000;
 	apnChoisi.ISO = 200;
 
@@ -53,3 +52,4 @@ function initMateriel() {
 
 	priseDeVue.distanceDeMAP = scene.plans[1].distance;
 }
+

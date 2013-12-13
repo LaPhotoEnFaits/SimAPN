@@ -4,6 +4,7 @@ VueReglagesObjectif = function() {
 
 	this.init = initVueReglagesObjectif;
 	this.initIHM = initIHMVues;
+	this.objectifPreDefini
 };
 
 function initVueReglagesObjectif() {

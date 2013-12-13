@@ -22,10 +22,13 @@ function configSimulateur() {
 	vueReglagesVuePhoto.fermable = 1;
 	vueReglagesVuePhoto.chkFlouDeMapVisible = 1;
 	vueReglagesVuePhoto.chkFlouDeBougeVisible = 1;
+	vueReglagesVuePhoto.chkPDCVisible = 1;
 
 	vueReglagesAPN.activee = 1;
 	vueReglagesAPN.fermable = 1;
 	vueReglagesAPN.lstTypeDeCapteurVisible = 1;
+	vueReglagesAPN.ensembleAPNManuelVisible = 1;
+	vueReglagesAPN.ensembleAPNExistantVisible = 1;
 
 	vueFlouDeMiseAuPoint.activee = 1;
 	vueFlouDeMiseAuPoint.fermable = 1;
@@ -43,7 +46,7 @@ function configSimulateur() {
 	vueEXIF.visible = 1;
 }
 
-function initMateriel() {
+function configMateriel() {
 	apnChoisi.vitesse = 1 / 50;
 	apnChoisi.ISO = 200;
 

@@ -54,11 +54,11 @@ function displayInfoNavigateur() {
 
   switch (navigateur.nom) {
 
-        case 'Mobile Safari':
+    case 'Mobile Safari':
       if (navigateur.version >= 7)
         document.getElementById('infoNavigateur').style.display = 'none';
       else {
-         texte += getTraduction('navigateurInconnu');
+        texte += getTraduction('navigateurInconnu');
       }
       break;
 
@@ -117,6 +117,7 @@ function displayInfoNavigateur() {
 function readUserAgent() {
   var parser = new UAParser();
   var result = parser.getResult();
+  var systemeExploitation = parser.getOS().name;
 
   navigateur.nom = result.browser.name;
 
@@ -145,7 +146,7 @@ function readUserAgent() {
   }
 
   var device = parser.getDevice();
-  if (device.type === 'mobile' || device.type === 'tablet')
+  if (device.type === 'mobile' || device.type === 'tablet' || navigateur.nom.search('Mobile') !== -1 || systemeExploitation.search('Phone') !== -1 || systemeExploitation.search('Mobile') !== -1 || systemeExploitation === 'Android' || systemeExploitation === 'iOS')
     navigateur.mobile = 1;
   else
     navigateur.mobile = 0;

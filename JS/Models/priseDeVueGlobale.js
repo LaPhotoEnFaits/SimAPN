@@ -17,8 +17,6 @@ PriseDeVue = function() {
 	this.hauteurPlan = new Array(3);
 };
 
-
-
 function calcModePriorite() {
 
 	calcExposition();
@@ -54,7 +52,6 @@ function calcModePriorite() {
 		if (cptVitesseSave !== cptVitesse)
 			onModifVitesse(1);
 	}
-
 }
 
 function setFocaleCadrageConstant() {

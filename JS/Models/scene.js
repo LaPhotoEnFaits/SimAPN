@@ -57,7 +57,7 @@ function initScene() {
 			var urlFondPlage = adresseDuCode + '/Images/Photos/Plage/plageFond.jpg';
 
 			scene.illustrations[0] = new illustration('Barque', urlBarque, 1.0, -0.9, 0.05);
-			scene.illustrations[1] = new illustration('Pamela', urlPam, 1.7, 0.6, 0.07);
+			scene.illustrations[1] = new illustration('Pamela', urlPam, 1.7, 0.6, 0.00);
 			scene.illustrations[2] = new illustration('Ilot', urlIlot, 5.0, 3, 0.42);
 			scene.illustrations[3] = new illustration('Mer', urlFondPlage, 3750.0, 0.0, 0.0);
 

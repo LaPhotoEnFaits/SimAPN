@@ -17,25 +17,27 @@ function configSimulateur() {
 	vueReglagesRapides.sldFocaleVisible = 1;
 
 	vueReglagesPhotographe.activee = 1;
-	vueReglagesPhotographe.visible = 1;
+	vueReglagesPhotographe.fermable = 1;
 	vueReglagesPhotographe.tremblementsVisible = 1;
 	vueReglagesPhotographe.lstCdCVisible = 1;
 
 	vueReglagesObjectif.activee = 1;
-	vueReglagesObjectif.visible = 1;
+	vueReglagesObjectif.fermable = 1;
 	vueReglagesObjectif.lstAntiVibrationVisible = 1;
 
 	vueReglagesAPN.activee = 1;
 	vueReglagesAPN.fermable = 1;
 	vueReglagesAPN.lstTypeDeCapteurVisible = 1;
-	vueReglagesAPN.inpDefinitionCapteur = 1;
+	vueReglagesAPN.inpDefinitionCapteurVisible = 1;
+	vueReglagesAPN.ensembleAPNManuelVisible = 1;
+	vueReglagesAPN.ensembleAPNExistantVisible = 1;
 
 	vueReglagesScene.activee = 1;
 	vueReglagesScene.fermable = 1;
-	vueReglagesScene.lstScenesVisible=1;
+	vueReglagesScene.lstScenesVisible = 1;
 }
 
-function initMateriel() {
+function configMateriel() {
 	apnChoisi.vitesse = 1 / 2000;
 	apnChoisi.ISO = 200;
 

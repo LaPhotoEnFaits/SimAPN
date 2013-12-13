@@ -1,8 +1,8 @@
 titre = '';
-nomDuSoft = 'Camera Simulator';
+nomDuSoft = 'Virtua Camera';
 versionDuSoft = 'beta';
 
-cptImagesTelechargees=0;
+cptImagesTelechargees = 0;
 
 //MODELS
 scene = new Scene();
@@ -26,10 +26,22 @@ vueHistogrammes = new VueHistogrammes();
 vueFlouDeMiseAuPoint = new VueFlouDeMiseAuPoint();
 vueEXIF = new VueEXIF();
 vueReglagesFocus = new VueReglagesFocus();
+vue3D = new Vue3D();
 
-listeDesVues = [vuePhoto, vueCurseurExpo, vueReglagesRapides, vueReglagesVuePhoto, vueReglagesScene, vueReglagesPhotographe, vueReglagesObjectif, vueReglagesAPN, vueHistogrammes, vueFlouDeMiseAuPoint, vueEXIF, vueReglagesFocus];
 
-listeDesScenes=['Breaking Bad','Pamela va à la plage']
+listeDesVues = [vuePhoto, vueCurseurExpo, vueReglagesRapides, vueReglagesVuePhoto, vueReglagesScene, vueReglagesPhotographe, vueReglagesObjectif, vueReglagesAPN, vueHistogrammes, vueFlouDeMiseAuPoint, vueEXIF, vueReglagesFocus, vue3D];
+listeDesScenes = ['Breaking Bad', 'Pamela va à la plage'];
+
+
+//MATERIEL
+listeAPN = new Array(NBR_MODELES_APN);
+listeObjectif = new Array(NBR_MODELES_OBJECTIF);
+objectifExtrapole = new Objectif("TBD", 0, 0, 0, 0, 0, 0, [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0], 0);
+
+//POLYGONES
+capteurChoisi3D = new Polygone();
+capteurFullFrame = new Polygone();
+listeDeTousLesPolygones = new ListeDeTousLesPolygones();
 
 //GENERAL
 flagMAJ = new FlagMAJ();
@@ -38,8 +50,6 @@ flagMAJ = new FlagMAJ();
 
 function initPreTelechargement() {
 
-
-
 	RAZconfig();
 	configSimulateur();
 
@@ -47,24 +57,22 @@ function initPreTelechargement() {
 	document.getElementById('titre').innerHTML = titre;
 	document.getElementById('version').innerHTML = versionDuSoft;
 
-
-	/*setAdressesImagesCss();*/
-
 	displayInfoNavigateur();
 
 	document.getElementById('infosPreChargement').style.display = 'none';
 	document.getElementById('infoUtilisateur').innerHTML = getTraduction('chargementEnCours');
-	
-	scene.sceneChoisie=getSceneRandom();
+
+	scene.sceneChoisie = getSceneRandom();
 	initScene(scene.sceneChoisie);
 }
 
 function initPostTelechargement() {
 
 	initMateriel();
+	configMateriel();
 	calcHauteurVuePhoto();
 	initCalc();
-
+	initPolygones3D();
 	initVues();
 	drawVues();
 	if (vuePhoto.visible)
@@ -81,7 +89,7 @@ function initPostTelechargement() {
 	drawFlousEtExpo();
 
 	initInfoBulle();
-	
+
 	document.getElementById('infoUtilisateur').innerHTML = '';
 	show('Vues');
 	document.body.style.cursor = 'default';
@@ -102,33 +110,8 @@ function initCalc() {
 	calcExposition();
 }
 
-function setAdressesImagesCss() {
-
-	var CSSRules;
-	if (document.all) {
-		CSSRules = 'rules';
-	} else if (document.getElementById) {
-		CSSRules = 'cssRules';
-	}
-
-	var numeroDeLaFeuilleDeStyleDuSimulateur;
-
-	for (var ii = 0; ii < document.styleSheets.length; ii++) {
-		if (document.styleSheets[ii].href) {
-			if ((document.styleSheets[ii].href).indexOf('styleSimulateurAPN') > -1)
-				numeroDeLaFeuilleDeStyleDuSimulateur = ii;
-		}
-	}
-
-	for (var i = 0; i < document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules].length; i++) {
-
-		if (document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].selectorText === '.simulateur')
-			document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].style['background-image'] = 'url(' + adresseDuCode + '/Images/Papier%20peint/Fond.png)';
-
-		if (document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].selectorText === 'input[type="range"]::-webkit-slider-thumb')
-			document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].style['background-image'] = 'url(' + adresseDuCode + '/Images/Icones/btnSld.png)';
-
-		if (document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].selectorText === 'input[type="range"]::-moz-range-thumb')
-			document.styleSheets[numeroDeLaFeuilleDeStyleDuSimulateur][CSSRules][i].style['background-image'] = 'url(' + adresseDuCode + '/Images/Icones/btnSld.png)';
-	}
+function initMateriel() {
+	createListeAPN();
+	createListeObjectif();
+	objectifChoisi.numeroObjectifExistant = 'X';
 }

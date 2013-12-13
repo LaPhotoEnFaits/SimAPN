@@ -84,7 +84,6 @@ document.getElementById('inpDistancePlan2').addEventListener('change', function(
 function initLstScenes() {
 	var i, option;
 
-
 	resetLst('lstScenes');
 	var select = document.getElementById('lstScenes');
 
