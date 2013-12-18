@@ -1,10 +1,7 @@
-//IN: xyp dans le système sans rotation
-//OUT: XY dans le canvas
 function xyp2XY(x, y, p) {
 
 	x = vue3D.kHauteurNormalisee * x;
 	y = vue3D.kHauteurNormalisee * y;
-	p = vue3D.kHauteurNormalisee * p;
 
 	var X = vue3D.X0 + x * vue3D.X0;
 	var Y = vue3D.Y0 - y * vue3D.Y0;
@@ -15,14 +12,10 @@ function xyp2XY(x, y, p) {
 	};
 }
 
-//3 types de changements possibles: 
-// - rotation autour d'un axe (x,y,p)
-// - rotation autour d'un vecteur (fonction type arcball)
-// - translation
-//IN: xyp    dans le système sans rotation/translation
-//OUT:x'y'p' coordonées dans xyp après rotation/translation
-//TBD: calculer la matrice de rotation (p/r aux axes)à part, car elle ne change que rarement
-function majCoord3D(x, y, p, flag) {
+function majCoord3D(x, y, p, flag, flagPolygone) {
+
+
+	flagPolygone = 0;
 
 	var temp_x, temp_y, temp_p;
 
@@ -30,14 +23,12 @@ function majCoord3D(x, y, p, flag) {
 	y = vue3D.kHauteurNormalisee * y;
 	p = vue3D.kHauteurNormalisee * p;
 
-	//-Pour rester centré sur le centre du Capteur
-	if (flag !== "pas_de_translation") {
+	if (flag === 'translation' && !flagPolygone) {
 		x = x - photographe.deplacementHorizontal * vue3D.kHauteurNormalisee;
 		y = y - photographe.deplacementVertical * vue3D.kHauteurNormalisee;
 		p = p - photographe.deplacementProfondeur * vue3D.kHauteurNormalisee;
 	}
 
-	//-Rotations selon les axes
 	//tetha_x
 	temp_x = x;
 	temp_y = y * vue3D.cosX - p * vue3D.sinX;
@@ -67,8 +58,8 @@ function majCoord3D(x, y, p, flag) {
 	temp_y = x * vue3D.matriceDeRotation[1][0] + y * vue3D.matriceDeRotation[1][1] + p * vue3D.matriceDeRotation[1][2];
 	temp_p = x * vue3D.matriceDeRotation[2][0] + y * vue3D.matriceDeRotation[2][1] + p * vue3D.matriceDeRotation[2][2];
 
-	//-Translation
-	if (flag !== "pas_de_translation") {
+	//-Translation manuelle
+	if (flag === 'translation') {
 		temp_x = temp_x + vue3D.translationX;
 		temp_y = temp_y + vue3D.translationY;
 		temp_p = temp_p + vue3D.translationP;
@@ -81,8 +72,6 @@ function majCoord3D(x, y, p, flag) {
 	};
 }
 
-//IN: XY dans le canvas
-//OUT: xyp dans le système sans rotation
 function XY2xyp(X, Y, flag) {
 
 	var temp_x, temp_y, temp_p;
@@ -91,13 +80,13 @@ function XY2xyp(X, Y, flag) {
 	var X0, Y0;
 
 	//Pour tenir compte du déplacement du centre par translation
-	if (vue3D.cvs === "cvsVue3D" && flag !== "pas_de_translation") {
+	if (flag === 'translation') {
 
 		temp_x = capteurChoisi3D.CDG[0];
 		temp_y = capteurChoisi3D.CDG[1];
 		temp_p = capteurChoisi3D.CDG[2];
 
-		temp_xyp = majCoord3D(temp_x, temp_y, temp_p);
+		temp_xyp = majCoord3D(temp_x, temp_y, temp_p, 'translation');
 		temp_x = temp_xyp.x / vue3D.kHauteurNormalisee;
 		temp_y = temp_xyp.y / vue3D.kHauteurNormalisee;
 		temp_p = temp_xyp.p / vue3D.kHauteurNormalisee;
@@ -129,16 +118,15 @@ function XY2xyp(X, Y, flag) {
 	};
 }
 
-//IN: xyp dans le système sans rotation/translation
-//OUT: XY dans le canvas, après rotation/translation
-function xyp2XYmaj(x, y, p) {
+
+function xyp2XYmaj(x, y, p, flagPolygone) {
 
 	var temp_XY;
 	var temp_xyp;
 	var temp_x, temp_y, temp_p;
 	var X, Y;
 
-	temp_xyp = majCoord3D(x, y, p);
+	temp_xyp = majCoord3D(x, y, p, 'translation', flagPolygone);
 
 	temp_x = (temp_xyp.x) / vue3D.kHauteurNormalisee;
 	temp_y = (temp_xyp.y) / vue3D.kHauteurNormalisee;
@@ -176,7 +164,7 @@ function drawPoint3D(x, y, p, R) {
 function drawLine3D(xd, yd, pd, xf, yf, pf) {
 
 	//1ier point
-	var temp_xyp = majCoord3D(xd, yd, pd);
+	var temp_xyp = majCoord3D(xd, yd, pd, 'translation');
 	var temp_x = temp_xyp.x;
 	var temp_y = temp_xyp.y;
 	var temp_p = temp_xyp.p;
@@ -196,7 +184,7 @@ function drawLine3D(xd, yd, pd, xf, yf, pf) {
 	ct.moveTo(X, Y);
 
 	//2nd point
-	temp_xyp = majCoord3D(xf, yf, pf);
+	temp_xyp = majCoord3D(xf, yf, pf, 'translation');
 	temp_x = temp_xyp.x;
 	temp_y = temp_xyp.y;
 	temp_p = temp_xyp.p;
@@ -213,7 +201,6 @@ function drawLine3D(xd, yd, pd, xf, yf, pf) {
 	ct.stroke();
 }
 
-
 function majVecteurLuminosite3D() {
 
 	var normalise = vue3D.vecteurLuminositeX * vue3D.vecteurLuminositeX + vue3D.vecteurLuminositeY * vue3D.vecteurLuminositeY + vue3D.vecteurLuminositeP * vue3D.vecteurLuminositeP;
@@ -226,7 +213,7 @@ function majVecteurLuminosite3D() {
 		vue3D.vecteurLuminositeP = vue3D.vecteurLuminositeP * normalise;
 	}
 
-	var coord = majCoord3D(0, 0, 1);
+	var coord = majCoord3D(0, 0, 1, 'translation');
 
 	var composanteX = coord.x;
 	var composanteY = coord.y;
@@ -245,7 +232,7 @@ function majVecteurLuminosite3D() {
 		vue3D.luminositeFaceEclairee = 0;
 
 
-	coord = majCoord3D(0, 0, -1);
+	coord = majCoord3D(0, 0, -1, 'translation');
 
 	composanteX = coord.x;
 	composanteY = coord.y;
@@ -268,7 +255,7 @@ function majOrientation3D() {
 
 	var p_temp;
 
-	p_temp = majCoord3D(0, 1, 0, 'pas_de_translation').p;
+	p_temp = majCoord3D(0, 1, 0, 'pasDeTranslation').p;
 	if (p_temp > 0) {
 		vue3D.orientationHaut = 1;
 		vue3D.orientationBas = 0;
@@ -277,7 +264,7 @@ function majOrientation3D() {
 		vue3D.orientationBas = 1;
 	}
 
-	p_temp = majCoord3D(0, 0, 1, 'pas_de_translation').p;
+	p_temp = majCoord3D(0, 0, 1, 'pasDeTranslation').p;
 	if (p_temp > 0) {
 		vue3D.orientationDevant = 1;
 		vue3D.orientationDerriere = 0;
@@ -286,7 +273,7 @@ function majOrientation3D() {
 		vue3D.orientationDerriere = 1;
 	}
 
-	p_temp = majCoord3D(1, 0, 0, 'pas_de_translation').p;
+	p_temp = majCoord3D(1, 0, 0, 'pasDeTranslation').p;
 	if (p_temp < 0) {
 		vue3D.orientationGauche = 1;
 		vue3D.orientationDroite = 0;

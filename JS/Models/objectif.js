@@ -1,8 +1,8 @@
-Objectif = function(nom, focale, indiceOuvertureMin, indiceOuvertureMax, antiVibration, resolution, abbChro, nbrCylindres, longueurCylindre, diametreCylindre, ecartCyclindre, numBague) {
+Objectif = function(nom, focale, indiceOuvertureMin, antiVibration, resolution, abbChro, nbrCylindres, longueurCylindre, diametreCylindre, ecartCyclindre, numBague) {
 	this.nom = nom;
 	this.focale = focale;
 	this.indiceOuvertureMin = indiceOuvertureMin;
-	this.indiceOuvertureMax = indiceOuvertureMax;
+	//this.indiceOuvertureMax = indiceOuvertureMax;
 	this.antiVibration = antiVibration;
 	this.resolution = resolution;
 	this.abbChro = abbChro;

@@ -37,7 +37,7 @@ FlagMAJ = function() {
 	this.drawVueFlouDeMiseAuPoint = new ItemPourMAJ(drawVueFlouDeMiseAuPoint);
 	this.drawPlans = new ItemPourMAJ(drawPlans);
 	this.drawSol = new ItemPourMAJ(drawSol);
-	this.drawPDCVuePhoto = new ItemPourMAJ(drawPDCVuePhoto);	
+	this.drawPDCVuePhoto = new ItemPourMAJ(drawPDCVuePhoto);
 	this.drawGrillePerspective = new ItemPourMAJ(drawGrillePerspective);
 	this.drawBruit = new ItemPourMAJ(drawBruit);
 	this.drawFlouBouge = new ItemPourMAJ(drawFlouBouge);
@@ -45,6 +45,14 @@ FlagMAJ = function() {
 	this.drawCurseurExposition = new ItemPourMAJ(drawCurseurExposition);
 	this.drawVueHistogrammes = new ItemPourMAJ(drawVueHistogrammes);
 	this.drawVueEXIF = new ItemPourMAJ(drawVueEXIF);
+
+	this.setPtsCapteurs3D = new ItemPourMAJ(setPtsCapteurs3D);
+	this.setCotesAPN3D = new ItemPourMAJ(setCotesAPN3D);
+	this.setPtsAPN3D = new ItemPourMAJ(setPtsAPN3D);
+	this.extrapoleObjectif = new ItemPourMAJ(extrapoleObjectif);
+	this.setPtsObjectifChoisi3D = new ItemPourMAJ(setPtsObjectifChoisi3D);
+
+	this.drawVue3D = new ItemPourMAJ(drawVue3D);
 };
 
 ItemPourMAJ = function(MAJ) {
@@ -58,7 +66,7 @@ function doMAJ() {
 		flagMAJ.drawPlans.actif = 0;
 		flagMAJ.drawFlouBouge.actif = 0;
 		flagMAJ.drawSol.actif = 0;
-		flagMAJ.drawPDCVuePhoto.actif = 0;		
+		flagMAJ.drawPDCVuePhoto.actif = 0;
 		flagMAJ.drawGrillePerspective.actif = 0;
 		flagMAJ.drawFlousEtExpo.actif = 0;
 		flagMAJ.drawBruit.actif = 0;
@@ -73,6 +81,8 @@ function doMAJ() {
 		}
 	}
 }
+
+
 
 ////MODIFS DE FAMILLES D'ITEMS
 function onModifExposition(appelInterne) {
@@ -106,6 +116,7 @@ function onModifFlouDeMAP(appelInterne) {
 	flagMAJ.drawFlousEtExpo.actif = 1;
 	flagMAJ.drawPDCVuePhoto.actif = 1;
 	flagMAJ.drawVueFlouDeMiseAuPoint.actif = 1;
+	flagMAJ.drawVue3D.actif = 1;
 
 	if (!appelInterne)
 		doMAJ();
@@ -125,13 +136,18 @@ function onModifFlouDeBouge(appelInterne) {
 
 function onChangeAPN(appelInterne) {
 
-	if (apnChoisi.numeroAPNExistant !== 'X'){
+	if (apnChoisi.numeroAPNExistant !== 'X') {
 		flagMAJ.majOutputInpDefinitionCapteur.actif = 1;
 		flagMAJ.majSelectionLstTypeDeCapteur.actif = 1;
 	}
 
+	flagMAJ.setCotesAPN3D.actif = 1;
+	flagMAJ.setPtsAPN3D.actif = 1;
+	flagMAJ.setPtsObjectifChoisi3D.actif = 1;
+	flagMAJ.drawVue3D.actif = 1;
+
 	onModifDefinitionCapteur(1);
-	onModifCapteur(2);	//2 pour pouvoir faire la maj de la focale en cas de cadrage constant
+	onModifCapteur(2); //2 pour pouvoir faire la maj de la focale en cas de cadrage constant
 	onModifDynamiqueDuCapteur(1);
 	onModifLowLightISO(1);
 
@@ -151,11 +167,13 @@ function onModifDistanceDeMAP(appelInterne) {
 
 	onModifFlouDeMAP(1);
 
+	flagMAJ.setPtsObjectifChoisi3D.actif = 1;
 	flagMAJ.majSldFocus.actif = 1;
 
 	flagMAJ.drawPlans.actif = 1;
 	flagMAJ.drawFlouBouge.actif = 1;
 	flagMAJ.drawVueHistogrammes.actif = 1;
+
 
 	if (!appelInterne)
 		doMAJ();
@@ -186,6 +204,8 @@ function onModifDistancePlan(numeroDuPlan, appelInterne) {
 
 	document.getElementById('inpDistancePlan' + numeroDuPlan).value = scene.plans[numeroDuPlan].distance.toFixed(2);
 
+	flagMAJ.drawVue3D.actif = 1;
+
 	if (priseDeVue.planDeMAP === numeroDuPlan && apnChoisi.modeDeFocus === 'AFC') {
 
 		flagMAJ.setDistanceDeMAP.actif = 1;
@@ -214,6 +234,10 @@ function onModifProfondeurPhotographe(appelInterne) {
 	flagMAJ.setDistancesApresDelacement.actif = 1;
 	flagMAJ.drawVuePhoto.actif = 1;
 	flagMAJ.drawVueHistogrammes.actif = 1;
+	flagMAJ.drawVue3D.actif = 1;
+	flagMAJ.setPtsCapteurs3D.actif = 1;
+	flagMAJ.setPtsAPN3D.actif = 1;
+	flagMAJ.setPtsObjectifChoisi3D.actif = 1;
 
 	if (vuePhoto.affichageRapide)
 		flagMAJ.drawFlousEtExpo.actif = 1;
@@ -233,6 +257,10 @@ function onModifHorizontalVerticalPhotographe(appelInterne) {
 	flagMAJ.drawGrillePerspective.actif = 1;
 	flagMAJ.drawBruit.actif = 1;
 	flagMAJ.drawVueHistogrammes.actif = 1;
+	flagMAJ.setPtsCapteurs3D.actif = 1;
+	flagMAJ.setPtsAPN3D.actif = 1;
+	flagMAJ.setPtsObjectifChoisi3D.actif = 1;
+	flagMAJ.drawVue3D.actif = 1;
 
 	if (vuePhoto.affichageRapide)
 		flagMAJ.drawFlousEtExpo.actif = 1;
@@ -254,6 +282,7 @@ function onModifCdC(appelInterne) {
 
 function onModifDefinitionCapteur(appelInterne) {
 	flagMAJ.calcTaillePixel.actif = 1;
+	flagMAJ.drawVue3D.actif = 1;
 
 	if (photographe.typeDeCdc === 1)
 		onModifCdC(1);
@@ -268,6 +297,8 @@ function onModifFocale(appelInterne) {
 
 	flagMAJ.majOutputSldFocale.actif = 1;
 	flagMAJ.drawVueEXIF.actif = 1;
+	flagMAJ.setPtsObjectifChoisi3D.actif = 1;
+	flagMAJ.extrapoleObjectif.actif = 1;
 
 	if (priseDeVue.cadrageConstant && !appelInterne) {
 		setProfondeurPhotographeCadrageConstant();
@@ -292,8 +323,12 @@ function onModifCapteur(appelInterne) {
 	flagMAJ.setFocalesMinMaxChoisie.actif = 1;
 	flagMAJ.calcTaillePixel.actif = 1;
 	flagMAJ.drawVueEXIF.actif = 1;
+	flagMAJ.setCotesAPN3D.actif = 1;
+	flagMAJ.setPtsAPN3D.actif = 1;
+	flagMAJ.setPtsCapteurs3D.actif = 1;
+	flagMAJ.drawVue3D.actif = 1;
 
-	if (priseDeVue.cadrageConstant && appelInterne!==1) {
+	if (priseDeVue.cadrageConstant && appelInterne !== 1) {
 		setDimensionsCapteur();
 		flagMAJ.setDimensionsCapteur.actif = 0;
 		setFocaleCadrageConstant();
@@ -327,12 +362,12 @@ function onModifTremblements(appelInterne) {
 
 function onModifOuverture(appelInterne) {
 
-
 	if (apnChoisi.modeDePriorite === 'PrioriteOuverture')
 		flagMAJ.calcModePriorite.actif = 1;
 
 	flagMAJ.majOutputSldOuverture.actif = 1;
 	flagMAJ.drawVueEXIF.actif = 1;
+	flagMAJ.drawVue3D.actif = 1;
 
 	onModifFlouDeMAP(1);
 	onModifExposition(1);
@@ -395,6 +430,6 @@ function onModifDynamiqueDuCapteur(appelInterne) {
 function onModifLowLightISO(appelInterne) {
 	flagMAJ.drawBruit.actif = 1;
 
-		if (!appelInterne)
+	if (!appelInterne)
 		doMAJ();
 }

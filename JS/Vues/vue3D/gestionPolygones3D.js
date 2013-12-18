@@ -1,13 +1,11 @@
 listeDesCDG3D = new Array();
-listeDesPolygones3D = new Array();
-
 
 
 ListeDeTousLesPolygones = function() {
 	this.numeroCourant = 0;
 	this.listeDesNoms = new Array();
 	this.listeDesCDG = new Array();
-}
+};
 
 Polygone = function(nom, couleurFondMax, couleurFondMin, contour, pts, ptsMaj, CDG, CDGMaj, vecteurNormal, vecteurNormalMaj, majPts, draw, rayonAffichage) {
 	this.nom = nom;
@@ -20,32 +18,93 @@ Polygone = function(nom, couleurFondMax, couleurFondMin, contour, pts, ptsMaj, C
 	this.CDGMaj = CDGMaj;
 	this.vecteurNormal = vecteurNormal;
 	this.vecteurNormalMaj = vecteurNormalMaj;
-	this.draw = draw;
 	this.majPts = majPts;
+	this.draw = draw;
 	this.rayonAffichage = rayonAffichage;
 };
 
+//CRADO
 function initPolygones3D() {
+
+	//CAPTEURS: FF et CHOISI
 	initCapteurChoisi3D();
 	initCapteurFullFrame3D();
-	
+
 	setPtsCapteurs3D();
-	
+
 	listeDeTousLesPolygones.listeDesNoms[listeDeTousLesPolygones.numeroCourant] = capteurChoisi3D.nom;
 	listeDeTousLesPolygones.numeroCourant++;
-	
+
 	listeDeTousLesPolygones.listeDesNoms[listeDeTousLesPolygones.numeroCourant] = capteurFullFrame.nom;
 	listeDeTousLesPolygones.numeroCourant++;
+
+	//SILHOUETTES: PHOTOGRAPHE + 3 PLANS
+	initSilhouettes3D();
+
+	for (var i = 0; i !== 3; i++) {
+		listeDeTousLesPolygones.listeDesNoms[listeDeTousLesPolygones.numeroCourant] = silhouettePlan[i].nom;
+		listeDeTousLesPolygones.numeroCourant++;
+	}
+
+	listeDeTousLesPolygones.listeDesNoms[listeDeTousLesPolygones.numeroCourant] = silhouettePhotographe.nom;
+	listeDeTousLesPolygones.numeroCourant++;
+
+	//PDC
+	initPDC3D();
+	listeDeTousLesPolygones.listeDesNoms[listeDeTousLesPolygones.numeroCourant] = pdc3D.nom;
+	listeDeTousLesPolygones.numeroCourant++;
+
+	//Diaphragme
+	initDiaphragme3D();
+	listeDeTousLesPolygones.listeDesNoms[listeDeTousLesPolygones.numeroCourant] = diaphragme3D.nom;
+	listeDeTousLesPolygones.numeroCourant++;
+
+	//Boitier
+	initAPN3D();
+	for (i = 0; i !== NBR_FACES_APN_3D; i++) {
+		listeDeTousLesPolygones.listeDesNoms[listeDeTousLesPolygones.numeroCourant] = apn3D[i].nom;
+		listeDeTousLesPolygones.numeroCourant++;
+	}
+	setPtsAPN3D();
+
+	//Objectif
+	initObjectif3D();
+	for (i = 0; i !== NBR_CYLINDRES_OBJECTIF_3D; i++) {
+		for (var ii = 0; ii !== NBR_POLYGONES_PAR_CYLINDRE; ii++) {
+			listeDeTousLesPolygones.listeDesNoms[listeDeTousLesPolygones.numeroCourant] = listePolygonesObjectifChoisi[i][ii].nom;
+			listeDeTousLesPolygones.numeroCourant++;
+		}
+	}
+
+	//RAYONS OPTIQUES
+	initRayonsOptiques3D();
+	listeDeTousLesPolygones.listeDesNoms[listeDeTousLesPolygones.numeroCourant] = rayons3D.nom;
+	listeDeTousLesPolygones.numeroCourant++;
+
 }
 
 function majCoordoneesPolygones3D() {
 	capteurChoisi3D.majPts();
 	capteurFullFrame.majPts();
+	majCDGSilhouettes3D();
+	majCDGPDC3D();
+	majCDGdiaphragme3D();
+
+	for (var i = 0; i !== NBR_FACES_APN_3D; i++)
+		apn3D[i].majPts();
+
+	for (i = 0; i !== objectifExtrapole.nbrCylindres; i++) {
+		for (var ii = 0; ii !== NBR_POLYGONES_PAR_CYLINDRE; ii++) {
+			listePolygonesObjectifChoisi[i][ii].majPts();
+		}
+	}
+
+	majCDGRayonsOptiques3D();
 }
 
 function majListeCDG3D() {
 
-	for (var i = 0; i != listeDeTousLesPolygones.listeDesCDG.length; i++)
+	for (var i = 0; i !== listeDeTousLesPolygones.listeDesCDG.length; i++)
 		listeDesCDG3D[i] = listeDeTousLesPolygones.listeDesCDG[i];
 
 	listeDesCDG3D.sort(sortNumber);
@@ -53,17 +112,20 @@ function majListeCDG3D() {
 
 function majPtsPolygones() {
 
+	//Points du polygone
 	for (var i = 0; i !== this.pts.length; i++) {
-		var coord_3D = xyp2XYmaj(this.pts[i][0], this.pts[i][1], this.pts[i][2]);
+		var coord_3D = xyp2XYmaj(this.pts[i][0], this.pts[i][1], this.pts[i][2], 1);
 		this.ptsMaj[i][0] = coord_3D.X;
 		this.ptsMaj[i][1] = coord_3D.Y;
 	}
 
-	this.CDGMaj = 1.0 * (majCoord3D(this.CDG[0], this.CDG[1], this.CDG[2]).p.toFixed(6));
+	//centre de gravité
+	this.CDGMaj = 1.0 * (majCoord3D(this.CDG[0], this.CDG[1], this.CDG[2], 'translation').p.toFixed(6));
 
 	listeDeTousLesPolygones.listeDesCDG[findPolygoneByName(this.nom)] = this.CDGMaj;
 
-	var coord = majCoord3D(this.vecteurNormal[0], this.vecteurNormal[1], this.vecteurNormal[2], "pas_de_translation");
+	//vecteur normal
+	var coord = majCoord3D(this.vecteurNormal[0], this.vecteurNormal[1], this.vecteurNormal[2], 'pasDeTranslation');
 	var normalise = coord.x * coord.x + coord.y * coord.y + coord.p * coord.p;
 	if (normalise !== 0) {
 		normalise = 1 / normalise;
@@ -77,23 +139,18 @@ function majPtsPolygones() {
 }
 
 function findPolygoneByName(nom) {
-
 	var numero = -1;
-
 	for (var i = 0; i < listeDeTousLesPolygones.listeDesNoms.length; i++) {
 		if (listeDeTousLesPolygones.listeDesNoms[i] === nom) {
 			numero = i;
 			i = listeDeTousLesPolygones.listeDesNoms.length;
 		}
 	}
-
 	return numero;
 }
 
 function findPolygoneByCDG(CDG) {
-
 	var numero = -1;
-
 	for (var i = 0; i < listeDeTousLesPolygones.listeDesCDG.length; i++) {
 		if (listeDeTousLesPolygones.listeDesCDG[i] === CDG) {
 			numero = i;
@@ -107,11 +164,10 @@ function drawPolygone() {
 
 	var R = this.rayonAffichage;
 
-	//vecteur vers le CDG
 	var vx = this.CDG[0];
 	var vy = this.CDG[1];
 	var vp = this.CDG[2];
-	var coord = majCoord3D(vx, vy, vp);
+	var coord = majCoord3D(vx, vy, vp, 'translation');
 	vx = coord.x;
 	vy = coord.y;
 	vp = coord.p;
@@ -175,13 +231,76 @@ function drawByCDG() {
 			case capteurChoisi3D.CDGMaj:
 				capteurChoisi3D.draw();
 				capteurChoisi3D.CDGMaj = 'X';
-				break
+				break;
 
 			case capteurFullFrame.CDGMaj:
 				capteurFullFrame.draw();
 				capteurFullFrame.CDGMaj = 'X';
-				break
+				break;
 
+			case silhouettePlan[0].CDGMaj:
+				if (vue3D.silhouettesVisible)
+					drawSilhouette3D(0);
+				silhouettePlan[0].CDGMaj = 'X';
+				break;
+
+			case silhouettePlan[1].CDGMaj:
+				if (vue3D.silhouettesVisible)
+					drawSilhouette3D(1);
+				silhouettePlan[1].CDGMaj = 'X';
+				break;
+
+			case silhouettePlan[2].CDGMaj:
+				if (vue3D.silhouettesVisible)
+					drawSilhouette3D(2);
+				silhouettePlan[2].CDGMaj = 'X';
+				break;
+
+			case silhouettePhotographe.CDGMaj:
+				if (vue3D.silhouettesVisible)
+					drawSilhouettePhotographe();
+				silhouettePhotographe.CDGMaj = 'X';
+				break;
+
+			case pdc3D.CDGMaj:
+				if (vue3D.PDCVisible)
+					drawPDC3D();
+				pdc3D.CDGMaj = 'X';
+				break;
+
+			case diaphragme3D.CDGMaj:
+				if (vue3D.diaphragmeVisible)
+					drawDiaphragme3D();
+				diaphragme3D.CDGMaj = 'X';
+				break;
+
+			case rayons3D.CDGMaj:
+				drawRayonsOptiques3D();
+				rayons3D.CDGMaj = 'X';
+				break;
+
+			default:
+				for (var ii = 0; ii < NBR_FACES_APN_3D; ii++) {
+					if (listeDesCDG3D[i] === apn3D[ii].CDGMaj) {
+						if (vue3D.boitierVisible)
+							apn3D[ii].draw();
+						apn3D[ii].CDGMaj = 'X';
+						ii = NBR_FACES_APN_3D;
+					}
+				}
+
+				for (ii = 0; ii < objectifChoisi.nbrCylindres; ii++) {
+					for (var iii = 0; iii < NBR_POLYGONES_PAR_CYLINDRE; iii++) {
+						if (listeDesCDG3D[i] === listePolygonesObjectifChoisi[ii][iii].CDGMaj) {
+							if (vue3D.objectifVisible)
+								listePolygonesObjectifChoisi[ii][iii].draw();
+							listePolygonesObjectifChoisi[ii][iii].CDGMaj = 'X';
+							ii = objectifChoisi.nbrCylindres;
+							iii = NBR_POLYGONES_PAR_CYLINDRE;
+						}
+					}
+				}
+				break;
 		}
 	}
 }

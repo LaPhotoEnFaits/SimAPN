@@ -115,6 +115,9 @@ function majAPNDepuisExistant() {
 	apnChoisi.capteurLowLightISO = listeAPN[numeroChoisi].capteurLowLightISO;
 	if (apnChoisi.capteurLowLightISO === 0)
 		apnChoisi.capteurLowLightISO = LOW_LIGHT_ISO_DEFAUT;
+	apnChoisi.boitierLargeur=listeAPN[numeroChoisi].boitierLargeur;
+	apnChoisi.boitierHauteur=listeAPN[numeroChoisi].boitierHauteur;
+	apnChoisi.boitierProfondeur=listeAPN[numeroChoisi].boitierProfondeur;
 	apnChoisi.numeroAPNExistant = numeroChoisi;
 }
 

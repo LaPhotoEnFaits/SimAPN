@@ -6,3 +6,4 @@ Photographe = function(deplacementHorizontal, deplacementVertical, deplacementPr
 	this.typeDeCdc = typeDeCdc;
 	this.deplacementProfondeurCourant=0;
 };
+

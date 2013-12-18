@@ -26,9 +26,9 @@
     //typeDeSimulateur = 'simulateurFlouDeMiseAuPoint';
     //typeDeSimulateur = 'simulateurLongueurFocale';
     typeDeSimulateur = 'simulateurComplet';
-   
 
-	if(window.location.protocol==='file:')
+
+	if(window.location.protocol==='file:' || window.location.href.search('localhost:'))
 		adresseDuCode='..';
 	else
 		adresseDuCode=ADR_CODE_TEST;

@@ -1,3 +1,14 @@
+function illustration(nom, srcImage, hauteurEnMetre, offsetXEnMetre, offsetYEnMetre) {
+	this.nom = nom;
+	this.image = document.createElement("IMG");
+	this.image.crossOrigin = "anonymous";
+	this.image.src = srcImage;
+	this.hauteurEnMetre = hauteurEnMetre;
+	this.offsetXEnMetre = offsetXEnMetre;
+	this.offsetYEnMetre = offsetYEnMetre;
+	this.image.onload = imageTelechargee;
+}
+
 titre = '';
 nomDuSoft = 'Virtua Camera';
 versionDuSoft = 'beta';
@@ -27,9 +38,9 @@ vueFlouDeMiseAuPoint = new VueFlouDeMiseAuPoint();
 vueEXIF = new VueEXIF();
 vueReglagesFocus = new VueReglagesFocus();
 vue3D = new Vue3D();
+vueReglagesVue3D = new VueReglagesVue3D();
 
-
-listeDesVues = [vuePhoto, vueCurseurExpo, vueReglagesRapides, vueReglagesVuePhoto, vueReglagesScene, vueReglagesPhotographe, vueReglagesObjectif, vueReglagesAPN, vueHistogrammes, vueFlouDeMiseAuPoint, vueEXIF, vueReglagesFocus, vue3D];
+listeDesVues = [vuePhoto, vueCurseurExpo, vueReglagesRapides, vueReglagesVuePhoto, vueReglagesScene, vueReglagesPhotographe, vueReglagesObjectif, vueReglagesAPN, vueHistogrammes, vueFlouDeMiseAuPoint, vueEXIF, vueReglagesFocus, vue3D, vueReglagesVue3D];
 listeDesScenes = ['Breaking Bad', 'Pamela va à la plage'];
 
 
@@ -38,14 +49,24 @@ listeAPN = new Array(NBR_MODELES_APN);
 listeObjectif = new Array(NBR_MODELES_OBJECTIF);
 objectifExtrapole = new Objectif("TBD", 0, 0, 0, 0, 0, 0, [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0], 0);
 
-//POLYGONES
+//VUE 3D
+listeDeTousLesPolygones = new ListeDeTousLesPolygones();
+
 capteurChoisi3D = new Polygone();
 capteurFullFrame = new Polygone();
-listeDeTousLesPolygones = new ListeDeTousLesPolygones();
+silhouettePlan = new Array(3);
+silhouettePhotographe = new Polygone();
+illustrationPhotographe = new illustration('silhouetteDuPhotographe', adresseDuCode + '/Images/Photos/Photographe.png', 1.8, 0, 0);
+pdc3D = new Polygone();
+diaphragme3D = new Polygone();
+apn3D = new Array(NBR_FACES_APN_3D);
+rayons3D = new Polygone();
+
+
 
 //GENERAL
 flagMAJ = new FlagMAJ();
-
+flagShiftRelache = 1;
 
 
 function initPreTelechargement() {
