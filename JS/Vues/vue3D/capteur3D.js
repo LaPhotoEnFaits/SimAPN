@@ -1,4 +1,3 @@
-
 function setPtsCapteurs3D() {
 
 	var focaleEnMetre = objectifChoisi.focale / 1000;
@@ -6,29 +5,29 @@ function setPtsCapteurs3D() {
 	var df = (focaleEnMetre * focaleEnMetre) / (priseDeVue.distanceDeMAP - focaleEnMetre);
 	var dfeq = (focaleEquivalenteEnMetre * focaleEquivalenteEnMetre) / (priseDeVue.distanceDeMAP - focaleEquivalenteEnMetre);
 
-	var ff1_x = -0.018 - (-photographe.deplacementHorizontal);
+	var ff1_x = -0.018 + photographe.deplacementHorizontal;
 	var ff1_y = 0.012 + photographe.deplacementVertical;
 	var ff1_p = photographe.deplacementProfondeur - (focaleEquivalenteEnMetre + dfeq - focaleEnMetre - df);
-	var ff2_x = 0.018 - (-photographe.deplacementHorizontal);
+	var ff2_x = 0.018 + photographe.deplacementHorizontal;
 	var ff2_y = 0.012 + photographe.deplacementVertical;
 	var ff2_p = photographe.deplacementProfondeur - (focaleEquivalenteEnMetre + dfeq - focaleEnMetre - df);
-	var ff3_x = 0.018 - (-photographe.deplacementHorizontal);
+	var ff3_x = 0.018 + photographe.deplacementHorizontal;
 	var ff3_y = -0.012 + photographe.deplacementVertical;
 	var ff3_p = photographe.deplacementProfondeur - (focaleEquivalenteEnMetre + dfeq - focaleEnMetre - df);
-	var ff4_x = -0.018 - (-photographe.deplacementHorizontal);
+	var ff4_x = -0.018 + photographe.deplacementHorizontal;
 	var ff4_y = -0.012 + photographe.deplacementVertical;
 	var ff4_p = photographe.deplacementProfondeur - (focaleEquivalenteEnMetre + dfeq - focaleEnMetre - df);
 
-	var ca1_x = -apnChoisi.capteurLargeur / 2000 - (-photographe.deplacementHorizontal);
+	var ca1_x = -apnChoisi.capteurLargeur / 2000 + photographe.deplacementHorizontal;
 	var ca1_y = apnChoisi.capteurHauteur / 2000 + photographe.deplacementVertical;
 	var ca1_p = photographe.deplacementProfondeur;
-	var ca2_x = apnChoisi.capteurLargeur / 2000 - (-photographe.deplacementHorizontal);
+	var ca2_x = apnChoisi.capteurLargeur / 2000 + photographe.deplacementHorizontal;
 	var ca2_y = apnChoisi.capteurHauteur / 2000 + photographe.deplacementVertical;
 	var ca2_p = photographe.deplacementProfondeur;
-	var ca3_x = apnChoisi.capteurLargeur / 2000 - (-photographe.deplacementHorizontal);
+	var ca3_x = apnChoisi.capteurLargeur / 2000 + photographe.deplacementHorizontal;
 	var ca3_y = -apnChoisi.capteurHauteur / 2000 + photographe.deplacementVertical;
 	var ca3_p = photographe.deplacementProfondeur;
-	var ca4_x = -apnChoisi.capteurLargeur / 2000 - (-photographe.deplacementHorizontal);
+	var ca4_x = -apnChoisi.capteurLargeur / 2000 + photographe.deplacementHorizontal;
 	var ca4_y = -apnChoisi.capteurHauteur / 2000 + photographe.deplacementVertical;
 	var ca4_p = photographe.deplacementProfondeur;
 

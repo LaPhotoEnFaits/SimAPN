@@ -154,6 +154,20 @@ function RAZconfig() {
 	vue3D.activee = 0;
 	vue3D.visible = 0;
 	vue3D.fermable = 0;
+	vue3D.silhouettesVisible = 0;
+	vue3D.boitierVisible = 0;
+	vue3D.objectifVisible = 0;
+	vue3D.diaphragmeVisible = 0;
+	vue3D.PDCVisible = 0;
+
+	vueReglagesVue3D.activee = 0;
+	vueReglagesVue3D.visible = 0;
+	vueReglagesVue3D.fermable = 0;
+	vueReglagesVue3D.chkSilhouettesVisible = 0;
+	vueReglagesVue3D.chkBoitierVisible = 0;
+	vueReglagesVue3D.chkObjectifVisible = 0;
+	vueReglagesVue3D.chkDiaphragmeVisible = 0;
+	vueReglagesVue3D.chkPDCVisible = 0;
 }
 
 function drawVues() {

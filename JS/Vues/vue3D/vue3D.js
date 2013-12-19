@@ -1,7 +1,7 @@
-var LARGEUR_VUE_3D = 200;
+var LARGEUR_VUE_3D = 300;
 var COULEUR_SOL_3D = 'rgba(220,220,220,1)';
 var COULEUR_GRILLE_3D = 'rgba(240,240,240,1)';
-var DIMENSION_MAX_3D = 50;
+
 
 Vue3D = function() {
 	this.nom = '3D';
@@ -55,10 +55,10 @@ function initVue3D() {
 	vue3D.orientationDevant = 0;
 	vue3D.orientationDerriere = 0;
 
-	vue3D.typeDeDeplacement = 'rotation';
+	vue3D.typeDeDeplacement = 'translation';
 }
 
-function calcKHauteurNormalisee(){
+function calcKHauteurNormalisee() {
 	vue3D.kHauteurNormalisee = 1 / (vue3D.hauteurEnMetre / 2);
 }
 
@@ -86,7 +86,6 @@ function drawSolVue3D() {
 	var cvs = document.getElementById('cvsVue3D');
 	var ct = cvs.getContext('2d');
 
-	//SOL
 	ct.fillStyle = COULEUR_SOL_3D;
 	ct.beginPath();
 
@@ -111,48 +110,101 @@ function drawSolVue3D() {
 	ct.closePath();
 	ct.fill();
 
-	//GRILLE
 	if (vue3D.orientationHaut) {
 		ct.strokeStyle = COULEUR_GRILLE_3D;
 
 		for (var i = 0; i < DIMENSION_MAX_3D + photographe.deplacementProfondeur; i += PAS_GRILLE_SOL) {
-
 			drawLine3D(-DIMENSION_MAX_3D - (-photographe.deplacementHorizontal), 0, i, DIMENSION_MAX_3D - (-photographe.deplacementHorizontal), 0, i);
 			drawLine3D(-DIMENSION_MAX_3D - (-photographe.deplacementHorizontal), 0, -1 * i, DIMENSION_MAX_3D - (-photographe.deplacementHorizontal), 0, -1 * i);
 		}
 
 		for (i = 0; i < DIMENSION_MAX_3D - (-photographe.deplacementHorizontal); i += PAS_GRILLE_SOL) {
-
 			drawLine3D(i, 0, -1 * (DIMENSION_MAX_3D + photographe.deplacementProfondeur), i, 0, DIMENSION_MAX_3D + photographe.deplacementProfondeur);
 			drawLine3D(-1 * i, 0, -1 * (DIMENSION_MAX_3D + photographe.deplacementProfondeur), -1 * i, 0, DIMENSION_MAX_3D + photographe.deplacementProfondeur);
 		}
 	}
 }
 
-function drawVue3D() {
+function drawEchelleVue3D() {
 
 	var cvs = document.getElementById('cvsVue3D');
 	var ct = cvs.getContext('2d');
-	cvs.width = vue3D.largeurCanvas;
-	cvs.height = vue3D.hauteurCanvas;
 
-	ct.fillStyle = '#FFFFFF';
-	ct.beginPath();
-	ct.fillRect(0, 0, vue3D.largeurCanvas - 1, vue3D.hauteurCanvas - 1);
+	var tailleFlecheEnPixel;
+	var tailleFelecheEnMetre;
+	var uniteEchelle;
 
-	majVecteurLuminosite3D();
-	majOrientation3D();
-	majCoordoneesPolygones3D();
-	majListeCDG3D();
+	if (vue3D.hauteurEnMetre >= 100) {
+		tailleFelecheEnMetre = 100;
+		uniteEchelle = '100m';
+	} else if (vue3D.hauteurEnMetre >= 10) {
+		tailleFelecheEnMetre = 10;
+		uniteEchelle = '10m';
+	} else if (vue3D.hauteurEnMetre >= 1) {
+		tailleFelecheEnMetre = 1;
+		uniteEchelle = '1m';
+	} else if (vue3D.hauteurEnMetre >= 0.1) {
+		tailleFelecheEnMetre = 0.1;
+		uniteEchelle = '10cm';
+	} else if (vue3D.hauteurEnMetre >= 0.01) {
+		tailleFelecheEnMetre = 0.01;
+		uniteEchelle = '1cm';
+	} else if (vue3D.hauteurEnMetre >= 0.001) {
+		tailleFelecheEnMetre = 0.001;
+		uniteEchelle = '1mm';
+	} else if (vue3D.hauteurEnMetre >= 0.0001) {
+		tailleFelecheEnMetre = 0.0001;
+		uniteEchelle = '100µm';
+	} else if (vue3D.hauteurEnMetre >= 0.00001) {
+		tailleFelecheEnMetre = 0.00001;
+		uniteEchelle = '10µm';
+	} else if (vue3D.hauteurEnMetre >= 0.000001) {
+		tailleFelecheEnMetre = 0.000001;
+		uniteEchelle = '1µm';
+	}
 
-	if (vue3D.orientationHaut)
-		drawSolVue3D();
+	tailleFlecheEnPixel = tailleFelecheEnMetre * vue3D.hauteurCanvas / vue3D.hauteurEnMetre;
+	flecheHorizontale(ct, vue3D.hauteurCanvas - 5.5, 5, 5 + tailleFlecheEnPixel, '#000000');
+	ct.fillStyle = '#000000';
+	ct.fillText(uniteEchelle, 5, vue3D.hauteurCanvas - 10);
 
-	drawByCDG();
+	tailleFlecheEnPixel = apnChoisi.taillePixel * vue3D.hauteurCanvas / vue3D.hauteurEnMetre;
 
-	
-	if (vue3D.orientationBas)
-		drawSolVue3D();
+	if (tailleFlecheEnPixel > 10) {
+		flecheHorizontale(ct, vue3D.hauteurCanvas - 25.5, 5, 5 + tailleFlecheEnPixel, 'rgb(120,120,120)');
+		ct.fillStyle = 'rgb(120,120,120)';
+		ct.fillText('1 pixel', 5, vue3D.hauteurCanvas - 30);
+	}
+}
 
-	drawCadreVue3D();
+function drawVue3D() {
+
+	if (vue3D.visible) {
+
+		var cvs = document.getElementById('cvsVue3D');
+		var ct = cvs.getContext('2d');
+		cvs.width = vue3D.largeurCanvas;
+		cvs.height = vue3D.hauteurCanvas;
+
+		ct.fillStyle = '#FFFFFF';
+		ct.beginPath();
+		ct.fillRect(0, 0, vue3D.largeurCanvas - 1, vue3D.hauteurCanvas - 1);
+
+		majVecteurLuminosite3D();
+		majOrientation3D();
+		majCoordoneesPolygones3D();
+
+		majListeCDG3D();
+
+		if (vue3D.orientationHaut)
+			drawSolVue3D();
+
+		drawByCDG();
+
+		if (vue3D.orientationBas)
+			drawSolVue3D();
+
+		drawEchelleVue3D();
+		drawCadreVue3D();
+	}
 }

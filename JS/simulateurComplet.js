@@ -77,6 +77,19 @@ function configSimulateur() {
 
 	vue3D.activee = 1;
 	vue3D.fermable = 1;
+	vue3D.silhouettesVisible = 1;
+	vue3D.boitierVisible = 1;
+	vue3D.objectifVisible = 1;
+	vue3D.diaphragmeVisible = 1;
+	vue3D.PDCVisible = 1;
+
+	vueReglagesVue3D.activee = 1;
+	vueReglagesVue3D.fermable = 1;
+	vueReglagesVue3D.chkSilhouettesVisible = 1;
+	vueReglagesVue3D.chkBoitierVisible = 1;
+	vueReglagesVue3D.chkObjectifVisible = 1;
+	vueReglagesVue3D.chkDiaphragmeVisible = 1;
+	vueReglagesVue3D.chkPDCVisible = 1;
 }
 
 function configMateriel() {

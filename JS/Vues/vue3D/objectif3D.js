@@ -1,10 +1,119 @@
-var DELTA_ANGLE_OBJECTIF = Math.PI / 20;
-var NBR_POLYGONES_PAR_CYLINDRE = 2 * Math.PI / DELTA_ANGLE_OBJECTIF;
+listePolygonesObjectifChoisi = new Array(NBR_CYLINDRES_OBJECTIF_3D);
+
+function initObjectif3D() {
+
+	for (var i = 0; i !== NBR_CYLINDRES_OBJECTIF_3D; i++)
+		listePolygonesObjectifChoisi[i] = new Array(NBR_POLYGONES_PAR_CYLINDRE);
+
+	extrapoleObjectif();
+	setPtsObjectifChoisi3D();
+}
+
+function extrapoleObjectif() {
+	var i = 0;
+	var ii = 0;
+	var iii = 0;
+
+	//Cherche les 2 objectifs prédéfinis qui entourent le courant
+	for (i = 0; i < listeObjectif.length; i++) {
+		if ((objectifChoisi.focale >= listeObjectif[i].focale) && ((i === listeObjectif.length - 1) || (objectifChoisi.focale < listeObjectif[i + 1].focale)))
+			ii = i;
+	}
+
+	//On tombe sur une valeur connue
+	if (objectifChoisi.focale === listeObjectif[ii].focale) {
+
+		objectifExtrapole.nbrCylindres = listeObjectif[ii].nbrCylindres;
+		objectifExtrapole.numBague = listeObjectif[ii].numBague;
+
+		i = 0;
+		iii = 0;
+		while (i !== objectifExtrapole.nbrCylindres) {
+			if (iii !== 0) {
+				objectifExtrapole.ecartCyclindre[iii - 1] = listeObjectif[ii].ecartCyclindre[iii - 1];
+				i++;
+			}
+			objectifExtrapole.longueurCylindre[iii] = listeObjectif[ii].longueurCylindre[iii];
+			objectifExtrapole.diametreCylindre[iii] = listeObjectif[ii].diametreCylindre[iii];
+
+			i++;
+			iii++;
+		}
+	}
+
+	//On tombe entre 2 valeurs connues
+	else {
+
+		//Nombre de polygones et place de la numBague comme sur l'objo dont la focale est la plus proche
+		var f1 = listeObjectif[ii].focale;
+		var f2 = listeObjectif[ii + 1].focale;
+
+		objectifExtrapole.focale = objectifChoisi.focale;
+
+		if ((objectifChoisi.focale - f1) < (f2 - objectifChoisi.focale)) { //plus proche du premier
+			objectifExtrapole.nbrCylindres = listeObjectif[ii].nbrCylindres;
+			objectifExtrapole.numBague = listeObjectif[ii].numBague;
+		} else { //Plus proche du second
+			objectifExtrapole.nbrCylindres = listeObjectif[ii + 1].nbrCylindres;
+			objectifExtrapole.numBague = listeObjectif[ii + 1].numBague;
+		}
 
 
-listePolygonesObjectifChoisi=new Array(9);
+		var k = (objectifChoisi.focale - f1) / (f2 - f1); //coeff qui module linéairement les dimensions en fonction de la position de f p/r à f1 et f2
 
+		i = 0;
+		iii = 0;
+		var l_a, l_b, e_a, e_b, d_a, d_b; //pour stocker les longueurs, diamètres et épaisseurs pour les calculs
 
+		while (i !== objectifExtrapole.nbrCylindres) {
+
+			//Pour gérer le fait que le nombre de polynomes n'est pas cst d'un objo à l'autre
+			if (listeObjectif[ii].longueurCylindre[iii])
+				l_a = listeObjectif[ii].longueurCylindre[iii];
+			else
+				l_a = 0;
+
+			if (listeObjectif[ii + 1].longueurCylindre[iii])
+				l_b = listeObjectif[ii + 1].longueurCylindre[iii];
+			else
+				l_b = 0;
+
+			if (listeObjectif[ii].ecartCyclindre[iii - 1])
+				e_a = listeObjectif[ii].ecartCyclindre[iii - 1];
+			else
+				e_a = 0;
+
+			if (listeObjectif[ii + 1].ecartCyclindre[iii - 1])
+				e_b = listeObjectif[ii + 1].ecartCyclindre[iii - 1];
+			else
+				e_b = 0;
+
+			if (listeObjectif[ii].diametreCylindre[iii])
+				d_a = listeObjectif[ii].diametreCylindre[iii];
+			else
+				d_a = 0;
+
+			if (listeObjectif[ii + 1].diametreCylindre[iii])
+				d_b = listeObjectif[ii + 1].diametreCylindre[iii];
+			else
+				d_b = 0;
+
+			if (iii !== 0) {
+				objectifExtrapole.ecartCyclindre[iii - 1] = e_a + k * (e_b - e_a);
+				i++;
+			}
+
+			objectifExtrapole.longueurCylindre[iii] = l_a + k * (l_b - l_a);
+			objectifExtrapole.diametreCylindre[iii] = d_a + k * (d_b - d_a);
+
+			i++;
+			iii++;
+		}
+	}
+
+	objectifChoisi.nbrCylindres = objectifExtrapole.nbrCylindres;
+	objectifChoisi.indiceOuvertureMax = 22;
+}
 
 function setPtsObjectifChoisi3D() {
 
@@ -13,7 +122,7 @@ function setPtsObjectifChoisi3D() {
 	var d1, d2, d3, d4, d5;
 	var e1, e2, e3, e4;
 
-	var numeroCylindreBague;
+	var numeroCylindrenumBague;
 	var nbrPolygonesObjectif;
 
 	if (apnChoisi.capteurFormat === '1/3.2') {
@@ -36,7 +145,7 @@ function setPtsObjectifChoisi3D() {
 
 		if (objectifChoisi.numeroObjectifExistant !== 'X') {
 
-			nbrPolygonesObjectif = listeObjectif[objectifChoisi.numeroObjectifExistant].Npoly;
+			nbrPolygonesObjectif = listeObjectif[objectifChoisi.numeroObjectifExistant].nbrCylindres;
 
 			l1 = 0.001 * listeObjectif[objectifChoisi.numeroObjectifExistant].longueurCylindre[0];
 			d1 = 0.001 * listeObjectif[objectifChoisi.numeroObjectifExistant].diametreCylindre[0];
@@ -63,9 +172,9 @@ function setPtsObjectifChoisi3D() {
 				d5 = 0.001 * listeObjectif[objectifChoisi.numeroObjectifExistant].diametreCylindre[4];
 			}
 
-			numeroCylindreBague = listeObjectif[objectifChoisi.numeroObjectifExistant].bague;
+			numeroCylindrenumBague = listeObjectif[objectifChoisi.numeroObjectifExistant].numBague;
 		} else {
-			nbrPolygonesObjectif = objectifExtrapole.Npoly;
+			nbrPolygonesObjectif = objectifExtrapole.nbrCylindres;
 
 			l1 = 0.001 * objectifExtrapole.longueurCylindre[0];
 			d1 = 0.001 * objectifExtrapole.diametreCylindre[0];
@@ -93,10 +202,8 @@ function setPtsObjectifChoisi3D() {
 				l5 = 0.001 * objectifExtrapole.longueurCylindre[4];
 				d5 = 0.001 * objectifExtrapole.diametreCylindre[4];
 			}
-
-			numeroCylindreBague = objectifExtrapole.bague;
+			numeroCylindrenumBague = objectifExtrapole.numBague;
 		}
-
 
 		//Fait en sorte que le diaphragme ne dépace pas de l'objectif (en longueur)
 		var focaleEnMetre = objectifChoisi.focale / 1000;
@@ -105,11 +212,10 @@ function setPtsObjectifChoisi3D() {
 		var p_diaff = p_f; // + photographe.deplacementProfondeur;
 		var k;
 
-
-		var l_temp = p_diaff - (p_corps - p_foyer_corps) - (l1 + l2 + l3 + l4 + l5 + e1 + e2 + e3 + e4);
+		var l_temp = p_diaff - (apnChoisi.p_corps - apnChoisi.p_foyer_corps) - (l1 + l2 + l3 + l4 + l5 + e1 + e2 + e3 + e4);
 
 		if (l_temp > 0) {
-			k = (p_diaff - (p_corps - p_foyer_corps)) / (l1 + l2 + l3 + l4 + l5 + e1 + e2 + e3 + e4);
+			k = (p_diaff - (apnChoisi.p_corps - apnChoisi.p_foyer_corps)) / (l1 + l2 + l3 + l4 + l5 + e1 + e2 + e3 + e4);
 			l1 = k * l1;
 
 			if (nbrPolygonesObjectif >= 3) {
@@ -229,7 +335,7 @@ function setPtsObjectifChoisi3D() {
 
 	}
 
-	var p0 = photographe.deplacementProfondeur + p_corps - p_foyer_corps;
+	var p0 = photographe.deplacementProfondeur + apnChoisi.p_corps - apnChoisi.p_foyer_corps;
 
 	//Sommets
 	var a1_x = 0;
@@ -347,9 +453,9 @@ function setPtsObjectifChoisi3D() {
 			[0, 0],
 			[0, 0],
 			[0, 0]
-		], [(a1_x + a3_x) / 2, (a1_y + a3_y) / 2, (a1_p + a3_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0],  majPtsPolygones, drawPolygone, l1);
+		], [(a1_x + a3_x) / 2, (a1_y + a3_y) / 2, (a1_p + a3_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0], majPtsPolygones, drawPolygone, l1);
 
-		if (numeroCylindreBague !== 0)
+		if (numeroCylindrenumBague !== 0)
 			listePolygonesObjectifChoisi[0][i].contour[3] = 0;
 
 
@@ -393,7 +499,7 @@ function setPtsObjectifChoisi3D() {
 				[0, 0]
 			], [(b4_x + a2_x) / 2, (b4_y + a2_y) / 2, (b4_p + a2_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0], majPtsPolygones, drawPolygone, d2 - d1);
 
-			if (numeroCylindreBague !== 1)
+			if (numeroCylindrenumBague !== 1)
 				listePolygonesObjectifChoisi[1][i].contour[3] = 0;
 
 			//2nd cylindre
@@ -419,8 +525,8 @@ function setPtsObjectifChoisi3D() {
 				[0, 0],
 				[0, 0],
 				[0, 0]
-			], [(b1_x + b3_x) / 2, (b1_y + b3_y) / 2, (b1_p + b3_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0],  majPtsPolygones, drawPolygone, l2);
-			if (numeroCylindreBague !== 2)
+			], [(b1_x + b3_x) / 2, (b1_y + b3_y) / 2, (b1_p + b3_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0], majPtsPolygones, drawPolygone, l2);
+			if (numeroCylindrenumBague !== 2)
 				listePolygonesObjectifChoisi[2][i].contour[3] = 0;
 
 		}
@@ -463,8 +569,8 @@ function setPtsObjectifChoisi3D() {
 				[0, 0],
 				[0, 0],
 				[0, 0]
-			], [(c4_x + b2_x) / 2, (c4_y + b2_y) / 2, (c4_p + b2_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0],  majPtsPolygones, drawPolygone, d3 - d2);
-			if (numeroCylindreBague !== 3)
+			], [(c4_x + b2_x) / 2, (c4_y + b2_y) / 2, (c4_p + b2_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0], majPtsPolygones, drawPolygone, d3 - d2);
+			if (numeroCylindrenumBague !== 3)
 				listePolygonesObjectifChoisi[3][i].contour[3] = 0;
 
 			//2nd cylindre
@@ -491,7 +597,7 @@ function setPtsObjectifChoisi3D() {
 				[0, 0],
 				[0, 0]
 			], [(c1_x + c3_x) / 2, (c1_y + c3_y) / 2, (c1_p + c3_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0], majPtsPolygones, drawPolygone, l3);
-			if (numeroCylindreBague !== 4)
+			if (numeroCylindrenumBague !== 4)
 				listePolygonesObjectifChoisi[4][i].contour[3] = 0;
 
 		}
@@ -534,8 +640,8 @@ function setPtsObjectifChoisi3D() {
 				[0, 0],
 				[0, 0],
 				[0, 0]
-			], [(d4_x + c2_x) / 2, (d4_y + c2_y) / 2, (d4_p + c2_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0],  majPtsPolygones, drawPolygone, d4 - d3);
-			if (numeroCylindreBague !== 5)
+			], [(d4_x + c2_x) / 2, (d4_y + c2_y) / 2, (d4_p + c2_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0], majPtsPolygones, drawPolygone, d4 - d3);
+			if (numeroCylindrenumBague !== 5)
 				listePolygonesObjectifChoisi[5][i].contour[3] = 0;
 			//2nd cylindre
 			//u:cb, v:cd, w=u.v
@@ -560,8 +666,8 @@ function setPtsObjectifChoisi3D() {
 				[0, 0],
 				[0, 0],
 				[0, 0]
-			], [(d1_x + d3_x) / 2, (d1_y + d3_y) / 2, (d1_p + d3_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0],  majPtsPolygones, drawPolygone, l4);
-			if (numeroCylindreBague !== 6)
+			], [(d1_x + d3_x) / 2, (d1_y + d3_y) / 2, (d1_p + d3_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0], majPtsPolygones, drawPolygone, l4);
+			if (numeroCylindrenumBague !== 6)
 				listePolygonesObjectifChoisi[6][i].contour[3] = 0;
 		}
 
@@ -603,8 +709,8 @@ function setPtsObjectifChoisi3D() {
 				[0, 0],
 				[0, 0],
 				[0, 0]
-			], [(e4_x + d2_x) / 2, (e4_y + d2_y) / 2, (e4_p + d2_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0],  majPtsPolygones, drawPolygone, d5 - d4);
-			if (numeroCylindreBague !== 7)
+			], [(e4_x + d2_x) / 2, (e4_y + d2_y) / 2, (e4_p + d2_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0], majPtsPolygones, drawPolygone, d5 - d4);
+			if (numeroCylindrenumBague !== 7)
 				listePolygonesObjectifChoisi[7][i].contour[3] = 0;
 			//2nd cylindre
 			//u:cb, v:cd, w=u.v
@@ -629,8 +735,8 @@ function setPtsObjectifChoisi3D() {
 				[0, 0],
 				[0, 0],
 				[0, 0]
-			], [(e1_x + e3_x) / 2, (e1_y + e3_y) / 2, (e1_p + e3_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0],  majPtsPolygones, drawPolygone, l5);
-			if (numeroCylindreBague !== 8)
+			], [(e1_x + e3_x) / 2, (e1_y + e3_y) / 2, (e1_p + e3_p) / 2], 0, [w_x, w_y, w_p], [0, 0, 0], majPtsPolygones, drawPolygone, l5);
+			if (numeroCylindrenumBague !== 8)
 				listePolygonesObjectifChoisi[8][i].contour[3] = 0;
 		}
 	}

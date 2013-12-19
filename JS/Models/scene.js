@@ -10,7 +10,7 @@ Scene = function() {
 };
 
 
-function initScene() {
+function initScene() {	
 
 	cptImagesTelechargees = 0;
 	for (var i = 0; i != 4; i++)

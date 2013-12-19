@@ -1,6 +1,5 @@
 var flagClicVuePhoto = 0;
 var flagSourisSurVuePhoto = 0;
-var flagShiftRelache = 1;
 var flagPinchToZoom = 0;
 
 var X0VuePhoto;

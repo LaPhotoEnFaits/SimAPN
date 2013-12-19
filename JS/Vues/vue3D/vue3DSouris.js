@@ -1,7 +1,6 @@
 var flagClicVue3D = 0;
 var flagSourisSurVue3D = 0;
-/*var X0Vue3D;
-var Y0Vue3D;*/
+
 
 function souris3D(e) {
 
@@ -17,6 +16,8 @@ function souris3D(e) {
 	var rect = cvs.getBoundingClientRect(),
 		root = document.documentElement;
 
+	majTrigoVue3D(); //?
+
 	Xt0 = vue3D.Xt0;
 	Yt0 = vue3D.Yt0;
 
@@ -25,13 +26,13 @@ function souris3D(e) {
 	Yt1 = e.clientY - rect.top; // - root.scrollTop;
 
 	//A: point de départ de la souris (à l'instant précédent)
-	temp_xyp = XY2xyp(Xt0, Yt0);
+	temp_xyp = XY2xyp(Xt0, Yt0, 'translation');
 	Ax = temp_xyp.x;
 	Ay = temp_xyp.y;
 	Ap = temp_xyp.p;
 
 	//B: point final de la souris
-	temp_xyp = XY2xyp(Xt1, Yt1);
+	temp_xyp = XY2xyp(Xt1, Yt1, 'translation');
 	Bx = temp_xyp.x;
 	By = temp_xyp.y;
 	Bp = temp_xyp.p;
@@ -70,17 +71,14 @@ function souris3D(e) {
 			Mp = Mp * normalise;
 
 			//Mise à jour des coordonées de la matrice de rotation autour d'un axe
-			//1ière ligne
 			var M1_1 = Mx * Mx + (1 - Mx * Mx) * cosTheta;
 			var M1_2 = Mx * My * (1 - cosTheta) - Mp * sinTheta;
 			var M1_3 = Mx * Mp * (1 - cosTheta) + My * sinTheta;
 
-			//2nde ligne
 			var M2_1 = Mx * My * (1 - cosTheta) + Mp * sinTheta;
 			var M2_2 = My * My + (1 - My * My) * cosTheta;
 			var M2_3 = My * Mp * (1 - cosTheta) - Mx * sinTheta;
 
-			//3ième ligne
 			var M3_1 = Mx * Mp * (1 - cosTheta) - My * sinTheta;
 			var M3_2 = My * Mp * (1 - cosTheta) + Mx * sinTheta;
 			var M3_3 = Mp * Mp + (1 - Mp * Mp) * cosTheta;
@@ -100,11 +98,11 @@ function souris3D(e) {
 
 			//MAj de la matrice de rotation
 			var matriceDeRotationSave = new Array(3);
-			for (i = 0; i != 3; i++)
+			for (i = 0; i !== 3; i++)
 				matriceDeRotationSave[i] = new Array(3);
 
-			for (i = 0; i != 3; i++) {
-				for (ii = 0; ii != 3; ii++)
+			for (i = 0; i !== 3; i++) {
+				for (ii = 0; ii !== 3; ii++)
 					matriceDeRotationSave[i][ii] = vue3D.matriceDeRotation[i][ii];
 			}
 
@@ -122,8 +120,8 @@ function souris3D(e) {
 			majOrientation3D();
 
 			if (vue3D.orientationHaut === 0 || Ap === 0 || Bp === 0) {
-				for (i = 0; i != 3; i++) {
-					for (ii = 0; ii != 3; ii++)
+				for (i = 0; i !== 3; i++) {
+					for (ii = 0; ii !== 3; ii++)
 						vue3D.matriceDeRotation[i][ii] = matriceDeRotationSave[i][ii];
 				}
 				majOrientation3D();
@@ -134,14 +132,13 @@ function souris3D(e) {
 	//TRANSLATION
 	else {
 
-		temp_xyp = XY2xyp(Xt0, Yt0, "pas_de_translation");
+		temp_xyp = XY2xyp(Xt0, Yt0, "pasDeTranslation");
 
 		Ax = temp_xyp.x;
 		Ay = temp_xyp.y;
 		Ap = temp_xyp.p;
 
-		//B: point final de la souris
-		temp_xyp = XY2xyp(Xt1, Yt1, "pas_de_translation");
+		temp_xyp = XY2xyp(Xt1, Yt1, "pasDeTranslation");
 		Bx = temp_xyp.x;
 		By = temp_xyp.y;
 		Bp = temp_xyp.p;
@@ -152,33 +149,37 @@ function souris3D(e) {
 	}
 
 
-	//Sauvegarde les coordonées de la souris
 	vue3D.Xt0 = Xt1;
 	vue3D.Yt0 = Yt1;
-
-
-	//MAJ du canvas
 	drawVue3D();
+	drawReperesMouvement();
 
-	//Indications rotation / translation
+}
+
+
+function drawReperesMouvement() {
+
+	var cvs = document.getElementById(vue3D.cvs);
+	var ct = cvs.getContext('2d');
+
 	var R = vue3D.hauteurEnMetre / 2;
 	var x_temp;
 	var y_temp;
 	var p_temp;
 
+	var coord_3D, xt, yt;
+
 	ct.fillStyle = 'rgb(50,100,200)';
 	ct.strokeStyle = 'rgba(50,100,200,0.15)';
 
-	if (vue3D.typeDeDeplacement === "translation") {
-		//l'axe 'x' passe au milieu
+	if (vue3D.typeDeDeplacement === 'translation') {
+
 		//x
 		ct.beginPath();
-
 		coord_3D = xyp2XYmaj(photographe.deplacementHorizontal - R, photographe.deplacementVertical, photographe.deplacementProfondeur);
 		xt = coord_3D.X;
 		yt = coord_3D.Y;
 		ct.moveTo(xt, yt);
-
 		coord_3D = xyp2XYmaj(photographe.deplacementHorizontal + R, photographe.deplacementVertical, photographe.deplacementProfondeur);
 		xt = coord_3D.X;
 		yt = coord_3D.Y;
@@ -187,12 +188,10 @@ function souris3D(e) {
 
 		//y
 		ct.beginPath();
-
 		coord_3D = xyp2XYmaj(photographe.deplacementHorizontal, photographe.deplacementVertical - R, photographe.deplacementProfondeur);
 		xt = coord_3D.X;
 		yt = coord_3D.Y;
 		ct.moveTo(xt, yt);
-
 		coord_3D = xyp2XYmaj(photographe.deplacementHorizontal, photographe.deplacementVertical + R, photographe.deplacementProfondeur);
 		xt = coord_3D.X;
 		yt = coord_3D.Y;
@@ -201,12 +200,10 @@ function souris3D(e) {
 
 		//p
 		ct.beginPath();
-
 		coord_3D = xyp2XYmaj(photographe.deplacementHorizontal, photographe.deplacementVertical, photographe.deplacementProfondeur - R);
 		xt = coord_3D.X;
 		yt = coord_3D.Y;
 		ct.moveTo(xt, yt);
-
 		coord_3D = xyp2XYmaj(photographe.deplacementHorizontal, photographe.deplacementVertical, photographe.deplacementProfondeur + R);
 		xt = coord_3D.X;
 		yt = coord_3D.Y;
@@ -217,20 +214,14 @@ function souris3D(e) {
 
 	if (vue3D.typeDeDeplacement === "rotation") {
 		//centre de rotation
-
 		drawPoint3D(photographe.deplacementHorizontal, photographe.deplacementVertical, photographe.deplacementProfondeur, 2);
 
 		//arcs
-
-
-		//l'axe 'x' passe au milieu
 		ct.beginPath();
-
 		coord_3D = xyp2XYmaj(photographe.deplacementHorizontal, photographe.deplacementVertical + R, photographe.deplacementProfondeur);
 		xt = coord_3D.X;
 		yt = coord_3D.Y;
 		ct.moveTo(xt, yt);
-
 		for (i = 0; i < 2 * Math.PI; i += Math.PI / 20) {
 			y_temp = photographe.deplacementVertical + R * Math.cos(i);
 			p_temp = photographe.deplacementProfondeur + R * Math.sin(i);
@@ -242,15 +233,11 @@ function souris3D(e) {
 		ct.closePath();
 		ct.stroke();
 
-
-		//l'axe 'y' passe au milieu
 		ct.beginPath();
-
 		coord_3D = xyp2XYmaj(photographe.deplacementHorizontal + R, photographe.deplacementVertical, photographe.deplacementProfondeur);
 		xt = coord_3D.X;
 		yt = coord_3D.Y;
 		ct.moveTo(xt, yt);
-
 		for (i = 0; i < 2 * Math.PI; i += Math.PI / 20) {
 			x_temp = photographe.deplacementHorizontal + R * Math.cos(i);
 			p_temp = photographe.deplacementProfondeur + R * Math.sin(i);
@@ -262,15 +249,11 @@ function souris3D(e) {
 		ct.closePath();
 		ct.stroke();
 
-
-		//l'axe 'p' passe au milieu
 		ct.beginPath();
-
 		coord_3D = xyp2XYmaj(photographe.deplacementHorizontal, photographe.deplacementVertical + R, photographe.deplacementProfondeur);
 		xt = coord_3D.X;
 		yt = coord_3D.Y;
 		ct.moveTo(xt, yt);
-
 		for (i = 0; i < 2 * Math.PI; i += Math.PI / 20) {
 			y_temp = photographe.deplacementVertical + R * Math.cos(i);
 			x_temp = photographe.deplacementHorizontal + R * Math.sin(i);
@@ -338,7 +321,7 @@ function rouletteSourisVue3D(e) {
 
 	if (vue3D.hauteurEnMetre < 4 * apnChoisi.taillePixel)
 		vue3D.hauteurEnMetre = 4 * apnChoisi.taillePixel;
-	
+
 	calcKHauteurNormalisee();
 	drawVue3D();
 }
@@ -350,4 +333,54 @@ document.getElementById('cvsVue3D').addEventListener('DOMMouseScroll', function(
 
 document.getElementById('cvsVue3D').addEventListener('mousewheel', function(e) {
 	rouletteSourisVue3D(e);
+}, false);
+
+
+
+window.addEventListener('keydown', function(event) {
+
+	var touche;
+	if (event.keyIdentifier)
+		touche = event.keyIdentifier;
+	else if (event.key)
+		touche = event.key;
+
+	if (touche === "Shift" && flagClicVue3D === 0 && flagSourisSurVue3D && flagShiftRelache) {
+
+		flagShiftRelache = 0;
+
+		if (vue3D.typeDeDeplacement === "rotation") {
+			vue3D.typeDeDeplacement = "translation";
+			//drawBouton('id_div_BtnRotation', 'id_img_BtnRotation', 'css_BtnOFF');
+			//drawBouton('id_div_BtnTranslation', 'id_img_BtnTranslation', 'css_BtnON');
+		} else if (vue3D.typeDeDeplacement === "translation") {
+			vue3D.typeDeDeplacement = "rotation";
+			//drawBouton('id_div_BtnRotation', 'id_img_BtnRotation', 'css_BtnON');
+			//drawBouton('id_div_BtnTranslation', 'id_img_BtnTranslation', 'css_BtnOFF');
+		}
+	}
+}, false);
+
+window.addEventListener('keyup', function(event) {
+
+	var touche;
+	if (event.keyIdentifier)
+		touche = event.keyIdentifier;
+	else if (event.key)
+		touche = event.key;
+
+	if (touche === "Shift")
+		flagShiftRelache = 1;
+
+	if (touche === "Shift" && flagClicVue3D === 0 && flagSourisSurVue3D) {
+		if (vue3D.typeDeDeplacement === "rotation") {
+			vue3D.typeDeDeplacement = "translation";
+			//drawBouton('id_div_BtnRotation', 'id_img_BtnRotation', 'css_BtnOFF');
+			//drawBouton('id_div_BtnTranslation', 'id_img_BtnTranslation', 'css_BtnON');
+		} else if (vue3D.typeDeDeplacement === "translation") {
+			vue3D.typeDeDeplacement = "rotation";
+			//drawBouton('id_div_BtnRotation', 'id_img_BtnRotation', 'css_BtnON');
+			//drawBouton('id_div_BtnTranslation', 'id_img_BtnTranslation', 'css_BtnOFF');
+		}
+	}
 }, false);

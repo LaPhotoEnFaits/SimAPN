@@ -1,13 +1,4 @@
-function illustration(nom, srcImage, hauteurEnMetre, offsetXEnMetre, offsetYEnMetre) {
-	this.nom = nom;
-	this.image = document.createElement("IMG");
-	this.image.crossOrigin = "anonymous";
-	this.image.src = srcImage;
-	this.hauteurEnMetre = hauteurEnMetre;
-	this.offsetXEnMetre = offsetXEnMetre;
-	this.offsetYEnMetre = offsetYEnMetre;
-	this.image.onload = imageTelechargee;
-}
+
 
 
 function imageTelechargee() {

@@ -11,8 +11,7 @@ VueReglagesVuePhoto = function(activee, visible, fermable) {
 
 function initVueReglagesVuePhoto() {
 
-
-	document.getElementById('nomVueReglagesVuePhoto').innerHTML = 'Éléments à modéliser'
+	document.getElementById('nomVueReglagesVuePhoto').innerHTML = 'Réglages de la photo';
 	document.getElementById('nomChkVuePhotoExpo').innerHTML = 'Exposition';
 	document.getElementById('nomChkVuePhotoFlouMap').innerHTML = 'Flou de mise au point';
 	document.getElementById('nomChkVuePhotoFlouBouge').innerHTML = 'Flou de bougé';
@@ -44,7 +43,6 @@ function initVueReglagesVuePhoto() {
 		show('ensembleChkPDC');
 	else
 		hide('ensembleChkPDC');
-
 
 
 	if (vuePhoto.expositionVisible)
