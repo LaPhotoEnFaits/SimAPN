@@ -22,7 +22,6 @@ function drawRayonsOptiques3D() {
 
 	var p_f = df + focaleEnMetre;
 
-
 	xa = -apnChoisi.capteurLargeur / 2000 - (-photographe.deplacementHorizontal);
 	ya = apnChoisi.capteurHauteur / 2000 + photographe.deplacementVertical;
 	xb = apnChoisi.capteurLargeur / 2000 - (-photographe.deplacementHorizontal);
@@ -34,12 +33,7 @@ function drawRayonsOptiques3D() {
 	var coord_3D;
 
 	//--CHAMP DE VISION
-
-	//TEMP
-	var illuOptiqueFenetre3D = 'dim';
-
-	if (illuOptiqueFenetre3D === 'dim') {
-
+	if (vue3D.rayonsOptiques === 'rayonsOptiquesChampsDeVision') {
 
 		var dxc = scene.plans[2].distance * Math.tan(priseDeVue.angleChampHorizontal * Math.PI / 360.0);
 		var dyc = scene.plans[2].distance * Math.tan(priseDeVue.angleChampVertical * Math.PI / 360.0);
@@ -285,7 +279,7 @@ function drawRayonsOptiques3D() {
 	}
 
 	//--FLOU AVANT
-	else if (illuOptiqueFenetre3D === 'flou_avantPlan') {
+	else if (vue3D.rayonsOptiques === 'rayonsOptiquesFlouAvantPlan') {
 
 		//ct.fillStyle = 'rgba(' + color_avantPlan + ',0.5)';
 		ct.fillStyle = scene.plans[0].couleur;
@@ -336,9 +330,11 @@ function drawRayonsOptiques3D() {
 			ct.closePath();
 			ct.fill();
 		}
+
+		ct.globalAlpha = 1;
 	}
 	//--FLOU ARRIERE
-	else if (illuOptiqueFenetre3D === 'flou_arrierePlan') {
+	else if (vue3D.rayonsOptiques === 'rayonsOptiquesFlouArrierePlan') {
 		//-Arrière plan
 		//ct.fillStyle = 'rgba(' + color_arrierePlan + ',0.5)';
 		ct.fillStyle = scene.plans[2].couleur;
@@ -390,10 +386,11 @@ function drawRayonsOptiques3D() {
 			ct.fill();
 		}
 
+		ct.globalAlpha = 1;
 	}
 	//--VISEE REFLEX
 	/*
-	else if (illuOptiqueFenetre3D === 'visee_reflex') {
+	else if (vue3D.rayonsOptiques === 'visee_reflex') {
 
 		ct.beginPath();
 		ct.strokeStyle = 'rgba(' + COULEUR_PDC + ',0.5)';

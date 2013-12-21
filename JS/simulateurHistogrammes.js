@@ -7,7 +7,7 @@ function configSimulateur() {
 
 	vuePhoto.activee = 1;
 	vuePhoto.visible = 1;
-	vuePhoto.largeur = 400;
+	vuePhoto.largeur = 524;
 	vuePhoto.expositionVisible = 1;
 
 	vueCurseurExpo.activee = 1;
@@ -24,6 +24,7 @@ function configSimulateur() {
 
 	vueHistogrammes.activee = 1;
 	vueHistogrammes.visible = 1;
+	vueHistogrammes.histoRVBVIsible = 1;
 }
 
 function configMateriel() {
@@ -36,3 +37,5 @@ function configMateriel() {
 
 	priseDeVue.distanceDeMAP = scene.plans[1].distance;
 }
+
+function configVues(){}

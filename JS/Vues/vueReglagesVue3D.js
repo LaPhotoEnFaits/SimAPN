@@ -18,6 +18,22 @@ function initVueReglagesVue3D() {
 	document.getElementById('nomChkVue3DDiaphragme').innerHTML = 'Diaphragme';
 	document.getElementById('nomChkVue3DPDC').innerHTML = 'PDC';
 
+	document.getElementById('lstVue3DRayonsOptiques').options[0].text = 'pas de rayons optiques';
+	document.getElementById('lstVue3DRayonsOptiques').options[1].text = 'champs de vision';
+	document.getElementById('lstVue3DRayonsOptiques').options[2].text = "flou de l'avant plan";
+	document.getElementById('lstVue3DRayonsOptiques').options[3].text = "flou de l'arrière plan";
+
+	document.getElementById('btnRotationVue3D').innerHTML = '<img src="' + adresseDuCode + '/Images/Icones/btnRotation.png"/>';
+	document.getElementById('btnTranslationVue3D').innerHTML = '<img src="' + adresseDuCode + '/Images/Icones/btnTranslation.png"/>';
+
+	if (vue3D.typeDeDeplacement === 'rotation') {
+		drawBouton('btnRotationVue3D', 'ON');
+		drawBouton('btnTranslationVue3D', 'OFF');
+	} else {
+		drawBouton('btnRotationVue3D', 'OFF');
+		drawBouton('btnTranslationVue3D', 'ON');
+	}
+
 	if (vueReglagesVue3D.chkSilhouettesVisible)
 		show('ensembleChkVue3DSilhouettes');
 	else
@@ -42,6 +58,11 @@ function initVueReglagesVue3D() {
 		show('ensembleChkVue3DPDC');
 	else
 		hide('ensembleChkVue3DPDC');
+
+	if (vueReglagesVue3D.lstRayonsOptiquesVisible)
+		show('ensembleLstVue3DRayonsOptiques');
+	else
+		hide('ensembleLstVue3DRayonsOptiques');
 
 
 	if (vue3D.silhouettesVisible)
@@ -68,6 +89,8 @@ function initVueReglagesVue3D() {
 		document.getElementById('chkVue3DPDC').checked = true;
 	else
 		document.getElementById('chkVue3DPDC').checked = false;
+
+	initSelectedLst('lstVue3DRayonsOptiques', vue3D.rayonsOptiques, 1);
 }
 
 document.getElementById('chkVue3DSilhouettes').addEventListener('change', function() {
@@ -112,5 +135,10 @@ document.getElementById('chkVue3DPDC').addEventListener('change', function() {
 	else
 		vue3D.PDCVisible = 0;
 
+	drawVue3D();
+}, false);
+
+document.getElementById('lstVue3DRayonsOptiques').addEventListener('change', function() {
+	vue3D.rayonsOptiques = document.getElementById('lstVue3DRayonsOptiques').options[document.getElementById('lstVue3DRayonsOptiques').selectedIndex].value;
 	drawVue3D();
 }, false);

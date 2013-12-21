@@ -86,11 +86,11 @@ input[type="range"]::-ms-tooltip  {
     font-style: italic;
 }
 
-.classBtnReglage, .classBtnClose, .classBtnReglageFocus{
+.classBtnReglage, .classBtnClose, .classBtnReglageFocus,.classBtnReglageGauche{
     cursor: pointer;
 }
 
-.classBtnReglage:hover, .classBtnClose:hover, .classBtnReglageFocus:hover {
+.classBtnReglage:hover,.classBtnReglageGauche:hover, .classBtnClose:hover, .classBtnReglageFocus:hover {
     background: rgba(255,255,255,0.3);
     background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.3),rgba(255,255,255,0.15));
     background-image: -moz-linear-gradient(top, rgba(255,255,255,0.3),rgba(255,255,255,0.15));
@@ -117,6 +117,11 @@ input[type="range"]::-ms-tooltip  {
 
 .classBtnReglage{
     float:right;
+    padding:0px;
+}
+
+.classBtnReglageGauche{
+    float:left;
     padding:0px;
 }
 

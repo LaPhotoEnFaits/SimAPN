@@ -8,7 +8,24 @@ function getTraduction(id) {
 }
 
 var traductionFr = {
-
+    "INFObtnRotationVue3D": {
+    "message": "Déplacement par ROTATION"
+  },
+      "INFObtnTranslationVue3D": {
+    "message": "Déplacement par TRANSLATION"
+  },
+  "INFObtnVue3D": {
+    "message": "Afficher la vue 3D"
+  },
+  "INFObtnVueReglagesVue3D": {
+    "message": "Sélectionnez les éléments à afficher dans la vue 3D"
+  },
+  "INFOvueHistogrammes": {
+    "message": "Histogrammes calculés en temps réel. Vous pouvez afficher les histogrammes RVB."
+  },
+  "INFOvue3D": {
+    "message": "Roulette souris pour zoomer/dé-zoomer. Clic gauche + souris pour vous déplacer. Maintenir Shift enfoncé pour alterner rotation/translation."
+  },
   "INFObtnVueFlouDeMiseAuPoint": {
     "message": "Afficher la courbe du flou de MAP"
   },
@@ -31,17 +48,16 @@ var traductionFr = {
     "message": "Luminosité, distances et illustration de la scène"
   },
   "INFObtnVueReglagesVuePhoto": {
-    "message": "Choix des éléments à modéliser"
+    "message": "Choix des éléments à prendre en compte pour simuler la photo"
   },
     "INFObtnInformationsUtilisateur": {
     "message": "Afficher/Cacher les infos bulles"
   },
-
   "INFOvueFlouDeMiseAuPoint": {
     "message": "La courbe rouge montre la valeur du flou, la zone bleue montre la PDC. Utilisez la souris pour modifier les distances, la roulette pour zoomer"
   },
   "INFOvuePhoto": {
-    "message": "Roulette souris pour aller devant/derrière. Clic gauche + souris pour vous déplacer. Maintenir shift enfoncé pour passer de déplacement<=> autofocus"
+    "message": "Roulette souris pour aller devant/derrière. Clic gauche + souris pour vous déplacer. Maintenir shift enfoncé pour alterner déplacement/autofocus"
   },
   "INFOvueCurseurExpo": {
     "message": "Valeur de l'exposition de la photo"

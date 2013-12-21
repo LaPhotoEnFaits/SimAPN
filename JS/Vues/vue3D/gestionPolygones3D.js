@@ -234,7 +234,8 @@ function drawByCDG() {
 				break;
 
 			case capteurFullFrame.CDGMaj:
-				capteurFullFrame.draw();
+				if (vue3D.rayonsOptiques === 'rayonsOptiquesChampsDeVision' && apnChoisi.capteurFormat !== 'full-frame')
+					capteurFullFrame.draw();
 				capteurFullFrame.CDGMaj = 'X';
 				break;
 

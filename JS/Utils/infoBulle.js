@@ -17,7 +17,6 @@ function setInfoBulle() {
 
 function initInfoBulle() {
 
-
 	if(navigateur.mobile){
 		hide('btnInformationsUtilisateur');
 		flagInfoBulleActif = 0;

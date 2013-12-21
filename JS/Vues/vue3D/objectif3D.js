@@ -126,9 +126,10 @@ function setPtsObjectifChoisi3D() {
 	var nbrPolygonesObjectif;
 
 	if (apnChoisi.capteurFormat === '1/3.2') {
-		nbrPolygonesObjectif = 3;
+		nbrPolygonesObjectif = 9;
 		l1 = 0.001 * objectifChoisi.focale / 3;
 		d1 = 0.001 * objectifChoisi.focale / objectifChoisi.indiceOuvertureMin;
+		d1 = d1 / apnChoisi.cropFactor;
 		e1 = l1;
 		l2 = l1;
 		d2 = d1;

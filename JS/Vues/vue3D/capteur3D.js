@@ -37,7 +37,8 @@ function setPtsCapteurs3D() {
 		[ff3_x, ff3_y, ff3_p],
 		[ff4_x, ff4_y, ff4_p]
 	];
-	capteurFullFrame.CDG = [(ff2_x + ff1_x) / 2, (ff1_y + ff3_y) / 2, ff1_p];
+	//capteurFullFrame.CDG = [(ff2_x + ff1_x) / 2, (ff1_y + ff3_y) / 2, ff1_p];
+	capteurFullFrame.CDG = [photographe.deplacementHorizontal, photographe.deplacementVertical, ff1_p];
 	capteurFullFrame.vecteurNormal = [0, 0, 1];
 	capteurFullFrame.rayonAffichage = Math.abs(ff1_x - ff2_x);
 
@@ -47,7 +48,7 @@ function setPtsCapteurs3D() {
 		[ca3_x, ca3_y, ca3_p],
 		[ca4_x, ca4_y, ca4_p]
 	];
-	capteurChoisi3D.CDG = [(ca2_x + ca1_x) / 2, (ca1_y + ca3_y) / 2, ca1_p];
+	capteurChoisi3D.CDG = [photographe.deplacementHorizontal, photographe.deplacementVertical, photographe.deplacementProfondeur];
 	capteurChoisi3D.vecteurNormal = [0, 0, 1];
 	capteurChoisi3D.rayonAffichage = Math.abs(ca1_x - ca2_x);
 }

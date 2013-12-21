@@ -10,7 +10,8 @@ function majCDGdiaphragme3D() {
 	var p_f = df + focaleEnMetre;
 	var p = p_f + photographe.deplacementProfondeur - apnChoisi.p_foyer_corps;
 
-	diaphragme3D.CDGMaj = 1.0 * majCoord3D(photographe.deplacementHorizontal, photographe.deplacementVertical, p).p.toFixed(6);
+	diaphragme3D.CDGMaj = 1.0 * majCoord3D(photographe.deplacementHorizontal, photographe.deplacementVertical, p, 'translation').p.toFixed(6);
+
 	listeDeTousLesPolygones.listeDesCDG[findPolygoneByName(diaphragme3D.nom)] = 1.0 * diaphragme3D.CDGMaj;
 }
 

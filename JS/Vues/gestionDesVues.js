@@ -159,6 +159,7 @@ function RAZconfig() {
 	vue3D.objectifVisible = 0;
 	vue3D.diaphragmeVisible = 0;
 	vue3D.PDCVisible = 0;
+	vue3D.rayonsOptiques='pasDeRayonsOptiques';
 
 	vueReglagesVue3D.activee = 0;
 	vueReglagesVue3D.visible = 0;

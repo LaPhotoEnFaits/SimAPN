@@ -8,6 +8,7 @@ var HAUTEUR_AXE_Y_HISTO_RVB = 66;
 var LARGEUR_CVS_HISTO = LONGUEUR_AXE_X_HISTO + 2 * OFFSET_X_HISTO;
 var HAUTEUR_CVS_HISTO = HAUTEUR_AXE_Y_HISTO + 2 * OFFSET_Y_HISTO;
 
+var LUMINOSITE_MAX_AVANT_ECRETAGE = 250;
 
 VueHistogrammes = function() {
 	this.nom = 'Histogrammes';
@@ -26,7 +27,10 @@ VueHistogrammes = function() {
 
 
 function initVueHistogrammes() {
-	document.getElementById('nomChkHistoRVB').innerHTML = 'afficher les histogrammes RVB'
+	document.getElementById('nomChkHistoRVB').innerHTML = 'afficher les histogrammes RVB';
+
+	if (vueHistogrammes.histoRVBVIsible)
+		document.getElementById('chkHistoRVB').checked = true;
 }
 
 
@@ -56,7 +60,7 @@ function drawVueHistogrammes() {
 		ct.font = "12px 'Trebuchet MS'";
 
 		var max = 0;
-		for (var i = 1; i <= 250; i++) {
+		for (var i = 1; i <= LUMINOSITE_MAX_AVANT_ECRETAGE; i++) {
 			if (vueHistogrammes.nbrPixelLuminosite[i] > max)
 				max = vueHistogrammes.nbrPixelLuminosite[i];
 		}
@@ -104,7 +108,7 @@ function drawVueHistogrammes() {
 			var nbrPixelV_norm = new Array(256);
 			var nbrPixelB_norm = new Array(256);
 
-			for (i = 0; i <= 255; i++) {
+			for (i = 0; i <= LUMINOSITE_MAX_AVANT_ECRETAGE; i++) {
 				if (vueHistogrammes.nbrPixelR[i] > Rmax)
 					Rmax = vueHistogrammes.nbrPixelR[i];
 				if (vueHistogrammes.nbrPixelV[i] > Vmax)

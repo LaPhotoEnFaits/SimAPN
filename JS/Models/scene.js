@@ -10,11 +10,23 @@ Scene = function() {
 };
 
 
-function initScene() {	
+function initScene() {
 
 	cptImagesTelechargees = 0;
 	for (var i = 0; i != 4; i++)
 		scene.illustrations[i] = null;
+
+	if (!illustrationPhotographe.image.complete) {
+		illustrationPhotographe.nom = 'silhouetteDuPhotographe';
+		illustrationPhotographe.image = document.createElement("IMG");
+		illustrationPhotographe.image.crossOrigin = "anonymous";
+		illustrationPhotographe.image.src = adresseDuCode + '/Images/Photos/Photographe.png';
+		illustrationPhotographe.hauteurEnMetre = 1.8;
+		illustrationPhotographe.offsetXEnMetre = 0;
+		illustrationPhotographe.offsetYEnMetre = 0;
+		illustrationPhotographe.image.onload = imageTelechargee;
+	}
+
 
 	switch (scene.sceneChoisie) {
 

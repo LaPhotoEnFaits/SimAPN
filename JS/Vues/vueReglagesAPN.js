@@ -156,5 +156,6 @@ function majSelectionLstTypeDeCapteur() {
 
 document.getElementById('lstTypeDeCapteur').addEventListener('change', function() {
 	apnChoisi.capteurFormat = document.getElementById('lstTypeDeCapteur').options[document.getElementById('lstTypeDeCapteur').selectedIndex].value;
-	onModifCapteur();
+	//onModifCapteur();
+	onChangeAPN();
 }, false);

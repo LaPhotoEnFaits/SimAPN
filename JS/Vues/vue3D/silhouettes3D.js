@@ -163,10 +163,10 @@ function majCDGSilhouettes3D() {
 	var p_f = df + focaleEnMetre;
 
 	for (var i = 0; i !== 3; i++) {
-		silhouettePlan[i].CDGMaj = 1.0 * majCoord3D(0, 0, scene.plans[i].distance + photographe.deplacementProfondeur + p_f).p.toFixed(6);
+		silhouettePlan[i].CDGMaj = 1.0 * majCoord3D(0, 0, scene.plans[i].distance + photographe.deplacementProfondeur + p_f, 'translation').p.toFixed(6);
 		listeDeTousLesPolygones.listeDesCDG[findPolygoneByName(silhouettePlan[i].nom)] = 1.0 * silhouettePlan[i].CDGMaj;
 	}
 
-	silhouettePhotographe.CDGMaj = 1.0 * majCoord3D(photographe.deplacementHorizontal, photographe.deplacementVertical, photographe.deplacementProfondeur - 0.1).p.toFixed(6);
+	silhouettePhotographe.CDGMaj = 1.0 * majCoord3D(photographe.deplacementHorizontal, photographe.deplacementVertical, photographe.deplacementProfondeur - DP_PHOTOGRAPHE, 'translation').p.toFixed(6);
 	listeDeTousLesPolygones.listeDesCDG[findPolygoneByName(silhouettePhotographe.nom)] = 1.0 * silhouettePhotographe.CDGMaj;
 }

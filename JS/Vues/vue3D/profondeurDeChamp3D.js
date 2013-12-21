@@ -3,7 +3,7 @@ function majCDGPDC3D() {
 	var df = (focaleEnMetre * focaleEnMetre) / (priseDeVue.distanceDeMAP - focaleEnMetre);
 	var p_f = df + focaleEnMetre;
 
-	pdc3D.CDGMaj = 1.0 * majCoord3D(0, 0, priseDeVue.finDeLaPDC + photographe.deplacementProfondeur + p_f).p.toFixed(6);
+	pdc3D.CDGMaj = 1.0 * majCoord3D(0, 0, priseDeVue.finDeLaPDC + photographe.deplacementProfondeur + p_f, 'translation').p.toFixed(6);
 	listeDeTousLesPolygones.listeDesCDG[findPolygoneByName(pdc3D.nom)] = 1.0 * pdc3D.CDGMaj;
 }
 

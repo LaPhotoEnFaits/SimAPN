@@ -8,7 +8,7 @@ function configSimulateur() {
 
 	vuePhoto.activee = 1;
 	vuePhoto.visible = 1;
-	vuePhoto.largeur = 400;
+	vuePhoto.largeur = 485;
 	vuePhoto.flouDeBougeVisible = 1;
 
 	vueReglagesRapides.activee = 1;
@@ -23,6 +23,7 @@ function configSimulateur() {
 
 	vueReglagesObjectif.activee = 1;
 	vueReglagesObjectif.fermable = 1;
+	vueReglagesObjectif.visible = 1;
 	vueReglagesObjectif.lstAntiVibrationVisible = 1;
 
 	vueReglagesAPN.activee = 1;
@@ -46,3 +47,5 @@ function configMateriel() {
 
 	priseDeVue.distanceDeMAP = scene.plans[1].distance;
 }
+
+function configVues(){}

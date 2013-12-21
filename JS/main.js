@@ -56,7 +56,8 @@ capteurChoisi3D = new Polygone();
 capteurFullFrame = new Polygone();
 silhouettePlan = new Array(3);
 silhouettePhotographe = new Polygone();
-illustrationPhotographe = new illustration('silhouetteDuPhotographe', adresseDuCode + '/Images/Photos/Photographe.png', 1.8, 0, 0);
+//illustrationPhotographe = new illustration('silhouetteDuPhotographe', adresseDuCode + '/Images/Photos/Photographe.png', 1.8, 0, 0);
+illustrationPhotographe = new illustration();
 pdc3D = new Polygone();
 diaphragme3D = new Polygone();
 apn3D = new Array(NBR_FACES_APN_3D);
@@ -95,6 +96,7 @@ function initPostTelechargement() {
 	initCalc();
 	initPolygones3D();
 	initVues();
+	configVues();
 	drawVues();
 	if (vuePhoto.visible)
 		valideAccelerationMaterielle();
@@ -111,6 +113,7 @@ function initPostTelechargement() {
 
 	initInfoBulle();
 
+	miseEnPage();
 	document.getElementById('infoUtilisateur').innerHTML = '';
 	show('Vues');
 	document.body.style.cursor = 'default';

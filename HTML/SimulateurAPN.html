@@ -81,13 +81,14 @@
 			<span id='btnCloseVueCurseurExpo' class='classBtnClose'></span>
 		</span>
 
-
 		<span id='vue3D' class='classVueHistogrammes'>
 			<span id='btnCloseVue3D' class='classBtnClose'></span>
-			<canvas id='cvsVue3D' ></canvas>
+			<div><canvas id='cvsVue3D' ></canvas></div>
+
+			<span id='btnRotationVue3D' class='classBtnReglageGauche'></span>
+			<span id='btnTranslationVue3D' class='classBtnReglageGauche'></span>
 			<span id='btnVueReglagesVue3D' class='classBtnReglage'></span>
 		</span>
-
 
 		<div>
 			<span id='vueReglagesRapides' class='classReglagesRapides'>
@@ -99,7 +100,7 @@
 					</tr>
 				</table>
 
-				<table class='tableAvecSldTriangleExpo'>
+				<table class='tableAvecSldTriangleExpo' id='ensembleTriangleExpo'>
 
 					<tr id='ensembleSldOuverture'>
 						<td><span id='nomSldOuverture' class='nomDeParametre'></span></td>
@@ -120,7 +121,7 @@
 					</tr>
 				</table>
 
-				<table class='tableAvecSldFocale'>
+				<table class='tableAvecSldFocale' id='ensembleFocale'>
 					<tr id='ensembleSldFocale'>
 						<td><span id='nomSldFocale' class='nomDeParametre'></span></td>
 						<td><input type='range' id='sldFocale' class='classSldFocale' /></td>
@@ -185,10 +186,12 @@
 					</tr>
 				</table>
 			</span>
-
 		</div>
 
-		<div>
+
+
+
+		<span>
 			<span id='vueFlouDeMiseAuPoint' class='classVueFlouDeMiseAuPoint'>
 				<span id='btnCloseVueFlouDeMiseAuPoint' class='classBtnClose'></span>
 				<canvas id='cvsFlouDeMiseAuPoint' ></canvas>
@@ -203,7 +206,7 @@
 				</div>
 				<canvas id='cvsHistoRVB' ></canvas>
 			</span>
-		</div>
+		</span>
 
 
 		<span id='vueReglagesVuePhoto' class='classReglagesVue'>
@@ -270,6 +273,17 @@
 				<tr id='ensembleChkVue3DPDC'>
 					<td><input type="checkbox" id="chkVue3DPDC" /></td>
 					<td><span id='nomChkVue3DPDC' class='nomDeParametre'></span></td>
+				</tr>
+
+				<tr id='ensembleLstVue3DRayonsOptiques'>
+					<td colspan='2'>    
+						<select id='lstVue3DRayonsOptiques' class="cssLst">
+							<option value='pasDeRayonsOptiques'></option>
+							<option value='rayonsOptiquesChampsDeVision'></option>
+							<option value='rayonsOptiquesFlouAvantPlan'></option>
+							<option value='rayonsOptiquesFlouArrierePlan'></option>
+						</select>
+					</td>
 				</tr>									
 			</table>
 		</span>
@@ -460,6 +474,10 @@
 
 <script type="text/javascript">
 
+
+	var LARGEUR_DANS_UN_ARTICLE='850px';
+	var LARGEUR_SIMULATEUR_COMPLET='100%';//1165px';
+
 	if(!typeDeSimulateur)
 		var typeDeSimulateur = 'simulateurTriangleExpo';
 	
@@ -481,9 +499,9 @@
     feuilleDeStyle.onload = function(){		
 
     	if(typeDeSimulateur !== 'simulateurComplet')
-    		document.getElementById('vueSimulateur').style.maxWidth='850px';
+    		document.getElementById('vueSimulateur').style.maxWidth=LARGEUR_DANS_UN_ARTICLE;
     	else
-    		document.getElementById('vueSimulateur').style.maxWidth='1165px';	
+    		document.getElementById('vueSimulateur').style.maxWidth=LARGEUR_SIMULATEUR_COMPLET;	
 
 		chargeScript(0);
 	};

@@ -82,6 +82,7 @@ function configSimulateur() {
 	vue3D.objectifVisible = 1;
 	vue3D.diaphragmeVisible = 1;
 	vue3D.PDCVisible = 1;
+	vue3D.rayonsOptiques = 'rayonsOptiquesChampsDeVision';
 
 	vueReglagesVue3D.activee = 1;
 	vueReglagesVue3D.fermable = 1;
@@ -90,6 +91,7 @@ function configSimulateur() {
 	vueReglagesVue3D.chkObjectifVisible = 1;
 	vueReglagesVue3D.chkDiaphragmeVisible = 1;
 	vueReglagesVue3D.chkPDCVisible = 1;
+	vueReglagesVue3D.lstRayonsOptiquesVisible = 1;
 }
 
 function configMateriel() {
@@ -97,4 +99,31 @@ function configMateriel() {
 	apnChoisi.ISO = 200;
 	objectifChoisi.ouverture = 5.6;
 	priseDeVue.distanceDeMAP = scene.plans[1].distance;
+}
+
+function configVues() {
+	vue3D.hauteurEnMetre = 7.96;
+	calcKHauteurNormalisee();
+
+	vue3D.thetaX = 0;
+	vue3D.thetaY = 0;
+	vue3D.thetaP = 0;
+
+	majTrigoVue3D();
+
+	vue3D.matriceDeRotation[0][0] = -0.9553672228313058;
+	vue3D.matriceDeRotation[0][1] = -0.01938500183501702;
+	vue3D.matriceDeRotation[0][2] = 0.2946791282117946;
+
+	vue3D.matriceDeRotation[1][0] = 0.022155696069141563;
+	vue3D.matriceDeRotation[1][1] = 0.9903298214247283;
+	vue3D.matriceDeRotation[1][2] = 0.13694683259461185;
+
+	vue3D.matriceDeRotation[2][0] = -0.29448154001380566;
+	vue3D.matriceDeRotation[2][1] = 0.13736455751656548;
+	vue3D.matriceDeRotation[2][2] = -0.9457349890950649;
+
+	vue3D.translationP = -0.37960445547067967;
+	vue3D.translationX = -0.5777777777777777;
+	vue3D.translationY = -0.544642857142857;
 }

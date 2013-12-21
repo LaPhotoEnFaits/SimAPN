@@ -35,8 +35,6 @@ function initVueReglagesScene() {
 		show('ensembleLstScenes');
 	} else
 		hide('ensembleLstScenes');
-
-
 }
 
 ////SAISIE DES DISTANCES DES PLANS

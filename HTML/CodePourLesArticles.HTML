@@ -1,5 +1,7 @@
 <!DOCTYPE html><html><body>
 
+
+<!-- DEBUT DU COPIER COLLER-->
 <a id='SimulateurAppareilPhoto'></a>
 <br/>
 <br/>
@@ -8,8 +10,9 @@
 <br />
 
 <meta charset="UTF-8" />
-<input type="button" id='btnStartSimulateur' onclick="startSimulateur()"  value="Charger le simulateur" /><br />
 
+<div style='text-align:center'><button type="button" id='btnStartSimulateur' onclick="startSimulateur()"  style='border: none;
+background-color: rgba(0,0,0,0); cursor: pointer;'><span id='imageBtnStart'></span></button></div>
 <div id='infosPreChargement'></div>
 <div id='infoNavigateur' class='classInfoNavigateur'></div>
 <div id="ZoneSimulateur" class='zoneSimulateur'></div>
@@ -28,10 +31,13 @@
     typeDeSimulateur = 'simulateurComplet';
 
 
-	if(window.location.protocol==='file:' || window.location.href.search('localhost:'))
+	if(window.location.protocol==='file:' || window.location.href.search('localhost:')!==-1)
 		adresseDuCode='..';
 	else
 		adresseDuCode=ADR_CODE_TEST;
+
+    if( typeDeSimulateur !== 'simulateurComplet')
+        document.getElementById('imageBtnStart').innerHTML='<img src="' + adresseDuCode + '/Images/start simulateur appareil photo.jpg" alt="cliquez pour lancer le simulateur d\'appareil photo" title="cliquez pour lancer le simulateur d\'appareil photo"/>';
 
 	var scriptCompatibiliteNavigateur = document.createElement('script');
     scriptCompatibiliteNavigateur.type = 'text/javascript';
@@ -42,8 +48,11 @@
     	startSimulateur();
 
     function startSimulateur(){
-        document.getElementById('infosPreChargement').innerHTML='Telechargement des fichiers necessaires lancé...'
-        document.getElementById('btnStartSimulateur').style.display = 'none';
+        document.getElementById('infosPreChargement').innerHTML='Telechargement des fichiers necessaires lancé...';
+
+        if( typeDeSimulateur !== 'simulateurComplet')
+            document.getElementById('btnStartSimulateur').style.display = 'none';
+        
         document.body.style.cursor = 'wait';
         scriptCompatibiliteNavigateur.src = adresseDuCode + '/JS/Utils/compatibiliteNavigateurs.js';
         
@@ -52,9 +61,11 @@
     }
 
 </script>
+
 <br/>
 <br/>
 <br/>
+<!--FIN DU COPIER COLLER-->
 
 
 </body></html>

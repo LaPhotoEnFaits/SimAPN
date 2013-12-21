@@ -83,7 +83,6 @@ function doMAJ() {
 }
 
 
-
 ////MODIFS DE FAMILLES D'ITEMS
 function onModifExposition(appelInterne) {
 
@@ -142,7 +141,8 @@ function onChangeAPN(appelInterne) {
 	}
 
 	flagMAJ.setCotesAPN3D.actif = 1;
-	flagMAJ.setPtsAPN3D.actif = 1;
+	flagMAJ.setPtsAPN3D.actif = 1;	
+	flagMAJ.extrapoleObjectif.actif = 1;
 	flagMAJ.setPtsObjectifChoisi3D.actif = 1;
 	flagMAJ.drawVue3D.actif = 1;
 
@@ -153,6 +153,17 @@ function onChangeAPN(appelInterne) {
 
 	if (!appelInterne)
 		doMAJ();
+}
+
+function onDeplacePhotographe(appelInterne){
+	flagMAJ.drawVueHistogrammes.actif = 1;
+	flagMAJ.drawVue3D.actif = 1;
+	flagMAJ.setPtsCapteurs3D.actif = 1;
+	flagMAJ.setPtsAPN3D.actif = 1;
+	flagMAJ.setPtsObjectifChoisi3D.actif = 1;
+
+	if (vuePhoto.affichageRapide)
+		flagMAJ.drawFlousEtExpo.actif = 1;
 }
 
 
@@ -229,21 +240,13 @@ function onModifDistancePlan(numeroDuPlan, appelInterne) {
 }
 
 function onModifProfondeurPhotographe(appelInterne) {
-
 	flagMAJ.majOutputDistancesPlans.actif = 1;
 	flagMAJ.setDistancesApresDelacement.actif = 1;
 	flagMAJ.drawVuePhoto.actif = 1;
-	flagMAJ.drawVueHistogrammes.actif = 1;
-	flagMAJ.drawVue3D.actif = 1;
-	flagMAJ.setPtsCapteurs3D.actif = 1;
-	flagMAJ.setPtsAPN3D.actif = 1;
-	flagMAJ.setPtsObjectifChoisi3D.actif = 1;
-
-	if (vuePhoto.affichageRapide)
-		flagMAJ.drawFlousEtExpo.actif = 1;
 
 	onModifChamps(1);
 	onModifFlouDeMAP(1);
+	onDeplacePhotographe(1);
 
 	if (!appelInterne)
 		doMAJ();
@@ -256,14 +259,8 @@ function onModifHorizontalVerticalPhotographe(appelInterne) {
 	flagMAJ.drawPDCVuePhoto.actif = 1;
 	flagMAJ.drawGrillePerspective.actif = 1;
 	flagMAJ.drawBruit.actif = 1;
-	flagMAJ.drawVueHistogrammes.actif = 1;
-	flagMAJ.setPtsCapteurs3D.actif = 1;
-	flagMAJ.setPtsAPN3D.actif = 1;
-	flagMAJ.setPtsObjectifChoisi3D.actif = 1;
-	flagMAJ.drawVue3D.actif = 1;
 
-	if (vuePhoto.affichageRapide)
-		flagMAJ.drawFlousEtExpo.actif = 1;
+	onDeplacePhotographe(1);
 
 	if (!appelInterne)
 		doMAJ();
@@ -299,6 +296,7 @@ function onModifFocale(appelInterne) {
 	flagMAJ.drawVueEXIF.actif = 1;
 	flagMAJ.setPtsObjectifChoisi3D.actif = 1;
 	flagMAJ.extrapoleObjectif.actif = 1;
+	flagMAJ.setPtsCapteurs3D.actif = 1;
 
 	if (priseDeVue.cadrageConstant && !appelInterne) {
 		setProfondeurPhotographeCadrageConstant();
