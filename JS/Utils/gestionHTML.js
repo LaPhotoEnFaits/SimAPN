@@ -63,5 +63,5 @@ function drawBouton(id, state) {
 	if (state === 'OFF')
 		document.getElementById(id).style.background = '';
 	else
-		document.getElementById(id).style.background = 'rgba(0,0,0,0.25)';
+		document.getElementById(id).style.background = 'rgba(0,0,0,0.5)';
 }

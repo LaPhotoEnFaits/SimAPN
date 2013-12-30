@@ -130,7 +130,9 @@ function majOutputSldFocale() {
 	document.getElementById('outputSldFocale').innerHTML = objectifChoisi.focale + 'mm';
 
 	if (apnChoisi.cropFactor < 0.99 || apnChoisi.cropFactor > 1.01)
-		document.getElementById('outputSldFocale').innerHTML += '<br/><i>' + Math.round(objectifChoisi.focale * apnChoisi.cropFactor) + 'mm eq.</i>';
+		document.getElementById('outputSldFocaleEqu').innerHTML = '<br/><i>#' + Math.round(objectifChoisi.focale * apnChoisi.cropFactor) + 'mm</i>';
+	else
+		document.getElementById('outputSldFocaleEqu').innerHTML='';
 }
 
 function modifSldFocale() {

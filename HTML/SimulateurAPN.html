@@ -17,13 +17,12 @@
 						<table class='tableAvecSld'>
 							<tr>
 								<td><canvas id='cvsPetiteFenetre'></canvas></td>
-								<td><input type='range' id='sldTailleFenetres' /></td>
+								<td><input type='range' id='sldTailleFenetres' class='classSldTailleFenetres'/></td>
 								<td><canvas id='cvsGrandeFenetre'></canvas></td>
 							</tr>
 						</table>
 					</td>					
 					<td id='btnVueReglagesScene' class='classBtnReglage'></td>		
-					<td id='btnVueReglagesFocus' class='classBtnReglage'></td>		
 					<td id='btnVueReglagesPhotographe' class='classBtnReglage'></td>
 					<td id='btnVueReglagesObjectif' class='classBtnReglage'></td>
 					<td id='btnVueReglagesAPN' class='classBtnReglage'></td>
@@ -72,7 +71,8 @@
 			<span id='btnVuePhoto' class='classBtnReglage'></span>
 			<span id='btnCloseVuePhoto' class='classBtnClose'></span>
 
-			<span id='btnVueReglagesVuePhoto' class='classBtnReglage'></span>
+			<span id='btnVueReglagesFocus' class='classBtnReglageGauche' style='margin-top:10px;'></span>
+			<span id='btnVueReglagesVuePhoto' class='classBtnReglage'style='margin-top:10px;'></span>
 
 			<div id='vueCurseurExpo' class='classCurseurExposition'>
 				<canvas id='cvsCurseurExposition'></canvas>
@@ -81,8 +81,9 @@
 			<span id='btnCloseVueCurseurExpo' class='classBtnClose'></span>
 		</span>
 
-		<span id='vue3D' class='classVueHistogrammes'>
+		<span id='vue3D' class='classVuesGraphiques'>
 			<span id='btnCloseVue3D' class='classBtnClose'></span>
+			
 			<div><canvas id='cvsVue3D' ></canvas></div>
 
 			<span id='btnRotationVue3D' class='classBtnReglageGauche'></span>
@@ -90,7 +91,7 @@
 			<span id='btnVueReglagesVue3D' class='classBtnReglage'></span>
 		</span>
 
-		<div>
+		<div id='ensembleRgelgagesRapidesEtFocus'>
 			<span id='vueReglagesRapides' class='classReglagesRapides'>
 
 				<table class='classEnsembleChkCadrageConstant'>
@@ -125,7 +126,7 @@
 					<tr id='ensembleSldFocale'>
 						<td><span id='nomSldFocale' class='nomDeParametre'></span></td>
 						<td><input type='range' id='sldFocale' class='classSldFocale' /></td>
-						<td><span id='outputSldFocale'></span></td>
+						<td><span id='outputSldFocale'></span><span id='outputSldFocaleEqu' class='classVueEXIF'></span></td>
 					</tr>
 				</table>
 
@@ -188,26 +189,22 @@
 			</span>
 		</div>
 
-
-
-
-		<span>
-			<span id='vueFlouDeMiseAuPoint' class='classVueFlouDeMiseAuPoint'>
+		<span id='ensembleFludeDeMAPEtHistogrammes'>
+			<span id='vueFlouDeMiseAuPoint' class='classVuesGraphiques'>
 				<span id='btnCloseVueFlouDeMiseAuPoint' class='classBtnClose'></span>
-				<canvas id='cvsFlouDeMiseAuPoint' ></canvas>
+				<div><canvas id='cvsFlouDeMiseAuPoint' ></canvas></div>
 			</span>
 
-			<span id='vueHistogrammes' class='classVueHistogrammes'>
+			<span id='vueHistogrammes' class='classVuesGraphiques'>
 				<span id='btnCloseVueHistogrammes' class='classBtnClose'></span>
-				<canvas id='cvsHistogrammes' ></canvas>
+				<div><canvas id='cvsHistogrammes' ></canvas></div>
 				<div>
 					<input type="checkbox" id="chkHistoRVB" />
 					<span id='nomChkHistoRVB' class='nomDeParametre'></span>
 				</div>
-				<canvas id='cvsHistoRVB' ></canvas>
+				<canvas id='cvsHistoRVB' class='classCvsHistoRVB' ></canvas>
 			</span>
 		</span>
-
 
 		<span id='vueReglagesVuePhoto' class='classReglagesVue'>
 			<span id='btnCloseVueReglagesVuePhoto' class='classBtnReglage'></span>
@@ -297,10 +294,10 @@
 
 			<table id='ensembleAPNManuel'>
 
-				<tr id='ensembleRdBAPNManuel'>
-					<td> <input type='radio' name='sourceAPN' id='rdbAPNManuel' /> </td>
-					<td> <span id='nomAPNManuel' class='nomDeParametreItalic'></span></td>
-				</tr>
+				<span id='ensembleRdBAPNManuel'>
+					<input type='radio' name='sourceAPN' id='rdbAPNManuel' />
+					<span id='nomAPNManuel' class='nomDeParametreItalic'></span>
+				</span>
 
 				<tr id='ensembleLstTypeDeCapteur'>
 					<td><span id='nomLstTypeDeCapteur' class='nomDeParametre'></span></td>
@@ -333,10 +330,10 @@
 
 			<table id='ensembleAPNExistant'>
 
-				<tr id='ensembleRdBAPNExistant'>
-					<td> <input type='radio' name='sourceAPN' id='rdbAPNExistant' /> </td>
-					<td> <span id='nomAPNExistant' class='nomDeParametreItalic'></span></td>
-				</tr>
+				<span id='ensembleRdBAPNExistant'>
+					 <input type='radio' name='sourceAPN' id='rdbAPNExistant' />
+					 <span id='nomAPNExistant' class='nomDeParametreItalic'></span>
+				</sapn>
 
 				<tr id='ensembleLstAPNExistant'>
 

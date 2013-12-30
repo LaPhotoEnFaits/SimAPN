@@ -134,6 +134,14 @@ input[type="range"]::-ms-tooltip  {
 .tableAvecSld,.tableAvecSldFocale,.tableAvecSldTriangleExpo tr{
     height:23px;
 }
+.tableAvecSldFocale{
+    width:297px;
+}
+
+.tableAvecSld td{
+padding: 0px;
+}
+
 
 
 .classInfoNavigateur{
@@ -177,7 +185,9 @@ input[type="range"]::-ms-tooltip  {
 
 .barreDeTitre{
     font-style: italic;
-    padding: 3px;
+    padding-left: 20px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     background-color: rgba(0,0,0,0.5);
     border-bottom: 2px solid rgba(0,0,0,0.8);
     display: flex;
@@ -185,7 +195,7 @@ input[type="range"]::-ms-tooltip  {
 }
 
 .classTitre{
-    font-size:17px;   
+    font-size:19px;   
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -193,7 +203,7 @@ input[type="range"]::-ms-tooltip  {
 }
 
 .classNomDuSoft{
-    font-size:17px; 
+    font-size:19px; 
     float:left;
     text-shadow:  2px 2px 2px #000000;
 }
@@ -209,17 +219,23 @@ input[type="range"]::-ms-tooltip  {
 .classBarreDeTache{
     background: rgba(0,0,0,0.1);
     margin-bottom: 7px;
-    border: 1px solid rgba(0,0,0,0.1);
+   /* border: 1px solid rgba(0,0,0,0.1);*/
 }
 
 .tableauBarreDeTache{
     width: 100%;
+
 }
 
 .tableauBarreDeTache td{
     border-left: 1px solid rgba(255,255,255,0.8);
-    padding-left: 5px;
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-top: 3px;
+}
 
+.tableauBarreDeTache td:first-child{
+    padding: 0px;
 }
 
 .tableauBarreDeTache tr td:first-child{
@@ -245,7 +261,7 @@ input[type="range"]::-ms-tooltip  {
 }
 
 .classVueEXIF{
-    font-size:11px;
+    font-size:12px;
     font-style: italic;
     
 }
@@ -258,7 +274,7 @@ input[type="range"]::-ms-tooltip  {
 }
 
 
-.classViseur,.classVueHistogrammes,.classVueFlouDeMiseAuPoint,.classReglagesRapides,.classReglagesFocus,.classReglagesVue{
+.classViseur,.classVuesGraphiques,.classReglagesRapides,.classReglagesFocus,.classReglagesVue{
     margin-bottom: 7px;
 }
 
@@ -278,12 +294,13 @@ input[type="range"]::-ms-tooltip  {
         
 }
 
-.classVueHistogrammes,.classVueFlouDeMiseAuPoint{
-     padding: 7px;
+.classVuesGraphiques{
+     padding-left: 7px;
+     padding-right: 7px;
      float:left;
      margin-left: 7px; 
      background: rgba(0,0,0,0.4);
-     border-radius: 6px 6px 6px 6px;  
+     border-radius: 2px;
 }
 
 .classCvsPhoto{
@@ -331,4 +348,10 @@ input[type="range"]::-ms-tooltip  {
 .classEnsembleRdbModeDePriorite td:first-child{
     padding-right: 3px;
     padding-left: 0px;
+}
+.classSldTailleFenetres{
+    margin:0px;
+}
+.classCvsHistoRVB{
+    margin-top: 7px;
 }

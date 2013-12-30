@@ -8,7 +8,7 @@ function configSimulateur() {
 
 	vuePhoto.activee = 1;
 	vuePhoto.visible = 1;
-	vuePhoto.largeur = 495;
+	vuePhoto.largeur = 529;
 	vuePhoto.expositionVisible = 1;
 	vuePhoto.flouDeMapVisible = 1;
 	vuePhoto.flouDeBougeVisible = 1;
